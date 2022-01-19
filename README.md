@@ -1,2 +1,2 @@
 # Kroojel.github.io
-just a ttesdt
+Website for ENG1 Assessment at the University of York
