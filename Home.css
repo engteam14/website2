@@ -1,12 +1,32 @@
 body {
   margin: 0px;
-  background-color: rgb(137, 142, 145);
+  background-image: url('gamescreenshot.png');
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; 
+  image-rendering: crisp-edges;
+  /* background-color: rgb(137, 142, 145); */
+}
+
+hr {
+  margin-block-start: 2em;
+  margin-block-end: 2em;
+  border-color: #000000;
+}
+
+html, body {
+  margin:0;
+  padding:0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Add a black background color to the top navigation */
-.topnav {
-    background-color: #333;
-    overflow: hidden;
+ .topnav {
+    background-color: rgba(51, 51, 51, 0.8);
+    width: 100%;
+    position: fixed;
   }
   
   /* Style the links inside the navigation bar */
@@ -14,9 +34,9 @@ body {
     float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: var(--topnav-pad);
     text-decoration: none;
-    font-size: 17px;
+    font-size: 18px;
   }
   
   /* Change the color of links on hover */
@@ -32,7 +52,7 @@ body {
   }
 
   /* Navbar container */
-.navbar {
+  .navbar {
     overflow: hidden;
     background-color: #333;
     font-family: Arial;
@@ -44,7 +64,7 @@ body {
     font-size: 16px;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: var(--topnav-pad);
     text-decoration: none;
   }
   
@@ -56,11 +76,11 @@ body {
   
   /* Dropdown button */
   .dropdown .dropbtn {
-    font-size: 16px;
+    font-size: 18px;
     border: none;
     outline: none;
     color: white;
-    padding: 14px 16px;
+    padding: var(--topnav-pad);
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
@@ -101,29 +121,42 @@ body {
     display: block;
   }
 
-  #main-area {
-    margin-left: 30px;
-    margin-right: 30px;
+  #background {
+    min-height: 100%;
     background-color: #49494963;
+    background-color: #41414191;
+  }
+
+  #main-area {
+    /* margin-left: 10%; */
+    /* margin-right: 10%; */
+    padding-top: 68px;
     text-align: center;
-    ;
   }
 
   #text-area {
     padding: 20px;
-    font-family: "DejaVu Sans Light";
+    padding-left: 10%;
+    padding-right: 10%;
+    /* margin-top: 20px; */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
   }
 
-  .title {
-    font-size: 150%;
-    margin-bottom: 5px;
+  h1 {
+    font-size: 170%;
+    margin-bottom: 35px;
     font-weight: bold;
-    padding-right: min(30%, 300px);
+    /* padding-right: min(30%, 300px); */
+    text-align: left;
+    text-decoration: underline;
   }
 
-  .text-block {
+  p {
     font-size:100%;
-    /* padding-left: 10px; */
+    /* color : #dcdcdc; */
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
   .break {
@@ -132,4 +165,8 @@ body {
 
   img {
     margin: auto;
+  }
+
+  :root {
+    --topnav-pad: 24px 16px;
   }
