@@ -141,6 +141,7 @@ html, body {
     /* margin-top: 20px; */
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
+    text-align: left;
   }
 
   h1 {
@@ -148,8 +149,14 @@ html, body {
     margin-bottom: 35px;
     font-weight: bold;
     /* padding-right: min(30%, 300px); */
-    text-align: left;
     text-decoration: underline;
+  }
+
+  h2 {
+    font-size: 130%;
+    margin-bottom: 35px;
+    font-weight: bold;
+    padding-left: 3%;
   }
 
   p {
