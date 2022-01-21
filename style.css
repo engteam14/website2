@@ -179,8 +179,8 @@ html, body {
     width: 70%;
   }
 
-  .imgtext {
-    text-align: justify;
+  p a {
+    color: #080657;
   }
 
   :root {
