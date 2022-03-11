@@ -63,30 +63,31 @@ public class Building extends Entity implements CollisionCallBack {
 
     /**
      * Replace the building with ruins and mark as broken.
+     * Changed for Assessment 2: Made public for testing purposes
      */
-    private void destroy() {
-<span class="nc bnc" id="L68" title="All 2 branches missed.">        if (isFlag) {</span>
-<span class="nc" id="L69">            return;</span>
+    public void destroy() {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (isFlag) {</span>
+<span class="nc" id="L70">            return;</span>
         }
-<span class="nc" id="L71">        Sprite s = ResourceManager.getSprite(atlas_id, buildingName + &quot;-broken&quot;);</span>
-<span class="nc" id="L72">        Renderable r = getComponent(Renderable.class);</span>
-<span class="nc" id="L73">        r.setTexture(s);</span>
-<span class="nc" id="L74">        getComponent(Pirate.class).kill();</span>
-<span class="nc" id="L75">    }</span>
+<span class="nc" id="L72">        Sprite s = ResourceManager.getSprite(atlas_id, buildingName + &quot;-broken&quot;);</span>
+<span class="nc" id="L73">        Renderable r = getComponent(Renderable.class);</span>
+<span class="nc" id="L74">        r.setTexture(s);</span>
+<span class="nc" id="L75">        getComponent(Pirate.class).kill();</span>
+<span class="nc" id="L76">    }</span>
 
     public boolean isAlive() {
-<span class="nc" id="L78">        return getComponent(Pirate.class).isAlive();</span>
+<span class="nc" id="L79">        return getComponent(Pirate.class).isAlive();</span>
     }
 
     @Override
     public void BeginContact(CollisionInfo info) {
 
-<span class="nc" id="L84">    }</span>
+<span class="nc" id="L85">    }</span>
 
     @Override
     public void EndContact(CollisionInfo info) {
 
-<span class="nc" id="L89">    }</span>
+<span class="nc" id="L90">    }</span>
 
     /**
      * Destroys the building and marks cannonball for removal.
@@ -95,21 +96,21 @@ public class Building extends Entity implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L98" title="All 4 branches missed.">        if (info.a instanceof CannonBall &amp;&amp; isAlive()) {</span>
-<span class="nc" id="L99">            CannonBall b = (CannonBall) info.a;</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">        if (info.a instanceof CannonBall &amp;&amp; isAlive()) {</span>
+<span class="nc" id="L100">            CannonBall b = (CannonBall) info.a;</span>
             // the ball if from the same faction
             /*if(Objects.equals(b.getShooter().getComponent(Pirate.class).getFaction().getName(),
                     getComponent(Pirate.class).getFaction().getName())) {
                 return;
             }*/
-<span class="nc" id="L105">            destroy();</span>
-<span class="nc" id="L106">            ((CannonBall) info.a).kill();</span>
+<span class="nc" id="L106">            destroy();</span>
+<span class="nc" id="L107">            ((CannonBall) info.a).kill();</span>
         }
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L109">    }</span>
 
     @Override
     public void ExitTrigger(CollisionInfo info) {
 
-<span class="nc" id="L113">    }</span>
+<span class="nc" id="L114">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

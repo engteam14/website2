@@ -74,7 +74,7 @@ public class Pirate extends Component {
 <span class="nc" id="L74">            return;</span>
         }
 <span class="nc" id="L76">        ammo--;</span>
-<span class="nc" id="L77">        GameManager.shoot((Ship) parent, dir);</span>
+<span class="nc" id="L77">        GameManager.shoot(parent, dir); // Changed for Assessment 2, casting from Entity to ship removed</span>
 <span class="nc" id="L78">    }</span>
 
     /**

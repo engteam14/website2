@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.Managers.RenderingManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.UI.EndScreen;
 import com.mygdx.game.UI.GameScreen;
@@ -13,7 +14,7 @@ import com.mygdx.game.UI.MenuScreen;
 /**
  * Contains class instances of game UI screens.
  */
-<span class="nc" id="L16">public class PirateGame extends Game {</span>
+<span class="nc" id="L17">public class PirateGame extends Game {</span>
     public MenuScreen menu;
     public GameScreen game;
     public EndScreen end;
@@ -25,40 +26,41 @@ import com.mygdx.game.UI.MenuScreen;
      */
     @Override
     public void create() {
+<span class="nc" id="L29">        RenderingManager.Initialize();</span>
         // load resources
-<span class="nc" id="L29">        int id_ship = ResourceManager.addTexture(&quot;ship.png&quot;);</span>
-<span class="nc" id="L30">        int id_map = ResourceManager.addTileMap(&quot;Map.tmx&quot;);</span>
-<span class="nc" id="L31">        int atlas_id = ResourceManager.addTextureAtlas(&quot;Boats.txt&quot;);</span>
-<span class="nc" id="L32">        int extras_id = ResourceManager.addTextureAtlas(&quot;UISkin/skin.atlas&quot;);</span>
-<span class="nc" id="L33">        int buildings_id = ResourceManager.addTextureAtlas(&quot;Buildings.txt&quot;);</span>
-<span class="nc" id="L34">        ResourceManager.addTexture(&quot;menuBG.jpg&quot;);</span>
-<span class="nc" id="L35">        ResourceManager.addTexture(&quot;Chest.png&quot;);</span>
-<span class="nc" id="L36">        ResourceManager.loadAssets();</span>
+<span class="nc" id="L31">        int id_ship = ResourceManager.addTexture(&quot;ship.png&quot;);</span>
+<span class="nc" id="L32">        int id_map = ResourceManager.addTileMap(&quot;Map.tmx&quot;);</span>
+<span class="nc" id="L33">        int atlas_id = ResourceManager.addTextureAtlas(&quot;Boats.txt&quot;);</span>
+<span class="nc" id="L34">        int extras_id = ResourceManager.addTextureAtlas(&quot;UISkin/skin.atlas&quot;);</span>
+<span class="nc" id="L35">        int buildings_id = ResourceManager.addTextureAtlas(&quot;Buildings.txt&quot;);</span>
+<span class="nc" id="L36">        ResourceManager.addTexture(&quot;menuBG.jpg&quot;);</span>
+<span class="nc" id="L37">        ResourceManager.addTexture(&quot;Chest.png&quot;);</span>
+<span class="nc" id="L38">        ResourceManager.loadAssets();</span>
         // cant load any more resources after this point (just functionally I choose not to implement)
-<span class="nc" id="L38">        stage = new Stage(new ScreenViewport());</span>
-<span class="nc" id="L39">        createSkin();</span>
-<span class="nc" id="L40">        menu = new MenuScreen(this);</span>
-<span class="nc" id="L41">        game = new GameScreen(this, id_map);</span>
-<span class="nc" id="L42">        end = new EndScreen(this);</span>
-<span class="nc" id="L43">        setScreen(menu);</span>
-<span class="nc" id="L44">    }</span>
+<span class="nc" id="L40">        stage = new Stage(new ScreenViewport());</span>
+<span class="nc" id="L41">        createSkin();</span>
+<span class="nc" id="L42">        menu = new MenuScreen(this);</span>
+<span class="nc" id="L43">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L44">        end = new EndScreen(this);</span>
+<span class="nc" id="L45">        setScreen(menu);</span>
+<span class="nc" id="L46">    }</span>
 
     /**
      * Clean up prevent memory leeks
      */
     @Override
     public void dispose() {
-<span class="nc" id="L51">        menu.dispose();</span>
-<span class="nc" id="L52">        game.dispose();</span>
-<span class="nc" id="L53">        stage.dispose();</span>
-<span class="nc" id="L54">        skin.dispose();</span>
-<span class="nc" id="L55">    }</span>
+<span class="nc" id="L53">        menu.dispose();</span>
+<span class="nc" id="L54">        game.dispose();</span>
+<span class="nc" id="L55">        stage.dispose();</span>
+<span class="nc" id="L56">        skin.dispose();</span>
+<span class="nc" id="L57">    }</span>
 
     /**
      * load ui skin from assets
      */
     private void createSkin() {
-<span class="nc" id="L61">        skin = new Skin(Gdx.files.internal(&quot;UISkin/skin.json&quot;));</span>
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L63">        skin = new Skin(Gdx.files.internal(&quot;UISkin/skin.json&quot;));</span>
+<span class="nc" id="L64">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
