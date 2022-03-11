@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Pirate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Components</a> &gt; <span class="el_source">Pirate.java</span></div><h1>Pirate.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Components;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.JsonValue;
+import com.mygdx.game.Entitys.Ship;
+import com.mygdx.game.Faction;
+import com.mygdx.game.Managers.GameManager;
+import com.mygdx.utils.QueueFIFO;
+
+/**
+ * Gives the concepts of health plunder, etc. Allows for firing of cannonballs, factions, death, targets
+ */
+public class Pirate extends Component {
+    private int factionId;
+    private int plunder;
+    protected boolean isAlive;
+    private int health;
+    private int ammo;
+    private final int attackDmg;
+
+    /**
+     * The enemy that is being targeted by the AI.
+     */
+    private final QueueFIFO&lt;Ship&gt; targets;
+
+    public Pirate() {
+<span class="nc" id="L27">        super();</span>
+<span class="nc" id="L28">        targets = new QueueFIFO&lt;&gt;();</span>
+<span class="nc" id="L29">        type = ComponentType.Pirate;</span>
+<span class="nc" id="L30">        plunder = GameManager.getSettings().get(&quot;starting&quot;).getInt(&quot;plunder&quot;);</span>
+<span class="nc" id="L31">        factionId = 1;</span>
+<span class="nc" id="L32">        isAlive = true;</span>
+<span class="nc" id="L33">        JsonValue starting = GameManager.getSettings().get(&quot;starting&quot;);</span>
+<span class="nc" id="L34">        health = starting.getInt(&quot;health&quot;);</span>
+<span class="nc" id="L35">        attackDmg = starting.getInt(&quot;damage&quot;);</span>
+<span class="nc" id="L36">        ammo = starting.getInt(&quot;ammo&quot;);</span>
+<span class="nc" id="L37">    }</span>
+
+    public void addTarget(Ship target) {
+<span class="nc" id="L40">        targets.add(target);</span>
+<span class="nc" id="L41">    }</span>
+
+    public int getPlunder() {
+<span class="nc" id="L44">        return plunder;</span>
+    }
+
+    public void addPlunder(int money) {
+<span class="nc" id="L48">        plunder += money;</span>
+<span class="nc" id="L49">    }</span>
+
+    public Faction getFaction() {
+<span class="nc" id="L52">        return GameManager.getFaction(factionId);</span>
+    }
+
+    public void setFactionId(int factionId) {
+<span class="nc" id="L56">        this.factionId = factionId;</span>
+<span class="nc" id="L57">    }</span>
+
+    public void takeDamage(float dmg) {
+<span class="nc" id="L60">        health -= dmg;</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        if (health &lt;= 0) {</span>
+<span class="nc" id="L62">            health = 0;</span>
+<span class="nc" id="L63">            isAlive = false;</span>
+        }
+<span class="nc" id="L65">    }</span>
+
+    /**
+     * Will shoot a cannonball assigning this.parent as the cannonball's parent (must be Ship atm)
+     *
+     * @param dir the direction to shoot in
+     */
+    public void shoot(Vector2 dir) {
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (ammo == 0) {</span>
+<span class="nc" id="L74">            return;</span>
+        }
+<span class="nc" id="L76">        ammo--;</span>
+<span class="nc" id="L77">        GameManager.shoot((Ship) parent, dir);</span>
+<span class="nc" id="L78">    }</span>
+
+    /**
+     * Adds ammo
+     *
+     * @param ammo amount to add
+     */
+    public void reload(int ammo) {
+<span class="nc" id="L86">        this.ammo += ammo;</span>
+<span class="nc" id="L87">    }</span>
+
+    public int getHealth() {
+<span class="nc" id="L90">        return health;</span>
+    }
+
+    /**
+     * if dst to target is less than attack range
+     * target will be null if not in agro range
+     */
+    public boolean canAttack() {
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="nc" id="L99">            final Ship p = (Ship) parent;</span>
+<span class="nc" id="L100">            final Vector2 pos = p.getPosition();</span>
+<span class="nc" id="L101">            final float dst = pos.dst(targets.peek().getPosition());</span>
+            // withing attack range
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            return dst &lt; Ship.getAttackRange();</span>
+        }
+<span class="nc" id="L105">        return false;</span>
+    }
+
+    /**
+     * if dst to target is &gt;= attack range
+     * target will be null if not in agro range
+     */
+    public boolean isAgro() {
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="nc" id="L114">            final Ship p = (Ship) parent;</span>
+<span class="nc" id="L115">            final Vector2 pos = p.getPosition();</span>
+<span class="nc" id="L116">            final float dst = pos.dst(targets.peek().getPosition());</span>
+            // out of attack range but in agro range
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            return dst &gt;= Ship.getAttackRange();</span>
+        }
+<span class="nc" id="L120">        return false;</span>
+    }
+
+    public Ship getTarget() {
+<span class="nc" id="L124">        return targets.peek();</span>
+    }
+
+    public void removeTarget() {
+<span class="nc" id="L128">        targets.pop();</span>
+<span class="nc" id="L129">    }</span>
+
+    public boolean isAlive() {
+<span class="nc" id="L132">        return isAlive;</span>
+    }
+
+    /**
+     * Kill its self
+     */
+    public void kill() {
+<span class="nc" id="L139">        health = 0;</span>
+<span class="nc" id="L140">        isAlive = false;</span>
+<span class="nc" id="L141">    }</span>
+
+    public void setAmmo(int ammo) {
+<span class="nc" id="L144">        this.ammo = ammo;</span>
+<span class="nc" id="L145">    }</span>
+
+    public int getAmmo() {
+<span class="nc" id="L148">        return ammo;</span>
+    }
+
+    public int targetCount() {
+<span class="nc" id="L152">        return targets.size();</span>
+    }
+
+    public QueueFIFO&lt;Ship&gt; getTargets() {
+<span class="nc" id="L156">        return targets;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
