@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>College.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Entitys</a> &gt; <span class="el_source">College.java</span></div><h1>College.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Entitys;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.JsonValue;
+import com.mygdx.game.Components.Pirate;
+import com.mygdx.game.Components.Transform;
+import com.mygdx.game.Faction;
+import com.mygdx.game.Managers.GameManager;
+import com.mygdx.utils.Utilities;
+
+import java.util.ArrayList;
+
+/**
+ * Defines a college and its associated buildings.
+ */
+public class College extends Entity {
+    private static ArrayList&lt;String&gt; buildingNames;
+    private final ArrayList&lt;Building&gt; buildings;
+
+    public College() {
+<span class="nc" id="L21">        super();</span>
+<span class="nc" id="L22">        buildings = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L23">        buildingNames = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L24">        buildingNames.add(&quot;big&quot;);</span>
+<span class="nc" id="L25">        buildingNames.add(&quot;small&quot;);</span>
+<span class="nc" id="L26">        buildingNames.add(&quot;clock&quot;);</span>
+<span class="nc" id="L27">        Transform t = new Transform();</span>
+<span class="nc" id="L28">        Pirate p = new Pirate();</span>
+<span class="nc" id="L29">        addComponents(t, p);</span>
+<span class="nc" id="L30">    }</span>
+
+    /**
+     * Creates a college at the location associated with the given faction id.
+     *
+     * @param factionId numerical id of the faction
+     */
+    public College(int factionId) {
+<span class="nc" id="L38">        this();</span>
+<span class="nc" id="L39">        Faction f = GameManager.getFaction(factionId);</span>
+<span class="nc" id="L40">        Transform t = getComponent(Transform.class);</span>
+<span class="nc" id="L41">        t.setPosition(f.getPosition());</span>
+<span class="nc" id="L42">        Pirate p = getComponent(Pirate.class);</span>
+<span class="nc" id="L43">        p.setFactionId(factionId);</span>
+<span class="nc" id="L44">        spawn(f.getColour());</span>
+<span class="nc" id="L45">    }</span>
+
+    /**
+     * Randomly populates the college radius with buildings.
+     *
+     * @param colour used to pull the appropriate flag sprite
+     */
+    private void spawn(String colour) {
+<span class="nc" id="L53">        JsonValue collegeSettings = GameManager.getSettings().get(&quot;college&quot;);</span>
+<span class="nc" id="L54">        float radius = collegeSettings.getFloat(&quot;spawnRadius&quot;);</span>
+        // radius = Utilities.tilesToDistance(radius) * BUILDING_SCALE;
+<span class="nc" id="L56">        final Vector2 origin = getComponent(Transform.class).getPosition();</span>
+<span class="nc" id="L57">        ArrayList&lt;Vector2&gt; posList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L58">        posList.add(new Vector2(0, 0));</span>
+
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        for (int i = 0; i &lt; collegeSettings.getInt(&quot;numBuildings&quot;); i++) {</span>
+<span class="nc" id="L61">            Vector2 pos = Utilities.randomPos(-radius, radius);</span>
+<span class="nc" id="L62">            pos = Utilities.floor(pos);</span>
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (!posList.contains(pos)) {</span>
+<span class="nc" id="L65">                posList.add(pos);</span>
+
+<span class="nc" id="L67">                pos = Utilities.tilesToDistance(pos).add(origin);</span>
+
+<span class="nc" id="L69">                Building b = new Building();</span>
+<span class="nc" id="L70">                buildings.add(b);</span>
+
+<span class="nc" id="L72">                String b_name = Utilities.randomChoice(buildingNames);</span>
+
+<span class="nc" id="L74">                b.create(pos, b_name);</span>
+            }
+
+
+        }
+<span class="nc" id="L79">        Building flag = new Building(true);</span>
+<span class="nc" id="L80">        buildings.add(flag);</span>
+<span class="nc" id="L81">        flag.create(origin, colour);</span>
+<span class="nc" id="L82">    }</span>
+
+    /**
+     * True as long as unharmed buildings remain, false otherwise.
+     */
+    public void isAlive() {
+<span class="nc" id="L88">        boolean res = false;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        for (int i = 0; i &lt; buildings.size() - 1; i++) {</span>
+<span class="nc" id="L90">            Building b = buildings.get(i);</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (b.isAlive()) {</span>
+<span class="nc" id="L92">                res = true;</span>
+            }
+        }
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (!res) {</span>
+<span class="nc" id="L96">            getComponent(Pirate.class).kill();</span>
+        }
+<span class="nc" id="L98">    }</span>
+
+    @Override
+    public void update() {
+<span class="nc" id="L102">        super.update();</span>
+<span class="nc" id="L103">        isAlive();</span>
+<span class="nc" id="L104">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
