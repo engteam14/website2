@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -180,26 +180,33 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#destroy()">destroy</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Replace the building with ruins and mark as broken.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#EndContact(com.mygdx.game.Physics.CollisionInfo)">EndContact</a></span>&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</code></th>
 <td class="colLast">
 <div class="block">Called after the collision has being solved</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#EnterTrigger(com.mygdx.game.Physics.CollisionInfo)">EnterTrigger</a></span>&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</code></th>
 <td class="colLast">
 <div class="block">Destroys the building and marks cannonball for removal.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ExitTrigger(com.mygdx.game.Physics.CollisionInfo)">ExitTrigger</a></span>&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</code></th>
 <td class="colLast">
 <div class="block">Called upon exiting a trigger</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAlive()">isAlive</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -249,6 +256,17 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <dd><code>pos</code> - 2D position vector</dd>
 <dd><code>name</code> - name of building</dd>
 </dl>
+</li>
+</ul>
+<a id="destroy()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>destroy</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;destroy()</pre>
+<div class="block">Replace the building with ruins and mark as broken.
+ Changed for Assessment 2: Made public for testing purposes</div>
 </li>
 </ul>
 <a id="isAlive()">

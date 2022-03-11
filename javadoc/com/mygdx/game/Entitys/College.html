@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -186,13 +186,29 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAlive()">isAlive</a></span>()</code></th>
 <td class="colLast">
 <div class="block">True as long as unharmed buildings remain, false otherwise.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#killThisCollege()">killThisCollege</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2
+ Systematically kills each building attached to this college, then marks the college as dead.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot(com.badlogic.gdx.math.Vector2)">shoot</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;dir)</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2 to meet requirements
+ Calls shoot function of internal component</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">
@@ -269,8 +285,31 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isAlive</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;isAlive()</pre>
-<div class="block">True as long as unharmed buildings remain, false otherwise.</div>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isAlive()</pre>
+<div class="block">True as long as unharmed buildings remain, false otherwise.
+ Changed for Assessment 2, added boolean return for Kill Quest functionality.</div>
+</li>
+</ul>
+<a id="shoot(com.badlogic.gdx.math.Vector2)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>shoot</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;shoot&#8203;(com.badlogic.gdx.math.Vector2&nbsp;dir)</pre>
+<div class="block">Added for Assessment 2 to meet requirements
+ Calls shoot function of internal component</div>
+</li>
+</ul>
+<a id="killThisCollege()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>killThisCollege</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;killThisCollege()</pre>
+<div class="block">Added for Assessment 2
+ Systematically kills each building attached to this college, then marks the college as dead.</div>
 </li>
 </ul>
 <a id="update()">
