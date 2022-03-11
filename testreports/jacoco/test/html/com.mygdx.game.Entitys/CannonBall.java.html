@@ -20,44 +20,45 @@ public class CannonBall extends Entity implements CollisionCallBack {
     private static float speed;
     private boolean toggleLife;
     private static final int MAX_AGE = 5;
-    private Entity shooter; // Changed for Assessment 2, type switched from Ship to Entity
+    // private float age = 0;
+    private Ship shooter;
 
     public CannonBall() {
-<span class="nc" id="L26">        super(3);</span>
-<span class="nc" id="L27">        setName(&quot;ball&quot;);</span>
-<span class="nc" id="L28">        toggleLife = false;</span>
-<span class="nc" id="L29">        Transform t = new Transform();</span>
-<span class="nc" id="L30">        t.setPosition(-100, 100);</span>
-<span class="nc" id="L31">        t.setScale(0.5f, 0.5f);</span>
-<span class="nc" id="L32">        Renderable r = new Renderable(4, &quot;ball&quot;, RenderLayer.Transparent);</span>
-<span class="nc" id="L33">        RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t, true);</span>
-<span class="nc" id="L34">        rb.setCallback(this);</span>
+<span class="nc" id="L27">        super(3);</span>
+<span class="nc" id="L28">        setName(&quot;ball&quot;);</span>
+<span class="nc" id="L29">        toggleLife = false;</span>
+<span class="nc" id="L30">        Transform t = new Transform();</span>
+<span class="nc" id="L31">        t.setPosition(-100, 100);</span>
+<span class="nc" id="L32">        t.setScale(0.5f, 0.5f);</span>
+<span class="nc" id="L33">        Renderable r = new Renderable(4, &quot;ball&quot;, RenderLayer.Transparent);</span>
+<span class="nc" id="L34">        RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t, true);</span>
+<span class="nc" id="L35">        rb.setCallback(this);</span>
 
-<span class="nc" id="L36">        addComponents(t, r, rb);</span>
+<span class="nc" id="L37">        addComponents(t, r, rb);</span>
 
-<span class="nc" id="L38">        speed = GameManager.getSettings().get(&quot;starting&quot;).getFloat(&quot;cannonSpeed&quot;);</span>
-<span class="nc" id="L39">        r.hide();</span>
-<span class="nc" id="L40">    }</span>
+<span class="nc" id="L39">        speed = GameManager.getSettings().get(&quot;starting&quot;).getFloat(&quot;cannonSpeed&quot;);</span>
+<span class="nc" id="L40">        r.hide();</span>
+<span class="nc" id="L41">    }</span>
 
     @Override
     public void update() {
-<span class="nc" id="L44">        super.update();</span>
-<span class="nc" id="L45">        removeOnCollision();</span>
-<span class="nc" id="L46">    }</span>
+<span class="nc" id="L45">        super.update();</span>
+<span class="nc" id="L46">        removeOnCollision();</span>
+<span class="nc" id="L47">    }</span>
 
     /**
      * Removes the cannonball offscreen once it hits a target.
      */
     private void removeOnCollision() {
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (toggleLife) {</span>
-<span class="nc" id="L53">            getComponent(Renderable.class).hide();</span>
-<span class="nc" id="L54">            Transform t = getComponent(Transform.class);</span>
-<span class="nc" id="L55">            t.setPosition(10000, 10000);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (toggleLife) {</span>
+<span class="nc" id="L54">            getComponent(Renderable.class).hide();</span>
+<span class="nc" id="L55">            Transform t = getComponent(Transform.class);</span>
+<span class="nc" id="L56">            t.setPosition(10000, 10000);</span>
 
-<span class="nc" id="L57">            RigidBody rb = getComponent(RigidBody.class);</span>
-<span class="nc" id="L58">            rb.setPosition(t.getPosition());</span>
-<span class="nc" id="L59">            rb.setVelocity(0, 0);</span>
-<span class="nc" id="L60">            toggleLife = false;</span>
+<span class="nc" id="L58">            RigidBody rb = getComponent(RigidBody.class);</span>
+<span class="nc" id="L59">            rb.setPosition(t.getPosition());</span>
+<span class="nc" id="L60">            rb.setVelocity(0, 0);</span>
+<span class="nc" id="L61">            toggleLife = false;</span>
         }
         /*else{
             age += EntityManager.getDeltaTime();
@@ -66,7 +67,7 @@ public class CannonBall extends Entity implements CollisionCallBack {
             age = 0;
             kill();
         }*/
-<span class="nc" id="L69">    }</span>
+<span class="nc" id="L70">    }</span>
 
     /**
      * Teleport the cannonball in from offscreen and set in flying away from the ship.
@@ -75,10 +76,9 @@ public class CannonBall extends Entity implements CollisionCallBack {
      * @param dir    2D vector direction for its movement
      * @param sender ship entity firing it
      */
-    public void fire(Vector2 pos, Vector2 dir, Entity sender) {
-<span class="nc" id="L79">        Transform t = getComponent(Transform.class);</span>
-<span class="nc" id="L80">        t.setPosition(pos);</span>
-<span class="nc" id="L81">        System.out.println(t.getPosition());</span>
+    public void fire(Vector2 pos, Vector2 dir, Ship sender) {
+<span class="nc" id="L80">        Transform t = getComponent(Transform.class);</span>
+<span class="nc" id="L81">        t.setPosition(pos);</span>
 
 <span class="nc" id="L83">        RigidBody rb = getComponent(RigidBody.class);</span>
 <span class="nc" id="L84">        Vector2 ta = dir.cpy().scl(speed * EntityManager.getDeltaTime());</span>
@@ -98,7 +98,7 @@ public class CannonBall extends Entity implements CollisionCallBack {
 <span class="nc" id="L98">        toggleLife = false;</span>
 <span class="nc" id="L99">    }</span>
 
-    public Entity getShooter() { // Changed for Assessment 2, type switched from Ship to Entity
+    public Ship getShooter() {
 <span class="nc" id="L102">        return shooter;</span>
     }
 

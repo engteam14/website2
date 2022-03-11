@@ -170,36 +170,27 @@ import java.util.ArrayList;
     }
 
     /**
-     * Added for Assessment 2
-     * @return Returns the next cannonball that would be fired from the cache
-     */
-    public static CannonBall getCurrentCannon() {
-<span class="nc" id="L177">        return ballCache.get(currentElement);</span>
-    }
-
-    /**
      * Utilises the cached cannonballs to fire one
-     * Changed for Assessment 2, seperated incrementer for visual clarity
+     *
      * @param p   parent
      * @param dir shoot direction
      */
-    public static void shoot(Entity p, Vector2 dir) { // Changed for Assessment 2, type switched from Ship to Entity
-<span class="nc" id="L187">        Vector2 pos = p.getComponent(Transform.class).getPosition().cpy();</span>
+    public static void shoot(Ship p, Vector2 dir) {
+<span class="nc" id="L179">        Vector2 pos = p.getComponent(Transform.class).getPosition().cpy();</span>
         //pos.add(dir.x * TILE_SIZE * 0.5f, dir.y * TILE_SIZE * 0.5f);
-<span class="nc" id="L189">        ballCache.get(currentElement).fire(pos, dir, p);</span>
-<span class="nc" id="L190">        currentElement++;</span>
-<span class="nc" id="L191">        currentElement %= cacheSize;</span>
-<span class="nc" id="L192">    }</span>
+<span class="nc" id="L181">        ballCache.get(currentElement++).fire(pos, dir, p);</span>
+<span class="nc" id="L182">        currentElement %= cacheSize;</span>
+<span class="nc" id="L183">    }</span>
 
     /**
      * uses a* not sure if it works but i think it does
      *
      * @param loc src
      * @param dst dst
-     * @return queue of delta positions
+     * @return queue of delta postions
      */
     public static QueueFIFO&lt;Vector2&gt; getPath(Vector2 loc, Vector2 dst) {
-<span class="nc" id="L202">        return mapGraph.findOptimisedPath(loc, dst);</span>
+<span class="nc" id="L193">        return mapGraph.findOptimisedPath(loc, dst);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
