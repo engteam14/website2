@@ -20,7 +20,6 @@ jobs:
           output_dir: pdfs
           build_html: false
           
-      - uses: actions/upload-artifact@v1
+      - uses: EndBug/add-and-commit@v9
         with:
-          name: markdowns
-          path: pdfs
+          message: "Convert markdowns to pdfs"
