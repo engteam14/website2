@@ -1,7 +1,10 @@
+## Part A
+
+
 ### Software Engineering Methods
 
 
-Our chosen software engineering method was Agile, with a project “road-map” being created early in the development process as illustrated below. Having all the requirements for the final game from the customer, our roadmap helped us efficiently plan the execution and completion of this project, with the aim of delivering a high-quality game and all its supporting documents on time.  
+Our chosen Software Engineering method was Agile, where we used the Scrum framework. The team was divided into two smaller teams, namely, Implementation and Documentation Team. We then came up with a project “road-map” early in the development process as illustrated below. As we deicded to the Scrum framework, our road-map shows a sprint of 2-weeks for each task followed by a review stage where we would discuss our progress and work on solutions to any problems the team is having. Once we had an idea of the main blocks of work that needed to be done, the team discussed all the smaller tasks that needed to be completed in order to complete a main block of work and we then used GitHub Issues where each member from the two teams were assigned tasks that need to be done. Having all the requirements for the final game from the customer, our roadmap helped us efficiently plan the execution and completion of this project, with the aim of delivering a high-quality game and all its supporting documents on time.  
 
 We organised frequent team meetings, on average twice a week. These meetings served two key purposes:
 
@@ -10,7 +13,7 @@ We organised frequent team meetings, on average twice a week. These meetings ser
 * Providing a platform to discuss and agree upon key development decisions, such as game design and documentation. 
 * Allowing each  team member to communicate their progress on their assigned tasks, and for new tasks to be assigned when necessary.
 
-After creating an initial “road-map”, we then broke down the tasks according to the marks and assigned each member ~15 marks worth of tasks based on their skillset and our experience from the first assessment, so that every member had an equal amount of contribution towards the project. The frequent team meetings alongside the bi-weekly review meetings, in which we discussed task progression, allowed us to keep each other accountable for our productivity and ensured that we stay on track.
+As discussed earlier, we broke down the tasks into sub-tasks according to the marks and assigned each member ~15 marks worth of tasks based on their skillset and our experience from the first assessment, so that every member had an equal amount of contribution towards the project. The frequent team meetings alongside the bi-weekly review meetings, in which we discussed task progression, allowed us to keep each other accountable for our productivity and ensured that we stay on track.
 
 
 ### Tools Used
@@ -20,8 +23,8 @@ After creating an initial “road-map”, we then broke down the tasks according
 
 
 * For our team meetings we either organised a discord call or met in-person. Using discord was an intuitive choice as it is a platform that we all have lots of experience with and therefore avoided an unnecessary learning curve.
-* We created a Discord server for general communications throughout the project. This was crucial in allowing team members to ask clarifying questions without having to wait for the next meeting, avoiding any unnecessary obstructions to task progression.
-* We used GitHub Issues in order to organise and keep track of our tasks throughout the project. Alongside the team meetings, this was crucial in keeping us organised by providing a visual representation of tasks that were completed, in progress and yet to begin.
+* We created a Discord server for general communications throughout the project. This was crucial in allowing team members to ask clarifying questions without having to wait for the next meeting, avoiding any unnecessary obstructions to task progression. Moreover, we created a "To-do list" channel in our server where after every meeting notes were posted regarding what was discussed in the meeting and what needed to be done.
+* We used GitHub Issues in order to organise and keep track of our tasks throughout the project. Alongside the team meetings, this was crucial in keeping us organised by providing a numerical representation of tasks that were completed (closed issues) and tasks that were in progress or yet to begin (open issues).
 
 **Website**
 
@@ -47,7 +50,7 @@ After creating an initial “road-map”, we then broke down the tasks according
 
 
 
-* We considered using other IDEs such as Eclipse for software implementation, however as mentioned previously we chose to use IntelliJ due to team members having previous experience with this IDE
+* We considered using other IDEs such as Eclipse for software implementation, however as mentioned previously we chose to use IntelliJ due to team members having previous experience with this IDE.
 * We also considered game engines other than libGDX in order to enable software development:
     * We considered using Unity, however we were discouraged from this choice by factors such as Unity’s reputation for largely outdated/incomplete documentation and the fact that many useful features are behind a paywall.
     * We also considered using the Unreal game engine, but quickly decided against this as it seemed inappropriate for developing what is a relatively small game and would cause the resulting game to be unnecessarily bloated.
