@@ -40,33 +40,33 @@
 
  | ID | Description | Priority |
 | --- | --- | --- |
-| UR_PLATFORM | The user shall use a standard laptop PC to play the game | Shall |
-| UR_GAME_INIT | The user shall begin a new game from an initial state | Shall |
-| UR_SHIP_CONTROL | The user shall control a ship sailing across the great Lake of York | Shall |
-| UR_COMPETING_COLLEGES | The user shall encounter at least 3 other colleges | Shall |
-| UR_LEARNING_CURVE | The user shall play the game without training | Shall |
-| UR_GAME_DURATION | The user shall be able to complete the game within a ~5 minute timespan | Shall |
-| UR_GAME_OBSERVABILITY | The game shall accomodate onlookers in the PCs surroundings | Shall |
-| UR_FRIENDLY_SHIP_ENCOUNTER | The user shall encounter friendly NPC ships | Shall |
-| UR_HOSTILE_SHIP_ENCOUNTER | The user shall encounter hostile NPC ships | Shall |
-| UR_FIRE_WEAPONS | The user shall be able to fire weapons from the ship | Shall |
-| UR_BULLET_DODGE | The user shall be able to maneuver their ship to dodge fired munitions | Shall |
-| UR_FRIENDLY_BUILDING_INTERACT | The user shall interact with friendly buildings | Shall |
-| UR_HOSTILE_BUILDING_COMBAT | The user shall engage in combat with hostile buildings | Shall |
-| UR_HOSTILE_COLLEGE_CAPTURE | The user shall capture other colleges via combat | Shall |
-| UR_EARN_MONEY | The user shall earn money | Shall |
-| UR_EARN_POINTS | The user shall earn points | Shall |
-| UR_EARN_XP | The user shall earn XP | May |
-| UR_QUEST_PROGRESS | The user shall progress through a series of quests | Shall |
-| UR_GAME_WIN | The user shall win the game through achieving an ultimate objective unlocked by the fulfilment of preceding requirements/quests | Shall |
-| UR_GAME_LOSE | The user shall lose the game through being defeated in combat | Shall |
-| UR_SHIP_COMBAT | The user should be able to engage in combat with other ships |  |
-| UR_OBSTACLE_ENCOUNTER | The user may encounter obstacles while sailing in game |  |
-| UR_WEATHER_ENCOUNTER | The user may encounter bad weather while sailing |  |
-| UR_SPEND_MONEY | The user should be able spend the money earned  |  |
-| UR_POWER_UP | The user should be able to obtain power ups through either the shop or at random locations on the map. |  |
-| UR_DFCLTY_LVL | The user should be able to choose from 3 difficulty levels (e.g. easy, normal, hard) |  |
-| UR_GAME_SAVE | The user should be able to save the state of the game at any time and be able to resume it at a later point. |  |
+| UR_PLATFORM | The user shall use a standard laptop PC to play the game | High |
+| UR_GAME_INIT | The user shall begin a new game from an initial state | High |
+| UR_SHIP_CONTROL | The user shall control a ship sailing across the great Lake of York | High |
+| UR_COMPETING_COLLEGES | The user shall encounter at least 3 other colleges | Medium |
+| UR_LEARNING_CURVE | The user shall play the game without training | High |
+| UR_GAME_DURATION | The user shall be able to complete the game within a ~5 minute timespan | High |
+| UR_GAME_OBSERVABILITY | The game shall accomodate onlookers in the PCs surroundings | Low |
+| UR_FRIENDLY_SHIP_ENCOUNTER | The user shall encounter friendly NPC ships | Low |
+| UR_HOSTILE_SHIP_ENCOUNTER | The user shall encounter hostile NPC ships | Low |
+| UR_FIRE_WEAPONS | The user shall be able to fire weapons from the ship | High |
+| UR_BULLET_DODGE | The user shall be able to maneuver their ship to dodge fired munitions | Medium |
+| UR_FRIENDLY_BUILDING_INTERACT | The user shall interact with friendly buildings | Low |
+| UR_HOSTILE_BUILDING_COMBAT | The user shall engage in combat with hostile buildings | Medium |
+| UR_HOSTILE_COLLEGE_CAPTURE | The user shall capture other colleges via combat | High |
+| UR_EARN_MONEY | The user shall earn money | High |
+| UR_EARN_XP | The user shall earn XP | High |
+| UR_QUEST_PROGRESS | The user shall progress through a series of quests | Medium |
+| UR_GAME_WIN | The user shall win the game through achieving an ultimate objective unlocked by the fulfilment of preceding requirements/quests | Medium |
+| UR_GAME_LOSE | The user shall lose the game through being defeated in combat | High |
+| UR_SHIP_COMBAT | The user should be able to engage in combat with other ships | High |
+| UR_OBSTACLE_ENCOUNTER | The user may encounter obstacles while sailing in game | High |
+| UR_WEATHER_ENCOUNTER | The user may encounter bad weather while sailing | High |
+| UR_SPEND_MONEY | The user should be able spend the money earned | High |
+| UR_POWER_UP | The user should be able to obtain power ups through either the shop or at random locations on the map. | High |
+| UR_DFCLTY_LVL | The user should be able to choose from 3 difficulty levels (e.g. easy, normal, hard) | High |
+| UR_GAME_SAVE | The user should be able to save the state of the game at any time and be able to resume it at a later point. | High |
+
 
 
 
@@ -109,17 +109,18 @@
                                 **Non-Functional Requirements**
 
 
-| Description | User requirement | Fit criteria | Risks |
-| --- | --- | --- | --- |
-| The game shall detect collisions between different ships | UR_HOSTILE_SHIP_ENCOUNTER | Distance between drawn assets <5px | R4 |
-| The game shall detect collisions between ships and world objects | UR_COMPETING_COLLEGES | Distance between drawn assets <5px |  |
-| The game shall detect collisions between game entities and fired munitions | UR_BULLET_DODGE | Distance between drawn assets <5px |  |
-| The game shall be responsive to user input | UR_SHIP_CONTROL | Input lag <200ms |  |
-| NPC actions' responsiveness shall approximate that of player actions | UR_HOSTILE_SHIP_ENCOUNTER | AI response time <200ms | R3 |
-| The game world shall render smoothly during player movement | UR_SHIP_CONTROL | Visual render lag <200ms | R8 |
-| Game map and assets should be distinguishable by a colourblind person | UR_PLATFORM | Subjective screenshot test via colourblind accessibility evaluation app |  |
-| The game shall be self-explainable and feature obvious controls | UR_LEARNING_CURVE | Tester must be able to pick up and play with no prior instruction |  |
-| The game shall finish within ~5 mins in a win or loss for the player | UR_GAME_DURATION | Tester must reach the game stats screen within 4-6 mins |  |
+| ID | Description | User requirement | Fit criteria | Risks | Priority |
+| --- | --- | --- | --- | --- | --- |
+| NFR_SHIP_COLLISIONS | The game shall detect collisions between different ships | UR_HOSTILE_SHIP_ENCOUNTER | Distance between drawn assets <5px | R4 | High |
+| NFR_WORLD_COLLISIONS | The game shall detect collisions between ships and world objects | UR_COMPETING_COLLEGES | Distance between drawn assets <5px |  | High |
+| NFR_BULLET_COLLISIONS | The game shall detect collisions between game entities and fired munitions | UR_BULLET_DODGE | Distance between drawn assets <5px |  | High |
+| NFR_USER_INPUT_LAG | The game shall be responsive to user input | UR_SHIP_CONTROL | Input lag <200ms |  | High |
+| NFR_AI_LAG | NPC actions' responsiveness shall approximate that of player actions | UR_HOSTILE_SHIP_ENCOUNTER | AI response time <200ms | R3 | Low |
+| NFR_RENDER_SMOOTHNESS | The game world shall render smoothly during player movement | UR_SHIP_CONTROL | Visual render lag <200ms | R8 | Medium |
+| NFR_COLOURBLINDNESS | Game map and assets should be distinguishable by a colourblind person | UR_PLATFORM | Subjective screenshot test via colourblind accessibility evaluation app |  | Medium |
+| NFR_EASE_OF_USE | The game shall be self-explainable and feature obvious controls | UR_LEARNING_CURVE | Tester must be able to pick up and play with no prior instruction |  | High |
+| NFR_GAME_DURATION | The game shall finish within ~5 mins in a win or loss for the player | UR_GAME_DURATION | Tester must reach the game stats screen within 4-6 mins |  | Medium |
+| NFR_LARGE_ASSETS | The game assets shall be large enough to observe from several metre's distance away on a standard laptop PC screen | UR_GAME_OBSERVABILITY | Observer standing 2m away should be able to answer questions about gameplay state |  | Medium |
 
 
 
