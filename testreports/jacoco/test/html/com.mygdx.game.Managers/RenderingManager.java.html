@@ -55,49 +55,56 @@ import static com.mygdx.utils.Constants.*;
      */
     public static void addItem(Component item, RenderLayer layer) {
 <span class="nc" id="L57">        tryInit();</span>
-<span class="nc" id="L58">        renderItems.add(item);</span>
-<span class="nc" id="L59">        layers.get(layer.ordinal()).add(renderItems.size() - 1);</span>
-<span class="nc" id="L60">    }</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if(renderItems == null) renderItems = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if(layers == null) {</span>
+<span class="nc" id="L60">            layers = new ArrayList&lt;&gt;(RenderLayer.values().length);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            for (int i = 0; i &lt; RenderLayer.values().length; i++) {</span>
+<span class="nc" id="L62">                layers.add(new ArrayList&lt;&gt;());</span>
+            }
+        }
+<span class="nc" id="L65">        renderItems.add(item);</span>
+<span class="nc" id="L66">        layers.get(layer.ordinal()).add(renderItems.size() - 1);</span>
+<span class="nc" id="L67">    }</span>
 
     private static void tryInit() {
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (!initialized) {</span>
-<span class="nc" id="L64">            Initialize();</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (!initialized) {</span>
+            //Initialize();
         }
-<span class="nc" id="L66">    }</span>
+<span class="nc" id="L73">    }</span>
 
     /**
      * Renders all items in accordance with their layers on one sprite batch
      */
     public static void render() {
-<span class="nc" id="L72">        tryInit();</span>
+<span class="nc" id="L79">        tryInit();</span>
 
-<span class="nc" id="L74">        batch.setProjectionMatrix(camera.combined);</span>
-<span class="nc" id="L75">        batch.begin();</span>
+<span class="nc" id="L81">        batch.setProjectionMatrix(camera.combined);</span>
+<span class="nc" id="L82">        batch.begin();</span>
 
-<span class="nc bnc" id="L77" title="All 2 branches missed.">        for (ArrayList&lt;Integer&gt; layer : layers) {</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">            for (Integer itemIndex : layer) {</span>
-<span class="nc" id="L79">                Component item = renderItems.get(itemIndex);</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">                if (item.getParent() instanceof Building) {</span>
-<span class="nc" id="L81">                    int i = 0;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        for (ArrayList&lt;Integer&gt; layer : layers) {</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            for (Integer itemIndex : layer) {</span>
+<span class="nc" id="L86">                Component item = renderItems.get(itemIndex);</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">                if (item.getParent() instanceof Building) {</span>
+<span class="nc" id="L88">                    int i = 0;</span>
                 }
-<span class="nc" id="L83">                item.render();</span>
-<span class="nc" id="L84">            }</span>
-<span class="nc" id="L85">        }</span>
+<span class="nc" id="L90">                item.render();</span>
+<span class="nc" id="L91">            }</span>
+<span class="nc" id="L92">        }</span>
 
         /*for(int i = 0; i &lt; renderItems.size(); i++){
             //renderItems.get(renderItems.size() - (1 + i)).render();
             renderItems.get(i).render();
         }*/
 
-<span class="nc" id="L92">        batch.end();</span>
-<span class="nc" id="L93">    }</span>
+<span class="nc" id="L99">        batch.end();</span>
+<span class="nc" id="L100">    }</span>
 
     public static void cleanUp() {
-<span class="nc" id="L96">        batch.dispose();</span>
-<span class="nc" id="L97">    }</span>
+<span class="nc" id="L103">        batch.dispose();</span>
+<span class="nc" id="L104">    }</span>
 
     public static SpriteBatch getBatch() {
-<span class="nc" id="L100">        return batch;</span>
+<span class="nc" id="L107">        return batch;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

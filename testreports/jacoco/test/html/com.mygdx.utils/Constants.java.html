@@ -8,51 +8,6 @@ import com.badlogic.gdx.math.Vector3;
  * creates game constants and is updated when appropriate (I know some aren't technically constants)
  */
 <span class="nc" id="L10">public final class Constants {</span>
-    /**
-     * Create constants need so it can properly source screen dimensions
-     */
-    public static void INIT_CONSTANTS() {
-        // FULLSCREEN = !Boolean.parseBoolean(System.getProperty(&quot;windowed&quot;));
-<span class="nc" id="L16">        FULLSCREEN = false;</span>
-        try {
-<span class="nc" id="L18">            SCREEN_WIDTH = Gdx.graphics.getWidth();</span>
-<span class="nc" id="L19">            SCREEN_HEIGHT = Gdx.graphics.getHeight();</span>
-<span class="nc" id="L20">        } catch (Exception e) {</span>
-<span class="nc" id="L21">            SCREEN_WIDTH = 1920;</span>
-<span class="nc" id="L22">            SCREEN_HEIGHT = 1080;</span>
-<span class="nc" id="L23">        }</span>
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        ASPECT_RATIO = !FULLSCREEN ? 1.0f : (float) SCREEN_WIDTH / (float) SCREEN_HEIGHT;</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">        VIEWPORT_HEIGHT = !FULLSCREEN ? 800 : SCREEN_HEIGHT;</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        VIEWPORT_WIDTH = !FULLSCREEN ? (int) (ASPECT_RATIO * VIEWPORT_HEIGHT) : SCREEN_WIDTH;</span>
-<span class="nc" id="L27">        HALF_VIEWPORT_HEIGHT = VIEWPORT_WIDTH / 2;</span>
-<span class="nc" id="L28">        HALF_VIEWPORT_WIDTH = VIEWPORT_HEIGHT / 2;</span>
-<span class="nc" id="L29">        DIMENSIONS = new Vector2(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);</span>
-<span class="nc" id="L30">        HALF_DIMENSIONS = new Vector2(HALF_VIEWPORT_WIDTH, HALF_VIEWPORT_HEIGHT);</span>
-<span class="nc" id="L31">        VIEWPORT_TITLE = &quot;Pirate Game&quot;;</span>
-<span class="nc" id="L32">        BACKGROUND_COLOUR = new Vector3(0.0f, 0.0f, 0.0f);</span>
-<span class="nc" id="L33">        PHYSICS_TIME_STEP = 1.0f / 60.0f;</span>
-
-<span class="nc" id="L35">        OPERATING_SYSTEM = System.getProperty(&quot;os.name&quot;);</span>
-
-<span class="nc" id="L37">        TILE_SIZE = 32;</span>
-<span class="nc" id="L38">    }</span>
-
-    /**
-     * Update viewport data on resize
-     *
-     * @param x new dim x
-     * @param y new dim y
-     */
-    public static void UPDATE_VIEWPORT(int x, int y) {
-<span class="nc" id="L47">        VIEWPORT_HEIGHT = y;</span>
-<span class="nc" id="L48">        VIEWPORT_WIDTH = x;</span>
-<span class="nc" id="L49">        ASPECT_RATIO = (float) SCREEN_WIDTH / (float) SCREEN_HEIGHT;</span>
-<span class="nc" id="L50">        HALF_VIEWPORT_HEIGHT = VIEWPORT_HEIGHT / 2;</span>
-<span class="nc" id="L51">        HALF_VIEWPORT_WIDTH = VIEWPORT_WIDTH / 2;</span>
-<span class="nc" id="L52">        DIMENSIONS = new Vector2(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);</span>
-<span class="nc" id="L53">        HALF_DIMENSIONS = new Vector2(HALF_VIEWPORT_WIDTH, HALF_VIEWPORT_HEIGHT);</span>
-<span class="nc" id="L54">    }</span>
-
     public static int SCREEN_WIDTH;
     public static int SCREEN_HEIGHT;
     public static boolean FULLSCREEN;
@@ -74,5 +29,50 @@ import com.badlogic.gdx.math.Vector3;
     public static Vector3 BACKGROUND_COLOUR;
 
     public static String OPERATING_SYSTEM;
+
+    /**
+     * Create constants needed so it can properly source screen dimensions
+     */
+    public static void INIT_CONSTANTS() {
+        // FULLSCREEN = !Boolean.parseBoolean(System.getProperty(&quot;windowed&quot;));
+<span class="nc" id="L38">        FULLSCREEN = false;</span>
+        try {
+<span class="nc" id="L40">            SCREEN_WIDTH = Gdx.graphics.getWidth();</span>
+<span class="nc" id="L41">            SCREEN_HEIGHT = Gdx.graphics.getHeight();</span>
+<span class="nc" id="L42">        } catch (Exception e) {</span>
+<span class="nc" id="L43">            SCREEN_WIDTH = 1920;</span>
+<span class="nc" id="L44">            SCREEN_HEIGHT = 1080;</span>
+<span class="nc" id="L45">        }</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        ASPECT_RATIO = !FULLSCREEN ? 1.0f : (float) SCREEN_WIDTH / (float) SCREEN_HEIGHT;</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        VIEWPORT_HEIGHT = !FULLSCREEN ? 800 : SCREEN_HEIGHT;</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        VIEWPORT_WIDTH = !FULLSCREEN ? (int) (ASPECT_RATIO * VIEWPORT_HEIGHT) : SCREEN_WIDTH;</span>
+<span class="nc" id="L49">        HALF_VIEWPORT_HEIGHT = VIEWPORT_WIDTH / 2;</span>
+<span class="nc" id="L50">        HALF_VIEWPORT_WIDTH = VIEWPORT_HEIGHT / 2;</span>
+<span class="nc" id="L51">        DIMENSIONS = new Vector2(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);</span>
+<span class="nc" id="L52">        HALF_DIMENSIONS = new Vector2(HALF_VIEWPORT_WIDTH, HALF_VIEWPORT_HEIGHT);</span>
+<span class="nc" id="L53">        VIEWPORT_TITLE = &quot;Pirate Game&quot;;</span>
+<span class="nc" id="L54">        BACKGROUND_COLOUR = new Vector3(0.0f, 0.0f, 0.0f);</span>
+<span class="nc" id="L55">        PHYSICS_TIME_STEP = 1.0f / 60.0f;</span>
+
+<span class="nc" id="L57">        OPERATING_SYSTEM = System.getProperty(&quot;os.name&quot;);</span>
+
+<span class="nc" id="L59">        TILE_SIZE = 32;</span>
+<span class="nc" id="L60">    }</span>
+
+    /**
+     * Update viewport data on resize
+     *
+     * @param x new dim x
+     * @param y new dim y
+     */
+    public static void UPDATE_VIEWPORT(int x, int y) {
+<span class="nc" id="L69">        VIEWPORT_HEIGHT = y;</span>
+<span class="nc" id="L70">        VIEWPORT_WIDTH = x;</span>
+<span class="nc" id="L71">        ASPECT_RATIO = (float) SCREEN_WIDTH / (float) SCREEN_HEIGHT;</span>
+<span class="nc" id="L72">        HALF_VIEWPORT_HEIGHT = VIEWPORT_HEIGHT / 2;</span>
+<span class="nc" id="L73">        HALF_VIEWPORT_WIDTH = VIEWPORT_WIDTH / 2;</span>
+<span class="nc" id="L74">        DIMENSIONS = new Vector2(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);</span>
+<span class="nc" id="L75">        HALF_DIMENSIONS = new Vector2(HALF_VIEWPORT_WIDTH, HALF_VIEWPORT_HEIGHT);</span>
+<span class="nc" id="L76">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

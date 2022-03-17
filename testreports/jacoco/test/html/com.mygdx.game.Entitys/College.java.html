@@ -83,24 +83,48 @@ public class College extends Entity {
 
     /**
      * True as long as unharmed buildings remain, false otherwise.
+     * Changed for Assessment 2, added boolean return for Kill Quest functionality.
      */
-    public void isAlive() {
-<span class="nc" id="L88">        boolean res = false;</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">        for (int i = 0; i &lt; buildings.size() - 1; i++) {</span>
-<span class="nc" id="L90">            Building b = buildings.get(i);</span>
-<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (b.isAlive()) {</span>
-<span class="nc" id="L92">                res = true;</span>
+    public boolean isAlive() {
+<span class="nc" id="L89">        boolean res = false;</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        for (int i = 0; i &lt; buildings.size() - 1; i++) {</span>
+<span class="nc" id="L91">            Building b = buildings.get(i);</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            if (b.isAlive()) {</span>
+<span class="nc" id="L93">                res = true;</span>
             }
         }
-<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (!res) {</span>
-<span class="nc" id="L96">            getComponent(Pirate.class).kill();</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (!res) {</span>
+<span class="nc" id="L97">            getComponent(Pirate.class).kill();</span>
         }
-<span class="nc" id="L98">    }</span>
+<span class="nc" id="L99">        return res;</span>
+    }
+
+    /**
+     * Added for Assessment 2 to meet requirements
+     * Calls shoot function of internal component
+     */
+    public void shoot(Vector2 dir) {
+<span class="nc" id="L107">        getComponent(Pirate.class).shoot(dir);</span>
+<span class="nc" id="L108">    }</span>
+
+    /**
+     * Added for Assessment 2
+     * Systematically kills each building attached to this college, then marks the college as dead.
+     */
+    public void killThisCollege() {
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        for (int i = 0; i &lt; buildings.size() - 1; i++) {</span>
+<span class="nc" id="L116">            Building b = buildings.get(i);</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (b.isAlive()) {</span>
+<span class="nc" id="L118">                b.destroy();</span>
+            }
+        }
+<span class="nc" id="L121">        isAlive();</span>
+<span class="nc" id="L122">    }</span>
 
     @Override
     public void update() {
-<span class="nc" id="L102">        super.update();</span>
-<span class="nc" id="L103">        isAlive();</span>
-<span class="nc" id="L104">    }</span>
+<span class="nc" id="L126">        super.update();</span>
+<span class="nc" id="L127">        isAlive();</span>
+<span class="nc" id="L128">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

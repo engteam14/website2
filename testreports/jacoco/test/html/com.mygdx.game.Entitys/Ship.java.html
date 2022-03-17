@@ -144,45 +144,48 @@ public class Ship extends Entity implements CollisionCallBack {
 <span class="nc" id="L144">        getComponent(Pirate.class).shoot(dir);</span>
 <span class="nc" id="L145">    }</span>
 
+    /**
+     * Calls shoot function of internal component
+     */
     public void shoot() {
-<span class="nc" id="L148">        getComponent(Pirate.class).shoot(currentDir);</span>
-<span class="nc" id="L149">    }</span>
+<span class="nc" id="L151">        getComponent(Pirate.class).shoot(currentDir);</span>
+<span class="nc" id="L152">    }</span>
 
     /**
      * @return copy of the transform's position
      */
     public Vector2 getPosition() {
-<span class="nc" id="L155">        return getComponent(Transform.class).getPosition().cpy();</span>
+<span class="nc" id="L158">        return getComponent(Transform.class).getPosition().cpy();</span>
     }
 
     @Override
     public void BeginContact(CollisionInfo info) {
 
-<span class="nc" id="L161">    }</span>
+<span class="nc" id="L164">    }</span>
 
     @Override
     public void EndContact(CollisionInfo info) {
 
-<span class="nc" id="L166">    }</span>
+<span class="nc" id="L169">    }</span>
 
     /**
      * if called on a Player against anything else call it on the other thing
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L173" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
-<span class="nc" id="L174">            ((CollisionCallBack) info.b).EnterTrigger(info);</span>
+<span class="nc bnc" id="L176" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="nc" id="L177">            ((CollisionCallBack) info.b).EnterTrigger(info);</span>
         }
-<span class="nc" id="L176">    }</span>
+<span class="nc" id="L179">    }</span>
 
     /**
      * if called on a Player against anything else call it on the other thing
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L183" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
-<span class="nc" id="L184">            ((CollisionCallBack) info.b).ExitTrigger(info);</span>
+<span class="nc bnc" id="L186" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="nc" id="L187">            ((CollisionCallBack) info.b).ExitTrigger(info);</span>
         }
-<span class="nc" id="L186">    }</span>
+<span class="nc" id="L189">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
