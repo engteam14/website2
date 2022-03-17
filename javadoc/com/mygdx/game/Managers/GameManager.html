@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9};
+var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -208,11 +208,25 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code>static <a href="../Entitys/CannonBall.html" title="class in com.mygdx.game.Entitys">CannonBall</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCurrentCannon()">getCurrentCannon</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>static <a href="../Faction.html" title="class in com.mygdx.game">Faction</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFaction(int)">getFaction</a></span>&#8203;(int&nbsp;factionId)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>static <a href="../Entitys/NPCShip.html" title="class in com.mygdx.game.Entitys">NPCShip</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNPCShip(int)">getNPCShip</a></span>&#8203;(int&nbsp;id)</code></th>
+<td class="colLast">
+<div class="block">Get an NPCShip in the current game</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>static <a href="../../utils/QueueFIFO.html" title="class in com.mygdx.utils">QueueFIFO</a>&lt;com.badlogic.gdx.math.Vector2&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPath(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2)">getPath</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;loc,
        com.badlogic.gdx.math.Vector2&nbsp;dst)</code></th>
@@ -220,43 +234,48 @@ extends java.lang.Object</pre>
 <div class="block">uses a* not sure if it works but i think it does</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>static <a href="../Entitys/Player.html" title="class in com.mygdx.game.Entitys">Player</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPlayer()">getPlayer</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Player is always in ships at index 0</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>static com.badlogic.gdx.utils.JsonValue</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSettings()">getSettings</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Gets the setting object from the GameSetting.json</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Initialize()">Initialize</a></span>()</code></th>
 <td class="colLast">
 <div class="block">facilitates creation of the game</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot(com.mygdx.game.Entitys.Ship,com.badlogic.gdx.math.Vector2)">shoot</a></span>&#8203;(<a href="../Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a>&nbsp;p,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot(com.mygdx.game.Entitys.Entity,com.badlogic.gdx.math.Vector2)">shoot</a></span>&#8203;(<a href="../Entitys/Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>&nbsp;p,
      com.badlogic.gdx.math.Vector2&nbsp;dir)</code></th>
 <td class="colLast">
-<div class="block">Utilises the cached cannonballs to fire one</div>
+<div class="block">Utilises the cached cannonballs to fire one
+ Changed for Assessment 2, seperated incrementer for visual clarity</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#SpawnGame(int)">SpawnGame</a></span>&#8203;(int&nbsp;mapId)</code></th>
 <td class="colLast">
-<div class="block">Creates the game with player maps, NPCs, colleges</div>
+<div class="block">Creates the game with player maps, NPCs, colleges
+ // Change for Assessment 2  Start //
+ Only creates world map if mapId is non-negative
+ For test purposes
+ // Change for Assessment 2  End //</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">
@@ -340,6 +359,22 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
+<a id="getNPCShip(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNPCShip</h4>
+<pre class="methodSignature">public static&nbsp;<a href="../Entitys/NPCShip.html" title="class in com.mygdx.game.Entitys">NPCShip</a>&nbsp;getNPCShip&#8203;(int&nbsp;id)</pre>
+<div class="block">Get an NPCShip in the current game</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - the ship's ID</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the NPCShip instance</dd>
+</dl>
+</li>
+</ul>
 <a id="SpawnGame(int)">
 <!--   -->
 </a>
@@ -347,7 +382,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>SpawnGame</h4>
 <pre class="methodSignature">public static&nbsp;void&nbsp;SpawnGame&#8203;(int&nbsp;mapId)</pre>
-<div class="block">Creates the game with player maps, NPCs, colleges</div>
+<div class="block">Creates the game with player maps, NPCs, colleges
+ // Change for Assessment 2  Start //
+ Only creates world map if mapId is non-negative
+ For test purposes
+ // Change for Assessment 2  End //</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>mapId</code> - the resource id of the tilemap</dd>
@@ -440,15 +479,30 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public static&nbsp;<a href="../Entitys/College.html" title="class in com.mygdx.game.Entitys">College</a>&nbsp;getCollege&#8203;(int&nbsp;factionId)</pre>
 </li>
 </ul>
-<a id="shoot(com.mygdx.game.Entitys.Ship,com.badlogic.gdx.math.Vector2)">
+<a id="getCurrentCannon()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getCurrentCannon</h4>
+<pre class="methodSignature">public static&nbsp;<a href="../Entitys/CannonBall.html" title="class in com.mygdx.game.Entitys">CannonBall</a>&nbsp;getCurrentCannon()</pre>
+<div class="block">Added for Assessment 2</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Returns the next cannonball that would be fired from the cache</dd>
+</dl>
+</li>
+</ul>
+<a id="shoot(com.mygdx.game.Entitys.Entity,com.badlogic.gdx.math.Vector2)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>shoot</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;shoot&#8203;(<a href="../Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a>&nbsp;p,
+<pre class="methodSignature">public static&nbsp;void&nbsp;shoot&#8203;(<a href="../Entitys/Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>&nbsp;p,
                          com.badlogic.gdx.math.Vector2&nbsp;dir)</pre>
-<div class="block">Utilises the cached cannonballs to fire one</div>
+<div class="block">Utilises the cached cannonballs to fire one
+ Changed for Assessment 2, seperated incrementer for visual clarity</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>p</code> - parent</dd>
@@ -470,7 +524,7 @@ extends java.lang.Object</pre>
 <dd><code>loc</code> - src</dd>
 <dd><code>dst</code> - dst</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>queue of delta postions</dd>
+<dd>queue of delta positions</dd>
 </dl>
 </li>
 </ul>
