@@ -92,53 +92,54 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
 
     /**
      * Creates the quest line with the final quest being to kill a college
+     * changed from private to public in assesment 2 to allow the seperation between initialize and creating quests for testing.
      */
-    public static void createRandomQuests() {
+    public static void createRandomQuests() { //Assesment 2 change, see javastring
         // the last quest added is the final quest
-<span class="nc" id="L98">        int primaryEnemyId = new Random().nextInt(4) + 2;</span>
-<span class="nc" id="L99">        ArrayList&lt;Integer&gt; exclude = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L100">        exclude.add(primaryEnemyId);</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">        for (int i = 0; i &lt; GameManager.getSettings().get(&quot;quests&quot;).getInt(&quot;count&quot;); i++) {</span>
-<span class="nc" id="L102">            rndQuest(exclude);</span>
+<span class="nc" id="L99">        int primaryEnemyId = new Random().nextInt(4) + 2;</span>
+<span class="nc" id="L100">        ArrayList&lt;Integer&gt; exclude = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L101">        exclude.add(primaryEnemyId);</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        for (int i = 0; i &lt; GameManager.getSettings().get(&quot;quests&quot;).getInt(&quot;count&quot;); i++) {</span>
+<span class="nc" id="L103">            rndQuest(exclude);</span>
         }
-<span class="nc" id="L104">        College enemy = GameManager.getCollege(primaryEnemyId);</span>
-<span class="nc" id="L105">        addQuest(new KillQuest(enemy));</span>
-<span class="nc" id="L106">    }</span>
+<span class="nc" id="L105">        College enemy = GameManager.getCollege(primaryEnemyId);</span>
+<span class="nc" id="L106">        addQuest(new KillQuest(enemy));</span>
+<span class="nc" id="L107">    }</span>
 
     public static void addQuest(Quest q) {
-     //   tryInit();
-<span class="nc" id="L110">        allQuests.add(q);</span>
-<span class="nc" id="L111">    }</span>
+     //   tryInit(); removed for assessment 2
+<span class="nc" id="L111">        allQuests.add(q);</span>
+<span class="nc" id="L112">    }</span>
 
     /**
      * checks quests for completion and gives rewards, teleports the chest when appropriate.
      * Stops checking the quest after the first no completed quest (prevents quests being completed in any order)
      */
     public static void checkCompleted() {
-     //   tryInit();
-<span class="nc" id="L119">        Player p = GameManager.getPlayer();</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">        for (Quest q : allQuests) {</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (q.isCompleted()) {</span>
-<span class="nc" id="L122">                continue;</span>
+     //   tryInit(); removed for assesment 2
+<span class="nc" id="L120">        Player p = GameManager.getPlayer();</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        for (Quest q : allQuests) {</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">            if (q.isCompleted()) {</span>
+<span class="nc" id="L123">                continue;</span>
             }
-<span class="nc" id="L124">            boolean completed = q.checkCompleted(p);</span>
-<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (completed) {</span>
-<span class="nc" id="L126">                p.plunder(q.getReward());</span>
-<span class="nc bnc" id="L127" title="All 2 branches missed.">            } else if (q instanceof LocateQuest) {</span>
-<span class="nc" id="L128">                chest.setPosition(((LocateQuest) q).getLocation());</span>
-<span class="nc" id="L129">                break;</span>
+<span class="nc" id="L125">            boolean completed = q.checkCompleted(p);</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (completed) {</span>
+<span class="nc" id="L127">                p.plunder(q.getReward());</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            } else if (q instanceof LocateQuest) {</span>
+<span class="nc" id="L129">                chest.setPosition(((LocateQuest) q).getLocation());</span>
+<span class="nc" id="L130">                break;</span>
             } else {
-<span class="nc" id="L131">                chest.setPosition(new Vector2(-1000, -1000));</span>
-<span class="nc" id="L132">                break;</span>
+<span class="nc" id="L132">                chest.setPosition(new Vector2(-1000, -1000));</span>
+<span class="nc" id="L133">                break;</span>
             }
-<span class="nc" id="L134">        }</span>
-<span class="nc" id="L135">    }</span>
+<span class="nc" id="L135">        }</span>
+<span class="nc" id="L136">    }</span>
 
     private static void tryInit() {
-<span class="nc bnc" id="L138" title="All 2 branches missed.">        if (!initialized) {</span>
-<span class="nc" id="L139">            Initialize();</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        if (!initialized) {</span>
+<span class="nc" id="L140">            Initialize();</span>
         }
-<span class="nc" id="L141">    }</span>
+<span class="nc" id="L142">    }</span>
 
     /**
      * Returns the next un-completed quest
@@ -147,12 +148,12 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
      */
     public static Quest currentQuest() {
       //  tryInit();
-<span class="nc bnc" id="L150" title="All 2 branches missed.">        for (Quest q : allQuests) {</span>
-<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (!q.isCompleted()) {</span>
-<span class="nc" id="L152">                return q;</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        for (Quest q : allQuests) {</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (!q.isCompleted()) {</span>
+<span class="nc" id="L153">                return q;</span>
             }
-<span class="nc" id="L154">        }</span>
-<span class="nc" id="L155">        return null;</span>
+<span class="nc" id="L155">        }</span>
+<span class="nc" id="L156">        return null;</span>
     }
 
     /**
@@ -161,8 +162,8 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
      * @return true if any non completed quest exirs
      */
     public static boolean anyQuests() {
-      //  tryInit();
-<span class="nc bnc" id="L165" title="All 2 branches missed.">        return currentQuest() != null;</span>
+      //  tryInit(); removed for assesment 2
+<span class="nc bnc" id="L166" title="All 2 branches missed.">        return currentQuest() != null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
