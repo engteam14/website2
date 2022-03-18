@@ -54,7 +54,7 @@
 | UR_FRIENDLY_BUILDING_INTERACT | The user shall interact with friendly buildings | Low |
 | UR_HOSTILE_BUILDING_COMBAT | The user shall engage in combat with hostile buildings | Medium |
 | UR_HOSTILE_COLLEGE_CAPTURE | The user shall capture other colleges via combat | High |
-| UR_EARN_MONEY | The user shall earn money | High |
+| UR_EARN_PLUNDER | The user shall earn plunder | High |
 | UR_EARN_XP | The user shall earn XP | High |
 | UR_QUEST_PROGRESS | The user shall progress through a series of quests | Medium |
 | UR_GAME_WIN | The user shall win the game through achieving an ultimate objective unlocked by the fulfilment of preceding requirements/quests | Medium |
@@ -62,7 +62,7 @@
 | UR_SHIP_COMBAT | The user should be able to engage in combat with other ships | High |
 | UR_OBSTACLE_ENCOUNTER | The user may encounter obstacles while sailing in game | High |
 | UR_WEATHER_ENCOUNTER | The user may encounter bad weather while sailing | High |
-| UR_SPEND_MONEY | The user should be able spend the money earned | High |
+| UR_SPEND_PLUNDER | The user should be able spend the plunder earned | High |
 | UR_POWER_UP | The user should be able to obtain power ups through either the shop or at random locations on the map. | High |
 | UR_DFCLTY_LVL | The user should be able to choose from 3 difficulty levels (e.g. easy, normal, hard) | High |
 | UR_GAME_SAVE | The user should be able to save the state of the game at any time and be able to resume it at a later point. | High |
@@ -87,8 +87,8 @@
 | FR_PLAYER_FIRE | The game shall enable the user to fire ship weapons | UR_FIRE_WEAPONS |  | High |
 | FR_PLAYER_AMMO | The game shall maintain the state of the user's ship armament and ammunition | UR_FIRE_WEAPONS |  | High |
 | FR_BULLET_TRAVEL | The game shall render the travel of a ship's fired munition | UR_BULLET_DODGE | R2 | High |
-| FR_MONEY_TRACKING | The game shall keep track of a player's money | UR_EARN_MONEY |  | High |
-| FR_MONEY_UPDATE | The game shall give money on success in quests and encounters | UR_EARN_MONEY |  | High |
+| FR_PLUNDER_TRACKING | The game shall keep track of a player's plunder | UR_EARN_PLUNDER |  | High |
+| FR_PLUNDER_UPDATE | The game shall reward plunder on success in quests and encounters | UR_EARN_PLUNDER |  | High |
 | FR_XP_UPDATE | The game shall give XP with time survived and obstacles navigated | UR_EARN_XP |  | Medium |
 | FR_XP_TRACKING | The game shall keep track of a player's XP | UR_EARN_XP |  | High |
 | FR_XP_UPDATE | The game shall give XP on successful combat encounters completed | UR_EARN_XP |  | Medium |
