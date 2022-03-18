@@ -70,7 +70,7 @@
 
 
 
-                            **Functional Requirements**
+## Functional Requirements
 | ID | Description | User requirement | Risks | Priority |
 | --- | --- | --- | --- | --- |
 | FR_MENU_KB_INPUT | The game shall accept keyboard input for menu navigation | UR_PLATFORM |  | Low |
@@ -89,7 +89,7 @@
 | FR_BULLET_TRAVEL | The game shall render the travel of a ship's fired munition | UR_BULLET_DODGE | R2 | High |
 | FR_MONEY_TRACKING | The game shall keep track of a player's money | UR_EARN_MONEY |  | High |
 | FR_MONEY_UPDATE | The game shall give money on success in quests and encounters | UR_EARN_MONEY |  | High |
-| FR_POINTS_UPDATE | The game shall give XP with time survived and obstacles navigated | UR_EARN_POINTS |  | Medium |
+| FR_XP_UPDATE | The game shall give XP with time survived and obstacles navigated | UR_EARN_XP |  | Medium |
 | FR_XP_TRACKING | The game shall keep track of a player's XP | UR_EARN_XP |  | High |
 | FR_XP_UPDATE | The game shall give XP on successful combat encounters completed | UR_EARN_XP |  | Medium |
 | FR_QUEST_TRACKING | The game shall maintain the state of the user's progress through multiple objectives | UR_QUEST_PROGRESS |  | High |
@@ -104,10 +104,7 @@
 
 
 
-
-
-                                **Non-Functional Requirements**
-
+## Non-Functional Requirements
 
 | ID | Description | User requirement | Fit criteria | Risks | Priority |
 | --- | --- | --- | --- | --- | --- |
