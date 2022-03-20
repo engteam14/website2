@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PauseScreen.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.UI</a> &gt; <span class="el_source">PauseScreen.java</span></div><h1>PauseScreen.java</h1><pre class="source lang-java linenums">package com.mygdx.game.UI;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
+import com.mygdx.game.PirateGame;
+
+import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
+
+/**
+ * New for Assessment 2, added to allow the addition of a restart button without causing screen clutter.
+ * Contains widgets defining the pause screen.
+ */
+public class PauseScreen extends Page{
+
+
+    public PauseScreen(PirateGame game) {
+<span class="nc" id="L27">        super(game);</span>
+
+<span class="nc" id="L29">    }</span>
+
+    @Override
+    protected void CreateActors() {
+<span class="nc" id="L33">        Table t = new Table();</span>
+      //  t.debug();
+
+<span class="nc" id="L36">        float space = VIEWPORT_HEIGHT * 0.15f;</span>
+<span class="nc" id="L37">        t.setFillParent(true);</span>
+<span class="nc" id="L38">        actors.add(t);</span>
+<span class="nc" id="L39">        t.add();</span>
+<span class="nc" id="L40">        t.row();</span>
+<span class="nc" id="L41">        Label title = new Label(&quot;Paused&quot;, parent.skin);</span>
+<span class="nc" id="L42">        title.setFontScale(2);</span>
+<span class="nc" id="L43">        t.top();</span>
+<span class="nc" id="L44">        t.add(title).top().spaceTop(space).spaceBottom(space);</span>
+<span class="nc" id="L45">        t.row();</span>
+<span class="nc" id="L46">        TextButton resume = new TextButton(&quot;Resume&quot;, parent.skin);</span>
+<span class="nc" id="L47">        resume.addListener(new ChangeListener() {</span>
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+<span class="nc" id="L50">                parent.setScreen(parent.game);</span>
+<span class="nc" id="L51">            }</span>
+        });
+<span class="nc" id="L53">        t.add(resume).fill().spaceBottom(space);</span>
+<span class="nc" id="L54">        t.row();</span>
+<span class="nc" id="L55">        TextButton restart = new TextButton(&quot;Restart&quot;, parent.skin);</span>
+<span class="nc" id="L56">        restart.addListener(new ChangeListener() {</span>
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+<span class="nc" id="L59">                parent.game.hide();</span>
+<span class="nc" id="L60">                parent.restartGane();</span>
+
+
+<span class="nc" id="L63">            }</span>
+        });
+<span class="nc" id="L65">        t.add(restart).fill().spaceBottom(space);</span>
+<span class="nc" id="L66">        t.row();</span>
+
+<span class="nc" id="L68">        TextButton b = new TextButton(&quot;Exit&quot;, parent.skin);</span>
+<span class="nc" id="L69">        b.addListener(new ChangeListener() {</span>
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+<span class="nc" id="L72">                Gdx.app.exit();</span>
+<span class="nc" id="L73">                System.exit(0);</span>
+<span class="nc" id="L74">            }</span>
+        });
+<span class="nc" id="L76">        t.add(b).fill().spaceBottom(space);</span>
+<span class="nc" id="L77">        t.row();</span>
+
+<span class="nc" id="L79">    }</span>
+
+    @Override
+    protected void update() {
+<span class="nc" id="L83">        super.update();</span>
+
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {</span>
+<span class="nc" id="L86">            Gdx.app.exit();</span>
+<span class="nc" id="L87">            System.exit(0);</span>
+        }
+<span class="nc" id="L89">    }</span>
+
+    @Override
+    public void resize(int width, int height) {
+<span class="nc" id="L93">        super.resize(width, height);</span>
+<span class="nc" id="L94">        Table t = (Table) actors.get(0);</span>
+<span class="nc" id="L95">        TextureRegion tex = new TextureRegion(new Texture(parent.game.pixmap));</span>
+<span class="nc" id="L96">        tex.flip(false, true);</span>
+<span class="nc" id="L97">        t.setBackground((new TextureRegionDrawable(tex)).tint(Color.GRAY));</span>
+<span class="nc" id="L98">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
