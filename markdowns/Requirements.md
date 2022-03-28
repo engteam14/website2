@@ -58,14 +58,14 @@
 | UR_EARN_XP | The user shall earn XP | High |
 | UR_QUEST_PROGRESS | The user shall progress through a series of quests | Medium |
 | UR_GAME_WIN | The user shall win the game through achieving an ultimate objective unlocked by the fulfilment of preceding requirements/quests | Medium |
-| UR_GAME_LOSE | The user shall lose the game through being defeated in combat | High |
-| UR_SHIP_COMBAT | The user should be able to engage in combat with other ships | High |
-| UR_OBSTACLE_ENCOUNTER | The user may encounter obstacles while sailing in game | High |
-| UR_WEATHER_ENCOUNTER | The user may encounter bad weather while sailing | High |
-| UR_SPEND_PLUNDER | The user should be able spend the plunder earned | High |
-| UR_POWER_UP | The user should be able to obtain power ups through either the shop or at random locations on the map. | High |
-| UR_DFCLTY_LVL | The user should be able to choose from 3 difficulty levels (e.g. easy, normal, hard) | High |
-| UR_GAME_SAVE | The user should be able to save the state of the game at any time and be able to resume it at a later point. | High |
+| **UR_GAME_LOSE** | The user shall lose the game through being defeated in combat | High |
+| **UR_SHIP_COMBAT** | The user should be able to engage in combat with other ships | High |
+| **UR_OBSTACLE_ENCOUNTER** | The user may encounter obstacles while sailing in game | High |
+| **UR_WEATHER_ENCOUNTER** | The user may encounter bad weather while sailing | High |
+| **UR_SPEND_PLUNDER** | The user should be able spend the plunder earned | High |
+| **UR_POWER_U** | The user should be able to obtain power ups through either the shop or at random locations on the map. | High |
+| **UR_DFCLTY_LVL** | The user should be able to choose from 3 difficulty levels (e.g. easy, normal, hard) | High |
+| **UR_GAME_SAVE** | The user should be able to save the state of the game at any time and be able to resume it at a later point. | High |
 
 
 
@@ -96,8 +96,6 @@
 | FR_QUEST_RANDOMISE | The game shall randomise user's objectives between different playthroughs | UR_QUEST_PROGRESS |  | Medium |
 | FR_QUEST_OBJECTIVE | The game shall associate quest objectives with game entities | UR_QUEST_PROGRESS |  | Medium |
 | FR_BOSS_UNLOCK_TRACKING | The game shall monitor quest progression status prior to unlocking final objective | UR_GAME_WIN |  | High |
-| FR_BOSS_SPAWN | The game shall spawn boss upon final objective ready status | UR_GAME_WIN |  | Low |
-| FR_GAME_WIN | The game shall display game stats upon successful completion of boss encounter | UR_GAME_WIN |  | Low |
 | FR_PLAYER_DEFEAT | The game shall display game stats upon player defeat | UR_GAME_LOSE |  | Low |
 | FR_SCENARIO_FAIL | The game shall display game stats upon game over scenario completion | UR_GAME_LOSE |  | Low |
 
