@@ -194,17 +194,16 @@ import java.util.ArrayList;
 
     /**
      * Utilises the cached cannonballs to fire one
-     * Changed for Assessment 2, seperated incrementer for visual clarity
-     * @param p   parent
-     * @param dir shoot direction
+     * Changed for Assessment 2, separated incrementer for visual clarity and parameterised startPos
+     * @param p     parent
+     * @param pos   position projectile is spawned at
+     * @param dir   shoot direction
      */
-    public static void shoot(Entity p, Vector2 dir) { // Changed for Assessment 2, type switched from Ship to Entity
-<span class="nc" id="L202">        Vector2 pos = p.getComponent(Transform.class).getPosition().cpy();</span>
-        //pos.add(dir.x * TILE_SIZE * 0.5f, dir.y * TILE_SIZE * 0.5f);
-<span class="nc" id="L204">        ballCache.get(currentElement).fire(pos, dir, p);</span>
-<span class="nc" id="L205">        currentElement++;</span>
-<span class="nc" id="L206">        currentElement %= cacheSize;</span>
-<span class="nc" id="L207">    }</span>
+    public static void shoot(Entity p, Vector2 pos, Vector2 dir) { // Changed for Assessment 2, type switched from Ship to Entity
+<span class="nc" id="L203">        ballCache.get(currentElement).fire(p,pos, dir);</span>
+<span class="nc" id="L204">        currentElement++;</span>
+<span class="nc" id="L205">        currentElement %= cacheSize;</span>
+<span class="nc" id="L206">    }</span>
 
     /**
      * uses a* not sure if it works but i think it does
@@ -214,7 +213,7 @@ import java.util.ArrayList;
      * @return queue of delta positions
      */
     public static QueueFIFO&lt;Vector2&gt; getPath(Vector2 loc, Vector2 dst) {
-<span class="nc" id="L217">        return mapGraph.findOptimisedPath(loc, dst);</span>
+<span class="nc" id="L216">        return mapGraph.findOptimisedPath(loc, dst);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

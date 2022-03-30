@@ -23,7 +23,8 @@ import static com.mygdx.utils.Constants.*;
 
 public class GameScreen extends Page {
     private Label healthLabel;
-    private Label dosh;
+    private Label money;
+    private Label points;
     private Label ammo;
     private final Label questDesc;
     private final Label questName;
@@ -42,9 +43,9 @@ public class GameScreen extends Page {
      * @param id_map the resource id of the tile map
      */
     public GameScreen(PirateGame parent, int id_map) {
-<span class="nc" id="L45">        super(parent);</span>
-<span class="nc" id="L46">        INIT_CONSTANTS();</span>
-<span class="nc" id="L47">        PhysicsManager.Initialize(false);</span>
+<span class="nc" id="L46">        super(parent);</span>
+<span class="nc" id="L47">        INIT_CONSTANTS();</span>
+<span class="nc" id="L48">        PhysicsManager.Initialize(false);</span>
         /*int id_ship = ResourceManager.addTexture(&quot;ship.png&quot;);
         int id_map = ResourceManager.addTileMap(&quot;Map.tmx&quot;);
         int atlas_id = ResourceManager.addTextureAtlas(&quot;Boats.txt&quot;);
@@ -53,63 +54,63 @@ public class GameScreen extends Page {
         ResourceManager.loadAssets();*/
 
 
-<span class="nc" id="L56">        GameManager.SpawnGame(id_map);</span>
+<span class="nc" id="L57">        GameManager.SpawnGame(id_map);</span>
         //QuestManager.addQuest(new KillQuest(c));
 
-<span class="nc" id="L59">        EntityManager.raiseEvents(ComponentEvent.Awake, ComponentEvent.Start);</span>
+<span class="nc" id="L60">        EntityManager.raiseEvents(ComponentEvent.Awake, ComponentEvent.Start);</span>
 
-<span class="nc" id="L61">        Window questWindow = new Window(&quot;Current Quest&quot;, parent.skin);</span>
+<span class="nc" id="L62">        Window questWindow = new Window(&quot;Current Quest&quot;, parent.skin);</span>
 
-<span class="nc" id="L63">        Quest q = QuestManager.currentQuest();</span>
-<span class="nc" id="L64">        Table t = new Table();</span>
-<span class="nc" id="L65">        questName = new Label(&quot;NAME&quot;, parent.skin);</span>
-<span class="nc" id="L66">        t.add(questName);</span>
-<span class="nc" id="L67">        t.row();</span>
-<span class="nc" id="L68">        questDesc = new Label(&quot;DESCRIPTION&quot;, parent.skin);</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (q != null) {</span>
-<span class="nc" id="L70">            questName.setText(q.getName());</span>
-<span class="nc" id="L71">            questDesc.setText(q.getDescription());</span>
+<span class="nc" id="L64">        Quest q = QuestManager.currentQuest();</span>
+<span class="nc" id="L65">        Table t = new Table();</span>
+<span class="nc" id="L66">        questName = new Label(&quot;NAME&quot;, parent.skin);</span>
+<span class="nc" id="L67">        t.add(questName);</span>
+<span class="nc" id="L68">        t.row();</span>
+<span class="nc" id="L69">        questDesc = new Label(&quot;DESCRIPTION&quot;, parent.skin);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (q != null) {</span>
+<span class="nc" id="L71">            questName.setText(q.getName());</span>
+<span class="nc" id="L72">            questDesc.setText(q.getDescription());</span>
         }
         /*questComplete = new Label(&quot;&quot;, parent.skin);
         actors.add(questComplete);*/
-<span class="nc" id="L75">        t.add(questDesc).left();</span>
-<span class="nc" id="L76">        questWindow.add(t);</span>
-<span class="nc" id="L77">        actors.add(questWindow);</span>
+<span class="nc" id="L76">        t.add(questDesc).left();</span>
+<span class="nc" id="L77">        questWindow.add(t);</span>
+<span class="nc" id="L78">        actors.add(questWindow);</span>
 
-<span class="nc" id="L79">        Table t1 = new Table();</span>
-<span class="nc" id="L80">        t1.top().right();</span>
-<span class="nc" id="L81">        t1.setFillParent(true);</span>
-<span class="nc" id="L82">        actors.add(t1);</span>
-<span class="nc" id="L83">        t1.add();</span>
+<span class="nc" id="L80">        Table t1 = new Table();</span>
+<span class="nc" id="L81">        t1.top().right();</span>
+<span class="nc" id="L82">        t1.setFillParent(true);</span>
+<span class="nc" id="L83">        actors.add(t1);</span>
+<span class="nc" id="L84">        t1.add();</span>
 
 
-<span class="nc" id="L86">        Window tutWindow = new Window(&quot;Controls&quot;, parent.skin);</span>
-<span class="nc" id="L87">        Table table = new Table();</span>
-<span class="nc" id="L88">        tutWindow.add(table);</span>
-<span class="nc" id="L89">        t1.add(tutWindow);</span>
+<span class="nc" id="L87">        Window tutWindow = new Window(&quot;Controls&quot;, parent.skin);</span>
+<span class="nc" id="L88">        Table table = new Table();</span>
+<span class="nc" id="L89">        tutWindow.add(table);</span>
+<span class="nc" id="L90">        t1.add(tutWindow);</span>
 
-<span class="nc" id="L91">        table.add(new Label(&quot;Move with&quot;, parent.skin)).top().left();</span>
-<span class="nc" id="L92">        table.add(new Image(parent.skin, &quot;key-w&quot;));</span>
-<span class="nc" id="L93">        table.add(new Image(parent.skin, &quot;key-s&quot;));</span>
-<span class="nc" id="L94">        table.add(new Image(parent.skin, &quot;key-a&quot;));</span>
-<span class="nc" id="L95">        table.add(new Image(parent.skin, &quot;key-d&quot;));</span>
-<span class="nc" id="L96">        table.row();</span>
-<span class="nc" id="L97">        table.add(new Label(&quot;Shoot in direction of mouse&quot;, parent.skin)).left();</span>
+<span class="nc" id="L92">        table.add(new Label(&quot;Move with&quot;, parent.skin)).top().left();</span>
+<span class="nc" id="L93">        table.add(new Image(parent.skin, &quot;key-w&quot;));</span>
+<span class="nc" id="L94">        table.add(new Image(parent.skin, &quot;key-s&quot;));</span>
+<span class="nc" id="L95">        table.add(new Image(parent.skin, &quot;key-a&quot;));</span>
+<span class="nc" id="L96">        table.add(new Image(parent.skin, &quot;key-d&quot;));</span>
+<span class="nc" id="L97">        table.row();</span>
+<span class="nc" id="L98">        table.add(new Label(&quot;Shoot in direction of mouse&quot;, parent.skin)).left();</span>
         //table.add(new Image(parent.skin, &quot;space&quot;));
-<span class="nc" id="L99">        table.add(new Image(parent.skin, &quot;mouse&quot;));</span>
-<span class="nc" id="L100">        table.row();</span>
-<span class="nc" id="L101">        table.add(new Label(&quot;Shoot in direction of ship&quot;, parent.skin)).left();</span>
-<span class="nc" id="L102">        table.add(new Image(parent.skin, &quot;space&quot;));</span>
-<span class="nc" id="L103">        table.row();</span>
-<span class="nc" id="L104">        table.add(new Label(&quot;Pause&quot;, parent.skin)).left(); // changed to pause for Assessment 2</span>
-<span class="nc" id="L105">        table.add(new Image(parent.skin, &quot;key-esc&quot;));</span>
+<span class="nc" id="L100">        table.add(new Image(parent.skin, &quot;mouse&quot;));</span>
+<span class="nc" id="L101">        table.row();</span>
+<span class="nc" id="L102">        table.add(new Label(&quot;Shoot in direction of ship&quot;, parent.skin)).left();</span>
+<span class="nc" id="L103">        table.add(new Image(parent.skin, &quot;space&quot;));</span>
+<span class="nc" id="L104">        table.row();</span>
+<span class="nc" id="L105">        table.add(new Label(&quot;Pause&quot;, parent.skin)).left(); // changed to pause for Assessment 2</span>
+<span class="nc" id="L106">        table.add(new Image(parent.skin, &quot;key-esc&quot;));</span>
 
 
       //  table.debug();
       //  t.debug();
       //  t1.debug();
 
-<span class="nc" id="L112">    }</span>
+<span class="nc" id="L113">    }</span>
 
     private float accumulator;
 
@@ -124,42 +125,42 @@ public class GameScreen extends Page {
     public void render(float delta) {
         // Only update if not paused
 
-<span class="nc" id="L127">        ScreenUtils.clear(BACKGROUND_COLOUR.x, BACKGROUND_COLOUR.y, BACKGROUND_COLOUR.z, 1);</span>
+<span class="nc" id="L128">        ScreenUtils.clear(BACKGROUND_COLOUR.x, BACKGROUND_COLOUR.y, BACKGROUND_COLOUR.z, 1);</span>
 
-<span class="nc" id="L129">        EntityManager.raiseEvents(ComponentEvent.Update, ComponentEvent.Render);</span>
+<span class="nc" id="L130">        EntityManager.raiseEvents(ComponentEvent.Update, ComponentEvent.Render);</span>
 
-<span class="nc" id="L131">        accumulator += EntityManager.getDeltaTime();</span>
+<span class="nc" id="L132">        accumulator += EntityManager.getDeltaTime();</span>
 
         // fixed update loop so that physics manager is called regally rather than somewhat randomly
-<span class="nc bnc" id="L134" title="All 2 branches missed.">        while (accumulator &gt;= PHYSICS_TIME_STEP) {</span>
-<span class="nc" id="L135">            PhysicsManager.update();</span>
-<span class="nc" id="L136">            accumulator -= PHYSICS_TIME_STEP;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">        while (accumulator &gt;= PHYSICS_TIME_STEP) {</span>
+<span class="nc" id="L136">            PhysicsManager.update();</span>
+<span class="nc" id="L137">            accumulator -= PHYSICS_TIME_STEP;</span>
         }
 
-<span class="nc" id="L139">        GameManager.update();</span>
+<span class="nc" id="L140">        GameManager.update();</span>
         // show end screen if esc is pressed
         // TODO: make this better, eg. a blendable image?
         //Start off Assessment 2 change, added for the image behind the pause screen. takes a screenshot
-<span class="nc bnc" id="L143" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {</span>
-<span class="nc" id="L144">            pixmap = Pixmap.createFromFrameBuffer(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
-<span class="nc" id="L145">            parent.setScreen(parent.pause);</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {</span>
+<span class="nc" id="L145">            pixmap = Pixmap.createFromFrameBuffer(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
+<span class="nc" id="L146">            parent.setScreen(parent.pause);</span>
         }
 
-<span class="nc" id="L148">        super.render(delta);</span>
+<span class="nc" id="L149">        super.render(delta);</span>
         //end of Assessment 2 change
-<span class="nc" id="L150">    }</span>
+<span class="nc" id="L151">    }</span>
 
     /**
      * disposed of all stuff it something is missing from this method you will get memory leaks
      */
     @Override
     public void dispose() {
-<span class="nc" id="L157">        super.dispose();</span>
-<span class="nc" id="L158">        ResourceManager.cleanUp();</span>
-<span class="nc" id="L159">        EntityManager.cleanUp();</span>
-<span class="nc" id="L160">        RenderingManager.cleanUp();</span>
-<span class="nc" id="L161">        PhysicsManager.cleanUp();</span>
-<span class="nc" id="L162">    }</span>
+<span class="nc" id="L158">        super.dispose();</span>
+<span class="nc" id="L159">        ResourceManager.cleanUp();</span>
+<span class="nc" id="L160">        EntityManager.cleanUp();</span>
+<span class="nc" id="L161">        RenderingManager.cleanUp();</span>
+<span class="nc" id="L162">        PhysicsManager.cleanUp();</span>
+<span class="nc" id="L163">    }</span>
 
     /**
      * Resize camera, effectively setting the viewport to display game assets
@@ -171,14 +172,14 @@ public class GameScreen extends Page {
     @Override
     public void resize(int width, int height) {
         //((Table) actors.get(0)).setFillParent(false);
-<span class="nc" id="L174">        super.resize(width, height);</span>
-<span class="nc" id="L175">        OrthographicCamera cam = RenderingManager.getCamera();</span>
-<span class="nc" id="L176">        cam.viewportWidth = width / ZOOM;</span>
-<span class="nc" id="L177">        cam.viewportHeight = height / ZOOM;</span>
-<span class="nc" id="L178">        cam.update();</span>
+<span class="nc" id="L175">        super.resize(width, height);</span>
+<span class="nc" id="L176">        OrthographicCamera cam = RenderingManager.getCamera();</span>
+<span class="nc" id="L177">        cam.viewportWidth = width / ZOOM;</span>
+<span class="nc" id="L178">        cam.viewportHeight = height / ZOOM;</span>
+<span class="nc" id="L179">        cam.update();</span>
 
         // ((Table) actors.get(0)).setFillParent(true);
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L182">    }</span>
 
     /**
      * Update the UI with new values for health, quest status, etc.
@@ -187,18 +188,19 @@ public class GameScreen extends Page {
     //private String prevQuest = &quot;&quot;;
     @Override
     protected void update() {
-<span class="nc" id="L190">        super.update();</span>
-<span class="nc" id="L191">        Player p = GameManager.getPlayer();</span>
+<span class="nc" id="L191">        super.update();</span>
+<span class="nc" id="L192">        Player p = GameManager.getPlayer();</span>
 
-<span class="nc" id="L193">        healthLabel.setText(String.valueOf(p.getHealth()));</span>
-<span class="nc" id="L194">        dosh.setText(String.valueOf(p.getPlunder()));</span>
-<span class="nc" id="L195">        ammo.setText(String.valueOf(p.getAmmo()));</span>
-<span class="nc bnc" id="L196" title="All 2 branches missed.">        if (!QuestManager.anyQuests()) {</span>
-<span class="nc" id="L197">            parent.end.win();</span>
-<span class="nc" id="L198">            parent.setScreen(parent.end);</span>
+<span class="nc" id="L194">        healthLabel.setText(String.valueOf(p.getHealth()));</span>
+<span class="nc" id="L195">        money.setText(String.valueOf(p.getPlunder()));</span>
+<span class="nc" id="L196">        points.setText(String.valueOf(p.getPoints()));</span>
+<span class="nc" id="L197">        ammo.setText(String.valueOf(p.getAmmo()));</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">        if (!QuestManager.anyQuests()) {</span>
+<span class="nc" id="L199">            parent.end.win();</span>
+<span class="nc" id="L200">            parent.setScreen(parent.end);</span>
 
         } else {
-<span class="nc" id="L201">            Quest q = QuestManager.currentQuest();</span>
+<span class="nc" id="L203">            Quest q = QuestManager.currentQuest();</span>
             /*if(Objects.equals(prevQuest, &quot;&quot;)) {
                 prevQuest = q.getDescription();
             }
@@ -206,8 +208,8 @@ public class GameScreen extends Page {
                 questComplete.setText(&quot;Quest Competed&quot;);
                 prevQuest = &quot;&quot;;
             }*/
-<span class="nc" id="L209">            questName.setText(q.getName());</span>
-<span class="nc" id="L210">            questDesc.setText(q.getDescription());</span>
+<span class="nc" id="L211">            questName.setText(q.getName());</span>
+<span class="nc" id="L212">            questDesc.setText(q.getDescription());</span>
         }
         /*if(!questComplete.getText().equals(&quot;&quot;)) {
             showTimer += EntityManager.getDeltaTime();
@@ -216,36 +218,42 @@ public class GameScreen extends Page {
             showTimer = 0;
             questComplete.setText(&quot;&quot;);
         }*/
-<span class="nc" id="L219">    }</span>
+<span class="nc" id="L221">    }</span>
 
     /**
      * Draw UI elements showing player health, plunder, and ammo.
      */
     @Override
     protected void CreateActors() {
-<span class="nc" id="L226">        Table table = new Table();</span>
+<span class="nc" id="L228">        Table table = new Table();</span>
       //  table.debug();
-<span class="nc" id="L228">        table.setFillParent(true);</span>
-<span class="nc" id="L229">        actors.add(table);</span>
+<span class="nc" id="L230">        table.setFillParent(true);</span>
+<span class="nc" id="L231">        actors.add(table);</span>
 
-<span class="nc" id="L231">        table.add(new Image(parent.skin.getDrawable(&quot;heart&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L232">        healthLabel = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L233">        table.add(healthLabel).top().left().size(50);</span>
+<span class="nc" id="L233">        table.add(new Image(parent.skin.getDrawable(&quot;heart&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L234">        healthLabel = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L235">        table.add(healthLabel).top().left().size(50);</span>
 
-<span class="nc" id="L235">        table.row();</span>
+<span class="nc" id="L237">        table.row();</span>
 
-<span class="nc" id="L237">        table.add(new Image(parent.skin.getDrawable(&quot;coin&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L238">        dosh = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L239">        table.add(dosh).top().left().size(50);</span>
+<span class="nc" id="L239">        table.add(new Image(parent.skin.getDrawable(&quot;coin&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L240">        money = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L241">        table.add(money).top().left().size(50);</span>
 
-<span class="nc" id="L241">        table.row();</span>
+<span class="nc" id="L243">        table.row();</span>
 
-<span class="nc" id="L243">        table.add(new Image(parent.skin.getDrawable(&quot;ball&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L244">        ammo = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L245">        table.add(ammo).top().left().size(50);</span>
+<span class="nc" id="L245">        table.add(new Image(parent.skin.getDrawable(&quot;point&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L246">        points = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L247">        table.add(points).top().left().size(50);</span>
 
-<span class="nc" id="L247">        table.top().left();</span>
-<span class="nc" id="L248">    }</span>
+<span class="nc" id="L249">        table.row();</span>
+
+<span class="nc" id="L251">        table.add(new Image(parent.skin.getDrawable(&quot;ball&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L252">        ammo = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L253">        table.add(ammo).top().left().size(50);</span>
+
+<span class="nc" id="L255">        table.top().left();</span>
+<span class="nc" id="L256">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

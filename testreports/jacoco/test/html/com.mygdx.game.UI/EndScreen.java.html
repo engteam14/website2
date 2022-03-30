@@ -44,7 +44,7 @@ public class EndScreen extends Page {
 <span class="nc" id="L44">        float space = VIEWPORT_HEIGHT * 0.25f;</span>
 <span class="nc" id="L45">        t.setFillParent(true);</span>
 <span class="nc" id="L46">        actors.add(t);</span>
-<span class="nc" id="L47">        wonText = new Label(&quot;You have lost&quot;, parent.skin);</span>
+<span class="nc" id="L47">        wonText = new Label(&quot;Game Over&quot;, parent.skin);</span>
 <span class="nc" id="L48">        wonText.setFontScale(2);</span>
 <span class="nc" id="L49">        t.top();</span>
 <span class="nc" id="L50">        t.add(wonText).top().spaceBottom(space);</span>
@@ -80,7 +80,7 @@ public class EndScreen extends Page {
     public void show() {
 <span class="nc" id="L81">        super.show();</span>
 <span class="nc" id="L82">        Player p = GameManager.getPlayer();</span>
-<span class="nc" id="L83">        String stats = String.format(&quot;Health: %s\nAmmo: %s\nPlunder: %s&quot;, p.getHealth(), p.getAmmo(), p.getPlunder());</span>
+<span class="nc" id="L83">        String stats = String.format(&quot;Health: %s\nAmmo: %s\nPoints: %s\nPlunder: %s&quot;, p.getHealth(), p.getAmmo(), p.getPoints(), p.getPlunder());</span>
 <span class="nc" id="L84">        playerStats.setText(stats);</span>
 <span class="nc" id="L85">    }</span>
 

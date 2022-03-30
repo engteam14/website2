@@ -2,6 +2,7 @@
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Components.Pirate;
 import com.mygdx.game.Components.Transform;
 import com.mygdx.game.Faction;
@@ -16,115 +17,208 @@ import java.util.ArrayList;
 public class College extends Entity {
     private static ArrayList&lt;String&gt; buildingNames;
     private final ArrayList&lt;Building&gt; buildings;
+    private Faction mostRecentAttacker; //Added for Assessment 2, used to determine ownership after capturing
+    private Building flag; //Added for Assessment 2, allows flag to be referenced independently of other buildings.
+    private long lastShootTime;
+    private float buffer;
 
     public College() {
-<span class="nc" id="L21">        super();</span>
-<span class="nc" id="L22">        buildings = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L23">        buildingNames = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L24">        buildingNames.add(&quot;big&quot;);</span>
-<span class="nc" id="L25">        buildingNames.add(&quot;small&quot;);</span>
-<span class="nc" id="L26">        buildingNames.add(&quot;clock&quot;);</span>
-<span class="nc" id="L27">        Transform t = new Transform();</span>
-<span class="nc" id="L28">        Pirate p = new Pirate();</span>
-<span class="nc" id="L29">        addComponents(t, p);</span>
-<span class="nc" id="L30">    }</span>
+<span class="nc" id="L26">        super();</span>
+<span class="nc" id="L27">        buildings = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L28">        buildingNames = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L29">        buildingNames.add(&quot;big&quot;);</span>
+<span class="nc" id="L30">        buildingNames.add(&quot;small&quot;);</span>
+<span class="nc" id="L31">        buildingNames.add(&quot;clock&quot;);</span>
+<span class="nc" id="L32">        Transform t = new Transform();</span>
+<span class="nc" id="L33">        Pirate p = new Pirate();</span>
+<span class="nc" id="L34">        addComponents(t, p);</span>
+<span class="nc" id="L35">        lastShootTime = TimeUtils.millis() / 1000;</span>
+<span class="nc" id="L36">    }</span>
 
     /**
      * Creates a college at the location associated with the given faction id.
-     *
+     * Changed for Assessment 2:
+     *  - Set infinite ammo to true in Pirate Component
      * @param factionId numerical id of the faction
      */
     public College(int factionId) {
-<span class="nc" id="L38">        this();</span>
-<span class="nc" id="L39">        Faction f = GameManager.getFaction(factionId);</span>
-<span class="nc" id="L40">        Transform t = getComponent(Transform.class);</span>
-<span class="nc" id="L41">        t.setPosition(f.getPosition());</span>
-<span class="nc" id="L42">        Pirate p = getComponent(Pirate.class);</span>
-<span class="nc" id="L43">        p.setFactionId(factionId);</span>
-<span class="nc" id="L44">        spawn(f.getColour());</span>
-<span class="nc" id="L45">    }</span>
+<span class="nc" id="L45">        this();</span>
+<span class="nc" id="L46">        Faction f = GameManager.getFaction(factionId);</span>
+<span class="nc" id="L47">        Transform t = getComponent(Transform.class);</span>
+<span class="nc" id="L48">        t.setPosition(f.getPosition());</span>
+<span class="nc" id="L49">        Pirate p = getComponent(Pirate.class);</span>
+<span class="nc" id="L50">        p.setFactionId(factionId);</span>
+<span class="nc" id="L51">        p.setInfiniteAmmo(true);</span>
+<span class="nc" id="L52">        spawn(f.getColour());</span>
+<span class="nc" id="L53">    }</span>
 
     /**
      * Randomly populates the college radius with buildings.
-     *
+     * Changed for Assessment 2:
+     *  - Set buffer in Pirate Component to the radius of the college
      * @param colour used to pull the appropriate flag sprite
      */
     private void spawn(String colour) {
-<span class="nc" id="L53">        JsonValue collegeSettings = GameManager.getSettings().get(&quot;college&quot;);</span>
-<span class="nc" id="L54">        float radius = collegeSettings.getFloat(&quot;spawnRadius&quot;);</span>
+<span class="nc" id="L62">        JsonValue collegeSettings = GameManager.getSettings().get(&quot;college&quot;);</span>
+<span class="nc" id="L63">        float radius = collegeSettings.getFloat(&quot;spawnRadius&quot;);</span>
+<span class="nc" id="L64">        buffer = Utilities.tilesToDistance(radius+1f) ;</span>
+<span class="nc" id="L65">        getComponent(Pirate.class).setBuffer(buffer);</span>
         // radius = Utilities.tilesToDistance(radius) * BUILDING_SCALE;
-<span class="nc" id="L56">        final Vector2 origin = getComponent(Transform.class).getPosition();</span>
-<span class="nc" id="L57">        ArrayList&lt;Vector2&gt; posList = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L58">        posList.add(new Vector2(0, 0));</span>
+<span class="nc" id="L67">        final Vector2 origin = getComponent(Transform.class).getPosition();</span>
+<span class="nc" id="L68">        ArrayList&lt;Vector2&gt; posList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L69">        posList.add(new Vector2(0, 0));</span>
 
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        for (int i = 0; i &lt; collegeSettings.getInt(&quot;numBuildings&quot;); i++) {</span>
-<span class="nc" id="L61">            Vector2 pos = Utilities.randomPos(-radius, radius);</span>
-<span class="nc" id="L62">            pos = Utilities.floor(pos);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        for (int i = 0; i &lt; collegeSettings.getInt(&quot;numBuildings&quot;); i++) {</span>
+<span class="nc" id="L72">            Vector2 pos = Utilities.randomPos(-radius, radius);</span>
+<span class="nc" id="L73">            pos = Utilities.floor(pos);</span>
 
-<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (!posList.contains(pos)) {</span>
-<span class="nc" id="L65">                posList.add(pos);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (!posList.contains(pos)) {</span>
+<span class="nc" id="L76">                posList.add(pos);</span>
 
-<span class="nc" id="L67">                pos = Utilities.tilesToDistance(pos).add(origin);</span>
+<span class="nc" id="L78">                pos = Utilities.tilesToDistance(pos).add(origin);</span>
 
-<span class="nc" id="L69">                Building b = new Building();</span>
-<span class="nc" id="L70">                buildings.add(b);</span>
+<span class="nc" id="L80">                Building b = new Building(this);</span>
+<span class="nc" id="L81">                buildings.add(b);</span>
 
-<span class="nc" id="L72">                String b_name = Utilities.randomChoice(buildingNames);</span>
+<span class="nc" id="L83">                String b_name = Utilities.randomChoice(buildingNames);</span>
 
-<span class="nc" id="L74">                b.create(pos, b_name);</span>
+<span class="nc" id="L85">                b.create(pos, b_name);</span>
             }
-
-
         }
-<span class="nc" id="L79">        Building flag = new Building(true);</span>
-<span class="nc" id="L80">        buildings.add(flag);</span>
-<span class="nc" id="L81">        flag.create(origin, colour);</span>
-<span class="nc" id="L82">    }</span>
+<span class="nc" id="L88">        flag = new Building(this,true);</span>
+<span class="nc" id="L89">        buildings.add(flag);</span>
+<span class="nc" id="L90">        flag.create(origin, colour);</span>
+<span class="nc" id="L91">    }</span>
 
     /**
      * True as long as unharmed buildings remain, false otherwise.
-     * Changed for Assessment 2, added boolean return for Kill Quest functionality.
+     * Changed for Assessment 2:
+     *  - Added boolean return for Kill Quest functionality.
+     *  - Renamed boolean for readability
+     *  - Added functionality for changing Flag upon capture.
+     *  @return the status of this college
      */
     public boolean isAlive() {
-<span class="nc" id="L89">        boolean res = false;</span>
-<span class="nc bnc" id="L90" title="All 2 branches missed.">        for (int i = 0; i &lt; buildings.size() - 1; i++) {</span>
-<span class="nc" id="L91">            Building b = buildings.get(i);</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">            if (b.isAlive()) {</span>
-<span class="nc" id="L93">                res = true;</span>
+<span class="nc" id="L102">        boolean buildingsRemain = false;</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        for (int i = 0; i &lt; buildings.size() - 1; i++) {</span>
+<span class="nc" id="L104">            Building b = buildings.get(i);</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (b.isAlive()) {</span>
+<span class="nc" id="L106">                buildingsRemain = true;</span>
             }
         }
-<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (!res) {</span>
-<span class="nc" id="L97">            getComponent(Pirate.class).kill();</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        if (!buildingsRemain) {</span>
+<span class="nc" id="L110">            getComponent(Pirate.class).kill();</span>
+            //Changes flag to that of conqueror upon defeat
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if(mostRecentAttacker != null){</span>
+<span class="nc" id="L113">                final Vector2 origin = getComponent(Transform.class).getPosition();</span>
+<span class="nc" id="L114">                flag.create(origin,mostRecentAttacker.getColour());</span>
+<span class="nc" id="L115">                getComponent(Pirate.class).setFactionId(mostRecentAttacker.getID());</span>
+            }
+            //End of conqueror flag update changes
         }
-<span class="nc" id="L99">        return res;</span>
+<span class="nc" id="L119">        return buildingsRemain;</span>
+    }
+
+    /**
+     * Added for Assessment 2
+     * @return The Faction of the Pirate Component attached to this entity
+     */
+    public Faction getFaction() {
+<span class="nc" id="L127">        return getComponent(Pirate.class).getFaction();</span>
+    }
+
+    /**
+     * Added for Assessment 2
+     * Sets the Faction which most recently attacked this College
+     * @param conqueror the Faction which most recently attacked this college
+     */
+    public void setMostRecentAttacker(Faction conqueror){
+<span class="nc" id="L136">        mostRecentAttacker = conqueror;</span>
+<span class="nc" id="L137">    }</span>
+
+    /**
+     * Added for Assessment 2
+     * @return copy of the transform's position
+     */
+    public Vector2 getPosition() {
+<span class="nc" id="L144">        return getComponent(Transform.class).getPosition().cpy();</span>
+    }
+
+    /**
+     * Added for Assessment 2
+     * @param ship the Ship being checked
+     * @return displacement in form [magnitude,direction] between parsed ship and this college
+     */
+    public ArrayList&lt;Vector2&gt; displacementFromShip(Ship ship) {
+<span class="nc" id="L153">        Vector2 shipLocale = ship.getPosition();</span>
+<span class="nc" id="L154">        Vector2 thisPosition = getPosition();</span>
+
+<span class="nc" id="L156">        float xDiff = shipLocale.x-thisPosition.x;</span>
+<span class="nc" id="L157">        float yDiff = shipLocale.y-thisPosition.y;</span>
+
+<span class="nc" id="L159">        Vector2 magnitude = new Vector2(Math.abs(xDiff),Math.abs(yDiff));</span>
+<span class="nc" id="L160">        Vector2 direction = new Vector2(xDiff,yDiff);</span>
+
+<span class="nc" id="L162">        ArrayList&lt;Vector2&gt; displacement = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L163">        displacement.add(magnitude);</span>
+<span class="nc" id="L164">        displacement.add(direction);</span>
+
+<span class="nc" id="L166">        return displacement;</span>
     }
 
     /**
      * Added for Assessment 2 to meet requirements
      * Calls shoot function of internal component
+     * @param startPos the position the cannonball is to be spawned at
+     * @param direction the direction the cannonball is to be fired in
      */
-    public void shoot(Vector2 dir) {
-<span class="nc" id="L107">        getComponent(Pirate.class).shoot(dir);</span>
-<span class="nc" id="L108">    }</span>
+    public void shoot(Vector2 startPos, Vector2 direction) {
+<span class="nc" id="L176">        getComponent(Pirate.class).shoot(startPos, direction);</span>
+<span class="nc" id="L177">    }</span>
 
     /**
      * Added for Assessment 2
      * Systematically kills each building attached to this college, then marks the college as dead.
      */
     public void killThisCollege() {
-<span class="nc bnc" id="L115" title="All 2 branches missed.">        for (int i = 0; i &lt; buildings.size() - 1; i++) {</span>
-<span class="nc" id="L116">            Building b = buildings.get(i);</span>
-<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (b.isAlive()) {</span>
-<span class="nc" id="L118">                b.destroy();</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        for (int i = 0; i &lt; buildings.size() - 1; i++) {</span>
+<span class="nc" id="L185">            Building b = buildings.get(i);</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            if (b.isAlive()) {</span>
+<span class="nc" id="L187">                b.destroy(null);</span>
             }
         }
-<span class="nc" id="L121">        isAlive();</span>
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L190">        isAlive();</span>
+<span class="nc" id="L191">    }</span>
 
+    /**
+     * Runs once per frame
+     * Changed for Assessment 2:
+     *  - Added checks for if the college is in a specific range of the player
+     *  - Added functionality where the college shoots at the player if on opposing factions and in range.
+     */
     @Override
     public void update() {
-<span class="nc" id="L126">        super.update();</span>
-<span class="nc" id="L127">        isAlive();</span>
-<span class="nc" id="L128">    }</span>
+<span class="nc" id="L201">        super.update();</span>
+<span class="nc" id="L202">        isAlive();</span>
+
+<span class="nc" id="L204">        Player p = GameManager.getPlayer();</span>
+<span class="nc" id="L205">        long current = TimeUtils.millis() / 1000;</span>
+<span class="nc bnc" id="L206" title="All 4 branches missed.">        if ( (current &gt; lastShootTime) &amp;&amp; !getFaction().equals(p.getFaction()) ) {</span>
+
+<span class="nc" id="L208">            ArrayList&lt;Vector2&gt; displacementToPlayer = displacementFromShip(p);</span>
+<span class="nc" id="L209">            Vector2 distanceToPlayer = displacementToPlayer.get(0);</span>
+
+<span class="nc bnc" id="L211" title="All 4 branches missed.">            if( (distanceToPlayer.x &lt; buffer*5) &amp;&amp; (distanceToPlayer.y &lt; buffer*5) ) {</span>
+<span class="nc" id="L212">                float scaleFactor = Math.max( Math.abs(displacementToPlayer.get(1).x) , Math.abs(displacementToPlayer.get(1).y) );</span>
+<span class="nc" id="L213">                float xBuffer = (displacementToPlayer.get(1).x / scaleFactor)*buffer;</span>
+<span class="nc" id="L214">                float yBuffer = (displacementToPlayer.get(1).y / scaleFactor)*buffer;</span>
+<span class="nc" id="L215">                Vector2 bufferShift = new Vector2(xBuffer,yBuffer);</span>
+<span class="nc" id="L216">                Vector2 bufferedStart = getPosition().add(bufferShift);</span>
+
+<span class="nc" id="L218">                shoot(bufferedStart, displacementToPlayer.get(1));</span>
+            }
+        }
+<span class="nc" id="L221">        lastShootTime = current;</span>
+<span class="nc" id="L222">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

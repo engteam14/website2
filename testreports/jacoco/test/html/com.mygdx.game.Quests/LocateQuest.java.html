@@ -16,10 +16,11 @@ public class LocateQuest extends Quest {
 <span class="nc" id="L16">        super();</span>
 <span class="nc" id="L17">        name = &quot;Find a chest&quot;;</span>
 <span class="nc" id="L18">        description = &quot;North east&quot;;</span>
-<span class="nc" id="L19">        reward = 100;</span>
-<span class="nc" id="L20">        loc = new Vector2();</span>
-<span class="nc" id="L21">        radius = -1;</span>
-<span class="nc" id="L22">    }</span>
+<span class="nc" id="L19">        plunderReward = 100;</span>
+<span class="nc" id="L20">        pointReward = 150;</span>
+<span class="nc" id="L21">        loc = new Vector2();</span>
+<span class="nc" id="L22">        radius = -1;</span>
+<span class="nc" id="L23">    }</span>
 
     /**
      * The loc to go to and radius that the play has to be in to completed it
@@ -28,38 +29,38 @@ public class LocateQuest extends Quest {
      * @param r   leeway in completion
      */
     public LocateQuest(Vector2 pos, float r) {
-<span class="nc" id="L31">        this();</span>
-<span class="nc" id="L32">        loc.set(pos);</span>
-<span class="nc" id="L33">        radius = r * r;</span>
-<span class="nc" id="L34">        pos.scl(1 / TILE_SIZE).sub(50, 50); // centres on 0, 0</span>
-<span class="nc" id="L35">        description = &quot;&quot;;</span>
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        if (pos.y &gt; 0) {</span>
-<span class="nc" id="L37">            description += &quot;North &quot;;</span>
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        } else if (pos.y &lt; 0) {</span>
-<span class="nc" id="L39">            description += &quot;South &quot;;</span>
+<span class="nc" id="L32">        this();</span>
+<span class="nc" id="L33">        loc.set(pos);</span>
+<span class="nc" id="L34">        radius = r * r;</span>
+<span class="nc" id="L35">        pos.scl(1 / TILE_SIZE).sub(50, 50); // centres on 0, 0</span>
+<span class="nc" id="L36">        description = &quot;&quot;;</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (pos.y &gt; 0) {</span>
+<span class="nc" id="L38">            description += &quot;North &quot;;</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        } else if (pos.y &lt; 0) {</span>
+<span class="nc" id="L40">            description += &quot;South &quot;;</span>
         }
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (pos.x &gt; 0) {</span>
-<span class="nc" id="L42">            description += &quot;East&quot;;</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">        } else if (pos.x &lt; 0) {</span>
-<span class="nc" id="L44">            description += &quot;West&quot;;</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (pos.x &gt; 0) {</span>
+<span class="nc" id="L43">            description += &quot;East&quot;;</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        } else if (pos.x &lt; 0) {</span>
+<span class="nc" id="L45">            description += &quot;West&quot;;</span>
         }
 
-<span class="nc" id="L47">    }</span>
+<span class="nc" id="L48">    }</span>
 
     @Override
     public boolean checkCompleted(Player p) {
-<span class="nc bnc" id="L51" title="All 2 branches missed.">        if (radius == -1) {</span>
-<span class="nc" id="L52">            return false;</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (radius == -1) {</span>
+<span class="nc" id="L53">            return false;</span>
         }
-<span class="nc" id="L54">        Vector2 delta = p.getPosition().cpy();</span>
-<span class="nc" id="L55">        delta.sub(loc);</span>
-<span class="nc" id="L56">        float l = delta.len2();</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">        isCompleted = l &lt; radius;</span>
-<span class="nc" id="L58">        return isCompleted;</span>
+<span class="nc" id="L55">        Vector2 delta = p.getPosition().cpy();</span>
+<span class="nc" id="L56">        delta.sub(loc);</span>
+<span class="nc" id="L57">        float l = delta.len2();</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        isCompleted = l &lt; radius;</span>
+<span class="nc" id="L59">        return isCompleted;</span>
     }
 
     public Vector2 getLocation() {
-<span class="nc" id="L62">        return loc;</span>
+<span class="nc" id="L63">        return loc;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

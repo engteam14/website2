@@ -6,6 +6,7 @@ import com.mygdx.game.Components.Pirate;
 import com.mygdx.game.Components.Renderable;
 import com.mygdx.game.Components.RigidBody;
 import com.mygdx.game.Components.Transform;
+import com.mygdx.game.Faction;
 import com.mygdx.game.Managers.RenderLayer;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.Physics.CollisionCallBack;
@@ -21,27 +22,34 @@ public class Building extends Entity implements CollisionCallBack {
     private String buildingName;
     private static int atlas_id;
     private boolean isFlag;
-
-    Building() {
-<span class="nc" id="L26">        super();</span>
-<span class="nc" id="L27">        isFlag = false;</span>
-<span class="nc" id="L28">        Transform t = new Transform();</span>
-<span class="nc" id="L29">        t.setScale(BUILDING_SCALE, BUILDING_SCALE);</span>
-<span class="nc" id="L30">        Pirate p = new Pirate();</span>
-<span class="nc" id="L31">        atlas_id = ResourceManager.getId(&quot;Buildings.txt&quot;);</span>
-<span class="nc" id="L32">        Renderable r = new Renderable(atlas_id, &quot;big&quot;, RenderLayer.Transparent);</span>
-<span class="nc" id="L33">        addComponents(t, p, r);</span>
-<span class="nc" id="L34">    }</span>
+    private final College college; //Added for Assessment 2
 
     /**
      * Flags are indestructible and mark college locations.
-     *
+     * Amended for Assessment 2: Added College parameter to keep track of parent
+     * @param college added to signify ownership of building
+     */
+    Building(College college) {
+<span class="nc" id="L33">        super();</span>
+<span class="nc" id="L34">        isFlag = false;</span>
+<span class="nc" id="L35">        Transform t = new Transform();</span>
+<span class="nc" id="L36">        t.setScale(BUILDING_SCALE, BUILDING_SCALE);</span>
+<span class="nc" id="L37">        Pirate p = new Pirate();</span>
+<span class="nc" id="L38">        atlas_id = ResourceManager.getId(&quot;Buildings.txt&quot;);</span>
+<span class="nc" id="L39">        Renderable r = new Renderable(atlas_id, &quot;big&quot;, RenderLayer.Transparent);</span>
+<span class="nc" id="L40">        addComponents(t, p, r);</span>
+<span class="nc" id="L41">        this.college = college;</span>
+<span class="nc" id="L42">    }</span>
+
+    /**
+     * Flags are indestructible and mark college locations.
+     * Amended for Assessment 2: Added College parameter to keep track of parent
      * @param isFlag set to true to create a flag
      */
-    Building(boolean isFlag) {
-<span class="nc" id="L42">        this();</span>
-<span class="nc" id="L43">        this.isFlag = isFlag;</span>
-<span class="nc" id="L44">    }</span>
+    Building(College college, boolean isFlag) {
+<span class="nc" id="L50">        this(college);</span>
+<span class="nc" id="L51">        this.isFlag = isFlag;</span>
+<span class="nc" id="L52">    }</span>
 
     /**
      * Creates a building with the given name at the specified location.
@@ -50,67 +58,67 @@ public class Building extends Entity implements CollisionCallBack {
      * @param name name of building
      */
     public void create(Vector2 pos, String name) {
-<span class="nc" id="L53">        Sprite s = ResourceManager.getSprite(atlas_id, name);</span>
-<span class="nc" id="L54">        Renderable r = getComponent(Renderable.class);</span>
-<span class="nc" id="L55">        r.setTexture(s);</span>
-<span class="nc" id="L56">        getComponent(Transform.class).setPosition(pos);</span>
-<span class="nc" id="L57">        buildingName = name;</span>
+<span class="nc" id="L61">        Sprite s = ResourceManager.getSprite(atlas_id, name);</span>
+<span class="nc" id="L62">        Renderable r = getComponent(Renderable.class);</span>
+<span class="nc" id="L63">        r.setTexture(s);</span>
+<span class="nc" id="L64">        getComponent(Transform.class).setPosition(pos);</span>
+<span class="nc" id="L65">        buildingName = name;</span>
 
-<span class="nc" id="L59">        RigidBody rb = new RigidBody(PhysicsBodyType.Static, r, getComponent(Transform.class));</span>
-<span class="nc" id="L60">        rb.setCallback(this);</span>
-<span class="nc" id="L61">        addComponent(rb);</span>
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L67">        RigidBody rb = new RigidBody(PhysicsBodyType.Static, r, getComponent(Transform.class));</span>
+<span class="nc" id="L68">        rb.setCallback(this);</span>
+<span class="nc" id="L69">        addComponent(rb);</span>
+<span class="nc" id="L70">    }</span>
 
     /**
      * Replace the building with ruins and mark as broken.
-     * Changed for Assessment 2: Made public for testing purposes
+     * Changed for Assessment 2
+     *  - Made public for testing purposes
+     *  - Sets destroyer as parent college's most recent attacker.
      */
-    public void destroy() {
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (isFlag) {</span>
-<span class="nc" id="L70">            return;</span>
+    public void destroy(Faction conqueror) {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (isFlag) {</span>
+<span class="nc" id="L80">            return;</span>
         }
-<span class="nc" id="L72">        Sprite s = ResourceManager.getSprite(atlas_id, buildingName + &quot;-broken&quot;);</span>
-<span class="nc" id="L73">        Renderable r = getComponent(Renderable.class);</span>
-<span class="nc" id="L74">        r.setTexture(s);</span>
-<span class="nc" id="L75">        getComponent(Pirate.class).kill();</span>
-<span class="nc" id="L76">    }</span>
+<span class="nc" id="L82">        Sprite s = ResourceManager.getSprite(atlas_id, buildingName + &quot;-broken&quot;);</span>
+<span class="nc" id="L83">        Renderable r = getComponent(Renderable.class);</span>
+<span class="nc" id="L84">        r.setTexture(s);</span>
+<span class="nc" id="L85">        getComponent(Pirate.class).kill();</span>
+<span class="nc" id="L86">        college.setMostRecentAttacker(conqueror);</span>
+<span class="nc" id="L87">    }</span>
 
     public boolean isAlive() {
-<span class="nc" id="L79">        return getComponent(Pirate.class).isAlive();</span>
+<span class="nc" id="L90">        return getComponent(Pirate.class).isAlive();</span>
     }
 
     @Override
     public void BeginContact(CollisionInfo info) {
 
-<span class="nc" id="L85">    }</span>
+<span class="nc" id="L96">    }</span>
 
     @Override
     public void EndContact(CollisionInfo info) {
 
-<span class="nc" id="L90">    }</span>
+<span class="nc" id="L101">    }</span>
 
     /**
      * Destroys the building and marks cannonball for removal.
-     *
+     * Amended for Assessment 2, added Faction checks and now ignores flags
      * @param info CollisionInfo container
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L99" title="All 4 branches missed.">        if (info.a instanceof CannonBall &amp;&amp; isAlive()) {</span>
-<span class="nc" id="L100">            CannonBall b = (CannonBall) info.a;</span>
-            // the ball if from the same faction
-            /*if(Objects.equals(b.getShooter().getComponent(Pirate.class).getFaction().getName(),
-                    getComponent(Pirate.class).getFaction().getName())) {
-                return;
-            }*/
-<span class="nc" id="L106">            destroy();</span>
-<span class="nc" id="L107">            ((CannonBall) info.a).kill();</span>
+<span class="nc bnc" id="L110" title="All 6 branches missed.">        if (info.a instanceof CannonBall &amp;&amp; isAlive() &amp;&amp; !isFlag) {</span>
+<span class="nc" id="L111">            CannonBall b = (CannonBall) info.a;</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if(b.getFaction() != college.getFaction()){</span>
+<span class="nc" id="L113">                destroy(b.getFaction());</span>
+            }
+<span class="nc" id="L115">            b.kill();</span>
         }
-<span class="nc" id="L109">    }</span>
+<span class="nc" id="L117">    }</span>
 
     @Override
     public void ExitTrigger(CollisionInfo info) {
 
-<span class="nc" id="L114">    }</span>
+<span class="nc" id="L122">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

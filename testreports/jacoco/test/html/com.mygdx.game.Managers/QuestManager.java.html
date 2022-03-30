@@ -124,22 +124,23 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
             }
 <span class="nc" id="L125">            boolean completed = q.checkCompleted(p);</span>
 <span class="nc bnc" id="L126" title="All 2 branches missed.">            if (completed) {</span>
-<span class="nc" id="L127">                p.plunder(q.getReward());</span>
-<span class="nc bnc" id="L128" title="All 2 branches missed.">            } else if (q instanceof LocateQuest) {</span>
-<span class="nc" id="L129">                chest.setPosition(((LocateQuest) q).getLocation());</span>
-<span class="nc" id="L130">                break;</span>
+<span class="nc" id="L127">                p.plunder(q.getPlunderReward());</span>
+<span class="nc" id="L128">                p.points(q.getPointReward());</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            } else if (q instanceof LocateQuest) {</span>
+<span class="nc" id="L130">                chest.setPosition(((LocateQuest) q).getLocation());</span>
+<span class="nc" id="L131">                break;</span>
             } else {
-<span class="nc" id="L132">                chest.setPosition(new Vector2(-1000, -1000));</span>
-<span class="nc" id="L133">                break;</span>
+<span class="nc" id="L133">                chest.setPosition(new Vector2(-1000, -1000));</span>
+<span class="nc" id="L134">                break;</span>
             }
-<span class="nc" id="L135">        }</span>
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L136">        }</span>
+<span class="nc" id="L137">    }</span>
 
     private static void tryInit() {
-<span class="nc bnc" id="L139" title="All 2 branches missed.">        if (!initialized) {</span>
-<span class="nc" id="L140">            Initialize();</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">        if (!initialized) {</span>
+<span class="nc" id="L141">            Initialize();</span>
         }
-<span class="nc" id="L142">    }</span>
+<span class="nc" id="L143">    }</span>
 
     /**
      * Returns the next un-completed quest
@@ -148,12 +149,12 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
      */
     public static Quest currentQuest() {
       //  tryInit();
-<span class="nc bnc" id="L151" title="All 2 branches missed.">        for (Quest q : allQuests) {</span>
-<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (!q.isCompleted()) {</span>
-<span class="nc" id="L153">                return q;</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">        for (Quest q : allQuests) {</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (!q.isCompleted()) {</span>
+<span class="nc" id="L154">                return q;</span>
             }
-<span class="nc" id="L155">        }</span>
-<span class="nc" id="L156">        return null;</span>
+<span class="nc" id="L156">        }</span>
+<span class="nc" id="L157">        return null;</span>
     }
 
     /**
@@ -163,7 +164,7 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
      */
     public static boolean anyQuests() {
       //  tryInit(); removed for assesment 2
-<span class="nc bnc" id="L166" title="All 2 branches missed.">        return currentQuest() != null;</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        return currentQuest() != null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

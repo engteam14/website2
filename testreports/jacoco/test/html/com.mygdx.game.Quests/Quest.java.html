@@ -8,15 +8,17 @@ import com.mygdx.game.Entitys.Player;
 public abstract class Quest {
     protected String name;
     protected String description;
-    protected int reward;
+    protected int plunderReward;
+    protected int pointReward;
     protected boolean isCompleted;
 
-<span class="nc" id="L14">    public Quest() {</span>
-<span class="nc" id="L15">        name = &quot;&quot;;</span>
-<span class="nc" id="L16">        description = &quot;&quot;;</span>
-<span class="nc" id="L17">        reward = 0;</span>
-<span class="nc" id="L18">        isCompleted = false;</span>
-<span class="nc" id="L19">    }</span>
+<span class="nc" id="L15">    public Quest() {</span>
+<span class="nc" id="L16">        name = &quot;&quot;;</span>
+<span class="nc" id="L17">        description = &quot;&quot;;</span>
+<span class="nc" id="L18">        plunderReward = 0;</span>
+<span class="nc" id="L19">        pointReward = 0;</span>
+<span class="nc" id="L20">        isCompleted = false;</span>
+<span class="nc" id="L21">    }</span>
 
     /**
      * Checks if the given player has met the complete condition
@@ -26,21 +28,25 @@ public abstract class Quest {
      */
     public abstract boolean checkCompleted(Player p);
 
-    public int getReward() {
-<span class="nc" id="L30">        return reward;</span>
+    public int getPlunderReward() {
+<span class="nc" id="L32">        return plunderReward;</span>
+    }
+
+    public int getPointReward() {
+<span class="nc" id="L36">        return pointReward;</span>
     }
 
     public boolean isCompleted() {
-<span class="nc" id="L34">        return isCompleted;</span>
+<span class="nc" id="L40">        return isCompleted;</span>
     }
 
 
     public String getName() {
-<span class="nc" id="L39">        return name;</span>
+<span class="nc" id="L45">        return name;</span>
     }
 
     public String getDescription() {
-<span class="nc" id="L43">        return description;</span>
+<span class="nc" id="L49">        return description;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
