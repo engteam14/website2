@@ -7,10 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.Entitys.Player;
-import com.mygdx.game.Managers.EntityManager;
-import com.mygdx.game.Managers.GameManager;
-import com.mygdx.game.Managers.RenderingManager;
-import com.mygdx.game.Managers.ResourceManager;
+import com.mygdx.game.Managers.*;
 import com.mygdx.game.UI.EndScreen;
 import com.mygdx.game.UI.GameScreen;
 import com.mygdx.game.UI.MenuScreen;
@@ -19,7 +16,7 @@ import com.mygdx.game.UI.PauseScreen;
 /**
  * Contains class instances of game UI screens.
  */
-<span class="nc" id="L22">public class PirateGame extends Game {</span>
+<span class="nc" id="L19">public class PirateGame extends Game {</span>
     public MenuScreen menu;
     public GameScreen game;
     public EndScreen end;
@@ -27,55 +24,55 @@ import com.mygdx.game.UI.PauseScreen;
     public Skin skin;
     public PauseScreen pause;
     public int id_map;
+    public GameDifficulty difficulty;
 
     /**
      * Create instances of game stage and UI screens.
      */
     @Override
     public void create() {
-<span class="nc" id="L36">        RenderingManager.Initialize(); // added for assesment 2 due to rendering refactoring for testing</span>
+<span class="nc" id="L34">        RenderingManager.Initialize(); // added for assessment 2 due to rendering refactoring for testing</span>
         // load resources
-<span class="nc" id="L38">        int id_ship = ResourceManager.addTexture(&quot;ship.png&quot;);</span>
-<span class="nc" id="L39">        id_map = ResourceManager.addTileMap(&quot;Map.tmx&quot;);</span>
-<span class="nc" id="L40">        int atlas_id = ResourceManager.addTextureAtlas(&quot;Boats.txt&quot;);</span>
-<span class="nc" id="L41">        int extras_id = ResourceManager.addTextureAtlas(&quot;UISkin/skin.atlas&quot;);</span>
-<span class="nc" id="L42">        int buildings_id = ResourceManager.addTextureAtlas(&quot;Buildings.txt&quot;);</span>
+<span class="nc" id="L36">        int id_ship = ResourceManager.addTexture(&quot;ship.png&quot;);</span>
+<span class="nc" id="L37">        id_map = ResourceManager.addTileMap(&quot;Map.tmx&quot;);</span>
+<span class="nc" id="L38">        int atlas_id = ResourceManager.addTextureAtlas(&quot;Boats.txt&quot;);</span>
+<span class="nc" id="L39">        int extras_id = ResourceManager.addTextureAtlas(&quot;UISkin/skin.atlas&quot;);</span>
+<span class="nc" id="L40">        int buildings_id = ResourceManager.addTextureAtlas(&quot;Buildings.txt&quot;);</span>
 
-<span class="nc" id="L44">        ResourceManager.addTexture(&quot;menuBG.jpg&quot;);</span>
-<span class="nc" id="L45">        ResourceManager.addTexture(&quot;pauseBG.png&quot;);</span>
+<span class="nc" id="L42">        ResourceManager.addTexture(&quot;menuBG.jpg&quot;);</span>
 
-<span class="nc" id="L47">        ResourceManager.addTexture(&quot;Chest.png&quot;);</span>
-<span class="nc" id="L48">        ResourceManager.loadAssets();</span>
-        // cant load any more resources after this point (just functionally I choose not to implement)
-<span class="nc" id="L50">        stage = new Stage(new ScreenViewport());</span>
-<span class="nc" id="L51">        createSkin();</span>
+<span class="nc" id="L44">        ResourceManager.addTexture(&quot;Chest.png&quot;);</span>
+<span class="nc" id="L45">        ResourceManager.loadAssets();</span>
+        // can't load any more resources after this point (just functionally I choose not to implement)
+<span class="nc" id="L47">        stage = new Stage(new ScreenViewport());</span>
+<span class="nc" id="L48">        createSkin();</span>
 
-<span class="nc" id="L53">        menu = new MenuScreen(this);</span>
-<span class="nc" id="L54">        game = new GameScreen(this, id_map);</span>
-<span class="nc" id="L55">        end = new EndScreen(this);</span>
-<span class="nc" id="L56">        pause = new PauseScreen(this);</span>
+<span class="nc" id="L50">        menu = new MenuScreen(this);</span>
+        //game = new GameScreen(this, id_map); moved to game screen for assessment 2
+<span class="nc" id="L52">        end = new EndScreen(this);</span>
+<span class="nc" id="L53">        pause = new PauseScreen(this);</span>
 
-<span class="nc" id="L58">        setScreen(menu);</span>
+<span class="nc" id="L55">        setScreen(menu);</span>
 
-<span class="nc" id="L60">    }</span>
+<span class="nc" id="L57">    }</span>
 
     /**
      * Clean up prevent memory leeks
      */
     @Override
     public void dispose() {
-<span class="nc" id="L67">        menu.dispose();</span>
-<span class="nc" id="L68">        game.dispose();</span>
-<span class="nc" id="L69">        stage.dispose();</span>
-<span class="nc" id="L70">        skin.dispose();</span>
-<span class="nc" id="L71">    }</span>
+<span class="nc" id="L64">        menu.dispose();</span>
+<span class="nc" id="L65">        game.dispose();</span>
+<span class="nc" id="L66">        stage.dispose();</span>
+<span class="nc" id="L67">        skin.dispose();</span>
+<span class="nc" id="L68">    }</span>
 
     /**
      * load ui skin from assets
      */
     private void createSkin() {
-<span class="nc" id="L77">        skin = new Skin(Gdx.files.internal(&quot;UISkin/skin.json&quot;));</span>
-<span class="nc" id="L78">    }</span>
+<span class="nc" id="L74">        skin = new Skin(Gdx.files.internal(&quot;UISkin/skin.json&quot;));</span>
+<span class="nc" id="L75">    }</span>
 
     /**
      * New for assessment 2
@@ -84,29 +81,62 @@ import com.mygdx.game.UI.PauseScreen;
      */
     @Override
     public void setScreen (Screen screen) {
-<span class="nc bnc" id="L87" title="All 4 branches missed.">        if (this.screen != null &amp;&amp; screen != pause) this.screen.hide();</span>
-<span class="nc" id="L88">        this.screen = screen;</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (this.screen != null) {</span>
-<span class="nc" id="L90">            this.screen.show();</span>
-<span class="nc" id="L91">            this.screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
+<span class="nc bnc" id="L84" title="All 4 branches missed.">        if (this.screen != null &amp;&amp; screen != pause) this.screen.hide();</span>
+<span class="nc" id="L85">        this.screen = screen;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (this.screen != null) {</span>
+<span class="nc" id="L87">            this.screen.show();</span>
+<span class="nc" id="L88">            this.screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
         }
-<span class="nc" id="L93">    }</span>
+<span class="nc" id="L90">    }</span>
 
     /**
      * New for assessment 2
      * Restarts the game by reinitialising the Managers and creating a new instance of GameScreen
      */
-    public void restartGane(){
-        // cant load any more resources after this point (just functionally I choose not to implement)
-<span class="nc" id="L101">        RenderingManager.Initialize();</span>
-<span class="nc" id="L102">        EntityManager.Initialize();</span>
-<span class="nc" id="L103">        GameManager.Initialize();</span>
+    public void restartGame(){
+        // can't load any more resources after this point (just functionally I choose not to implement)
+<span class="nc" id="L98">        RenderingManager.Initialize();</span>
+<span class="nc" id="L99">        EntityManager.Initialize();</span>
+<span class="nc" id="L100">        GameManager.Initialize(difficulty);</span>
 
-<span class="nc" id="L105">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L102">        game = new GameScreen(this, id_map);</span>
 
-<span class="nc" id="L107">        setScreen(menu);</span>
+<span class="nc" id="L104">        setScreen(menu);</span>
 
 
-<span class="nc" id="L110">    }</span>
+<span class="nc" id="L107">    }</span>
+
+    /**
+     * New for assesment 2
+     * Changes the difficulty for the game by changing the enum and calling GameMananger.getSettings()
+     */
+    public void setDifficulty(String selected){
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (selected == &quot;Easy&quot;){</span>
+<span class="nc" id="L115">            difficulty = GameDifficulty.Easy;</span>
+        }
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        else if (selected == &quot;Regular&quot;) {</span>
+<span class="nc" id="L118">            difficulty = GameDifficulty.Regular;</span>
+        }
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        else if (selected == &quot;Hard&quot;) {</span>
+<span class="nc" id="L121">            difficulty = GameDifficulty.Hard;</span>
+        }
+        else{
+<span class="nc" id="L124">            difficulty = GameDifficulty.Regular;</span>
+
+        }
+<span class="nc" id="L127">    }</span>
+    /**
+    Added for assessment 2 so that the game doesn't start until after the difficulty has been chosen by the player
+     */
+    public void StartGame(){
+        //GameManager.Initialize(difficulty);
+<span class="nc" id="L133">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L134">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L135">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L136">        setScreen(game);</span>
+
+
+<span class="nc" id="L139">    }</span>
 }
+
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
