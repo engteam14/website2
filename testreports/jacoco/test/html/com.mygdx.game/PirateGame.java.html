@@ -24,7 +24,7 @@ import com.mygdx.game.UI.PauseScreen;
     public Skin skin;
     public PauseScreen pause;
     public int id_map;
-    public GameDifficulty difficulty;
+<span class="nc" id="L27">    public GameDifficulty difficulty = GameDifficulty.Regular;</span>
 
     /**
      * Create instances of game stage and UI screens.
@@ -129,14 +129,28 @@ import com.mygdx.game.UI.PauseScreen;
     Added for assessment 2 so that the game doesn't start until after the difficulty has been chosen by the player
      */
     public void StartGame(){
-        //GameManager.Initialize(difficulty);
-<span class="nc" id="L133">        PhysicsManager.Initialize();</span>
-<span class="nc" id="L134">        GameManager.Initialize(difficulty);</span>
-<span class="nc" id="L135">        game = new GameScreen(this, id_map);</span>
-<span class="nc" id="L136">        setScreen(game);</span>
+<span class="nc" id="L132">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L133">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L134">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L135">        setScreen(game);</span>
+<span class="nc" id="L136">    }</span>
 
+    /**
+     * New for assesment 2
+     * Loads the game from the saved data
+     */
+    public void LoadGame(){
+<span class="nc" id="L143">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L144">        SaveManager.LoadGame();</span>
 
-<span class="nc" id="L139">    }</span>
-}
+<span class="nc" id="L146">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L147">        game = new GameScreen(this, id_map);</span>
+
+<span class="nc" id="L149">        SaveManager.SpawnGame();</span>
+
+<span class="nc" id="L151">        setScreen(game);</span>
+<span class="nc" id="L152">    }</span>
+ }
+
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

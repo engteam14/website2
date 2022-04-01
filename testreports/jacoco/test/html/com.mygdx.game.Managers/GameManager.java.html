@@ -30,6 +30,7 @@ import java.util.Objects;
     private static JsonValue settings;
 
     private static TileMapGraph mapGraph;
+    private static JsonValue settingsAll;
 
 
     /**
@@ -37,63 +38,66 @@ import java.util.Objects;
      * @param difficulty contains the ENUM for the difficulty that has been selected
      */
     public static void Initialize(GameDifficulty difficulty) {
-<span class="nc" id="L40">        initialized = true;</span>
-<span class="nc" id="L41">        currentElement = 0;</span>
+<span class="nc" id="L41">        initialized = true;</span>
+<span class="nc" id="L42">        currentElement = 0;</span>
         // start of change for assessment 2, adds functionality for changing difficulty
-<span class="nc" id="L43">        changeDifficulty(difficulty.toString());</span>
+
+<span class="nc" id="L45">        changeDifficulty(difficulty.toString());</span>
         // end of change
         
-<span class="nc" id="L46">        factions = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L47">        ships = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L48">        ballCache = new ArrayList&lt;&gt;(cacheSize);</span>
-<span class="nc" id="L49">        colleges = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L48">        factions = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L49">        ships = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L50">        ballCache = new ArrayList&lt;&gt;(cacheSize);</span>
+<span class="nc" id="L51">        colleges = new ArrayList&lt;&gt;();</span>
 
-<span class="nc bnc" id="L51" title="All 2 branches missed.">        for (int i = 0; i &lt; cacheSize; i++) {</span>
-<span class="nc" id="L52">            ballCache.add(new CannonBall());</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        for (int i = 0; i &lt; cacheSize; i++) {</span>
+<span class="nc" id="L54">            ballCache.add(new CannonBall());</span>
         }
 
-<span class="nc bnc" id="L55" title="All 2 branches missed.">        for (JsonValue v : settings.get(&quot;factions&quot;)) {</span>
-<span class="nc" id="L56">            String name = v.getString(&quot;name&quot;);</span>
-<span class="nc" id="L57">            String col = v.getString(&quot;colour&quot;);</span>
-<span class="nc" id="L58">            Vector2 pos = new Vector2(v.get(&quot;position&quot;).getFloat(&quot;x&quot;), v.get(&quot;position&quot;).getFloat(&quot;y&quot;));</span>
-<span class="nc" id="L59">            pos = Utilities.tilesToDistance(pos);</span>
-<span class="nc" id="L60">            Vector2 spawn = new Vector2(v.get(&quot;shipSpawn&quot;).getFloat(&quot;x&quot;), v.get(&quot;shipSpawn&quot;).getFloat(&quot;y&quot;));</span>
-<span class="nc" id="L61">            spawn = Utilities.tilesToDistance(spawn);</span>
-<span class="nc" id="L62">            factions.add(new Faction(name, col, pos, spawn, factions.size() + 1));</span>
-<span class="nc" id="L63">        }</span>
-<span class="nc" id="L64">    }</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        for (JsonValue v : settings.get(&quot;factions&quot;)) {</span>
+<span class="nc" id="L58">            String name = v.getString(&quot;name&quot;);</span>
+<span class="nc" id="L59">            String col = v.getString(&quot;colour&quot;);</span>
+<span class="nc" id="L60">            Vector2 pos = new Vector2(v.get(&quot;position&quot;).getFloat(&quot;x&quot;), v.get(&quot;position&quot;).getFloat(&quot;y&quot;));</span>
+<span class="nc" id="L61">            pos = Utilities.tilesToDistance(pos);</span>
+<span class="nc" id="L62">            Vector2 spawn = new Vector2(v.get(&quot;shipSpawn&quot;).getFloat(&quot;x&quot;), v.get(&quot;shipSpawn&quot;).getFloat(&quot;y&quot;));</span>
+<span class="nc" id="L63">            spawn = Utilities.tilesToDistance(spawn);</span>
+<span class="nc" id="L64">            factions.add(new Faction(name, col, pos, spawn, factions.size() + 1));</span>
+<span class="nc" id="L65">        }</span>
+<span class="nc" id="L66">    }</span>
 
     /**
      * added for assessment 2
      * loads the part of the json file for the chosen difficulty and overwrites the settings values with these values
      * @param difficulty the chosen difficulty as a string
      */
-    public static void changeDifficulty(String difficulty){
-<span class="nc" id="L72">        JsonValue settingsAll = new JsonReader(). //change for assessment 2 for multiple difficulties</span>
-<span class="nc" id="L73">                parse(Gdx.files.internal(&quot;GameSettings.json&quot;));</span>
-<span class="nc" id="L74">        settings = settingsAll.get(&quot;Regular&quot;);</span>
 
-<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (!Objects.equals(difficulty, &quot;Regular&quot;)) {</span>
-<span class="nc" id="L77">            JsonValue editSet = settingsAll.get(difficulty);</span>
-<span class="nc" id="L78">            JsonValue.JsonIterator it = editSet.iterator();</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">            while (it.hasNext()) {</span>
-<span class="nc" id="L80">                JsonValue x = it.next();</span>
-<span class="nc" id="L81">                JsonValue.JsonIterator it2 = x.iterator();</span>
-<span class="nc bnc" id="L82" title="All 2 branches missed.">                while (it2.hasNext()) {</span>
-<span class="nc" id="L83">                    JsonValue value = it2.next();</span>
-<span class="nc" id="L84">                    System.out.println(value);</span>
-<span class="nc" id="L85">                    System.out.println(&quot;.&quot; + difficulty+ &quot;.&quot;);</span>
-<span class="nc" id="L86">                    settings.get(x.name).get(value.name).set(value.asDouble(), null);</span>
-<span class="nc" id="L87">                }</span>
-<span class="nc" id="L88">            }</span>
+    public static void changeDifficulty(String difficulty){
+<span class="nc" id="L75">        JsonValue settingsAll = new JsonReader(). //change for assessment 2 for multiple difficulties</span>
+<span class="nc" id="L76">                parse(Gdx.files.internal(&quot;GameSettings.json&quot;));</span>
+<span class="nc" id="L77">        settings = settingsAll.get(&quot;Regular&quot;);</span>
+
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (!Objects.equals(difficulty, &quot;Regular&quot;)) {</span>
+<span class="nc" id="L80">            JsonValue editSet = settingsAll.get(difficulty);</span>
+<span class="nc" id="L81">            JsonValue.JsonIterator it = editSet.iterator();</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            while (it.hasNext()) {</span>
+<span class="nc" id="L83">                JsonValue x = it.next();</span>
+<span class="nc" id="L84">                JsonValue.JsonIterator it2 = x.iterator();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">                while (it2.hasNext()) {</span>
+<span class="nc" id="L86">                    JsonValue value = it2.next();</span>
+<span class="nc" id="L87">                    System.out.println(value);</span>
+<span class="nc" id="L88">                    System.out.println(&quot;.&quot; + difficulty+ &quot;.&quot;);</span>
+<span class="nc" id="L89">                    settings.get(x.name).get(value.name).set(value.asDouble(), null);</span>
+<span class="nc" id="L90">                }</span>
+<span class="nc" id="L91">            }</span>
         }
-<span class="nc" id="L90">    }</span>
+<span class="nc" id="L93">    }</span>
     /**
      * called every fram checks id the quests are completed
      */
     public static void update() {
-<span class="nc" id="L95">        QuestManager.checkCompleted();</span>
-<span class="nc" id="L96">    }</span>
+<span class="nc" id="L98">        QuestManager.checkCompleted();</span>
+<span class="nc" id="L99">        System.out.println(getPlayer().getPosition());</span>
+<span class="nc" id="L100">    }</span>
 
     /**
      * Player is always in ships at index 0
@@ -101,7 +105,7 @@ import java.util.Objects;
      * @return the ship
      */
     public static Player getPlayer() {
-<span class="nc" id="L104">        return (Player) ships.get(0);</span>
+<span class="nc" id="L108">        return (Player) ships.get(0);</span>
     }
 
     /**
@@ -110,7 +114,8 @@ import java.util.Objects;
      * @return the NPCShip instance
      */
     public static NPCShip getNPCShip(int id) {
-<span class="nc" id="L113">        return (NPCShip) ships.get(id);</span>
+
+<span class="nc" id="L118">        return (NPCShip) ships.get(id);</span>
     }
 
     /**
@@ -123,32 +128,32 @@ import java.util.Objects;
      */
     public static void SpawnGame(int mapId) {
 
-<span class="nc bnc" id="L126" title="All 2 branches missed.">        if (mapId &gt;= 0) CreateWorldMap(mapId);</span>
-<span class="nc" id="L127">        CreatePlayer();</span>
-<span class="nc" id="L128">        final int cnt = settings.get(&quot;factionDefaults&quot;).getInt(&quot;shipCount&quot;);</span>
-<span class="nc bnc" id="L129" title="All 2 branches missed.">        for (int i = 0; i &lt; factions.size(); i++) {</span>
-<span class="nc" id="L130">            CreateCollege(i + 1);</span>
-<span class="nc bnc" id="L131" title="All 2 branches missed.">            for (int j = 0; j &lt; cnt; j++) {</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">        if (mapId &gt;= 0) CreateWorldMap(mapId);</span>
+<span class="nc" id="L132">        CreatePlayer();</span>
+<span class="nc" id="L133">        final int cnt = settings.get(&quot;factionDefaults&quot;).getInt(&quot;shipCount&quot;);</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        for (int i = 0; i &lt; factions.size(); i++) {</span>
+<span class="nc" id="L135">            CreateCollege(i + 1);</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            for (int j = 0; j &lt; cnt; j++) {</span>
                 // prevents halifax from having ship count + player
-<span class="nc bnc" id="L133" title="All 4 branches missed.">                if (i == 0 &amp;&amp; j &gt; cnt - 2) {</span>
-<span class="nc" id="L134">                    break;</span>
+<span class="nc bnc" id="L138" title="All 4 branches missed.">                if (i == 0 &amp;&amp; j &gt; cnt - 2) {</span>
+<span class="nc" id="L139">                    break;</span>
                 }
-<span class="nc" id="L136">                NPCShip s = CreateNPCShip(i + 1);</span>
-<span class="nc" id="L137">                s.getComponent(Transform.class).setPosition(getFaction(i + 1).getSpawnPos());</span>
+<span class="nc" id="L141">                NPCShip s = CreateNPCShip(i + 1);</span>
+<span class="nc" id="L142">                s.getComponent(Transform.class).setPosition(getFaction(i + 1).getSpawnPos());</span>
             }
         }
-<span class="nc" id="L140">        QuestManager.Initialize(); // added for assessment 2 to stop tryInit being used (testing)</span>
-<span class="nc" id="L141">        QuestManager.createRandomQuests(); // &quot;&quot;</span>
-<span class="nc" id="L142">    }</span>
+<span class="nc" id="L145">        QuestManager.Initialize(); // added for assessment 2 to stop tryInit being used (testing)</span>
+<span class="nc" id="L146">        QuestManager.createRandomQuests(); // &quot;&quot;</span>
+<span class="nc" id="L147">    }</span>
 
     /**
      * Creates player that belongs the faction with id 1
      */
     public static void CreatePlayer() {
-<span class="nc" id="L148">        Player p = new Player();</span>
-<span class="nc" id="L149">        p.setFaction(1);</span>
-<span class="nc" id="L150">        ships.add(p);</span>
-<span class="nc" id="L151">    }</span>
+<span class="nc" id="L153">        Player p = new Player();</span>
+<span class="nc" id="L154">        p.setFaction(1);</span>
+<span class="nc" id="L155">        ships.add(p);</span>
+<span class="nc" id="L156">    }</span>
 
     /**
      * Creates an NPC ship with the given faction
@@ -157,10 +162,10 @@ import java.util.Objects;
      * @return the created ship
      */
     public static NPCShip CreateNPCShip(int factionId) {
-<span class="nc" id="L160">        NPCShip e = new NPCShip();</span>
-<span class="nc" id="L161">        e.setFaction(factionId);</span>
-<span class="nc" id="L162">        ships.add(e);</span>
-<span class="nc" id="L163">        return e;</span>
+<span class="nc" id="L165">        NPCShip e = new NPCShip();</span>
+<span class="nc" id="L166">        e.setFaction(factionId);</span>
+<span class="nc" id="L167">        ships.add(e);</span>
+<span class="nc" id="L168">        return e;</span>
     }
 
     /**
@@ -169,9 +174,9 @@ import java.util.Objects;
      * @param mapId resource id
      */
     public static void CreateWorldMap(int mapId) {
-<span class="nc" id="L172">        WorldMap map = new WorldMap(mapId);</span>
-<span class="nc" id="L173">        mapGraph = new TileMapGraph(map.getTileMap());</span>
-<span class="nc" id="L174">    }</span>
+<span class="nc" id="L177">        WorldMap map = new WorldMap(mapId);</span>
+<span class="nc" id="L178">        mapGraph = new TileMapGraph(map.getTileMap());</span>
+<span class="nc" id="L179">    }</span>
 
     /**
      * Creates the college with it's building for the desired college
@@ -179,13 +184,13 @@ import java.util.Objects;
      * @param factionId desired faction
      */
     public static void CreateCollege(int factionId) {
-<span class="nc" id="L182">        College c = new College(factionId);</span>
-<span class="nc" id="L183">        colleges.add(c);</span>
-<span class="nc" id="L184">    }</span>
+<span class="nc" id="L187">        College c = new College(factionId);</span>
+<span class="nc" id="L188">        colleges.add(c);</span>
+<span class="nc" id="L189">    }</span>
 
 
     public static Faction getFaction(int factionId) {
-<span class="nc" id="L188">        return factions.get(factionId - 1);</span>
+<span class="nc" id="L193">        return factions.get(factionId - 1);</span>
     }
 
     /**
@@ -194,11 +199,11 @@ import java.util.Objects;
      * @return the JSON representation fo settings
      */
     public static JsonValue getSettings() {
-<span class="nc" id="L197">        return settings;</span>
+<span class="nc" id="L202">        return settings;</span>
     }
 
     public static College getCollege(int factionId) {
-<span class="nc" id="L201">        return colleges.get(factionId - 1);</span>
+<span class="nc" id="L206">        return colleges.get(factionId - 1);</span>
     }
 
     /**
@@ -206,7 +211,7 @@ import java.util.Objects;
      * @return Returns the next cannonball that would be fired from the cache
      */
     public static CannonBall getCurrentCannon() {
-<span class="nc" id="L209">        return ballCache.get(currentElement);</span>
+<span class="nc" id="L214">        return ballCache.get(currentElement);</span>
     }
 
     /**
@@ -217,10 +222,10 @@ import java.util.Objects;
      * @param dir   shoot direction
      */
     public static void shoot(Entity p, Vector2 pos, Vector2 dir) { // Changed for Assessment 2, type switched from Ship to Entity
-<span class="nc" id="L220">        ballCache.get(currentElement).fire(p,pos, dir);</span>
-<span class="nc" id="L221">        currentElement++;</span>
-<span class="nc" id="L222">        currentElement %= cacheSize;</span>
-<span class="nc" id="L223">    }</span>
+<span class="nc" id="L225">        ballCache.get(currentElement).fire(p,pos, dir);</span>
+<span class="nc" id="L226">        currentElement++;</span>
+<span class="nc" id="L227">        currentElement %= cacheSize;</span>
+<span class="nc" id="L228">    }</span>
 
     /**
      * uses a* not sure if it works but i think it does
@@ -230,18 +235,27 @@ import java.util.Objects;
      * @return queue of delta positions
      */
     public static QueueFIFO&lt;Vector2&gt; getPath(Vector2 loc, Vector2 dst) {
-<span class="nc" id="L233">        return mapGraph.findOptimisedPath(loc, dst);</span>
+<span class="nc" id="L238">        return mapGraph.findOptimisedPath(loc, dst);</span>
     }
 
+    public static ArrayList&lt;Ship&gt; getShips(){
+<span class="nc" id="L242">        return ships;</span>
+    }
+    public static ArrayList&lt;College&gt; getColleges(){
+<span class="nc" id="L245">        return colleges;</span>
+    }
+
+
+
     public static void dispose(){
-<span class="nc" id="L237">        initialized = true;</span>
-<span class="nc" id="L238">        currentElement = 0;</span>
+<span class="nc" id="L251">        initialized = true;</span>
+<span class="nc" id="L252">        currentElement = 0;</span>
 
-<span class="nc" id="L240">        factions = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L241">        ships = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L242">        ballCache = new ArrayList&lt;&gt;(cacheSize);</span>
-<span class="nc" id="L243">        colleges = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L254">        factions = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L255">        ships = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L256">        ballCache = new ArrayList&lt;&gt;(cacheSize);</span>
+<span class="nc" id="L257">        colleges = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L245">    }</span>
+<span class="nc" id="L259">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
