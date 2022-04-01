@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -186,13 +186,34 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>java.util.ArrayList&lt;com.badlogic.gdx.math.Vector2&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#displacementFromShip(com.mygdx.game.Entitys.Ship)">displacementFromShip</a></span>&#8203;(<a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a>&nbsp;ship)</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../Faction.html" title="class in com.mygdx.game">Faction</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFaction()">getFaction</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>com.badlogic.gdx.math.Vector2</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPosition()">getPosition</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAlive()">isAlive</a></span>()</code></th>
 <td class="colLast">
 <div class="block">True as long as unharmed buildings remain, false otherwise.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#killThisCollege()">killThisCollege</a></span>()</code></th>
 <td class="colLast">
@@ -200,19 +221,31 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
  Systematically kills each building attached to this college, then marks the college as dead.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot(com.badlogic.gdx.math.Vector2)">shoot</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;dir)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMostRecentAttacker(com.mygdx.game.Faction)">setMostRecentAttacker</a></span>&#8203;(<a href="../Faction.html" title="class in com.mygdx.game">Faction</a>&nbsp;conqueror)</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2
+ Sets the Faction which most recently attacked this College</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2)">shoot</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;startPos,
+     com.badlogic.gdx.math.Vector2&nbsp;direction)</code></th>
 <td class="colLast">
 <div class="block">Added for Assessment 2 to meet requirements
  Calls shoot function of internal component</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Similar to the Component's update event</div>
+<div class="block">Runs once per frame
+ Changed for Assessment 2:
+  - Added checks for if the college is in a specific range of the player
+  - Added functionality where the college shoots at the player if on opposing factions and in range.</div>
 </td>
 </tr>
 </table>
@@ -262,7 +295,9 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <li class="blockList">
 <h4>College</h4>
 <pre>public&nbsp;College&#8203;(int&nbsp;factionId)</pre>
-<div class="block">Creates a college at the location associated with the given faction id.</div>
+<div class="block">Creates a college at the location associated with the given faction id.
+ Changed for Assessment 2:
+  - Set infinite ammo to true in Pirate Component</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>factionId</code> - numerical id of the faction</dd>
@@ -287,18 +322,90 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <h4>isAlive</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isAlive()</pre>
 <div class="block">True as long as unharmed buildings remain, false otherwise.
- Changed for Assessment 2, added boolean return for Kill Quest functionality.</div>
+ Changed for Assessment 2:
+  - Added boolean return for Kill Quest functionality.
+  - Renamed boolean for readability
+  - Added functionality for changing Flag upon capture.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the status of this college</dd>
+</dl>
 </li>
 </ul>
-<a id="shoot(com.badlogic.gdx.math.Vector2)">
+<a id="getFaction()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getFaction</h4>
+<pre class="methodSignature">public&nbsp;<a href="../Faction.html" title="class in com.mygdx.game">Faction</a>&nbsp;getFaction()</pre>
+<div class="block">Added for Assessment 2</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The Faction of the Pirate Component attached to this entity</dd>
+</dl>
+</li>
+</ul>
+<a id="setMostRecentAttacker(com.mygdx.game.Faction)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setMostRecentAttacker</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setMostRecentAttacker&#8203;(<a href="../Faction.html" title="class in com.mygdx.game">Faction</a>&nbsp;conqueror)</pre>
+<div class="block">Added for Assessment 2
+ Sets the Faction which most recently attacked this College</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>conqueror</code> - the Faction which most recently attacked this college</dd>
+</dl>
+</li>
+</ul>
+<a id="getPosition()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPosition</h4>
+<pre class="methodSignature">public&nbsp;com.badlogic.gdx.math.Vector2&nbsp;getPosition()</pre>
+<div class="block">Added for Assessment 2</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>copy of the transform's position</dd>
+</dl>
+</li>
+</ul>
+<a id="displacementFromShip(com.mygdx.game.Entitys.Ship)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>displacementFromShip</h4>
+<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;com.badlogic.gdx.math.Vector2&gt;&nbsp;displacementFromShip&#8203;(<a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a>&nbsp;ship)</pre>
+<div class="block">Added for Assessment 2</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>ship</code> - the Ship being checked</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>displacement in form [magnitude,direction] between parsed ship and this college</dd>
+</dl>
+</li>
+</ul>
+<a id="shoot(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>shoot</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;shoot&#8203;(com.badlogic.gdx.math.Vector2&nbsp;dir)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;shoot&#8203;(com.badlogic.gdx.math.Vector2&nbsp;startPos,
+                  com.badlogic.gdx.math.Vector2&nbsp;direction)</pre>
 <div class="block">Added for Assessment 2 to meet requirements
  Calls shoot function of internal component</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>startPos</code> - the position the cannonball is to be spawned at</dd>
+<dd><code>direction</code> - the direction the cannonball is to be fired in</dd>
+</dl>
 </li>
 </ul>
 <a id="killThisCollege()">
@@ -319,8 +426,10 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <li class="blockList">
 <h4>update</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;update()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Entity.html#update()">Entity</a></code></span></div>
-<div class="block">Similar to the Component's update event</div>
+<div class="block">Runs once per frame
+ Changed for Assessment 2:
+  - Added checks for if the college is in a specific range of the player
+  - Added functionality where the college shoots at the player if on opposing factions and in range.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="Entity.html#update()">update</a></code>&nbsp;in class&nbsp;<code><a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a></code></dd>

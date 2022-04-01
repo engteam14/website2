@@ -180,7 +180,7 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#destroy()">destroy</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#destroy(com.mygdx.game.Faction)">destroy</a></span>&#8203;(<a href="../Faction.html" title="class in com.mygdx.game">Faction</a>&nbsp;conqueror)</code></th>
 <td class="colLast">
 <div class="block">Replace the building with ruins and mark as broken.</div>
 </td>
@@ -258,15 +258,17 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 </dl>
 </li>
 </ul>
-<a id="destroy()">
+<a id="destroy(com.mygdx.game.Faction)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>destroy</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;destroy()</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;destroy&#8203;(<a href="../Faction.html" title="class in com.mygdx.game">Faction</a>&nbsp;conqueror)</pre>
 <div class="block">Replace the building with ruins and mark as broken.
- Changed for Assessment 2: Made public for testing purposes</div>
+ Changed for Assessment 2
+  - Made public for testing purposes
+  - Sets destroyer as parent college's most recent attacker.</div>
 </li>
 </ul>
 <a id="isAlive()">
@@ -315,7 +317,8 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>EnterTrigger</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;EnterTrigger&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</pre>
-<div class="block">Destroys the building and marks cannonball for removal.</div>
+<div class="block">Destroys the building and marks cannonball for removal.
+ Amended for Assessment 2, added Faction checks and now ignores flags</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../Physics/CollisionCallBack.html#EnterTrigger(com.mygdx.game.Physics.CollisionInfo)">EnterTrigger</a></code>&nbsp;in interface&nbsp;<code><a href="../Physics/CollisionCallBack.html" title="interface in com.mygdx.game.Physics">CollisionCallBack</a></code></dd>

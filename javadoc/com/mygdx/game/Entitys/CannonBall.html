@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -214,26 +214,33 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#fire(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2,com.mygdx.game.Entitys.Entity)">fire</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;pos,
-    com.badlogic.gdx.math.Vector2&nbsp;dir,
-    <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>&nbsp;sender)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#fire(com.mygdx.game.Entitys.Entity,com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2)">fire</a></span>&#8203;(<a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>&nbsp;sender,
+    com.badlogic.gdx.math.Vector2&nbsp;pos,
+    com.badlogic.gdx.math.Vector2&nbsp;dir)</code></th>
 <td class="colLast">
-<div class="block">Teleport the cannonball in from offscreen and set in flying away from the ship.</div>
+<div class="block">Teleport the cannonball in from offscreen and send in flying away from the ship.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="../Faction.html" title="class in com.mygdx.game">Faction</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFaction()">getFaction</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getShooter()">getShooter</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#kill()">kill</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Marks cannonball for removal on next update.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">
@@ -305,16 +312,16 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 </dl>
 </li>
 </ul>
-<a id="fire(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2,com.mygdx.game.Entitys.Entity)">
+<a id="fire(com.mygdx.game.Entitys.Entity,com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>fire</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;fire&#8203;(com.badlogic.gdx.math.Vector2&nbsp;pos,
-                 com.badlogic.gdx.math.Vector2&nbsp;dir,
-                 <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>&nbsp;sender)</pre>
-<div class="block">Teleport the cannonball in from offscreen and set in flying away from the ship.</div>
+<pre class="methodSignature">public&nbsp;void&nbsp;fire&#8203;(<a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>&nbsp;sender,
+                 com.badlogic.gdx.math.Vector2&nbsp;pos,
+                 com.badlogic.gdx.math.Vector2&nbsp;dir)</pre>
+<div class="block">Teleport the cannonball in from offscreen and send in flying away from the ship.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>pos</code> - 2D vector location from where it sets off</dd>
@@ -340,6 +347,20 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>getShooter</h4>
 <pre class="methodSignature">public&nbsp;<a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>&nbsp;getShooter()</pre>
+</li>
+</ul>
+<a id="getFaction()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getFaction</h4>
+<pre class="methodSignature">public&nbsp;<a href="../Faction.html" title="class in com.mygdx.game">Faction</a>&nbsp;getFaction()</pre>
+<div class="block">Added for Assessment 2</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The Faction of the Pirate Component attached to this entity</dd>
+</dl>
 </li>
 </ul>
 <a id="BeginContact(com.mygdx.game.Physics.CollisionInfo)">

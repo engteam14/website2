@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":9,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":9,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -247,59 +247,76 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="../Faction.html" title="class in com.mygdx.game">Faction</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFaction()">getFaction</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getHealth()">getHealth</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPlunder()">getPlunder</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPoints()">getPoints</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>com.badlogic.gdx.math.Vector2</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPosition()">getPosition</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAlive()">isAlive</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#plunder(int)">plunder</a></span>&#8203;(int&nbsp;money)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#points(int)">points</a></span>&#8203;(int&nbsp;increment)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFaction(int)">setFaction</a></span>&#8203;(int&nbsp;factionId)</code></th>
 <td class="colLast">
 <div class="block">Associates ship with faction and orients it to the default northern direction.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setShipDirection(com.badlogic.gdx.math.Vector2)">setShipDirection</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;dir)</code></th>
 <td class="colLast">
 <div class="block">will rotate the ship to face the direction (just changes the sprite doesn't actually rotate)</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setShipDirection(java.lang.String)">setShipDirection</a></span>&#8203;(java.lang.String&nbsp;direction)</code></th>
 <td class="colLast">
 <div class="block">will rotate the ship to face the direction (just changes the sprite doesn't actually rotate)</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot()">shoot</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Calls shoot function of internal component</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot(com.badlogic.gdx.math.Vector2)">shoot</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;dir)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -401,6 +418,15 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <pre class="methodSignature">public&nbsp;void&nbsp;plunder&#8203;(int&nbsp;money)</pre>
 </li>
 </ul>
+<a id="points(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>points</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;points&#8203;(int&nbsp;increment)</pre>
+</li>
+</ul>
 <a id="setFaction(int)">
 <!--   -->
 </a>
@@ -461,6 +487,15 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <pre class="methodSignature">public&nbsp;int&nbsp;getPlunder()</pre>
 </li>
 </ul>
+<a id="getPoints()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPoints</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getPoints()</pre>
+</li>
+</ul>
 <a id="shoot(com.badlogic.gdx.math.Vector2)">
 <!--   -->
 </a>
@@ -490,6 +525,20 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>copy of the transform's position</dd>
+</dl>
+</li>
+</ul>
+<a id="getFaction()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getFaction</h4>
+<pre class="methodSignature">public&nbsp;<a href="../Faction.html" title="class in com.mygdx.game">Faction</a>&nbsp;getFaction()</pre>
+<div class="block">Added for Assessment 2</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The Faction of the Pirate Component attached to this entity</dd>
 </dl>
 </li>
 </ul>
