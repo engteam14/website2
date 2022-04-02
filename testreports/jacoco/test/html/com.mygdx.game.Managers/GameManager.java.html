@@ -85,19 +85,17 @@ import java.util.Objects;
 <span class="nc bnc" id="L85" title="All 2 branches missed.">                while (it2.hasNext()) {</span>
 <span class="nc" id="L86">                    JsonValue value = it2.next();</span>
 <span class="nc" id="L87">                    System.out.println(value);</span>
-<span class="nc" id="L88">                    System.out.println(&quot;.&quot; + difficulty+ &quot;.&quot;);</span>
-<span class="nc" id="L89">                    settings.get(x.name).get(value.name).set(value.asDouble(), null);</span>
-<span class="nc" id="L90">                }</span>
-<span class="nc" id="L91">            }</span>
+<span class="nc" id="L88">                    settings.get(x.name).get(value.name).set(value.asDouble(), null);</span>
+<span class="nc" id="L89">                }</span>
+<span class="nc" id="L90">            }</span>
         }
-<span class="nc" id="L93">    }</span>
+<span class="nc" id="L92">    }</span>
     /**
      * called every fram checks id the quests are completed
      */
     public static void update() {
-<span class="nc" id="L98">        QuestManager.checkCompleted();</span>
-<span class="nc" id="L99">        System.out.println(getPlayer().getPosition());</span>
-<span class="nc" id="L100">    }</span>
+<span class="nc" id="L97">        QuestManager.checkCompleted();</span>
+<span class="nc" id="L98">    }</span>
 
     /**
      * Player is always in ships at index 0
@@ -105,7 +103,7 @@ import java.util.Objects;
      * @return the ship
      */
     public static Player getPlayer() {
-<span class="nc" id="L108">        return (Player) ships.get(0);</span>
+<span class="nc" id="L106">        return (Player) ships.get(0);</span>
     }
 
     /**
@@ -115,7 +113,7 @@ import java.util.Objects;
      */
     public static NPCShip getNPCShip(int id) {
 
-<span class="nc" id="L118">        return (NPCShip) ships.get(id);</span>
+<span class="nc" id="L116">        return (NPCShip) ships.get(id);</span>
     }
 
     /**
@@ -128,32 +126,32 @@ import java.util.Objects;
      */
     public static void SpawnGame(int mapId) {
 
-<span class="nc bnc" id="L131" title="All 2 branches missed.">        if (mapId &gt;= 0) CreateWorldMap(mapId);</span>
-<span class="nc" id="L132">        CreatePlayer();</span>
-<span class="nc" id="L133">        final int cnt = settings.get(&quot;factionDefaults&quot;).getInt(&quot;shipCount&quot;);</span>
-<span class="nc bnc" id="L134" title="All 2 branches missed.">        for (int i = 0; i &lt; factions.size(); i++) {</span>
-<span class="nc" id="L135">            CreateCollege(i + 1);</span>
-<span class="nc bnc" id="L136" title="All 2 branches missed.">            for (int j = 0; j &lt; cnt; j++) {</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        if (mapId &gt;= 0) CreateWorldMap(mapId);</span>
+<span class="nc" id="L130">        CreatePlayer();</span>
+<span class="nc" id="L131">        final int cnt = settings.get(&quot;factionDefaults&quot;).getInt(&quot;shipCount&quot;);</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">        for (int i = 0; i &lt; factions.size(); i++) {</span>
+<span class="nc" id="L133">            CreateCollege(i + 1);</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            for (int j = 0; j &lt; cnt; j++) {</span>
                 // prevents halifax from having ship count + player
-<span class="nc bnc" id="L138" title="All 4 branches missed.">                if (i == 0 &amp;&amp; j &gt; cnt - 2) {</span>
-<span class="nc" id="L139">                    break;</span>
+<span class="nc bnc" id="L136" title="All 4 branches missed.">                if (i == 0 &amp;&amp; j &gt; cnt - 2) {</span>
+<span class="nc" id="L137">                    break;</span>
                 }
-<span class="nc" id="L141">                NPCShip s = CreateNPCShip(i + 1);</span>
-<span class="nc" id="L142">                s.getComponent(Transform.class).setPosition(getFaction(i + 1).getSpawnPos());</span>
+<span class="nc" id="L139">                NPCShip s = CreateNPCShip(i + 1);</span>
+<span class="nc" id="L140">                s.getComponent(Transform.class).setPosition(getFaction(i + 1).getSpawnPos());</span>
             }
         }
-<span class="nc" id="L145">        QuestManager.Initialize(); // added for assessment 2 to stop tryInit being used (testing)</span>
-<span class="nc" id="L146">        QuestManager.createRandomQuests(); // &quot;&quot;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L143">        QuestManager.Initialize(); // added for assessment 2 to stop tryInit being used (testing)</span>
+<span class="nc" id="L144">        QuestManager.createRandomQuests(); // &quot;&quot;</span>
+<span class="nc" id="L145">    }</span>
 
     /**
      * Creates player that belongs the faction with id 1
      */
     public static void CreatePlayer() {
-<span class="nc" id="L153">        Player p = new Player();</span>
-<span class="nc" id="L154">        p.setFaction(1);</span>
-<span class="nc" id="L155">        ships.add(p);</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L151">        Player p = new Player();</span>
+<span class="nc" id="L152">        p.setFaction(1);</span>
+<span class="nc" id="L153">        ships.add(p);</span>
+<span class="nc" id="L154">    }</span>
 
     /**
      * Creates an NPC ship with the given faction
@@ -162,10 +160,10 @@ import java.util.Objects;
      * @return the created ship
      */
     public static NPCShip CreateNPCShip(int factionId) {
-<span class="nc" id="L165">        NPCShip e = new NPCShip();</span>
-<span class="nc" id="L166">        e.setFaction(factionId);</span>
-<span class="nc" id="L167">        ships.add(e);</span>
-<span class="nc" id="L168">        return e;</span>
+<span class="nc" id="L163">        NPCShip e = new NPCShip();</span>
+<span class="nc" id="L164">        e.setFaction(factionId);</span>
+<span class="nc" id="L165">        ships.add(e);</span>
+<span class="nc" id="L166">        return e;</span>
     }
 
     /**
@@ -174,9 +172,9 @@ import java.util.Objects;
      * @param mapId resource id
      */
     public static void CreateWorldMap(int mapId) {
-<span class="nc" id="L177">        WorldMap map = new WorldMap(mapId);</span>
-<span class="nc" id="L178">        mapGraph = new TileMapGraph(map.getTileMap());</span>
-<span class="nc" id="L179">    }</span>
+<span class="nc" id="L175">        WorldMap map = new WorldMap(mapId);</span>
+<span class="nc" id="L176">        mapGraph = new TileMapGraph(map.getTileMap());</span>
+<span class="nc" id="L177">    }</span>
 
     /**
      * Creates the college with it's building for the desired college
@@ -184,13 +182,13 @@ import java.util.Objects;
      * @param factionId desired faction
      */
     public static void CreateCollege(int factionId) {
-<span class="nc" id="L187">        College c = new College(factionId);</span>
-<span class="nc" id="L188">        colleges.add(c);</span>
-<span class="nc" id="L189">    }</span>
+<span class="nc" id="L185">        College c = new College(factionId);</span>
+<span class="nc" id="L186">        colleges.add(c);</span>
+<span class="nc" id="L187">    }</span>
 
 
     public static Faction getFaction(int factionId) {
-<span class="nc" id="L193">        return factions.get(factionId - 1);</span>
+<span class="nc" id="L191">        return factions.get(factionId - 1);</span>
     }
 
     /**
@@ -199,11 +197,11 @@ import java.util.Objects;
      * @return the JSON representation fo settings
      */
     public static JsonValue getSettings() {
-<span class="nc" id="L202">        return settings;</span>
+<span class="nc" id="L200">        return settings;</span>
     }
 
     public static College getCollege(int factionId) {
-<span class="nc" id="L206">        return colleges.get(factionId - 1);</span>
+<span class="nc" id="L204">        return colleges.get(factionId - 1);</span>
     }
 
     /**
@@ -211,7 +209,7 @@ import java.util.Objects;
      * @return Returns the next cannonball that would be fired from the cache
      */
     public static CannonBall getCurrentCannon() {
-<span class="nc" id="L214">        return ballCache.get(currentElement);</span>
+<span class="nc" id="L212">        return ballCache.get(currentElement);</span>
     }
 
     /**
@@ -222,10 +220,10 @@ import java.util.Objects;
      * @param dir   shoot direction
      */
     public static void shoot(Entity p, Vector2 pos, Vector2 dir) { // Changed for Assessment 2, type switched from Ship to Entity
-<span class="nc" id="L225">        ballCache.get(currentElement).fire(p,pos, dir);</span>
-<span class="nc" id="L226">        currentElement++;</span>
-<span class="nc" id="L227">        currentElement %= cacheSize;</span>
-<span class="nc" id="L228">    }</span>
+<span class="nc" id="L223">        ballCache.get(currentElement).fire(p,pos, dir);</span>
+<span class="nc" id="L224">        currentElement++;</span>
+<span class="nc" id="L225">        currentElement %= cacheSize;</span>
+<span class="nc" id="L226">    }</span>
 
     /**
      * uses a* not sure if it works but i think it does
@@ -235,27 +233,27 @@ import java.util.Objects;
      * @return queue of delta positions
      */
     public static QueueFIFO&lt;Vector2&gt; getPath(Vector2 loc, Vector2 dst) {
-<span class="nc" id="L238">        return mapGraph.findOptimisedPath(loc, dst);</span>
+<span class="nc" id="L236">        return mapGraph.findOptimisedPath(loc, dst);</span>
     }
 
     public static ArrayList&lt;Ship&gt; getShips(){
-<span class="nc" id="L242">        return ships;</span>
+<span class="nc" id="L240">        return ships;</span>
     }
     public static ArrayList&lt;College&gt; getColleges(){
-<span class="nc" id="L245">        return colleges;</span>
+<span class="nc" id="L243">        return colleges;</span>
     }
 
 
 
     public static void dispose(){
-<span class="nc" id="L251">        initialized = true;</span>
-<span class="nc" id="L252">        currentElement = 0;</span>
+<span class="nc" id="L249">        initialized = true;</span>
+<span class="nc" id="L250">        currentElement = 0;</span>
 
-<span class="nc" id="L254">        factions = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L255">        ships = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L256">        ballCache = new ArrayList&lt;&gt;(cacheSize);</span>
-<span class="nc" id="L257">        colleges = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L252">        factions = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L253">        ships = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L254">        ballCache = new ArrayList&lt;&gt;(cacheSize);</span>
+<span class="nc" id="L255">        colleges = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L259">    }</span>
+<span class="nc" id="L257">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
