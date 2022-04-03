@@ -88,13 +88,13 @@ loadScripts(document, 'script');</script>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -144,6 +144,29 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../Faction.html" title="class in com.mygdx.game">Faction</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#f">f</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -159,7 +182,9 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">College</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates a college.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int)">College</a></span>&#8203;(int&nbsp;factionId)</code></th>
@@ -254,7 +279,7 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.mygdx.game.Entitys.<a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a></h3>
-<code><a href="Entity.html#addComponent(com.mygdx.game.Components.Component)">addComponent</a>, <a href="Entity.html#addComponents(com.mygdx.game.Components.Component...)">addComponents</a>, <a href="Entity.html#cleanUp()">cleanUp</a>, <a href="Entity.html#getComponent(com.mygdx.game.Components.ComponentType)">getComponent</a>, <a href="Entity.html#getComponent(java.lang.Class)">getComponent</a>, <a href="Entity.html#getComponents(java.lang.Class)">getComponents</a>, <a href="Entity.html#getName()">getName</a>, <a href="Entity.html#raiseEvents(com.mygdx.game.Components.ComponentEvent...)">raiseEvents</a>, <a href="Entity.html#setName(java.lang.String)">setName</a></code></li>
+<code><a href="Entity.html#addComponent(com.mygdx.game.Components.Component)">addComponent</a>, <a href="Entity.html#addComponents(com.mygdx.game.Components.Component...)">addComponents</a>, <a href="Entity.html#cleanUp()">cleanUp</a>, <a href="Entity.html#dispose()">dispose</a>, <a href="Entity.html#getComponent(com.mygdx.game.Components.ComponentType)">getComponent</a>, <a href="Entity.html#getComponent(java.lang.Class)">getComponent</a>, <a href="Entity.html#getComponents(java.lang.Class)">getComponents</a>, <a href="Entity.html#getName()">getName</a>, <a href="Entity.html#raiseEvents(com.mygdx.game.Components.ComponentEvent...)">raiseEvents</a>, <a href="Entity.html#setName(java.lang.String)">setName</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -272,6 +297,25 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a id="f">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>f</h4>
+<pre>public&nbsp;<a href="../Faction.html" title="class in com.mygdx.game">Faction</a> f</pre>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section role="region">
 <ul class="blockList">
@@ -286,6 +330,9 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <li class="blockList">
 <h4>College</h4>
 <pre>public&nbsp;College()</pre>
+<div class="block">Creates a college.
+ Changed for Assessment 2:
+  - Added lastShootTime to store the time when the college last attacked</div>
 </li>
 </ul>
 <a id="&lt;init&gt;(int)">
@@ -488,13 +535,13 @@ extends <a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

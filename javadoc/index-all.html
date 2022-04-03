@@ -174,9 +174,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/utils/Constants.html#ASPECT_RATIO">ASPECT_RATIO</a></span> - Static variable in class com.mygdx.utils.<a href="com/mygdx/utils/Constants.html" title="class in com.mygdx.utils">Constants</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Components/PowerUpAssigned.html#AssignPowerUp(com.mygdx.game.PowerUps.PowerUp)">AssignPowerUp(PowerUp)</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/PowerUpAssigned.html" title="class in com.mygdx.game.Components">PowerUpAssigned</a></dt>
+<dd>
+<div class="block">Assign a PowerUp, disabling the old one if present.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/AI/EnemyState.html#ATTACK">ATTACK</a></span> - com.mygdx.game.AI.<a href="com/mygdx/game/AI/EnemyState.html" title="enum in com.mygdx.game.AI">EnemyState</a></dt>
 <dd>
 <div class="block">Attempts to kill the enemy</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/NPCShip.html#attackPlayer()">attackPlayer()</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/NPCShip.html" title="class in com.mygdx.game.Entitys">NPCShip</a></dt>
+<dd>
+<div class="block">Added for Assessment 2, shoots a cannonball towards the player ship</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Component.html#awake()">awake()</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Component.html" title="class in com.mygdx.game.Components">Component</a></dt>
 <dd>
@@ -208,6 +216,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/CannonBall.html#BeginContact(com.mygdx.game.Physics.CollisionInfo)">BeginContact(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/CannonBall.html" title="class in com.mygdx.game.Entitys">CannonBall</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/NPCShip.html#BeginContact(com.mygdx.game.Physics.CollisionInfo)">BeginContact(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/NPCShip.html" title="class in com.mygdx.game.Entitys">NPCShip</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/PowerUpPickup.html#BeginContact(com.mygdx.game.Physics.CollisionInfo)">BeginContact(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/PowerUpPickup.html" title="class in com.mygdx.game.Entitys">PowerUpPickup</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Ship.html#BeginContact(com.mygdx.game.Physics.CollisionInfo)">BeginContact(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></dt>
 <dd>&nbsp;</dd>
@@ -261,6 +271,18 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Checks if the given player has met the complete condition</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUp.html#CheckPermanent()">CheckPermanent()</a></span> - Method in class com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUp.html" title="class in com.mygdx.game.PowerUps">PowerUp</a></dt>
+<dd>
+<div class="block">Check whether the PowerUp is permanent or temporary.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUp.html#CheckPowerUpDone()">CheckPowerUpDone()</a></span> - Method in class com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUp.html" title="class in com.mygdx.game.PowerUps">PowerUp</a></dt>
+<dd>
+<div class="block">Check whether a PowerUp is done.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUp.html#CheckPowerUpDone(com.mygdx.game.Components.Pirate)">CheckPowerUpDone(Pirate)</a></span> - Method in class com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUp.html" title="class in com.mygdx.game.PowerUps">PowerUp</a></dt>
+<dd>
+<div class="block">Check whether a PowerUp is done, and Disable it if so.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/utils/Utilities.html#checkProximity(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2,float)">checkProximity(Vector2, Vector2, float)</a></span> - Static method in class com.mygdx.utils.<a href="com/mygdx/utils/Utilities.html" title="class in com.mygdx.utils">Utilities</a></dt>
 <dd>
 <div class="block">checks the proximity of point a to point b</div>
@@ -306,7 +328,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Defines a college and its associated buildings.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/College.html#%3Cinit%3E()">College()</a></span> - Constructor for class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/College.html" title="class in com.mygdx.game.Entitys">College</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Creates a college.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/College.html#%3Cinit%3E(int)">College(int)</a></span> - Constructor for class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/College.html" title="class in com.mygdx.game.Entitys">College</a></dt>
 <dd>
 <div class="block">Creates a college at the location associated with the given faction id.</div>
@@ -338,6 +362,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><a href="com/mygdx/game/Managers/package-summary.html">com.mygdx.game.Managers</a> - package com.mygdx.game.Managers</dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/mygdx/game/Physics/package-summary.html">com.mygdx.game.Physics</a> - package com.mygdx.game.Physics</dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/mygdx/game/PowerUps/package-summary.html">com.mygdx.game.PowerUps</a> - package com.mygdx.game.PowerUps</dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/mygdx/game/Quests/package-summary.html">com.mygdx.game.Quests</a> - package com.mygdx.game.Quests</dt>
 <dd>&nbsp;</dd>
@@ -444,6 +470,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">D</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUpOperation.html#decrement">decrement</a></span> - com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a></dt>
+<dd>
+<div class="block">Decrement the key value by an amount.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Quests/Quest.html#description">description</a></span> - Variable in class com.mygdx.game.Quests.<a href="com/mygdx/game/Quests/Quest.html" title="class in com.mygdx.game.Quests">Quest</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Building.html#destroy(com.mygdx.game.Faction)">destroy(Faction)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Building.html" title="class in com.mygdx.game.Entitys">Building</a></dt>
@@ -454,10 +484,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/utils/Constants.html#DIMENSIONS">DIMENSIONS</a></span> - Static variable in class com.mygdx.utils.<a href="com/mygdx/utils/Constants.html" title="class in com.mygdx.utils">Constants</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/NPCShip.html#directionToPlayer()">directionToPlayer()</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/NPCShip.html" title="class in com.mygdx.game.Entitys">NPCShip</a></dt>
+<dd>
+<div class="block">Added for Assessment 2, calculates the direction the Player is in</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUp.html#DisablePowerUp(com.mygdx.game.Components.Pirate)">DisablePowerUp(Pirate)</a></span> - Method in class com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUp.html" title="class in com.mygdx.game.PowerUps">PowerUp</a></dt>
+<dd>
+<div class="block">Remove PowerUp modifiers from a Pirate and reset to default.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/College.html#displacementFromShip(com.mygdx.game.Entitys.Ship)">displacementFromShip(Ship)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/College.html" title="class in com.mygdx.game.Entitys">College</a></dt>
 <dd>
 <div class="block">Added for Assessment 2</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Entity.html#dispose()">dispose()</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Entity.html" title="class in com.mygdx.game.Entitys">Entity</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/GameManager.html#dispose()">dispose()</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/GameManager.html" title="class in com.mygdx.game.Managers">GameManager</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/ResourceManager.html#dispose()">dispose()</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/ResourceManager.html" title="class in com.mygdx.game.Managers">ResourceManager</a></dt>
@@ -477,6 +517,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/utils/Utilities.html#distanceToTiles(com.badlogic.gdx.math.Vector2)">distanceToTiles(Vector2)</a></span> - Static method in class com.mygdx.utils.<a href="com/mygdx/utils/Utilities.html" title="class in com.mygdx.utils">Utilities</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUpOperation.html#divide">divide</a></span> - com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a></dt>
+<dd>
+<div class="block">Divide the key value by an amount.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Physics/PhysicsBodyType.html#Dynamic">Dynamic</a></span> - com.mygdx.game.Physics.<a href="com/mygdx/game/Physics/PhysicsBodyType.html" title="enum in com.mygdx.game.Physics">PhysicsBodyType</a></dt>
 <dd>
 <div class="block">Effected by all forces (like every thing in real life)</div>
@@ -491,6 +535,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/utils/QueueFIFO.html#element()">element()</a></span> - Method in class com.mygdx.utils.<a href="com/mygdx/utils/QueueFIFO.html" title="class in com.mygdx.utils">QueueFIFO</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUp.html#EnablePowerUp(com.mygdx.game.Components.Pirate)">EnablePowerUp(Pirate)</a></span> - Method in class com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUp.html" title="class in com.mygdx.game.PowerUps">PowerUp</a></dt>
+<dd>
+<div class="block">Apply PowerUp modifiers to the Pirate.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/PirateGame.html#end">end</a></span> - Variable in class com.mygdx.game.<a href="com/mygdx/game/PirateGame.html" title="class in com.mygdx.game">PirateGame</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/CollisionManager.html#endContact(com.badlogic.gdx.physics.box2d.Contact)">endContact(Contact)</a></span> - Method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/CollisionManager.html" title="class in com.mygdx.game.Managers">CollisionManager</a></dt>
@@ -503,6 +551,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/CannonBall.html#EndContact(com.mygdx.game.Physics.CollisionInfo)">EndContact(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/CannonBall.html" title="class in com.mygdx.game.Entitys">CannonBall</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/NPCShip.html#EndContact(com.mygdx.game.Physics.CollisionInfo)">EndContact(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/NPCShip.html" title="class in com.mygdx.game.Entitys">NPCShip</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/PowerUpPickup.html#EndContact(com.mygdx.game.Physics.CollisionInfo)">EndContact(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/PowerUpPickup.html" title="class in com.mygdx.game.Entitys">PowerUpPickup</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Ship.html#EndContact(com.mygdx.game.Physics.CollisionInfo)">EndContact(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></dt>
 <dd>&nbsp;</dd>
@@ -534,9 +584,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">if the agro fixture hit a ship set it as the target</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/PowerUpPickup.html#EnterTrigger(com.mygdx.game.Physics.CollisionInfo)">EnterTrigger(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/PowerUpPickup.html" title="class in com.mygdx.game.Entitys">PowerUpPickup</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Ship.html#EnterTrigger(com.mygdx.game.Physics.CollisionInfo)">EnterTrigger(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></dt>
 <dd>
-<div class="block">if called on a Player against anything else call it on the other thing</div>
+<div class="block">Amended for Assessment 2 (added functionality for when attacked by cannonball)
+ if called on a Player against anything else call it on the other thing</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Physics/CollisionCallBack.html#EnterTrigger(com.mygdx.game.Physics.CollisionInfo)">EnterTrigger(CollisionInfo)</a></span> - Method in interface com.mygdx.game.Physics.<a href="com/mygdx/game/Physics/CollisionCallBack.html" title="interface in com.mygdx.game.Physics">CollisionCallBack</a></dt>
 <dd>
@@ -572,8 +625,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/NPCShip.html#ExitTrigger(com.mygdx.game.Physics.CollisionInfo)">ExitTrigger(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/NPCShip.html" title="class in com.mygdx.game.Entitys">NPCShip</a></dt>
 <dd>
-<div class="block">if a taget has left remove it from the potential targets Queue</div>
+<div class="block">if a target has left remove it from the potential targets Queue</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/PowerUpPickup.html#ExitTrigger(com.mygdx.game.Physics.CollisionInfo)">ExitTrigger(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/PowerUpPickup.html" title="class in com.mygdx.game.Entitys">PowerUpPickup</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Ship.html#ExitTrigger(com.mygdx.game.Physics.CollisionInfo)">ExitTrigger(CollisionInfo)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></dt>
 <dd>
 <div class="block">if called on a Player against anything else call it on the other thing</div>
@@ -588,6 +643,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">F</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/College.html#f">f</a></span> - Variable in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/College.html" title="class in com.mygdx.game.Entitys">College</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Physics/CollisionInfo.html#fA">fA</a></span> - Variable in class com.mygdx.game.Physics.<a href="com/mygdx/game/Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/mygdx/game/Faction.html" title="class in com.mygdx.game"><span class="typeNameLink">Faction</span></a> - Class in <a href="com/mygdx/game/package-summary.html">com.mygdx.game</a></dt>
@@ -671,6 +728,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Components/RigidBody.html#getAngularVelocity()">getAngularVelocity()</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/RigidBody.html" title="class in com.mygdx.game.Components">RigidBody</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Pirate.html#getAttackDmg()">getAttackDmg()</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Pirate.html" title="class in com.mygdx.game.Components">Pirate</a></dt>
+<dd>
+<div class="block">Added for Assessment 2</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/CannonBall.html#getAttackDmg()">getAttackDmg()</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/CannonBall.html" title="class in com.mygdx.game.Entitys">CannonBall</a></dt>
+<dd>
+<div class="block">Added for Assessment 2</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Ship.html#getAttackRange()">getAttackRange()</a></span> - Static method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/RenderingManager.html#getBatch()">getBatch()</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/RenderingManager.html" title="class in com.mygdx.game.Managers">RenderingManager</a></dt>
@@ -692,6 +757,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">returns the box2d position of the parent or the transform pos if no rigidbody found</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/GameManager.html#getCollege(int)">getCollege(int)</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/GameManager.html" title="class in com.mygdx.game.Managers">GameManager</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/GameManager.html#getColleges()">getColleges()</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/GameManager.html" title="class in com.mygdx.game.Managers">GameManager</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Faction.html#getColour()">getColour()</a></span> - Method in class com.mygdx.game.<a href="com/mygdx/game/Faction.html" title="class in com.mygdx.game">Faction</a></dt>
 <dd>&nbsp;</dd>
@@ -851,6 +918,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Gets the setting object from the GameSetting.json</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/GameManager.html#getShips()">getShips()</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/GameManager.html" title="class in com.mygdx.game.Managers">GameManager</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/CannonBall.html#getShooter()">getShooter()</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/CannonBall.html" title="class in com.mygdx.game.Entitys">CannonBall</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Faction.html#getSpawnPos()">getSpawnPos()</a></span> - Method in class com.mygdx.game.<a href="com/mygdx/game/Faction.html" title="class in com.mygdx.game">Faction</a></dt>
@@ -889,6 +958,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Component.html#getType()">getType()</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Component.html" title="class in com.mygdx.game.Components">Component</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Pirate.html#getValue(java.lang.String)">getValue(String)</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Pirate.html" title="class in com.mygdx.game.Components">Pirate</a></dt>
+<dd>
+<div class="block">// New for assessment 2 //
+ Get a Pirate value.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Ship.html#getValue(java.lang.String)">getValue(String)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></dt>
+<dd>
+<div class="block">// New for assessment 2 //
+ Get a Pirate value.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Components/RigidBody.html#getVelocity()">getVelocity()</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/RigidBody.html" title="class in com.mygdx.game.Components">RigidBody</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Components/AINavigation.html#getZeroLinearSpeedThreshold()">getZeroLinearSpeedThreshold()</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/AINavigation.html" title="class in com.mygdx.game.Components">AINavigation</a></dt>
@@ -933,6 +1012,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/PirateGame.html#id_map">id_map</a></span> - Variable in class com.mygdx.game.<a href="com/mygdx/game/PirateGame.html" title="class in com.mygdx.game">PirateGame</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUpOperation.html#increment">increment</a></span> - com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a></dt>
+<dd>
+<div class="block">Increment the key value by an amount.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/utils/Constants.html#INIT_CONSTANTS()">INIT_CONSTANTS()</a></span> - Static method in class com.mygdx.utils.<a href="com/mygdx/utils/Constants.html" title="class in com.mygdx.utils">Constants</a></dt>
 <dd>
 <div class="block">Create constants needed so it can properly source screen dimensions</div>
@@ -1033,6 +1116,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Actually loads the assets</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/SaveManager.html#LoadGame()">LoadGame()</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/SaveManager.html" title="class in com.mygdx.game.Managers">SaveManager</a></dt>
+<dd>
+<div class="block">Added for assessment 2
+ loads the preferences file and sets the difficulty of the saved game</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PirateGame.html#LoadGame()">LoadGame()</a></span> - Method in class com.mygdx.game.<a href="com/mygdx/game/PirateGame.html" title="class in com.mygdx.game">PirateGame</a></dt>
+<dd>
+<div class="block">New for assesment 2
+ Loads the game from the saved data</div>
+</dd>
 <dt><a href="com/mygdx/game/Quests/LocateQuest.html" title="class in com.mygdx.game.Quests"><span class="typeNameLink">LocateQuest</span></a> - Class in <a href="com/mygdx/game/Quests/package-summary.html">com.mygdx.game.Quests</a></dt>
 <dd>
 <div class="block">Competed once the player has gone to a specific position</div>
@@ -1057,6 +1150,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/UI/MenuScreen.html#%3Cinit%3E(com.mygdx.game.PirateGame)">MenuScreen(PirateGame)</a></span> - Constructor for class com.mygdx.game.UI.<a href="com/mygdx/game/UI/MenuScreen.html" title="class in com.mygdx.game.UI">MenuScreen</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUpOperation.html#multiply">multiply</a></span> - com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a></dt>
+<dd>
+<div class="block">Multiply the key value by an amount.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Pirate.html#multValue(java.lang.String,float)">multValue(String, float)</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Pirate.html" title="class in com.mygdx.game.Components">Pirate</a></dt>
+<dd>
+<div class="block">// New for assessment 2 //
+ Multiply a value for Pirate while holding reference to what it was originally.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Ship.html#multValue(java.lang.String,float)">multValue(String, float)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></dt>
+<dd>
+<div class="block">// New for assessment 2 //
+ Multiply a value for Pirate while holding reference to what it was originally.</div>
+</dd>
 </dl>
 <a id="I:N">
 <!--   -->
@@ -1089,7 +1196,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/NPCShip.html#%3Cinit%3E()">NPCShip()</a></span> - Constructor for class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/NPCShip.html" title="class in com.mygdx.game.Entitys">NPCShip</a></dt>
 <dd>
-<div class="block">Creates an initial state machine</div>
+<div class="block">Creates an initial state machine
+ Changed for Assessment 2:
+  - Added lastShootTime to store the time when the ship last attacked</div>
 </dd>
 </dl>
 <a id="I:O">
@@ -1202,6 +1311,38 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/mygdx/utils/QueueFIFO.html#pop()">pop()</a></span> - Method in class com.mygdx.utils.<a href="com/mygdx/utils/QueueFIFO.html" title="class in com.mygdx.utils">QueueFIFO</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/CollisionManager.html#postSolve(com.badlogic.gdx.physics.box2d.Contact,com.badlogic.gdx.physics.box2d.ContactImpulse)">postSolve(Contact, ContactImpulse)</a></span> - Method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/CollisionManager.html" title="class in com.mygdx.game.Managers">CollisionManager</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/mygdx/game/PowerUps/PowerUp.html" title="class in com.mygdx.game.PowerUps"><span class="typeNameLink">PowerUp</span></a> - Class in <a href="com/mygdx/game/PowerUps/package-summary.html">com.mygdx.game.PowerUps</a></dt>
+<dd>
+<div class="block">// Assessment 2 requirement //
+ A PowerUp that can modify the value of any Ship for a limited or permanent amount of time.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUp.html#%3Cinit%3E(java.lang.String,com.mygdx.game.PowerUps.PowerUpOperation,float)">PowerUp(String, PowerUpOperation, float)</a></span> - Constructor for class com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUp.html" title="class in com.mygdx.game.PowerUps">PowerUp</a></dt>
+<dd>
+<div class="block">Create a PowerUp which lasts for a permanent length of time.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUp.html#%3Cinit%3E(java.lang.String,com.mygdx.game.PowerUps.PowerUpOperation,float,int)">PowerUp(String, PowerUpOperation, float, int)</a></span> - Constructor for class com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUp.html" title="class in com.mygdx.game.PowerUps">PowerUp</a></dt>
+<dd>
+<div class="block">Create a PowerUp that lasts for a limited duration of time.</div>
+</dd>
+<dt><a href="com/mygdx/game/Components/PowerUpAssigned.html" title="class in com.mygdx.game.Components"><span class="typeNameLink">PowerUpAssigned</span></a> - Class in <a href="com/mygdx/game/Components/package-summary.html">com.mygdx.game.Components</a></dt>
+<dd>
+<div class="block">// Assessment 2 addition //
+ For PowerUp requirement,
+ Holds the current PowerUp and manages it.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Components/PowerUpAssigned.html#%3Cinit%3E()">PowerUpAssigned()</a></span> - Constructor for class com.mygdx.game.Components.<a href="com/mygdx/game/Components/PowerUpAssigned.html" title="class in com.mygdx.game.Components">PowerUpAssigned</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/mygdx/game/PowerUps/PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps"><span class="typeNameLink">PowerUpOperation</span></a> - Enum in <a href="com/mygdx/game/PowerUps/package-summary.html">com.mygdx.game.PowerUps</a></dt>
+<dd>
+<div class="block">// Assessment 2 addition //
+ For PowerUp requirement</div>
+</dd>
+<dt><a href="com/mygdx/game/Entitys/PowerUpPickup.html" title="class in com.mygdx.game.Entitys"><span class="typeNameLink">PowerUpPickup</span></a> - Class in <a href="com/mygdx/game/Entitys/package-summary.html">com.mygdx.game.Entitys</a></dt>
+<dd>
+<div class="block">Simple entity shown on locate quests origin</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/PowerUpPickup.html#%3Cinit%3E(com.mygdx.game.PowerUps.PowerUp,java.lang.String,com.badlogic.gdx.math.Vector2,int)">PowerUpPickup(PowerUp, String, Vector2, int)</a></span> - Constructor for class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/PowerUpPickup.html" title="class in com.mygdx.game.Entitys">PowerUpPickup</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/CollisionManager.html#preSolve(com.badlogic.gdx.physics.box2d.Contact,com.badlogic.gdx.physics.box2d.Manifold)">preSolve(Contact, Manifold)</a></span> - Method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/CollisionManager.html" title="class in com.mygdx.game.Managers">CollisionManager</a></dt>
 <dd>&nbsp;</dd>
@@ -1335,10 +1476,24 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Transparent always top most then 5, 4, 3, 2, 1 in order of presidency</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUpOperation.html#replace">replace</a></span> - com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a></dt>
+<dd>
+<div class="block">Replace the key value with a new value.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Component.html#reqsMet">reqsMet</a></span> - Variable in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Component.html" title="class in com.mygdx.game.Components">Component</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Component.html#requirements">requirements</a></span> - Variable in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Component.html" title="class in com.mygdx.game.Components">Component</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Pirate.html#resetToDefault(java.lang.String)">resetToDefault(String)</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Pirate.html" title="class in com.mygdx.game.Components">Pirate</a></dt>
+<dd>
+<div class="block">// New for assessment 2 //
+ Reset a Pirate value to what it originally was.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Ship.html#resetToDefault(java.lang.String)">resetToDefault(String)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></dt>
+<dd>
+<div class="block">// New for assessment 2 //
+ Reset a Pirate value to what it originally was.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/UI/EndScreen.html#resize(int,int)">resize(int, int)</a></span> - Method in class com.mygdx.game.UI.<a href="com/mygdx/game/UI/EndScreen.html" title="class in com.mygdx.game.UI">EndScreen</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/UI/GameScreen.html#resize(int,int)">resize(int, int)</a></span> - Method in class com.mygdx.game.UI.<a href="com/mygdx/game/UI/GameScreen.html" title="class in com.mygdx.game.UI">GameScreen</a></dt>
@@ -1392,6 +1547,18 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">S</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/SaveManager.html#SaveGame()">SaveGame()</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/SaveManager.html" title="class in com.mygdx.game.Managers">SaveManager</a></dt>
+<dd>
+<div class="block">Added for assessment 2
+ Saves the state of the game.</div>
+</dd>
+<dt><a href="com/mygdx/game/Managers/SaveManager.html" title="class in com.mygdx.game.Managers"><span class="typeNameLink">SaveManager</span></a> - Class in <a href="com/mygdx/game/Managers/package-summary.html">com.mygdx.game.Managers</a></dt>
+<dd>
+<div class="block">Added for assessment 2
+ Manges the saving of the game</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/SaveManager.html#%3Cinit%3E()">SaveManager()</a></span> - Constructor for class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/SaveManager.html" title="class in com.mygdx.game.Managers">SaveManager</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/utils/Utilities.html#scale(float,float,float,float)">scale(float, float, float, float)</a></span> - Static method in class com.mygdx.utils.<a href="com/mygdx/utils/Utilities.html" title="class in com.mygdx.utils">Utilities</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/utils/Utilities.html#scale(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2)">scale(Vector2, Vector2)</a></span> - Static method in class com.mygdx.utils.<a href="com/mygdx/utils/Utilities.html" title="class in com.mygdx.utils">Utilities</a></dt>
@@ -1420,6 +1587,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/RenderingManager.html#setCamera(com.badlogic.gdx.graphics.OrthographicCamera)">setCamera(OrthographicCamera)</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/RenderingManager.html" title="class in com.mygdx.game.Managers">RenderingManager</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/QuestManager.html#setCurrentQuest(java.lang.String)">setCurrentQuest(String)</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/QuestManager.html" title="class in com.mygdx.game.Managers">QuestManager</a></dt>
+<dd>
+<div class="block">added for assesment 2
+ sets the current quest to the one that corresponds to a given name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Pirate.html#setDefault(java.lang.String,float)">setDefault(String, float)</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Pirate.html" title="class in com.mygdx.game.Components">Pirate</a></dt>
+<dd>
+<div class="block">// New for assessment 2 //
+ Set the default for a Pirate value.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Ship.html#setDefault(java.lang.String,float)">setDefault(String, float)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></dt>
+<dd>
+<div class="block">// New for assessment 2 //
+ Set the default for a Pirate value.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/PirateGame.html#setDifficulty(java.lang.String)">setDifficulty(String)</a></span> - Method in class com.mygdx.game.<a href="com/mygdx/game/PirateGame.html" title="class in com.mygdx.game">PirateGame</a></dt>
 <dd>
 <div class="block">New for assesment 2
@@ -1523,6 +1705,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Asignes a new texture compatible with textures sourced from atlas</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Pirate.html#setValue(java.lang.String,float)">setValue(String, float)</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Pirate.html" title="class in com.mygdx.game.Components">Pirate</a></dt>
+<dd>
+<div class="block">// New for assessment 2 //
+ Set a new value for Pirate while holding reference to what it was originally.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Ship.html#setValue(java.lang.String,float)">setValue(String, float)</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></dt>
+<dd>
+<div class="block">// New for assessment 2 //
+ Set a new value for Pirate while holding reference to what it was originally.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Components/RigidBody.html#setVelocity(float,float)">setVelocity(float, float)</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/RigidBody.html" title="class in com.mygdx.game.Components">RigidBody</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Components/RigidBody.html#setVelocity(com.badlogic.gdx.math.Vector2)">setVelocity(Vector2)</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/RigidBody.html" title="class in com.mygdx.game.Components">RigidBody</a></dt>
@@ -1582,6 +1774,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/PirateGame.html#skin">skin</a></span> - Variable in class com.mygdx.game.<a href="com/mygdx/game/PirateGame.html" title="class in com.mygdx.game">PirateGame</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/SaveManager.html#SpawnGame()">SpawnGame()</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/SaveManager.html" title="class in com.mygdx.game.Managers">SaveManager</a></dt>
+<dd>
+<div class="block">Added for assessment 2
+ loads the state of the ships and colleges and sets the current quest</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/GameManager.html#SpawnGame(int)">SpawnGame(int)</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/GameManager.html" title="class in com.mygdx.game.Managers">GameManager</a></dt>
 <dd>
 <div class="block">Creates the game with player maps, NPCs, colleges
@@ -1714,6 +1911,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Reads keyboard and mouse inputs, moving and shooting as required.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Components/PowerUpAssigned.html#update()">update()</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/PowerUpAssigned.html" title="class in com.mygdx.game.Components">PowerUpAssigned</a></dt>
+<dd>
+<div class="block">Each frame checks if the assigned PowerUp is done, and deactivates as necessary.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Components/Renderable.html#update()">update()</a></span> - Method in class com.mygdx.game.Components.<a href="com/mygdx/game/Components/Renderable.html" title="class in com.mygdx.game.Components">Renderable</a></dt>
 <dd>
 <div class="block">Locates the sprite at the position of the parent's Transform component.</div>
@@ -1746,6 +1947,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">updates the state machine</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/Player.html#update()">update()</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/Player.html" title="class in com.mygdx.game.Entitys">Player</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/Entitys/PowerUpPickup.html#update()">update()</a></span> - Method in class com.mygdx.game.Entitys.<a href="com/mygdx/game/Entitys/PowerUpPickup.html" title="class in com.mygdx.game.Entitys">PowerUpPickup</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Managers/GameManager.html#update()">update()</a></span> - Static method in class com.mygdx.game.Managers.<a href="com/mygdx/game/Managers/GameManager.html" title="class in com.mygdx.game.Managers">GameManager</a></dt>
 <dd>
@@ -1811,6 +2014,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUpOperation.html#valueOf(java.lang.String)">valueOf(String)</a></span> - Static method in enum com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/AI/EnemyState.html#values()">values()</a></span> - Static method in enum com.mygdx.game.AI.<a href="com/mygdx/game/AI/EnemyState.html" title="enum in com.mygdx.game.AI">EnemyState</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
@@ -1837,6 +2044,11 @@ the order they are declared.</div>
 the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/mygdx/game/Physics/PhysicsBodyType.html#values()">values()</a></span> - Static method in enum com.mygdx.game.Physics.<a href="com/mygdx/game/Physics/PhysicsBodyType.html" title="enum in com.mygdx.game.Physics">PhysicsBodyType</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/mygdx/game/PowerUps/PowerUpOperation.html#values()">values()</a></span> - Static method in enum com.mygdx.game.PowerUps.<a href="com/mygdx/game/PowerUps/PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>

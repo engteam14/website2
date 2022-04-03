@@ -4,6 +4,7 @@ com.mygdx.game.Components
 com.mygdx.game.Entitys
 com.mygdx.game.Managers
 com.mygdx.game.Physics
+com.mygdx.game.PowerUps
 com.mygdx.game.Quests
 com.mygdx.game.UI
 com.mygdx.utils

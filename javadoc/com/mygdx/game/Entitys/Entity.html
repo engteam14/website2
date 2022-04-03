@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -131,7 +131,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="Building.html" title="class in com.mygdx.game.Entitys">Building</a></code>, <code><a href="CannonBall.html" title="class in com.mygdx.game.Entitys">CannonBall</a></code>, <code><a href="Chest.html" title="class in com.mygdx.game.Entitys">Chest</a></code>, <code><a href="College.html" title="class in com.mygdx.game.Entitys">College</a></code>, <code><a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></code>, <code><a href="WorldMap.html" title="class in com.mygdx.game.Entitys">WorldMap</a></code></dd>
+<dd><code><a href="Building.html" title="class in com.mygdx.game.Entitys">Building</a></code>, <code><a href="CannonBall.html" title="class in com.mygdx.game.Entitys">CannonBall</a></code>, <code><a href="Chest.html" title="class in com.mygdx.game.Entitys">Chest</a></code>, <code><a href="College.html" title="class in com.mygdx.game.Entitys">College</a></code>, <code><a href="PowerUpPickup.html" title="class in com.mygdx.game.Entitys">PowerUpPickup</a></code>, <code><a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></code>, <code><a href="WorldMap.html" title="class in com.mygdx.game.Entitys">WorldMap</a></code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Entity</span>
@@ -204,44 +204,49 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#dispose()">dispose</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../Components/Component.html" title="class in com.mygdx.game.Components">Component</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getComponent(com.mygdx.game.Components.ComponentType)">getComponent</a></span>&#8203;(<a href="../Components/ComponentType.html" title="enum in com.mygdx.game.Components">ComponentType</a>&nbsp;type)</code></th>
 <td class="colLast">
 <div class="block">gets component of type</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getComponent(java.lang.Class)">getComponent</a></span>&#8203;(java.lang.Class&lt;T&gt;&nbsp;type)</code></th>
 <td class="colLast">
 <div class="block">Gets the first component that is of the same type as T</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;java.util.ArrayList&lt;T&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getComponents(java.lang.Class)">getComponents</a></span>&#8203;(java.lang.Class&lt;T&gt;&nbsp;type)</code></th>
 <td class="colLast">
 <div class="block">Gets the list of components that is of the same type as T</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getName()">getName</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#raiseEvents(com.mygdx.game.Components.ComponentEvent...)">raiseEvents</a></span>&#8203;(<a href="../Components/ComponentEvent.html" title="enum in com.mygdx.game.Components">ComponentEvent</a>...&nbsp;events)</code></th>
 <td class="colLast">
 <div class="block">Raises the appropriate events on each component with exception to rendering</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setName(java.lang.String)">setName</a></span>&#8203;(java.lang.String&nbsp;name)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">
@@ -416,11 +421,20 @@ extends java.lang.Object</pre>
 <a id="update()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>update</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;update()</pre>
 <div class="block">Similar to the Component's update event</div>
+</li>
+</ul>
+<a id="dispose()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>dispose</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;dispose()</pre>
 </li>
 </ul>
 </li>

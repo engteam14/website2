@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -264,13 +264,21 @@ extends com.badlogic.gdx.Game</pre>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#LoadGame()">LoadGame</a></span>()</code></th>
+<td class="colLast">
+<div class="block">New for assesment 2
+ Loads the game from the saved data</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#restartGame()">restartGame</a></span>()</code></th>
 <td class="colLast">
 <div class="block">New for assessment 2
  Restarts the game by reinitialising the Managers and creating a new instance of GameScreen</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDifficulty(java.lang.String)">setDifficulty</a></span>&#8203;(java.lang.String&nbsp;selected)</code></th>
 <td class="colLast">
@@ -278,7 +286,7 @@ extends com.badlogic.gdx.Game</pre>
  Changes the difficulty for the game by changing the enum and calling GameMananger.getSettings()</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setScreen(com.badlogic.gdx.Screen)">setScreen</a></span>&#8203;(com.badlogic.gdx.Screen&nbsp;screen)</code></th>
 <td class="colLast">
@@ -286,7 +294,7 @@ extends com.badlogic.gdx.Game</pre>
  new version of setScreen to stop the game screen being deleted before a new screen is set if the new screen is pause.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#StartGame()">StartGame</a></span>()</code></th>
 <td class="colLast">
@@ -493,11 +501,22 @@ extends com.badlogic.gdx.Game</pre>
 <a id="StartGame()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>StartGame</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;StartGame()</pre>
 <div class="block">Added for assessment 2 so that the game doesn't start until after the difficulty has been chosen by the player</div>
+</li>
+</ul>
+<a id="LoadGame()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>LoadGame</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;LoadGame()</pre>
+<div class="block">New for assesment 2
+ Loads the game from the saved data</div>
 </li>
 </ul>
 </li>
