@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Pirate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Components</a> &gt; <span class="el_source">Pirate.java</span></div><h1>Pirate.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Components;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.JsonValue;
+import com.mygdx.game.Entitys.Ship;
+import com.mygdx.game.Faction;
+import com.mygdx.game.Managers.GameManager;
+import com.mygdx.utils.QueueFIFO;
+
+import java.util.HashMap;
+
+/**
+ * Gives the concepts of health plunder, etc. Allows for firing of cannonballs, factions, death, targets
+ */
+public class Pirate extends Component {
+    private int factionId;
+    private HashMap&lt;String,Float&gt; defaults;
+    private HashMap&lt;String,Float&gt; values;
+    private int plunder;
+    private int points;
+    protected boolean isAlive;
+
+    private boolean infiniteAmmo; // Added for Assessment 2 for power-ups and colleges
+    private float buffer; // Added for Assessment 2 to shift projectile spawn area
+
+
+    /**
+     * // Assessment 2 Change: Refactored to use map for storing values which will be modified by powerups.
+     * The enemy that is being targeted by the AI.
+     */
+    private final QueueFIFO&lt;Ship&gt; targets;
+
+    public Pirate() {
+<span class="nc" id="L34">        super();</span>
+<span class="nc" id="L35">        targets = new QueueFIFO&lt;&gt;();</span>
+<span class="nc" id="L36">        type = ComponentType.Pirate;</span>
+<span class="nc" id="L37">        factionId = 1;</span>
+<span class="nc" id="L38">        isAlive = true;</span>
+
+<span class="nc" id="L40">        values = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L41">        JsonValue starting = GameManager.getSettings().get(&quot;starting&quot;);</span>
+<span class="nc" id="L42">        values.put(&quot;health&quot;, (float) starting.getInt(&quot;health&quot;));</span>
+<span class="nc" id="L43">        values.put(&quot;damage&quot;, (float) starting.getInt(&quot;damage&quot;));</span>
+<span class="nc" id="L44">        values.put(&quot;ammo&quot;, (float) starting.getInt(&quot;ammo&quot;));</span>
+<span class="nc" id="L45">        values.put(&quot;plunderRate&quot;, 1f);</span>
+<span class="nc" id="L46">        values.put(&quot;defense&quot;, 1f);</span>
+
+<span class="nc" id="L48">        defaults = new HashMap&lt;&gt;(values);</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * // New for assessment 2 //
+     * Get a Pirate value.
+     * @param key   The value to get
+     * @return      The value
+     */
+    public float getValue(String key) {
+<span class="nc" id="L58">        return values.get(key);</span>
+    }
+
+    /**
+     * // New for assessment 2 //
+     * Set the default for a Pirate value.
+     * @param key       The value to set to
+     * @param value     The default to apply
+     */
+    public void setDefault(String key, float value) {
+<span class="nc" id="L68">        values.replace(key, value);</span>
+<span class="nc" id="L69">        defaults.replace(key, value);</span>
+<span class="nc" id="L70">    }</span>
+
+    /**
+     * // New for assessment 2 //
+     * Set a new value for Pirate while holding reference to what it was originally.
+     * @param key       The value to set to
+     * @param value     The float to apply
+     */
+    public void setValue(String key, float value) {
+<span class="nc" id="L79">        values.replace(key, value);</span>
+<span class="nc" id="L80">    }</span>
+
+    /**
+     * // New for assessment 2 //
+     * Multiply a value for Pirate while holding reference to what it was originally.
+     * @param key       The value to multiply
+     * @param mult      The multiplication factor
+     */
+    public void multValue(String key, float mult) {
+<span class="nc" id="L89">        values.replace(key, values.get(key) * mult);</span>
+<span class="nc" id="L90">    }</span>
+
+    /**
+     * // New for assessment 2 //
+     * Reset a Pirate value to what it originally was.
+     * @param key       The value to reset
+     */
+    public void resetToDefault(String key) {
+<span class="nc" id="L98">        values.replace(key, defaults.get(key));</span>
+<span class="nc" id="L99">    }</span>
+
+    public void addTarget(Ship target) {
+<span class="nc" id="L102">        targets.add(target);</span>
+<span class="nc" id="L103">    }</span>
+
+    public int getPlunder() {
+<span class="nc" id="L106">        return plunder;</span>
+    }
+
+    public int getPoints() {
+<span class="nc" id="L110">        return points;</span>
+    }
+
+    public void addPlunder(int money) {
+        // Assessment 2 change: Plunder additions are now multiplied by plunderRate value
+<span class="nc" id="L115">        plunder += Math.round(money * values.get(&quot;plunderRate&quot;));</span>
+<span class="nc" id="L116">    }</span>
+
+    public void addPoints(int increment) {
+<span class="nc" id="L119">        points += increment;</span>
+<span class="nc" id="L120">    }</span>
+
+    public Faction getFaction() {
+<span class="nc" id="L123">        return GameManager.getFaction(factionId);</span>
+    }
+
+    /**
+     * Added for Assessment 2
+     * @return the faction ID of this component
+     */
+    public int getFactionId() {
+<span class="nc" id="L131">        return factionId;</span>
+    }
+
+    public void setFactionId(int factionId) {
+<span class="nc" id="L135">        this.factionId = factionId;</span>
+<span class="nc" id="L136">    }</span>
+
+    /**
+     * Added for Assessment 2, sets whether the pirate can ignore ammo costs for firing
+     * @param status boolean value to set infiniteAmmo to
+     */
+    public void setInfiniteAmmo(boolean status) {
+<span class="nc" id="L143">        infiniteAmmo = status;</span>
+<span class="nc" id="L144">    }</span>
+
+    /**
+     * Added for Assessment 2, sets the buffer radius of this pirate
+     * @param radius float value to set the buffer to
+     */
+    public void setBuffer(float radius) {
+<span class="nc" id="L151">        buffer = radius;</span>
+<span class="nc" id="L152">    }</span>
+
+    /**
+     * Added for Assessment 2
+     * @return the damage dealt by attacks from this unit
+     */
+    public Float getAttackDmg() {
+<span class="nc" id="L159">        return values.get(&quot;damage&quot;);</span>
+    }
+
+    public void takeDamage(float dmg) {
+        // Assessment 2 change: Refactored to include key for health instead of variable, as well as factor in new defense value
+<span class="nc" id="L164">        dmg *= (1f/values.get(&quot;defense&quot;));</span>
+<span class="nc" id="L165">        values.replace(&quot;health&quot;, getHealth() - dmg);</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">        if (getHealth() &lt;= 0) kill();</span>
+<span class="nc" id="L167">    }</span>
+
+    /**
+     * Changed for Assessment 2:
+     *  - Removed functionality and replaced with function call to a different function,
+     *    to allow for differentiation between when a start position is or isn't provided.
+     * @param direction the direction to shoot in
+     */
+    public void shoot(Vector2 direction) {
+<span class="nc" id="L176">        shoot(parent.getComponent(Transform.class).getPosition().cpy(),direction);</span>
+<span class="nc" id="L177">    }</span>
+
+    /**
+     * Added for Assessment 2
+     * Will shoot a cannonball from the startPos in the direction, assigning this.parent as the cannonball's parent
+     * @param direction the direction to shoot in
+     */
+    public void shoot(Vector2 startPos, Vector2 direction){
+<span class="nc bnc" id="L185" title="All 4 branches missed.">        if(!infiniteAmmo &amp;&amp; (getAmmo() == 0)){</span>
+<span class="nc" id="L186">            return;</span>
+        }
+<span class="nc bnc" id="L188" title="All 2 branches missed.">        if(!infiniteAmmo){</span>
+<span class="nc" id="L189">            values.replace(&quot;ammo&quot;, getAmmo()-1f);</span>
+        }
+<span class="nc" id="L191">        GameManager.shoot(parent, startPos, direction);</span>
+<span class="nc" id="L192">    }</span>
+
+    /**
+     * Adds ammo
+     * @param ammo amount to add
+     */
+    public void reload(int ammo) {
+        // Assessment 2 change: Refactored to use key for ammo instead of variable
+<span class="nc" id="L200">        values.replace(&quot;ammo&quot;, (float) getAmmo()+ammo);</span>
+<span class="nc" id="L201">    }</span>
+
+    public int getHealth() {
+        // Assessment 2 change: Refactored to use key for health instead of variable
+<span class="nc" id="L205">        return Math.round(values.get(&quot;health&quot;));</span>
+    }
+
+    /**
+     * if dst to target is less than attack range
+     * target will be null if not in agro range
+     */
+    public boolean canAttack() {
+<span class="nc bnc" id="L213" title="All 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="nc" id="L214">            final Ship p = (Ship) parent;</span>
+<span class="nc" id="L215">            final Vector2 pos = p.getPosition();</span>
+<span class="nc" id="L216">            final float dst = pos.dst(targets.peek().getPosition());</span>
+            // withing attack range
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            return dst &lt; Ship.getAttackRange();</span>
+        }
+<span class="nc" id="L220">        return false;</span>
+    }
+
+    /**
+     * if dst to target is &gt;= attack range
+     * target will be null if not in agro range
+     */
+    public boolean isAgro() {
+<span class="nc bnc" id="L228" title="All 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="nc" id="L229">            final Ship p = (Ship) parent;</span>
+<span class="nc" id="L230">            final Vector2 pos = p.getPosition();</span>
+<span class="nc" id="L231">            final float dst = pos.dst(targets.peek().getPosition());</span>
+            // out of attack range but in agro range
+<span class="nc bnc" id="L233" title="All 2 branches missed.">            return dst &gt;= Ship.getAttackRange();</span>
+        }
+<span class="nc" id="L235">        return false;</span>
+    }
+
+    public Ship getTarget() {
+<span class="nc" id="L239">        return targets.peek();</span>
+    }
+
+    public void removeTarget() {
+<span class="nc" id="L243">        targets.pop();</span>
+<span class="nc" id="L244">    }</span>
+
+    public boolean isAlive() {
+<span class="nc" id="L247">        return isAlive;</span>
+    }
+
+    /**
+     * Kill its self
+     */
+    public void kill() {
+        // Assessment 2 change: Refactored to use key for health instead of variable
+<span class="nc" id="L255">        values.replace(&quot;health&quot;, 0f);</span>
+<span class="nc" id="L256">        isAlive = false;</span>
+<span class="nc" id="L257">    }</span>
+
+    public void setAmmo(int ammo) {
+        // Assessment 2 change: Refactored to use key for ammo instead of variable
+<span class="nc" id="L261">        values.replace(&quot;ammo&quot;, (float) ammo);</span>
+<span class="nc" id="L262">    }</span>
+
+    public int getAmmo() {
+        // Assessment 2 change: Refactored to use key for ammo instead of variable
+<span class="nc" id="L266">        return Math.round(values.get(&quot;ammo&quot;));</span>
+    }
+
+    public int targetCount() {
+<span class="nc" id="L270">        return targets.size();</span>
+    }
+
+    public QueueFIFO&lt;Ship&gt; getTargets() {
+<span class="nc" id="L274">        return targets;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
