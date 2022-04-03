@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PirateGame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game</a> &gt; <span class="el_source">PirateGame.java</span></div><h1>PirateGame.java</h1><pre class="source lang-java linenums">package com.mygdx.game;
+
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.Entitys.Player;
+import com.mygdx.game.Managers.*;
+import com.mygdx.game.UI.EndScreen;
+import com.mygdx.game.UI.GameScreen;
+import com.mygdx.game.UI.MenuScreen;
+import com.mygdx.game.UI.PauseScreen;
+
+/**
+ * Contains class instances of game UI screens.
+ */
+<span class="nc" id="L19">public class PirateGame extends Game {</span>
+    public MenuScreen menu;
+    public GameScreen game;
+    public EndScreen end;
+    public Stage stage;
+    public Skin skin;
+    public PauseScreen pause;
+    public int id_map;
+<span class="nc" id="L27">    public GameDifficulty difficulty = GameDifficulty.Regular;</span>
+
+    /**
+     * Create instances of game stage and UI screens.
+     */
+    @Override
+    public void create() {
+<span class="nc" id="L34">        RenderingManager.Initialize(); // added for assessment 2 due to rendering refactoring for testing</span>
+        // load resources
+<span class="nc" id="L36">        int id_ship = ResourceManager.addTexture(&quot;ship.png&quot;);</span>
+<span class="nc" id="L37">        id_map = ResourceManager.addTileMap(&quot;Map.tmx&quot;);</span>
+<span class="nc" id="L38">        int atlas_id = ResourceManager.addTextureAtlas(&quot;Boats.txt&quot;);</span>
+<span class="nc" id="L39">        int extras_id = ResourceManager.addTextureAtlas(&quot;UISkin/skin.atlas&quot;);</span>
+<span class="nc" id="L40">        int buildings_id = ResourceManager.addTextureAtlas(&quot;Buildings.txt&quot;);</span>
+
+<span class="nc" id="L42">        ResourceManager.addTexture(&quot;menuBG.jpg&quot;);</span>
+
+<span class="nc" id="L44">        ResourceManager.addTexture(&quot;Chest.png&quot;);</span>
+<span class="nc" id="L45">        ResourceManager.loadAssets();</span>
+        // can't load any more resources after this point (just functionally I choose not to implement)
+<span class="nc" id="L47">        stage = new Stage(new ScreenViewport());</span>
+<span class="nc" id="L48">        createSkin();</span>
+
+<span class="nc" id="L50">        menu = new MenuScreen(this);</span>
+        //game = new GameScreen(this, id_map); moved to game screen for assessment 2
+<span class="nc" id="L52">        end = new EndScreen(this);</span>
+<span class="nc" id="L53">        pause = new PauseScreen(this);</span>
+
+<span class="nc" id="L55">        setScreen(menu);</span>
+
+<span class="nc" id="L57">    }</span>
+
+    /**
+     * Clean up prevent memory leeks
+     */
+    @Override
+    public void dispose() {
+<span class="nc" id="L64">        menu.dispose();</span>
+<span class="nc" id="L65">        game.dispose();</span>
+<span class="nc" id="L66">        stage.dispose();</span>
+<span class="nc" id="L67">        skin.dispose();</span>
+<span class="nc" id="L68">    }</span>
+
+    /**
+     * load ui skin from assets
+     */
+    private void createSkin() {
+<span class="nc" id="L74">        skin = new Skin(Gdx.files.internal(&quot;UISkin/skin.json&quot;));</span>
+<span class="nc" id="L75">    }</span>
+
+    /**
+     * New for assessment 2
+     * new version of setScreen to stop the game screen being deleted before a new screen is set if the new screen is pause.
+     * @param screen the screen to be changed to
+     */
+    @Override
+    public void setScreen (Screen screen) {
+<span class="nc bnc" id="L84" title="All 4 branches missed.">        if (this.screen != null &amp;&amp; screen != pause) this.screen.hide();</span>
+<span class="nc" id="L85">        this.screen = screen;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (this.screen != null) {</span>
+<span class="nc" id="L87">            this.screen.show();</span>
+<span class="nc" id="L88">            this.screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
+        }
+<span class="nc" id="L90">    }</span>
+
+    /**
+     * New for assessment 2
+     * Restarts the game by reinitialising the Managers and creating a new instance of GameScreen
+     */
+    public void restartGame(){
+        // can't load any more resources after this point (just functionally I choose not to implement)
+<span class="nc" id="L98">        RenderingManager.Initialize();</span>
+<span class="nc" id="L99">        EntityManager.Initialize();</span>
+<span class="nc" id="L100">        GameManager.Initialize(difficulty);</span>
+
+<span class="nc" id="L102">        game = new GameScreen(this, id_map);</span>
+
+<span class="nc" id="L104">        setScreen(menu);</span>
+
+
+<span class="nc" id="L107">    }</span>
+
+    /**
+     * New for assesment 2
+     * Changes the difficulty for the game by changing the enum and calling GameMananger.getSettings()
+     */
+    public void setDifficulty(String selected){
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (selected == &quot;Easy&quot;){</span>
+<span class="nc" id="L115">            difficulty = GameDifficulty.Easy;</span>
+        }
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        else if (selected == &quot;Regular&quot;) {</span>
+<span class="nc" id="L118">            difficulty = GameDifficulty.Regular;</span>
+        }
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        else if (selected == &quot;Hard&quot;) {</span>
+<span class="nc" id="L121">            difficulty = GameDifficulty.Hard;</span>
+        }
+        else{
+<span class="nc" id="L124">            difficulty = GameDifficulty.Regular;</span>
+
+        }
+<span class="nc" id="L127">    }</span>
+    /**
+    Added for assessment 2 so that the game doesn't start until after the difficulty has been chosen by the player
+     */
+    public void StartGame(){
+<span class="nc" id="L132">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L133">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L134">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L135">        setScreen(game);</span>
+<span class="nc" id="L136">    }</span>
+
+    /**
+     * New for assesment 2
+     * Loads the game from the saved data
+     */
+    public void LoadGame(){
+<span class="nc" id="L143">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L144">        SaveManager.LoadGame();</span>
+
+<span class="nc" id="L146">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L147">        game = new GameScreen(this, id_map);</span>
+
+<span class="nc" id="L149">        SaveManager.SpawnGame();</span>
+
+<span class="nc" id="L151">        setScreen(game);</span>
+<span class="nc" id="L152">    }</span>
+ }
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
