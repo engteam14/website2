@@ -95,13 +95,21 @@ public class Pirate extends Component {
 <span class="nc" id="L95">        buffer = radius;</span>
 <span class="nc" id="L96">    }</span>
 
+    /**
+     * Added for Assessment 2
+     * @return the damage dealt by attacks from this unit
+     */
+    public int getAttackDmg() {
+<span class="nc" id="L103">        return attackDmg;</span>
+    }
+
     public void takeDamage(float dmg) {
-<span class="nc" id="L99">        health -= dmg;</span>
-<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (health &lt;= 0) {</span>
-<span class="nc" id="L101">            health = 0;</span>
-<span class="nc" id="L102">            isAlive = false;</span>
+<span class="nc" id="L107">        health -= dmg;</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        if (health &lt;= 0) {</span>
+<span class="nc" id="L109">            health = 0;</span>
+<span class="nc" id="L110">            isAlive = false;</span>
         }
-<span class="nc" id="L104">    }</span>
+<span class="nc" id="L112">    }</span>
 
     /**
      * Changed for Assessment 2:
@@ -110,8 +118,8 @@ public class Pirate extends Component {
      * @param direction the direction to shoot in
      */
     public void shoot(Vector2 direction) {
-<span class="nc" id="L113">        shoot(parent.getComponent(Transform.class).getPosition().cpy(),direction);</span>
-<span class="nc" id="L114">    }</span>
+<span class="nc" id="L121">        shoot(parent.getComponent(Transform.class).getPosition().cpy(),direction);</span>
+<span class="nc" id="L122">    }</span>
 
     /**
      * Added for Assessment 2
@@ -119,25 +127,25 @@ public class Pirate extends Component {
      * @param direction the direction to shoot in
      */
     public void shoot(Vector2 startPos, Vector2 direction){
-<span class="nc bnc" id="L122" title="All 4 branches missed.">        if(!infiniteAmmo &amp;&amp; (ammo == 0)){</span>
-<span class="nc" id="L123">            return;</span>
+<span class="nc bnc" id="L130" title="All 4 branches missed.">        if(!infiniteAmmo &amp;&amp; (ammo == 0)){</span>
+<span class="nc" id="L131">            return;</span>
         }
-<span class="nc bnc" id="L125" title="All 2 branches missed.">        if(!infiniteAmmo){</span>
-<span class="nc" id="L126">            ammo--;</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        if(!infiniteAmmo){</span>
+<span class="nc" id="L134">            ammo--;</span>
         }
-<span class="nc" id="L128">        GameManager.shoot(parent, startPos, direction);</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L136">        GameManager.shoot(parent, startPos, direction);</span>
+<span class="nc" id="L137">    }</span>
 
     /**
      * Adds ammo
      * @param ammo amount to add
      */
     public void reload(int ammo) {
-<span class="nc" id="L136">        this.ammo += ammo;</span>
-<span class="nc" id="L137">    }</span>
+<span class="nc" id="L144">        this.ammo += ammo;</span>
+<span class="nc" id="L145">    }</span>
 
     public int getHealth() {
-<span class="nc" id="L140">        return health;</span>
+<span class="nc" id="L148">        return health;</span>
     }
 
     /**
@@ -145,14 +153,14 @@ public class Pirate extends Component {
      * target will be null if not in agro range
      */
     public boolean canAttack() {
-<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (targets.peek() != null) {</span>
-<span class="nc" id="L149">            final Ship p = (Ship) parent;</span>
-<span class="nc" id="L150">            final Vector2 pos = p.getPosition();</span>
-<span class="nc" id="L151">            final float dst = pos.dst(targets.peek().getPosition());</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="nc" id="L157">            final Ship p = (Ship) parent;</span>
+<span class="nc" id="L158">            final Vector2 pos = p.getPosition();</span>
+<span class="nc" id="L159">            final float dst = pos.dst(targets.peek().getPosition());</span>
             // withing attack range
-<span class="nc bnc" id="L153" title="All 2 branches missed.">            return dst &lt; Ship.getAttackRange();</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            return dst &lt; Ship.getAttackRange();</span>
         }
-<span class="nc" id="L155">        return false;</span>
+<span class="nc" id="L163">        return false;</span>
     }
 
     /**
@@ -160,50 +168,50 @@ public class Pirate extends Component {
      * target will be null if not in agro range
      */
     public boolean isAgro() {
-<span class="nc bnc" id="L163" title="All 2 branches missed.">        if (targets.peek() != null) {</span>
-<span class="nc" id="L164">            final Ship p = (Ship) parent;</span>
-<span class="nc" id="L165">            final Vector2 pos = p.getPosition();</span>
-<span class="nc" id="L166">            final float dst = pos.dst(targets.peek().getPosition());</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="nc" id="L172">            final Ship p = (Ship) parent;</span>
+<span class="nc" id="L173">            final Vector2 pos = p.getPosition();</span>
+<span class="nc" id="L174">            final float dst = pos.dst(targets.peek().getPosition());</span>
             // out of attack range but in agro range
-<span class="nc bnc" id="L168" title="All 2 branches missed.">            return dst &gt;= Ship.getAttackRange();</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            return dst &gt;= Ship.getAttackRange();</span>
         }
-<span class="nc" id="L170">        return false;</span>
+<span class="nc" id="L178">        return false;</span>
     }
 
     public Ship getTarget() {
-<span class="nc" id="L174">        return targets.peek();</span>
+<span class="nc" id="L182">        return targets.peek();</span>
     }
 
     public void removeTarget() {
-<span class="nc" id="L178">        targets.pop();</span>
-<span class="nc" id="L179">    }</span>
+<span class="nc" id="L186">        targets.pop();</span>
+<span class="nc" id="L187">    }</span>
 
     public boolean isAlive() {
-<span class="nc" id="L182">        return isAlive;</span>
+<span class="nc" id="L190">        return isAlive;</span>
     }
 
     /**
      * Kill its self
      */
     public void kill() {
-<span class="nc" id="L189">        health = 0;</span>
-<span class="nc" id="L190">        isAlive = false;</span>
-<span class="nc" id="L191">    }</span>
+<span class="nc" id="L197">        health = 0;</span>
+<span class="nc" id="L198">        isAlive = false;</span>
+<span class="nc" id="L199">    }</span>
 
     public void setAmmo(int ammo) {
-<span class="nc" id="L194">        this.ammo = ammo;</span>
-<span class="nc" id="L195">    }</span>
+<span class="nc" id="L202">        this.ammo = ammo;</span>
+<span class="nc" id="L203">    }</span>
 
     public int getAmmo() {
-<span class="nc" id="L198">        return ammo;</span>
+<span class="nc" id="L206">        return ammo;</span>
     }
 
     public int targetCount() {
-<span class="nc" id="L202">        return targets.size();</span>
+<span class="nc" id="L210">        return targets.size();</span>
     }
 
     public QueueFIFO&lt;Ship&gt; getTargets() {
-<span class="nc" id="L206">        return targets;</span>
+<span class="nc" id="L214">        return targets;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

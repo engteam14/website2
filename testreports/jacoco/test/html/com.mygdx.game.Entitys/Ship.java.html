@@ -186,23 +186,30 @@ public class Ship extends Entity implements CollisionCallBack {
 <span class="nc" id="L186">    }</span>
 
     /**
+     * Amended for Assessment 2 (added functionality for when attacked by cannonball)
      * if called on a Player against anything else call it on the other thing
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L193" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
-<span class="nc" id="L194">            ((CollisionCallBack) info.b).EnterTrigger(info);</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">        if (info.a instanceof CannonBall) {</span>
+<span class="nc" id="L195">            CannonBall a = (CannonBall) info.a;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">            if(a.getFaction() != getFaction()){</span>
+<span class="nc" id="L197">                getComponent(Pirate.class).takeDamage( a.getAttackDmg() );</span>
+<span class="nc" id="L198">                a.kill();</span>
+            }
+<span class="nc bnc" id="L200" title="All 4 branches missed.">        }else if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="nc" id="L201">            ((CollisionCallBack) info.b).EnterTrigger(info);</span>
         }
-<span class="nc" id="L196">    }</span>
+<span class="nc" id="L203">    }</span>
 
     /**
      * if called on a Player against anything else call it on the other thing
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L203" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
-<span class="nc" id="L204">            ((CollisionCallBack) info.b).ExitTrigger(info);</span>
+<span class="nc bnc" id="L210" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="nc" id="L211">            ((CollisionCallBack) info.b).ExitTrigger(info);</span>
         }
-<span class="nc" id="L206">    }</span>
+<span class="nc" id="L213">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

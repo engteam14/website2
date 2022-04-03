@@ -137,5 +137,11 @@ public class Entity {
     public void update() {
 
 <span class="nc" id="L139">    }</span>
+
+    public void dispose() {
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        for (Component component : components) {</span>
+<span class="nc" id="L143">            component = null;</span>
+<span class="nc" id="L144">        }</span>
+<span class="nc" id="L145">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
