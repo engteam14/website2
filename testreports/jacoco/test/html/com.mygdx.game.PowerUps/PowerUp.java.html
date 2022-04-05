@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PowerUp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.PowerUps</a> &gt; <span class="el_source">PowerUp.java</span></div><h1>PowerUp.java</h1><pre class="source lang-java linenums">package com.mygdx.game.PowerUps;
 
+import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Components.Pirate;
+import com.mygdx.game.Components.PowerUpAssigned;
+import com.mygdx.game.Managers.GameManager;
 
 /**
  * // Assessment 2 requirement //
@@ -9,6 +12,8 @@ import com.mygdx.game.Components.Pirate;
  */
 public class PowerUp {
 
+    private String name;
+    private int cost;
     private String key;
     private PowerUpOperation oper;
     private float value;
@@ -17,61 +22,67 @@ public class PowerUp {
     private boolean done;
 
     /**
-     * Create a PowerUp which lasts for a permanent length of time.
+     * Create a PowerUp manually, used for testing.
      * @param key           The key of the value to affect
      * @param operation     The way the key is applied to the value
      * @param value         The value that is applied to the key
+     * @param cost          The cost of the powerup
      */
-    public PowerUp(String key, PowerUpOperation operation, float value) {
-<span class="nc" id="L26">        this(key, operation, value, -1);</span>
-<span class="nc" id="L27">    }</span>
+<span class="nc" id="L31">    public PowerUp(String key, PowerUpOperation operation, float value, int cost, int duration) {</span>
+<span class="nc" id="L32">        this.key = key;</span>
+<span class="nc" id="L33">        this.oper = operation;</span>
+<span class="nc" id="L34">        this.value = value;</span>
+<span class="nc" id="L35">        this.duration = duration;</span>
+<span class="nc" id="L36">        this.done = false;</span>
+<span class="nc" id="L37">        this.cost = cost ;</span>
+<span class="nc" id="L38">    }</span>
 
     /**
-     * Create a PowerUp that lasts for a limited duration of time.
-     * @param key           The key of the value to affect
-     * @param operation     The way the key is applied to the value
-     * @param value         The value that is applied to the key
-     * @param duration      The duration that the PowerUp is active
+     * Create a PowerUp from the settings file
+     * @param settings the json file containing the settings for the power up
      */
-<span class="nc" id="L36">    public PowerUp(String key, PowerUpOperation operation, float value, int duration) {</span>
-<span class="nc" id="L37">        this.key = key;</span>
-<span class="nc" id="L38">        this.oper = operation;</span>
-<span class="nc" id="L39">        this.value = value;</span>
-<span class="nc" id="L40">        this.duration = duration;</span>
-<span class="nc" id="L41">        this.done = false;</span>
-<span class="nc" id="L42">    }</span>
+<span class="nc" id="L44">    public PowerUp(JsonValue settings) {</span>
+<span class="nc" id="L45">        this.key = settings.getString(&quot;key&quot;);</span>
+<span class="nc" id="L46">        this.oper = PowerUpOperation.values()[settings.getInt(&quot;operation&quot;)];</span>
+<span class="nc" id="L47">        this.value = settings.getInt(&quot;value&quot;);</span>
+<span class="nc" id="L48">        this.duration = settings.getInt(&quot;duration&quot;);</span>
+<span class="nc" id="L49">        this.done = false;</span>
+<span class="nc" id="L50">        this.cost = settings.getInt(&quot;cost&quot;) ;</span>
+<span class="nc" id="L51">        this.name = settings.getString(&quot;name&quot;);</span>
+<span class="nc" id="L52">    }</span>
+
 
     /**
      * Apply PowerUp modifiers to the Pirate.
      * @param pirate        The Pirate to apply the PowerUp to
      */
     public void EnablePowerUp(Pirate pirate) {
-<span class="nc bnc" id="L49" title="All 6 branches missed.">        switch (oper){</span>
+<span class="nc bnc" id="L60" title="All 6 branches missed.">        switch (oper){</span>
             case replace:
-<span class="nc" id="L51">                pirate.setValue(key, value);</span>
-<span class="nc" id="L52">                break;</span>
+<span class="nc" id="L62">                pirate.setValue(key, value);</span>
+<span class="nc" id="L63">                break;</span>
             case increment:
-<span class="nc" id="L54">                pirate.setValue(key, pirate.getValue(key) + value);</span>
-<span class="nc" id="L55">                break;</span>
+<span class="nc" id="L65">                pirate.setValue(key, pirate.getValue(key) + value);</span>
+<span class="nc" id="L66">                break;</span>
             case decrement:
-<span class="nc" id="L57">                pirate.setValue(key, pirate.getValue(key) - value);</span>
-<span class="nc" id="L58">                break;</span>
+<span class="nc" id="L68">                pirate.setValue(key, pirate.getValue(key) - value);</span>
+<span class="nc" id="L69">                break;</span>
             case multiply:
-<span class="nc" id="L60">                pirate.multValue(key, value);</span>
-<span class="nc" id="L61">                break;</span>
+<span class="nc" id="L71">                pirate.multValue(key, value);</span>
+<span class="nc" id="L72">                break;</span>
             case divide:
-<span class="nc" id="L63">                pirate.multValue(key, 1f/value);</span>
+<span class="nc" id="L74">                pirate.multValue(key, 1f/value);</span>
                 break;
         }
-<span class="nc" id="L66">        startTime = TimeUtils.millis();</span>
-<span class="nc" id="L67">    }</span>
+<span class="nc" id="L77">        startTime = TimeUtils.millis();</span>
+<span class="nc" id="L78">    }</span>
 
     /**
      * Check whether the PowerUp is permanent or temporary.
      * @return          True if the PowerUp is permanent
      */
     public boolean CheckPermanent() {
-<span class="nc bnc" id="L74" title="All 2 branches missed.">        return (duration &lt;= 0);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        return (duration &lt;= 0);</span>
     }
 
     /**
@@ -79,7 +90,7 @@ public class PowerUp {
      * @return          Whether the PowerUp is done or not
      */
     public boolean CheckPowerUpDone() {
-<span class="nc" id="L82">        return CheckPowerUpDone(null);</span>
+<span class="nc" id="L93">        return CheckPowerUpDone(null);</span>
     }
 
     /**
@@ -88,14 +99,14 @@ public class PowerUp {
      * @return          Whether the PowerUp is done or not
      */
     public boolean CheckPowerUpDone(Pirate pirate) {
-<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (done) return true;</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (duration &gt; 0) {</span>
-<span class="nc" id="L93">            long timeSoFar = TimeUtils.timeSinceMillis(startTime) / 1000;</span>
-<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (timeSoFar &gt;= duration) {</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">                if (pirate != null) DisablePowerUp(pirate);</span>
-<span class="nc" id="L96">                return true;</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if (done) return true;</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if (duration &gt; 0) {</span>
+<span class="nc" id="L104">            long timeSoFar = TimeUtils.timeSinceMillis(startTime) / 1000;</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (timeSoFar &gt;= duration) {</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">                if (pirate != null) DisablePowerUp(pirate);</span>
+<span class="nc" id="L107">                return true;</span>
             }
-<span class="nc" id="L98">        } return false;</span>
+<span class="nc" id="L109">        } return false;</span>
     }
 
     /**
@@ -103,9 +114,23 @@ public class PowerUp {
      * @param pirate        The Pirate to return to normal
      */
     public void DisablePowerUp(Pirate pirate) {
-<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (duration &gt; 0) pirate.resetToDefault(key);</span>
-<span class="nc" id="L107">        done = true;</span>
-<span class="nc" id="L108">    }</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        if (duration &gt; 0) pirate.resetToDefault(key);</span>
+<span class="nc" id="L118">        done = true;</span>
+<span class="nc" id="L119">    }</span>
 
+    public Boolean buyPowerUp(){
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        if (GameManager.getPlayer().getPlunder() &gt;= this.cost) {</span>
+<span class="nc" id="L123">            GameManager.getPlayer().plunder((-this.cost));</span>
+<span class="nc" id="L124">            GameManager.getPlayer().getComponent(PowerUpAssigned.class).AssignPowerUp(this);</span>
+<span class="nc" id="L125">            return true;</span>
+        }else {
+<span class="nc" id="L127">            return false;</span>
+            }
+      }
+
+
+    public String getName() {
+<span class="nc" id="L133">        return name;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
