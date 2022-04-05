@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Managers</a> &gt; <span class="el_source">GameManager.java</span></div><h1>GameManager.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Managers;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
+import com.mygdx.game.AI.TileMapGraph;
+import com.mygdx.game.Components.Transform;
+import com.mygdx.game.Entitys.*;
+import com.mygdx.game.Faction;
+import com.mygdx.game.PowerUps.PowerUp;
+import com.mygdx.game.PowerUps.PowerUpOperation;
+import com.mygdx.utils.QueueFIFO;
+import com.mygdx.utils.Utilities;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+/**
+ * Responsible for creating most entity's associated with the game. Also the cached chest and cannonballs
+ */
+<span class="nc" id="L22">public final class GameManager {</span>
+<span class="nc" id="L23">    private static boolean initialized = false;</span>
+    private static ArrayList&lt;Faction&gt; factions;
+    private static ArrayList&lt;Ship&gt; ships;
+    private static ArrayList&lt;College&gt; colleges;
+
+    private static final int cacheSize = 20;
+    private static ArrayList&lt;CannonBall&gt; ballCache;
+    private static int currentElement;
+
+    private static JsonValue settings;
+
+    private static TileMapGraph mapGraph;
+    private static JsonValue settingsAll;
+
+
+    /**
+     * facilitates creation of the game
+     * @param difficulty contains the ENUM for the difficulty that has been selected
+     */
+    public static void Initialize(GameDifficulty difficulty) {
+<span class="nc" id="L43">        initialized = true;</span>
+<span class="nc" id="L44">        currentElement = 0;</span>
+        // start of change for assessment 2, adds functionality for changing difficulty
+
+<span class="nc" id="L47">        changeDifficulty(difficulty.toString());</span>
+        // end of change
+        
+<span class="nc" id="L50">        factions = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L51">        ships = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L52">        ballCache = new ArrayList&lt;&gt;(cacheSize);</span>
+<span class="nc" id="L53">        colleges = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        for (int i = 0; i &lt; cacheSize; i++) {</span>
+<span class="nc" id="L56">            ballCache.add(new CannonBall());</span>
+        }
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        for (JsonValue v : settings.get(&quot;factions&quot;)) {</span>
+<span class="nc" id="L60">            String name = v.getString(&quot;name&quot;);</span>
+<span class="nc" id="L61">            String col = v.getString(&quot;colour&quot;);</span>
+<span class="nc" id="L62">            Vector2 pos = new Vector2(v.get(&quot;position&quot;).getFloat(&quot;x&quot;), v.get(&quot;position&quot;).getFloat(&quot;y&quot;));</span>
+<span class="nc" id="L63">            pos = Utilities.tilesToDistance(pos);</span>
+<span class="nc" id="L64">            Vector2 spawn = new Vector2(v.get(&quot;shipSpawn&quot;).getFloat(&quot;x&quot;), v.get(&quot;shipSpawn&quot;).getFloat(&quot;y&quot;));</span>
+<span class="nc" id="L65">            spawn = Utilities.tilesToDistance(spawn);</span>
+<span class="nc" id="L66">            factions.add(new Faction(name, col, pos, spawn, factions.size() + 1));</span>
+<span class="nc" id="L67">        }</span>
+<span class="nc" id="L68">    }</span>
+
+    /**
+     * added for assessment 2
+     * loads the part of the json file for the chosen difficulty and overwrites the settings values with these values
+     * @param difficulty the chosen difficulty as a string
+     */
+
+    public static void changeDifficulty(String difficulty){
+<span class="nc" id="L77">        JsonValue settingsAll = new JsonReader(). //change for assessment 2 for multiple difficulties</span>
+<span class="nc" id="L78">                parse(Gdx.files.internal(&quot;GameSettings.json&quot;));</span>
+<span class="nc" id="L79">        settings = settingsAll.get(&quot;Regular&quot;);</span>
+
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if (!Objects.equals(difficulty, &quot;Regular&quot;)) {</span>
+<span class="nc" id="L82">            JsonValue editSet = settingsAll.get(difficulty);</span>
+<span class="nc" id="L83">            JsonValue.JsonIterator it = editSet.iterator();</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            while (it.hasNext()) {</span>
+<span class="nc" id="L85">                JsonValue x = it.next();</span>
+<span class="nc" id="L86">                JsonValue.JsonIterator it2 = x.iterator();</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">                while (it2.hasNext()) {</span>
+<span class="nc" id="L88">                    JsonValue value = it2.next();</span>
+<span class="nc" id="L89">                    System.out.println(value);</span>
+<span class="nc" id="L90">                    settings.get(x.name).get(value.name).set(value.asDouble(), null);</span>
+<span class="nc" id="L91">                }</span>
+<span class="nc" id="L92">            }</span>
+        }
+<span class="nc" id="L94">    }</span>
+    /**
+     * called every fram checks id the quests are completed
+     */
+    public static void update() {
+<span class="nc" id="L99">        QuestManager.checkCompleted();</span>
+<span class="nc" id="L100">    }</span>
+
+    /**
+     * Player is always in ships at index 0
+     *
+     * @return the ship
+     */
+    public static Player getPlayer() {
+<span class="nc" id="L108">        return (Player) ships.get(0);</span>
+    }
+
+    /**
+     * Get an NPCShip in the current game
+     * @param id the ship's ID
+     * @return the NPCShip instance
+     */
+    public static NPCShip getNPCShip(int id) {
+
+<span class="nc" id="L118">        return (NPCShip) ships.get(id);</span>
+    }
+
+    /**
+     * Creates the game with player maps, NPCs, colleges
+     * // Change for Assessment 2  Start //
+     * Only creates world map if mapId is non-negative
+     * For test purposes
+     * // Change for Assessment 2  End //
+     * @param mapId the resource id of the tilemap
+     */
+    public static void SpawnGame(int mapId) {
+
+<span class="nc bnc" id="L131" title="All 2 branches missed.">        if (mapId &gt;= 0) CreateWorldMap(mapId);</span>
+<span class="nc" id="L132">        CreatePlayer();</span>
+<span class="nc" id="L133">        final int cnt = settings.get(&quot;factionDefaults&quot;).getInt(&quot;shipCount&quot;);</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        for (int i = 0; i &lt; factions.size(); i++) {</span>
+<span class="nc" id="L135">            CreateCollege(i + 1);</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            for (int j = 0; j &lt; cnt; j++) {</span>
+                // prevents halifax from having ship count + player
+<span class="nc bnc" id="L138" title="All 4 branches missed.">                if (i == 0 &amp;&amp; j &gt; cnt - 2) {</span>
+<span class="nc" id="L139">                    break;</span>
+                }
+<span class="nc" id="L141">                NPCShip s = CreateNPCShip(i + 1);</span>
+<span class="nc" id="L142">                s.getComponent(Transform.class).setPosition(getFaction(i + 1).getSpawnPos());</span>
+            }
+        }
+<span class="nc" id="L145">        QuestManager.Initialize(); // added for assessment 2 to stop tryInit being used (testing)</span>
+<span class="nc" id="L146">        QuestManager.createRandomQuests(); // &quot;&quot;</span>
+
+        // Assessment 2 change: spawns in powerups based on settings
+<span class="nc bnc" id="L149" title="All 2 branches missed.">        for (JsonValue powData : settings.get(&quot;powerups&quot;)) {</span>
+<span class="nc" id="L150">            String texName = powData.getString(&quot;sprite&quot;);</span>
+<span class="nc" id="L151">            int cooldown = powData.getInt(&quot;spawnCooldown&quot;);</span>
+<span class="nc" id="L152">            PowerUp pow = new PowerUp(</span>
+<span class="nc" id="L153">                    powData.getString(&quot;key&quot;),</span>
+<span class="nc" id="L154">                    PowerUpOperation.values()[powData.getInt(&quot;operation&quot;)],</span>
+<span class="nc" id="L155">                    powData.getFloat(&quot;value&quot;),</span>
+<span class="nc" id="L156">                    powData.getInt(&quot;duration&quot;)</span>
+            );
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            for (JsonValue pos : powData.get(&quot;positions&quot;)) {</span>
+<span class="nc" id="L159">                Vector2 position = new Vector2(pos.getFloat(0), pos.getFloat(1));</span>
+<span class="nc" id="L160">                new PowerUpPickup(pow, texName, Utilities.tilesToDistance(position), cooldown);</span>
+<span class="nc" id="L161">            }</span>
+<span class="nc" id="L162">        }</span>
+<span class="nc" id="L163">    }</span>
+
+    /**
+     * Creates player that belongs the faction with id 1
+     */
+    public static void CreatePlayer() {
+<span class="nc" id="L169">        Player p = new Player();</span>
+<span class="nc" id="L170">        p.setFaction(1);</span>
+<span class="nc" id="L171">        ships.add(p);</span>
+<span class="nc" id="L172">    }</span>
+
+    /**
+     * Creates an NPC ship with the given faction
+     *
+     * @param factionId desired faction
+     * @return the created ship
+     */
+    public static NPCShip CreateNPCShip(int factionId) {
+<span class="nc" id="L181">        NPCShip e = new NPCShip();</span>
+<span class="nc" id="L182">        e.setFaction(factionId);</span>
+<span class="nc" id="L183">        ships.add(e);</span>
+<span class="nc" id="L184">        return e;</span>
+    }
+
+    /**
+     * Creates the world map
+     *
+     * @param mapId resource id
+     */
+    public static void CreateWorldMap(int mapId) {
+<span class="nc" id="L193">        WorldMap map = new WorldMap(mapId);</span>
+<span class="nc" id="L194">        mapGraph = new TileMapGraph(map.getTileMap());</span>
+<span class="nc" id="L195">    }</span>
+
+    /**
+     * Creates the college with it's building for the desired college
+     *
+     * @param factionId desired faction
+     */
+    public static void CreateCollege(int factionId) {
+<span class="nc" id="L203">        College c = new College(factionId);</span>
+<span class="nc" id="L204">        colleges.add(c);</span>
+<span class="nc" id="L205">    }</span>
+
+
+    public static Faction getFaction(int factionId) {
+<span class="nc" id="L209">        return factions.get(factionId - 1);</span>
+    }
+
+    /**
+     * Gets the setting object from the GameSetting.json
+     *
+     * @return the JSON representation fo settings
+     */
+    public static JsonValue getSettings() {
+<span class="nc" id="L218">        return settings;</span>
+    }
+
+    public static College getCollege(int factionId) {
+<span class="nc" id="L222">        return colleges.get(factionId - 1);</span>
+    }
+
+    /**
+     * Added for Assessment 2
+     * @return Returns the next cannonball that would be fired from the cache
+     */
+    public static CannonBall getCurrentCannon() {
+<span class="nc" id="L230">        return ballCache.get(currentElement);</span>
+    }
+
+    /**
+     * Utilises the cached cannonballs to fire one
+     * Changed for Assessment 2, separated incrementer for visual clarity and parameterised startPos
+     * @param p     parent
+     * @param pos   position projectile is spawned at
+     * @param dir   shoot direction
+     */
+    public static void shoot(Entity p, Vector2 pos, Vector2 dir) { // Changed for Assessment 2, type switched from Ship to Entity
+<span class="nc" id="L241">        ballCache.get(currentElement).fire(p,pos, dir);</span>
+<span class="nc" id="L242">        currentElement++;</span>
+<span class="nc" id="L243">        currentElement %= cacheSize;</span>
+<span class="nc" id="L244">    }</span>
+
+    /**
+     * uses a* not sure if it works but i think it does
+     *
+     * @param loc src
+     * @param dst dst
+     * @return queue of delta positions
+     */
+    public static QueueFIFO&lt;Vector2&gt; getPath(Vector2 loc, Vector2 dst) {
+<span class="nc" id="L254">        return mapGraph.findOptimisedPath(loc, dst);</span>
+    }
+
+    public static ArrayList&lt;Ship&gt; getShips(){
+<span class="nc" id="L258">        return ships;</span>
+    }
+    public static ArrayList&lt;College&gt; getColleges(){
+<span class="nc" id="L261">        return colleges;</span>
+    }
+
+
+
+    public static void dispose(){
+<span class="nc" id="L267">        initialized = true;</span>
+<span class="nc" id="L268">        currentElement = 0;</span>
+
+<span class="nc" id="L270">        factions = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L271">        ships = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L272">        ballCache = new ArrayList&lt;&gt;(cacheSize);</span>
+<span class="nc" id="L273">        colleges = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L275">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
