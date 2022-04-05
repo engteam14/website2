@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -220,6 +220,13 @@ extends <a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></pr
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../Faction.html" title="class in com.mygdx.game">Faction</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFaction()">getFaction</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">
@@ -232,7 +239,7 @@ extends <a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></pr
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.mygdx.game.Entitys.<a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></h3>
-<code><a href="Ship.html#BeginContact(com.mygdx.game.Physics.CollisionInfo)">BeginContact</a>, <a href="Ship.html#EndContact(com.mygdx.game.Physics.CollisionInfo)">EndContact</a>, <a href="Ship.html#EnterTrigger(com.mygdx.game.Physics.CollisionInfo)">EnterTrigger</a>, <a href="Ship.html#ExitTrigger(com.mygdx.game.Physics.CollisionInfo)">ExitTrigger</a>, <a href="Ship.html#getAttackRange()">getAttackRange</a>, <a href="Ship.html#getFaction()">getFaction</a>, <a href="Ship.html#getHealth()">getHealth</a>, <a href="Ship.html#getPlunder()">getPlunder</a>, <a href="Ship.html#getPoints()">getPoints</a>, <a href="Ship.html#getPosition()">getPosition</a>, <a href="Ship.html#getValue(java.lang.String)">getValue</a>, <a href="Ship.html#isAlive()">isAlive</a>, <a href="Ship.html#multValue(java.lang.String,float)">multValue</a>, <a href="Ship.html#plunder(int)">plunder</a>, <a href="Ship.html#points(int)">points</a>, <a href="Ship.html#resetToDefault(java.lang.String)">resetToDefault</a>, <a href="Ship.html#setDefault(java.lang.String,float)">setDefault</a>, <a href="Ship.html#setFaction(int)">setFaction</a>, <a href="Ship.html#setShipDirection(com.badlogic.gdx.math.Vector2)">setShipDirection</a>, <a href="Ship.html#setShipDirection(java.lang.String)">setShipDirection</a>, <a href="Ship.html#setValue(java.lang.String,float)">setValue</a>, <a href="Ship.html#shoot()">shoot</a>, <a href="Ship.html#shoot(com.badlogic.gdx.math.Vector2)">shoot</a></code></li>
+<code><a href="Ship.html#BeginContact(com.mygdx.game.Physics.CollisionInfo)">BeginContact</a>, <a href="Ship.html#EndContact(com.mygdx.game.Physics.CollisionInfo)">EndContact</a>, <a href="Ship.html#EnterTrigger(com.mygdx.game.Physics.CollisionInfo)">EnterTrigger</a>, <a href="Ship.html#ExitTrigger(com.mygdx.game.Physics.CollisionInfo)">ExitTrigger</a>, <a href="Ship.html#getAttackRange()">getAttackRange</a>, <a href="Ship.html#getHealth()">getHealth</a>, <a href="Ship.html#getPlunder()">getPlunder</a>, <a href="Ship.html#getPoints()">getPoints</a>, <a href="Ship.html#getPosition()">getPosition</a>, <a href="Ship.html#getValue(java.lang.String)">getValue</a>, <a href="Ship.html#isAlive()">isAlive</a>, <a href="Ship.html#multValue(java.lang.String,float)">multValue</a>, <a href="Ship.html#plunder(int)">plunder</a>, <a href="Ship.html#points(int)">points</a>, <a href="Ship.html#resetToDefault(java.lang.String)">resetToDefault</a>, <a href="Ship.html#setDefault(java.lang.String,float)">setDefault</a>, <a href="Ship.html#setFaction(int)">setFaction</a>, <a href="Ship.html#setShipDirection(com.badlogic.gdx.math.Vector2)">setShipDirection</a>, <a href="Ship.html#setShipDirection(java.lang.String)">setShipDirection</a>, <a href="Ship.html#setValue(java.lang.String,float)">setValue</a>, <a href="Ship.html#shoot()">shoot</a>, <a href="Ship.html#shoot(com.badlogic.gdx.math.Vector2)">shoot</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.com.mygdx.game.Entitys.Entity">
@@ -317,10 +324,26 @@ extends <a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></pr
 <a id="getAmmo()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getAmmo</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getAmmo()</pre>
+</li>
+</ul>
+<a id="getFaction()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getFaction</h4>
+<pre class="methodSignature">public&nbsp;<a href="../Faction.html" title="class in com.mygdx.game">Faction</a>&nbsp;getFaction()</pre>
+<div class="block">Added for Assessment 2</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="Ship.html#getFaction()">getFaction</a></code>&nbsp;in class&nbsp;<code><a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Faction attached to the pirate component of this object</dd>
+</dl>
 </li>
 </ul>
 </li>
