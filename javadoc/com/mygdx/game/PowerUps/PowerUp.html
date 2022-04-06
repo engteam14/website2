@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -154,20 +154,19 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,com.mygdx.game.PowerUps.PowerUpOperation,float)">PowerUp</a></span>&#8203;(java.lang.String&nbsp;key,
-       <a href="PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a>&nbsp;operation,
-       float&nbsp;value)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.badlogic.gdx.utils.JsonValue)">PowerUp</a></span>&#8203;(com.badlogic.gdx.utils.JsonValue&nbsp;settings)</code></th>
 <td class="colLast">
-<div class="block">Create a PowerUp which lasts for a permanent length of time.</div>
+<div class="block">Create a PowerUp from the settings file</div>
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,com.mygdx.game.PowerUps.PowerUpOperation,float,int)">PowerUp</a></span>&#8203;(java.lang.String&nbsp;key,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,com.mygdx.game.PowerUps.PowerUpOperation,float,int,int)">PowerUp</a></span>&#8203;(java.lang.String&nbsp;key,
        <a href="PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a>&nbsp;operation,
        float&nbsp;value,
+       int&nbsp;cost,
        int&nbsp;duration)</code></th>
 <td class="colLast">
-<div class="block">Create a PowerUp that lasts for a limited duration of time.</div>
+<div class="block">Create a PowerUp manually, used for testing.</div>
 </td>
 </tr>
 </table>
@@ -189,39 +188,49 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>java.lang.Boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#buyPowerUp()">buyPowerUp</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#CheckPermanent()">CheckPermanent</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Check whether the PowerUp is permanent or temporary.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#CheckPowerUpDone()">CheckPowerUpDone</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Check whether a PowerUp is done.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#CheckPowerUpDone(com.mygdx.game.Components.Pirate)">CheckPowerUpDone</a></span>&#8203;(<a href="../Components/Pirate.html" title="class in com.mygdx.game.Components">Pirate</a>&nbsp;pirate)</code></th>
 <td class="colLast">
 <div class="block">Check whether a PowerUp is done, and Disable it if so.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#DisablePowerUp(com.mygdx.game.Components.Pirate)">DisablePowerUp</a></span>&#8203;(<a href="../Components/Pirate.html" title="class in com.mygdx.game.Components">Pirate</a>&nbsp;pirate)</code></th>
 <td class="colLast">
 <div class="block">Remove PowerUp modifiers from a Pirate and reset to default.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#EnablePowerUp(com.mygdx.game.Components.Pirate)">EnablePowerUp</a></span>&#8203;(<a href="../Components/Pirate.html" title="class in com.mygdx.game.Components">Pirate</a>&nbsp;pirate)</code></th>
 <td class="colLast">
 <div class="block">Apply PowerUp modifiers to the Pirate.</div>
 </td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getName()">getName</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -247,7 +256,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(java.lang.String,com.mygdx.game.PowerUps.PowerUpOperation,float)">
+<a id="&lt;init&gt;(java.lang.String,com.mygdx.game.PowerUps.PowerUpOperation,float,int,int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -255,33 +264,30 @@ extends java.lang.Object</pre>
 <h4>PowerUp</h4>
 <pre>public&nbsp;PowerUp&#8203;(java.lang.String&nbsp;key,
                <a href="PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a>&nbsp;operation,
-               float&nbsp;value)</pre>
-<div class="block">Create a PowerUp which lasts for a permanent length of time.</div>
+               float&nbsp;value,
+               int&nbsp;cost,
+               int&nbsp;duration)</pre>
+<div class="block">Create a PowerUp manually, used for testing.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key of the value to affect</dd>
 <dd><code>operation</code> - The way the key is applied to the value</dd>
 <dd><code>value</code> - The value that is applied to the key</dd>
+<dd><code>cost</code> - The cost of the powerup</dd>
 </dl>
 </li>
 </ul>
-<a id="&lt;init&gt;(java.lang.String,com.mygdx.game.PowerUps.PowerUpOperation,float,int)">
+<a id="&lt;init&gt;(com.badlogic.gdx.utils.JsonValue)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>PowerUp</h4>
-<pre>public&nbsp;PowerUp&#8203;(java.lang.String&nbsp;key,
-               <a href="PowerUpOperation.html" title="enum in com.mygdx.game.PowerUps">PowerUpOperation</a>&nbsp;operation,
-               float&nbsp;value,
-               int&nbsp;duration)</pre>
-<div class="block">Create a PowerUp that lasts for a limited duration of time.</div>
+<pre>public&nbsp;PowerUp&#8203;(com.badlogic.gdx.utils.JsonValue&nbsp;settings)</pre>
+<div class="block">Create a PowerUp from the settings file</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>key</code> - The key of the value to affect</dd>
-<dd><code>operation</code> - The way the key is applied to the value</dd>
-<dd><code>value</code> - The value that is applied to the key</dd>
-<dd><code>duration</code> - The duration that the PowerUp is active</dd>
+<dd><code>settings</code> - the json file containing the settings for the power up</dd>
 </dl>
 </li>
 </ul>
@@ -356,7 +362,7 @@ extends java.lang.Object</pre>
 <a id="DisablePowerUp(com.mygdx.game.Components.Pirate)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>DisablePowerUp</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;DisablePowerUp&#8203;(<a href="../Components/Pirate.html" title="class in com.mygdx.game.Components">Pirate</a>&nbsp;pirate)</pre>
@@ -365,6 +371,24 @@ extends java.lang.Object</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>pirate</code> - The Pirate to return to normal</dd>
 </dl>
+</li>
+</ul>
+<a id="buyPowerUp()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>buyPowerUp</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Boolean&nbsp;buyPowerUp()</pre>
+</li>
+</ul>
+<a id="getName()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getName</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getName()</pre>
 </li>
 </ul>
 </li>
