@@ -3,13 +3,13 @@
 ### Software Engineering Methods
 
 
-Our chosen Software Engineering method was Agile, where we decided to use the Scrum Framework. The team was divided into two smaller teams, namely, Implementation and Documentation. We then came up with a project “road-map” early in the development process as illustrated in Fig.1. As we decided to use the Scrum framework, our road-map shows a sprint of 2-weeks for each task followed by a review stage where we would discuss our progress and work on solutions to any problems the team is having. Once we had an idea of the main tasks that needed to be done, they were then broken down into sub-tasks based on their marks and each member was assigned ~15 marks worth of tasks based on their skillset and our experience from the first assessment, so that every member had an equal amount of contribution towards the project. Having all the requirements for the final game from the Customer, our road-map helped us efficiently plan the execution and completion of this project, with the aim of delivering a high-quality game and all its supporting documents on time.  
+Our chosen Software Engineering method was Agile, where we decided to use the Scrum Framework. The team was divided into two smaller teams, namely, Implementation and Documentation. We then came up with a project “road-map” early in the development process as illustrated in Fig.1. As we decided to use the Scrum framework, our road-map shows a sprint of 1-week for each task followed by a review stage where we would discuss our progress and work on solutions to any problems the team is having. Once we had an idea of the main tasks that needed to be done, they were then broken down into sub-tasks based on their marks and, each member was assigned ~15 marks worth of tasks based on their skillset and our experience from the first assessment, so that every member had an equal amount of contribution towards the project. Having all the requirements for the final game from the Customer, our road-map helped us efficiently plan the execution and completion of this project, with the aim of delivering a high-quality game and all its supporting documents on time.  
 
 
 We organised frequent team meetings, on average twice a week. These meetings served two key purposes:
 * Providing a platform to discuss and agree upon key development decisions, such as game design and documentation. 
 * Allowing each  team member to communicate their progress on their assigned tasks, and for new tasks to be assigned when necessary.
-The frequent team meetings alongside the bi-weekly review meetings, in which we discussed task progression, allowed us to keep each other accountable for our productivity and ensured that we stay on track.
+The frequent team meetings alongside the weekly review meetings, in which we discussed task progression, allowed us to keep each other accountable for our productivity and ensured that we stay on track.
 
 
 ### Tools Used
@@ -39,11 +39,18 @@ To ensure that the work produced was of high-quality, our team decided that it w
 
 **Testing**
 
+* We used gdx-testing to test our game throughout the development process as it was easy to set-up and relevant documentations and tutorials were relatively easy to find.
 
 **Implementation**
 
 * We chose to use IntelliJ as our IDE. This was due to both the ease of use offered by the tool, along with the fact that several team members had previous experience with the tool: it felt like the ideal choice to avoid unnecessary and time-consuming learning curves.
 * We utilised the libGDX game development framework during the implementation of our game. Similarly, to our choice of IDE, this was largely influenced by the previous experience of the team. 
+
+**Alternatives considered**
+*	We considered using other IDEs such as Eclipse for software implementation, however as mentioned previously we chose to use IntelliJ due to team members having previous experience with this IDE.
+*	We also considered game engines other than libGDX in order to enable software development:
+  1. We considered using Unity, however we were discouraged from this choice by factors such as Unity’s reputation for largely outdated/incomplete documentation and the fact that many useful features are behind a paywall.
+  2. We also considered using the Unreal game engine, but quickly decided against this as it seemed inappropriate for developing what is a relatively small game and would cause the resulting game to be unnecessarily bloated.
 
 
 
@@ -77,17 +84,17 @@ Task assignment took place once we had gathered all the requirements for the gam
 
 Our first step in planning this assessment was to create a "road-map" for the entire project in the form of a Gantt Chart, as shown below. 
 
-![Fig.1](https://user-images.githubusercontent.com/94641110/158235276-dc7d414d-a650-4fc6-addb-92a8a9f74013.png)
+![Fig.1](https://github.com/engteam14/documentation2/blob/Method-Selection-and-Planning/road-map2-initial.png)
 *Fig.1*
 
-We made this road-map by referring to both, the Product Brief and the Team Assessment documents, highlighting all the main tasks which had to be completed in order to successfully complete and submit this project on time. Although the submission deadline was the 4th of May, we decided to set an early deadline for ourselves so that we could maximize efficiency and will have a few "buffer" days if in case things go wrong (e.g., a member falling ill and unable to do their assigned tasks so someone else taking over).
+We made this road-map by referring to both, the Product Brief and the Team Assessment documents, highlighting all the main tasks which had to be completed in order to successfully complete and submit this project on time. Although the submission deadline was the 4th of May, we decided to set an early deadline for ourselves so that we could maximize efficiency and will have a few "buffer" days if in case things go wrong (e.g., a member falling ill and unable to do their assigned tasks so someone else taking over). Once we had an initial road-map, we then decided to edit this road-map every week during our Review Sessions in order to keep track of our progress, which would then help us to make any neccessary changes to our plan, hence clearly showing the evolution of our plan throughout the project. Below you can find our final road-map as shown in Fig.2 and the intermediate road-map gantt charts can be found on our website. 
 
 Once we had a Project Plan, we then assigned tasks to individuals/teams, using a colour-coding scheme, as shown below. The members for each of our two previously mentioned teams are as follows:
 * Implementation Team: Jacob, Katie, Cody
 * Documentation Team: Saud, Felix, Joachim
 
 
-![Team Tasks1](https://user-images.githubusercontent.com/94641110/158831684-f1b32b90-12be-4f6e-80c1-8996012dc00e.png)
+![Team Tasks1](https://github.com/engteam14/documentation2/blob/Method-Selection-and-Planning/Team-Task-Assignments-1.png)
 *Task assignments using a colour-coding scheme*
 
 
