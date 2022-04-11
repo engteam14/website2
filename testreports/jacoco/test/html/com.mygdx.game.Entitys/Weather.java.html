@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Weather.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Entitys</a> &gt; <span class="el_source">Weather.java</span></div><h1>Weather.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Entitys;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.Components.RigidBody;
+import com.mygdx.game.Managers.GameManager;
+import com.mygdx.utils.Utilities;
+
+public class Weather extends Obstacle {
+
+    private final float speed;
+    private final long freq;
+
+    private long lastDir;
+    private Vector2 dir;
+
+    public Weather(float damage, float hitRate) {
+<span class="nc" id="L18">        super(&quot;storm&quot;, true, damage, hitRate, -1);</span>
+
+<span class="nc" id="L20">        speed = GameManager.getSettings().get(&quot;Weather&quot;).getFloat(&quot;maxSpeed&quot;);</span>
+<span class="nc" id="L21">        freq = GameManager.getSettings().get(&quot;Weather&quot;).getInt(&quot;moveFreq&quot;);</span>
+
+<span class="nc" id="L23">        lastDir = 0;</span>
+<span class="nc" id="L24">        newDir();</span>
+<span class="nc" id="L25">    }</span>
+
+    @Override
+    public void update() {
+<span class="nc" id="L29">        super.update();</span>
+
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (TimeUtils.timeSinceMillis(lastDir) &gt; freq) newDir();</span>
+<span class="nc" id="L32">        getComponent(RigidBody.class).setVelocity(dir);</span>
+<span class="nc" id="L33">    }</span>
+
+    private void newDir() {
+<span class="nc" id="L36">        dir = Utilities.randomPos(-1, 1);</span>
+<span class="nc" id="L37">        dir = new Vector2(dir.x * speed, dir.y * speed);</span>
+<span class="nc" id="L38">        lastDir = TimeUtils.millis();</span>
+<span class="nc" id="L39">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

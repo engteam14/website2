@@ -39,41 +39,42 @@ import com.mygdx.game.UI.PauseScreen;
 <span class="nc" id="L39">        int extras_id = ResourceManager.addTextureAtlas(&quot;UISkin/skin.atlas&quot;);</span>
 <span class="nc" id="L40">        int buildings_id = ResourceManager.addTextureAtlas(&quot;Buildings.txt&quot;);</span>
 <span class="nc" id="L41">        int powerups_id = ResourceManager.addTextureAtlas(&quot;powerups.txt&quot;);</span>
+<span class="nc" id="L42">        int obstacles_id = ResourceManager.addTextureAtlas(&quot;obstacles.txt&quot;);</span>
 
-<span class="nc" id="L43">        ResourceManager.addTexture(&quot;menuBG.jpg&quot;);</span>
+<span class="nc" id="L44">        ResourceManager.addTexture(&quot;menuBG.jpg&quot;);</span>
 
-<span class="nc" id="L45">        ResourceManager.addTexture(&quot;Chest.png&quot;);</span>
-<span class="nc" id="L46">        ResourceManager.loadAssets();</span>
+<span class="nc" id="L46">        ResourceManager.addTexture(&quot;Chest.png&quot;);</span>
+<span class="nc" id="L47">        ResourceManager.loadAssets();</span>
         // can't load any more resources after this point (just functionally I choose not to implement)
-<span class="nc" id="L48">        stage = new Stage(new ScreenViewport());</span>
-<span class="nc" id="L49">        createSkin();</span>
+<span class="nc" id="L49">        stage = new Stage(new ScreenViewport());</span>
+<span class="nc" id="L50">        createSkin();</span>
 
-<span class="nc" id="L51">        menu = new MenuScreen(this);</span>
+<span class="nc" id="L52">        menu = new MenuScreen(this);</span>
         //game = new GameScreen(this, id_map); moved to game screen for assessment 2
-<span class="nc" id="L53">        end = new EndScreen(this);</span>
-<span class="nc" id="L54">        pause = new PauseScreen(this);</span>
+<span class="nc" id="L54">        end = new EndScreen(this);</span>
+<span class="nc" id="L55">        pause = new PauseScreen(this);</span>
 
-<span class="nc" id="L56">        setScreen(menu);</span>
+<span class="nc" id="L57">        setScreen(menu);</span>
 
-<span class="nc" id="L58">    }</span>
+<span class="nc" id="L59">    }</span>
 
     /**
      * Clean up prevent memory leeks
      */
     @Override
     public void dispose() {
-<span class="nc" id="L65">        menu.dispose();</span>
-<span class="nc" id="L66">        game.dispose();</span>
-<span class="nc" id="L67">        stage.dispose();</span>
-<span class="nc" id="L68">        skin.dispose();</span>
-<span class="nc" id="L69">    }</span>
+<span class="nc" id="L66">        menu.dispose();</span>
+<span class="nc" id="L67">        game.dispose();</span>
+<span class="nc" id="L68">        stage.dispose();</span>
+<span class="nc" id="L69">        skin.dispose();</span>
+<span class="nc" id="L70">    }</span>
 
     /**
      * load ui skin from assets
      */
     private void createSkin() {
-<span class="nc" id="L75">        skin = new Skin(Gdx.files.internal(&quot;UISkin/skin.json&quot;));</span>
-<span class="nc" id="L76">    }</span>
+<span class="nc" id="L76">        skin = new Skin(Gdx.files.internal(&quot;UISkin/skin.json&quot;));</span>
+<span class="nc" id="L77">    }</span>
 
     /**
      * New for assessment 2
@@ -82,13 +83,13 @@ import com.mygdx.game.UI.PauseScreen;
      */
     @Override
     public void setScreen (Screen screen) {
-<span class="nc bnc" id="L85" title="All 4 branches missed.">        if (this.screen != null &amp;&amp; screen != pause) this.screen.hide();</span>
-<span class="nc" id="L86">        this.screen = screen;</span>
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (this.screen != null) {</span>
-<span class="nc" id="L88">            this.screen.show();</span>
-<span class="nc" id="L89">            this.screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
+<span class="nc bnc" id="L86" title="All 4 branches missed.">        if (this.screen != null &amp;&amp; screen != pause) this.screen.hide();</span>
+<span class="nc" id="L87">        this.screen = screen;</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (this.screen != null) {</span>
+<span class="nc" id="L89">            this.screen.show();</span>
+<span class="nc" id="L90">            this.screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
         }
-<span class="nc" id="L91">    }</span>
+<span class="nc" id="L92">    }</span>
 
     /**
      * New for assessment 2
@@ -96,61 +97,61 @@ import com.mygdx.game.UI.PauseScreen;
      */
     public void restartGame(){
         // can't load any more resources after this point (just functionally I choose not to implement)
-<span class="nc" id="L99">        RenderingManager.Initialize();</span>
-<span class="nc" id="L100">        EntityManager.Initialize();</span>
-<span class="nc" id="L101">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L100">        RenderingManager.Initialize();</span>
+<span class="nc" id="L101">        EntityManager.Initialize();</span>
+<span class="nc" id="L102">        GameManager.Initialize(difficulty);</span>
 
-<span class="nc" id="L103">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L104">        game = new GameScreen(this, id_map);</span>
 
-<span class="nc" id="L105">        setScreen(menu);</span>
+<span class="nc" id="L106">        setScreen(menu);</span>
 
 
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L109">    }</span>
 
     /**
      * New for assesment 2
      * Changes the difficulty for the game by changing the enum and calling GameMananger.getSettings()
      */
     public void setDifficulty(String selected){
-<span class="nc bnc" id="L115" title="All 2 branches missed.">        if (selected == &quot;Easy&quot;){</span>
-<span class="nc" id="L116">            difficulty = GameDifficulty.Easy;</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        if (selected == &quot;Easy&quot;){</span>
+<span class="nc" id="L117">            difficulty = GameDifficulty.Easy;</span>
         }
-<span class="nc bnc" id="L118" title="All 2 branches missed.">        else if (selected == &quot;Regular&quot;) {</span>
-<span class="nc" id="L119">            difficulty = GameDifficulty.Regular;</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">        else if (selected == &quot;Regular&quot;) {</span>
+<span class="nc" id="L120">            difficulty = GameDifficulty.Regular;</span>
         }
-<span class="nc bnc" id="L121" title="All 2 branches missed.">        else if (selected == &quot;Hard&quot;) {</span>
-<span class="nc" id="L122">            difficulty = GameDifficulty.Hard;</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        else if (selected == &quot;Hard&quot;) {</span>
+<span class="nc" id="L123">            difficulty = GameDifficulty.Hard;</span>
         }
         else{
-<span class="nc" id="L125">            difficulty = GameDifficulty.Regular;</span>
+<span class="nc" id="L126">            difficulty = GameDifficulty.Regular;</span>
 
         }
-<span class="nc" id="L128">    }</span>
+<span class="nc" id="L129">    }</span>
     /**
     Added for assessment 2 so that the game doesn't start until after the difficulty has been chosen by the player
      */
     public void StartGame(){
-<span class="nc" id="L133">        PhysicsManager.Initialize();</span>
-<span class="nc" id="L134">        GameManager.Initialize(difficulty);</span>
-<span class="nc" id="L135">        game = new GameScreen(this, id_map);</span>
-<span class="nc" id="L136">        setScreen(game);</span>
-<span class="nc" id="L137">    }</span>
+<span class="nc" id="L134">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L135">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L136">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L137">        setScreen(game);</span>
+<span class="nc" id="L138">    }</span>
 
     /**
      * New for assesment 2
      * Loads the game from the saved data
      */
     public void LoadGame(){
-<span class="nc" id="L144">        PhysicsManager.Initialize();</span>
-<span class="nc" id="L145">        SaveManager.LoadGame();</span>
+<span class="nc" id="L145">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L146">        SaveManager.LoadGame();</span>
 
-<span class="nc" id="L147">        GameManager.Initialize(difficulty);</span>
-<span class="nc" id="L148">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L148">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L149">        game = new GameScreen(this, id_map);</span>
 
-<span class="nc" id="L150">        SaveManager.SpawnGame();</span>
+<span class="nc" id="L151">        SaveManager.SpawnGame();</span>
 
-<span class="nc" id="L152">        setScreen(game);</span>
-<span class="nc" id="L153">    }</span>
+<span class="nc" id="L153">        setScreen(game);</span>
+<span class="nc" id="L154">    }</span>
  }
 
 
