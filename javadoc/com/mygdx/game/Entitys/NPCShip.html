@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -225,52 +225,57 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#attackPlayer()">attackPlayer</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#attackShip(com.mygdx.game.Entitys.Ship)">attackShip</a></span>&#8203;(<a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a>&nbsp;ship)</code></th>
 <td class="colLast">
 <div class="block">Added for Assessment 2, shoots a cannonball towards the player ship</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>com.badlogic.gdx.math.Vector2</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#directionToPlayer()">directionToPlayer</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Added for Assessment 2, calculates the direction the Player is in</div>
-</td>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#circleOrigin()">circleOrigin</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>com.badlogic.gdx.math.Vector2</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#directionToShip(com.mygdx.game.Entitys.Ship)">directionToShip</a></span>&#8203;(<a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a>&nbsp;ship)</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2, calculates the direction an Enemy Ship is in</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#EnterTrigger(com.mygdx.game.Physics.CollisionInfo)">EnterTrigger</a></span>&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</code></th>
 <td class="colLast">
 <div class="block">if the agro fixture hit a ship set it as the target</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ExitTrigger(com.mygdx.game.Physics.CollisionInfo)">ExitTrigger</a></span>&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</code></th>
 <td class="colLast">
 <div class="block">if a target has left remove it from the potential targets Queue</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#followTarget()">followTarget</a></span>()</code></th>
 <td class="colLast">
-<div class="block">creates a new steering behaviour that will make the NPC beeline for the target doesn't factor in obstetrical</div>
+<div class="block">creates a new steering behaviour that will make the NPC beeline for the target, doesn't factor in obstetrical</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../AI/EnemyState.html" title="enum in com.mygdx.game.AI">EnemyState</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCurrentState()">getCurrentState</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#stopMovement()">stopMovement</a></span>()</code></th>
 <td class="colLast">
 <div class="block">stops all movement and sets the behaviour to null</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">
@@ -386,7 +391,16 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>followTarget</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;followTarget()</pre>
-<div class="block">creates a new steering behaviour that will make the NPC beeline for the target doesn't factor in obstetrical</div>
+<div class="block">creates a new steering behaviour that will make the NPC beeline for the target, doesn't factor in obstetrical</div>
+</li>
+</ul>
+<a id="circleOrigin()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>circleOrigin</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;circleOrigin()</pre>
 </li>
 </ul>
 <a id="stopMovement()">
@@ -399,23 +413,23 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <div class="block">stops all movement and sets the behaviour to null</div>
 </li>
 </ul>
-<a id="directionToPlayer()">
+<a id="directionToShip(com.mygdx.game.Entitys.Ship)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>directionToPlayer</h4>
-<pre class="methodSignature">public&nbsp;com.badlogic.gdx.math.Vector2&nbsp;directionToPlayer()</pre>
-<div class="block">Added for Assessment 2, calculates the direction the Player is in</div>
+<h4>directionToShip</h4>
+<pre class="methodSignature">public&nbsp;com.badlogic.gdx.math.Vector2&nbsp;directionToShip&#8203;(<a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a>&nbsp;ship)</pre>
+<div class="block">Added for Assessment 2, calculates the direction an Enemy Ship is in</div>
 </li>
 </ul>
-<a id="attackPlayer()">
+<a id="attackShip(com.mygdx.game.Entitys.Ship)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>attackPlayer</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;attackPlayer()</pre>
+<h4>attackShip</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;attackShip&#8203;(<a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a>&nbsp;ship)</pre>
 <div class="block">Added for Assessment 2, shoots a cannonball towards the player ship</div>
 </li>
 </ul>

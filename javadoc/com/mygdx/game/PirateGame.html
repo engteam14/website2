@@ -26,8 +26,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var data = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10};
+var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -178,7 +178,7 @@ extends com.badlogic.gdx.Game</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>int</code></td>
+<td class="colFirst"><code>static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#id_map">id_map</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -242,7 +242,7 @@ extends com.badlogic.gdx.Game</pre>
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
@@ -271,6 +271,14 @@ extends com.badlogic.gdx.Game</pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#loadResources()">loadResources</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Added for Assessment 2
+ Modularized resource loading so it can be called from tests and for code clarity</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#restartGame()">restartGame</a></span>()</code></th>
 <td class="colLast">
@@ -278,15 +286,15 @@ extends com.badlogic.gdx.Game</pre>
  Restarts the game by reinitialising the Managers and creating a new instance of GameScreen</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDifficulty(java.lang.String)">setDifficulty</a></span>&#8203;(java.lang.String&nbsp;selected)</code></th>
 <td class="colLast">
-<div class="block">New for assesment 2
- Changes the difficulty for the game by changing the enum and calling GameMananger.getSettings()</div>
+<div class="block">New for assessment 2
+ Changes the difficulty for the game by changing the enum and calling GameManager.getSettings()</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setScreen(com.badlogic.gdx.Screen)">setScreen</a></span>&#8203;(com.badlogic.gdx.Screen&nbsp;screen)</code></th>
 <td class="colLast">
@@ -294,7 +302,7 @@ extends com.badlogic.gdx.Game</pre>
  new version of setScreen to stop the game screen being deleted before a new screen is set if the new screen is pause.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#StartGame()">StartGame</a></span>()</code></th>
 <td class="colLast">
@@ -392,7 +400,7 @@ extends com.badlogic.gdx.Game</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>id_map</h4>
-<pre>public&nbsp;int id_map</pre>
+<pre>public static&nbsp;int id_map</pre>
 </li>
 </ul>
 <a id="difficulty">
@@ -441,6 +449,17 @@ extends com.badlogic.gdx.Game</pre>
 <h4>create</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;create()</pre>
 <div class="block">Create instances of game stage and UI screens.</div>
+</li>
+</ul>
+<a id="loadResources()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>loadResources</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;loadResources()</pre>
+<div class="block">Added for Assessment 2
+ Modularized resource loading so it can be called from tests and for code clarity</div>
 </li>
 </ul>
 <a id="dispose()">
@@ -494,8 +513,8 @@ extends com.badlogic.gdx.Game</pre>
 <li class="blockList">
 <h4>setDifficulty</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setDifficulty&#8203;(java.lang.String&nbsp;selected)</pre>
-<div class="block">New for assesment 2
- Changes the difficulty for the game by changing the enum and calling GameMananger.getSettings()</div>
+<div class="block">New for assessment 2
+ Changes the difficulty for the game by changing the enum and calling GameManager.getSettings()</div>
 </li>
 </ul>
 <a id="StartGame()">

@@ -357,13 +357,15 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot()">shoot</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Calls shoot function of internal component</div>
+<div class="block">Calls shoot method with the current direction as parameter</div>
 </td>
 </tr>
 <tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot(com.badlogic.gdx.math.Vector2)">shoot</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;dir)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Calls shoot method of internal component</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -623,15 +625,6 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <pre class="methodSignature">public&nbsp;int&nbsp;getPoints()</pre>
 </li>
 </ul>
-<a id="shoot(com.badlogic.gdx.math.Vector2)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>shoot</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;shoot&#8203;(com.badlogic.gdx.math.Vector2&nbsp;dir)</pre>
-</li>
-</ul>
 <a id="shoot()">
 <!--   -->
 </a>
@@ -639,7 +632,17 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>shoot</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;shoot()</pre>
-<div class="block">Calls shoot function of internal component</div>
+<div class="block">Calls shoot method with the current direction as parameter</div>
+</li>
+</ul>
+<a id="shoot(com.badlogic.gdx.math.Vector2)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>shoot</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;shoot&#8203;(com.badlogic.gdx.math.Vector2&nbsp;dir)</pre>
+<div class="block">Calls shoot method of internal component</div>
 </li>
 </ul>
 <a id="getPosition()">
