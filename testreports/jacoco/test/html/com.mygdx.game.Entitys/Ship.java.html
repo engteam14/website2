@@ -28,7 +28,7 @@ public class Ship extends Entity implements CollisionCallBack {
      * Creates a ship entity, containing Transform, Renderable, RigidBody, and Pirate components.
      */
     public Ship() {
-<span class="nc" id="L31">        super(4);</span>
+<span class="nc" id="L31">        super(5);</span>
 <span class="nc" id="L32">        currentDir = new Vector2();</span>
 <span class="nc" id="L33">        setName(&quot;Ship (&quot; + shipCount++ + &quot;)&quot;); // each ship has a unique name</span>
 
@@ -196,22 +196,25 @@ public class Ship extends Entity implements CollisionCallBack {
 <span class="nc" id="L196">        return getComponent(Pirate.class).getPoints();</span>
     }
 
-    public void shoot(Vector2 dir) {
-<span class="nc" id="L200">        getComponent(Pirate.class).shoot(dir);</span>
-<span class="nc" id="L201">    }</span>
-
     /**
-     * Calls shoot function of internal component
+     * Calls shoot method with the current direction as parameter
      */
     public void shoot() {
-<span class="nc" id="L207">        getComponent(Pirate.class).shoot(currentDir);</span>
-<span class="nc" id="L208">    }</span>
+<span class="nc" id="L203">        shoot(currentDir);</span>
+<span class="nc" id="L204">    }</span>
+
+    /**
+     * Calls shoot method of internal component
+     */
+    public void shoot(Vector2 dir) {
+<span class="nc" id="L210">        getComponent(Pirate.class).shoot(dir);</span>
+<span class="nc" id="L211">    }</span>
 
     /**
      * @return copy of the transform's position
      */
     public Vector2 getPosition() {
-<span class="nc" id="L214">        return getComponent(Transform.class).getPosition().cpy();</span>
+<span class="nc" id="L217">        return getComponent(Transform.class).getPosition().cpy();</span>
     }
 
     /**
@@ -219,18 +222,18 @@ public class Ship extends Entity implements CollisionCallBack {
      * @return The Faction of the Pirate Component attached to this entity
      */
     public Faction getFaction() {
-<span class="nc" id="L222">        return getComponent(Pirate.class).getFaction();</span>
+<span class="nc" id="L225">        return getComponent(Pirate.class).getFaction();</span>
     }
 
     @Override
     public void BeginContact(CollisionInfo info) {
 
-<span class="nc" id="L228">    }</span>
+<span class="nc" id="L231">    }</span>
 
     @Override
     public void EndContact(CollisionInfo info) {
 
-<span class="nc" id="L233">    }</span>
+<span class="nc" id="L236">    }</span>
 
     /**
      * Amended for Assessment 2 (added functionality for when attacked by cannonball)
@@ -238,25 +241,25 @@ public class Ship extends Entity implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L241" title="All 2 branches missed.">        if (info.a instanceof CannonBall) {</span>
-<span class="nc" id="L242">            CannonBall a = (CannonBall) info.a;</span>
-<span class="nc bnc" id="L243" title="All 2 branches missed.">            if(a.getFaction() != getFaction()){</span>
-<span class="nc" id="L244">                getComponent(Pirate.class).takeDamage( a.getAttackDmg() );</span>
-<span class="nc" id="L245">                a.kill();</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">        if (info.a instanceof CannonBall) {</span>
+<span class="nc" id="L245">            CannonBall a = (CannonBall) info.a;</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if(a.getFaction() != getFaction()){</span>
+<span class="nc" id="L247">                getComponent(Pirate.class).takeDamage( a.getAttackDmg() );</span>
+<span class="nc" id="L248">                a.kill();</span>
             }
-<span class="nc bnc" id="L247" title="All 4 branches missed.">        }else if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
-<span class="nc" id="L248">            ((CollisionCallBack) info.b).EnterTrigger(info);</span>
+<span class="nc bnc" id="L250" title="All 4 branches missed.">        }else if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="nc" id="L251">            ((CollisionCallBack) info.b).EnterTrigger(info);</span>
         }
-<span class="nc" id="L250">    }</span>
+<span class="nc" id="L253">    }</span>
 
     /**
      * if called on a Player against anything else call it on the other thing
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L257" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
-<span class="nc" id="L258">            ((CollisionCallBack) info.b).ExitTrigger(info);</span>
+<span class="nc bnc" id="L260" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="nc" id="L261">            ((CollisionCallBack) info.b).ExitTrigger(info);</span>
         }
-<span class="nc" id="L260">    }</span>
+<span class="nc" id="L263">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

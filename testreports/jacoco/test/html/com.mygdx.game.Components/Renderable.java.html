@@ -90,34 +90,33 @@ public class Renderable extends Component {
     }
 
     /**
-     * Asignes a new texture compatible with textures sourced from atlas
-     *
+     * Assigns a new texture compatible with textures sourced from atlas
      * @param s the sprite contain the texture
      */
     public void setTexture(Sprite s) {
-<span class="nc" id="L98">        Sprite a = getSprite();</span>
-<span class="nc" id="L99">        a.setTexture(s.getTexture());</span>
-<span class="nc" id="L100">        a.setU(s.getU());</span>
-<span class="nc" id="L101">        a.setV(s.getV());</span>
-<span class="nc" id="L102">        a.setU2(s.getU2());</span>
-<span class="nc" id="L103">        a.setV2(s.getV2());</span>
-<span class="nc" id="L104">    }</span>
+<span class="nc" id="L97">        Sprite a = getSprite();</span>
+<span class="nc" id="L98">        a.setTexture(s.getTexture());</span>
+<span class="nc" id="L99">        a.setU(s.getU());</span>
+<span class="nc" id="L100">        a.setV(s.getV());</span>
+<span class="nc" id="L101">        a.setU2(s.getU2());</span>
+<span class="nc" id="L102">        a.setV2(s.getV2());</span>
+<span class="nc" id="L103">    }</span>
 
     public boolean isVisible() {
-<span class="nc" id="L107">        return isVisible;</span>
+<span class="nc" id="L106">        return isVisible;</span>
     }
 
     public void show() {
-<span class="nc" id="L111">        isVisible = true;</span>
-<span class="nc" id="L112">    }</span>
+<span class="nc" id="L110">        isVisible = true;</span>
+<span class="nc" id="L111">    }</span>
 
     public void hide() {
-<span class="nc" id="L115">        isVisible = false;</span>
-<span class="nc" id="L116">    }</span>
+<span class="nc" id="L114">        isVisible = false;</span>
+<span class="nc" id="L115">    }</span>
 
     public void toggleVisibility() {
-<span class="nc bnc" id="L119" title="All 2 branches missed.">        isVisible = !isVisible;</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">        isVisible = !isVisible;</span>
+<span class="nc" id="L119">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

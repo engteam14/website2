@@ -328,6 +328,9 @@ import static com.mygdx.utils.Constants.*;
 <span class="nc" id="L328">            questName.setText(q.getName());</span>
 <span class="nc" id="L329">            questDesc.setText(q.getDescription());</span>
         }
+<span class="nc bnc" id="L331" title="All 2 branches missed.">        if (!p.isAlive()) {</span>
+<span class="nc" id="L332">            parent.setScreen(parent.end);</span>
+        }
         /*if(!questComplete.getText().equals(&quot;&quot;)) {
             showTimer += EntityManager.getDeltaTime();
         }
@@ -335,42 +338,42 @@ import static com.mygdx.utils.Constants.*;
             showTimer = 0;
             questComplete.setText(&quot;&quot;);
         }*/
-<span class="nc" id="L338">    }</span>
+<span class="nc" id="L341">    }</span>
 
     /**
      * Draw UI elements showing player health, plunder, and ammo.
      */
     @Override
     protected void CreateActors() {
-<span class="nc" id="L345">        Table table = new Table();</span>
-<span class="nc" id="L346">        table.setFillParent(true);</span>
-<span class="nc" id="L347">        actors.add(table);</span>
+<span class="nc" id="L348">        Table table = new Table();</span>
+<span class="nc" id="L349">        table.setFillParent(true);</span>
+<span class="nc" id="L350">        actors.add(table);</span>
 
-<span class="nc" id="L349">        table.add(new Image(parent.skin.getDrawable(&quot;heart&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L350">        healthLabel = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L351">        table.add(healthLabel).top().left().size(50);</span>
+<span class="nc" id="L352">        table.add(new Image(parent.skin.getDrawable(&quot;heart&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L353">        healthLabel = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L354">        table.add(healthLabel).top().left().size(50);</span>
 
-<span class="nc" id="L353">        table.row();</span>
-<span class="nc" id="L354">        table.setDebug(false);</span>
+<span class="nc" id="L356">        table.row();</span>
+<span class="nc" id="L357">        table.setDebug(false);</span>
 
-<span class="nc" id="L356">        table.add(new Image(parent.skin.getDrawable(&quot;coin&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L357">        money = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L358">        table.add(money).top().left().size(50);</span>
+<span class="nc" id="L359">        table.add(new Image(parent.skin.getDrawable(&quot;coin&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L360">        money = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L361">        table.add(money).top().left().size(50);</span>
 
-<span class="nc" id="L360">        table.row();</span>
+<span class="nc" id="L363">        table.row();</span>
 
-<span class="nc" id="L362">        table.add(new Image(parent.skin.getDrawable(&quot;point&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L363">        points = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L364">        table.add(points).top().left().size(50);</span>
+<span class="nc" id="L365">        table.add(new Image(parent.skin.getDrawable(&quot;point&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L366">        points = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L367">        table.add(points).top().left().size(50);</span>
 
-<span class="nc" id="L366">        table.row();</span>
+<span class="nc" id="L369">        table.row();</span>
 
-<span class="nc" id="L368">        table.add(new Image(parent.skin.getDrawable(&quot;ball&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L369">        ammo = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L370">        table.add(ammo).top().left().size(50);</span>
+<span class="nc" id="L371">        table.add(new Image(parent.skin.getDrawable(&quot;ball&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L372">        ammo = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L373">        table.add(ammo).top().left().size(50);</span>
 
-<span class="nc" id="L372">        table.top().left();</span>
-<span class="nc" id="L373">    }</span>
+<span class="nc" id="L375">        table.top().left();</span>
+<span class="nc" id="L376">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
