@@ -1,0 +1,60 @@
+
+<h1 id="continuous-integration">Continuous Integration</h1>
+
+<h2 id="yorkpirates2-game-repository">yorkpirates2 (game) repository</h2>
+<p>Continuous integration occurs in two ways in our game repository</p>
+<ol>
+  <li>If a pull request is made, the `test  workflow is run
+    <ul>
+      <li>This is to ensure that the act of merging the implementation branch (different for each part of the game being worked on) and the main branch, particularly the resolution of conflicts, has not caused any of the game to break.</li>
+    </ul>
+  </li>
+  <li>If a pull request is <strong>successfully</strong> merged to main, the <code class="language-plaintext highlighter-rouge">test</code>, <code class="language-plaintext highlighter-rouge">build</code> and <code class="language-plaintext highlighter-rouge">documentation</code> work flows are all run. 
+    - This generates the test report, jar file and documentation pages to put on the website and the new build is put to main.
+    <h5 id="test-workflow"><code class="language-plaintext highlighter-rouge">test</code> workflow</h5>
+  </li>
+  <li>Builds the project using gradle.</li>
+  <li>The workflow will test the project, but continue if it errors. This will generate a test report.</li>
+  <li>The workflow will then deploy the test report to the website2 repository.</li>
+  <li>Finally, the workflow will run the tests again, but fail upon error.</li>
+</ol>
+
+<p>This ensures that if there are any errors in testing, it still generates a test report for us to see, and also alerts us to the error during the pull request. This means that we can then fix the issue before the game is published to main</p>
+<h5 id="build-workflow"><code class="language-plaintext highlighter-rouge">build</code> workflow</h5>
+<ol>
+  <li><strong>Builds</strong> the project using Gradle</li>
+  <li>Uses the dist command to <strong>generate a jar</strong> file</li>
+  <li><strong>Deploys</strong> the jar file to the website2 repository</li>
+</ol>
+
+<p>This allows us to automatically place the latest jar onto the website.</p>
+<h5 id="documentation"><code class="language-plaintext highlighter-rouge">documentation</code></h5>
+<ol>
+  <li><strong>Builds</strong> the project using Gradle.</li>
+  <li>Uses the javadoc command to <strong>generate</strong> documentation as html.</li>
+  <li>Then <strong>deploys</strong> the documentation to the website2 repository.</li>
+</ol>
+
+<p>This means that all of the javaDocs in our code are viewable on the website to allow for future developers to inspect but also to allow the rest of the team to view them easily</p>
+<h2 id="documentation2-repository">documentation2 repository</h2>
+<p>If a pull request or push to the main branch in the documentation repository is made, <code class="language-plaintext highlighter-rouge">deploy</code> is ran.</p>
+<h5 id="deploy-workflow"><code class="language-plaintext highlighter-rouge">deploy</code> workflow</h5>
+<p>Deploys the markdown files to the website2 repository. This allows us to keep the websites documentation files up to date.</p>
+<h2 id="website2-repository">website2 repository</h2>
+<p>All continuous integration in this repository occurs on a push to the main branch.
+<code class="language-plaintext highlighter-rouge">pages-build-deployment</code> will always be ran, however <code class="language-plaintext highlighter-rouge">convert</code> will only be ran if the push includes markdown files in the <code class="language-plaintext highlighter-rouge">/markdowns</code> directory.</p>
+<h5 id="convert-workflow"><code class="language-plaintext highlighter-rouge">convert</code> workflow</h5>
+<ol>
+  <li>Converts all of the files in the <code class="language-plaintext highlighter-rouge">/markdowns</code> directory into pdf files.</li>
+  <li>Commits the pdf files to the <code class="language-plaintext highlighter-rouge">/pdfs</code> directory in the repository.</li>
+</ol>
+
+<p>This allows our documentation to be presented in both markdown and pdf format.</p>
+<h5 id="pages-build-deployment-workflow"><code class="language-plaintext highlighter-rouge">pages-build-deployment</code> workflow</h5>
+<ol>
+  <li>Builds the jekyll website.</li>
+  <li>Deploys the built site to GitHub pages.</li>
+</ol>
+
+<p>This allows our website to constantly be up to date with all the latest files.</p>
+

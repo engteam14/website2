@@ -1,0 +1,1 @@
+Markdown file where we can write about our implementation side of the project.

@@ -1,0 +1,10 @@
+baseurl: ""
+url: "https://engteam14.github.io/website2/"
+
+theme: minima
+
+plugins:
+  - jekyll-optional-front-matter
+
+include:
+  - markdowns/
