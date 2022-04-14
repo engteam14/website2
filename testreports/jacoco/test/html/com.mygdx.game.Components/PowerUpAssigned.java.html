@@ -7,7 +7,7 @@ import com.mygdx.game.PowerUps.PowerUp;
  * For PowerUp requirement,
  * Holds the current PowerUp and manages it.
  */
-<span class="fc" id="L10">public class PowerUpAssigned extends Component {</span>
+<span class="nc" id="L10">public class PowerUpAssigned extends Component {</span>
 
     private Pirate pirate;
     private PowerUp powerUpAssigned;
@@ -17,35 +17,35 @@ import com.mygdx.game.PowerUps.PowerUp;
      * @param powerUp   The PowerUp to be assigned
      */
     public void AssignPowerUp(PowerUp powerUp) {
-<span class="fc" id="L20">        tryInit();</span>
-<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (!powerUp.CheckPermanent()) {</span>
-<span class="pc bpc" id="L22" title="1 of 2 branches missed.">            if (powerUpAssigned != null) {</span>
+<span class="nc" id="L20">        tryInit();</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        if (!powerUp.CheckPermanent()) {</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">            if (powerUpAssigned != null) {</span>
 <span class="nc" id="L23">                powerUpAssigned.DisablePowerUp(pirate);</span>
             }
-<span class="fc" id="L25">            powerUp.EnablePowerUp(pirate);</span>
-<span class="fc" id="L26">            powerUpAssigned = powerUp;</span>
+<span class="nc" id="L25">            powerUp.EnablePowerUp(pirate);</span>
+<span class="nc" id="L26">            powerUpAssigned = powerUp;</span>
         } else {
-<span class="fc" id="L28">            powerUp.EnablePowerUp(pirate);</span>
+<span class="nc" id="L28">            powerUp.EnablePowerUp(pirate);</span>
         }
-<span class="fc" id="L30">    }</span>
+<span class="nc" id="L30">    }</span>
 
     /**
      * Each frame checks if the assigned PowerUp is done, and deactivates as necessary.
      */
     @Override
     public void update() {
-<span class="fc" id="L37">        super.update();</span>
-<span class="fc" id="L38">        tryInit();</span>
-<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (powerUpAssigned != null) {</span>
-<span class="fc" id="L40">            powerUpAssigned.CheckPowerUpDone(pirate);</span>
+<span class="nc" id="L37">        super.update();</span>
+<span class="nc" id="L38">        tryInit();</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        if (powerUpAssigned != null) {</span>
+<span class="nc" id="L40">            powerUpAssigned.CheckPowerUpDone(pirate);</span>
         }
-<span class="fc" id="L42">    }</span>
+<span class="nc" id="L42">    }</span>
 
     private void tryInit(){
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (pirate == null){</span>
-<span class="fc" id="L46">            pirate = parent.getComponent(Pirate.class);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (pirate == null){</span>
+<span class="nc" id="L46">            pirate = parent.getComponent(Pirate.class);</span>
         }
-<span class="fc" id="L48">    }</span>
+<span class="nc" id="L48">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

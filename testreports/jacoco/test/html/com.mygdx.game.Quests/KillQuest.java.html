@@ -12,29 +12,29 @@ public class KillQuest extends Quest {
     private Pirate target;
 
     public KillQuest() {
-<span class="fc" id="L15">        super();</span>
-<span class="fc" id="L16">        name = &quot;Kill the college&quot;;</span>
-<span class="fc" id="L17">        description = &quot;KILL KILL KILL&quot;;</span>
-<span class="fc" id="L18">        plunderReward = 100;</span>
-<span class="fc" id="L19">        pointReward = 200;</span>
-<span class="fc" id="L20">        target = null;</span>
-<span class="fc" id="L21">    }</span>
+<span class="nc" id="L15">        super();</span>
+<span class="nc" id="L16">        name = &quot;Kill the college&quot;;</span>
+<span class="nc" id="L17">        description = &quot;KILL KILL KILL&quot;;</span>
+<span class="nc" id="L18">        plunderReward = 100;</span>
+<span class="nc" id="L19">        pointReward = 200;</span>
+<span class="nc" id="L20">        target = null;</span>
+<span class="nc" id="L21">    }</span>
 
     public KillQuest(Pirate target) {
-<span class="fc" id="L24">        this();</span>
-<span class="fc" id="L25">        this.target = target;</span>
-<span class="fc" id="L26">        description = target.getFaction().getName();</span>
-<span class="fc" id="L27">        new Indicator(this);</span>
-<span class="fc" id="L28">    }</span>
+<span class="nc" id="L24">        this();</span>
+<span class="nc" id="L25">        this.target = target;</span>
+<span class="nc" id="L26">        description = target.getFaction().getName();</span>
+<span class="nc" id="L27">        new Indicator(this);</span>
+<span class="nc" id="L28">    }</span>
 
     public KillQuest(Entity target) {
-<span class="fc" id="L31">        this(target.getComponent(Pirate.class));</span>
-<span class="fc" id="L32">    }</span>
+<span class="nc" id="L31">        this(target.getComponent(Pirate.class));</span>
+<span class="nc" id="L32">    }</span>
 
     @Override
     public boolean checkCompleted(Player p) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        isCompleted = !target.isAlive();</span>
-<span class="fc" id="L37">        return isCompleted;</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        isCompleted = !target.isAlive();</span>
+<span class="nc" id="L37">        return isCompleted;</span>
     }
 
     /**
@@ -42,7 +42,7 @@ public class KillQuest extends Quest {
      * @return the target of this quest
      */
     public Pirate getTarget() {
-<span class="fc" id="L45">        return target;</span>
+<span class="nc" id="L45">        return target;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

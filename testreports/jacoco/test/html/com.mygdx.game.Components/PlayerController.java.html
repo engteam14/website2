@@ -18,20 +18,20 @@ public class PlayerController extends Component {
     private float speed;
 
     public PlayerController() {
-<span class="fc" id="L21">        super();</span>
-<span class="fc" id="L22">        type = ComponentType.PlayerController;</span>
-<span class="fc" id="L23">        setRequirements(ComponentType.RigidBody);</span>
-<span class="fc" id="L24">    }</span>
+<span class="nc" id="L21">        super();</span>
+<span class="nc" id="L22">        type = ComponentType.PlayerController;</span>
+<span class="nc" id="L23">        setRequirements(ComponentType.RigidBody);</span>
+<span class="nc" id="L24">    }</span>
 
     /**
      * @param player the parent
      * @param speed  speed
      */
     public PlayerController(Player player, float speed) {
-<span class="fc" id="L31">        this();</span>
-<span class="fc" id="L32">        this.player = player;</span>
-<span class="fc" id="L33">        this.speed = speed;</span>
-<span class="fc" id="L34">    }</span>
+<span class="nc" id="L31">        this();</span>
+<span class="nc" id="L32">        this.player = player;</span>
+<span class="nc" id="L33">        this.speed = speed;</span>
+<span class="nc" id="L34">    }</span>
 
     /**
      * Reads keyboard and mouse inputs, moving and shooting as required.

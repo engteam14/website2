@@ -18,12 +18,12 @@ public class Renderable extends Component {
      * Called in other constructors, loads no textures by itself.
      */
     public Renderable() {
-<span class="fc" id="L21">        super();</span>
-<span class="fc" id="L22">        isVisible = true;</span>
-<span class="fc" id="L23">        type = ComponentType.Renderable;</span>
-<span class="fc" id="L24">        sprite = new Sprite();</span>
-<span class="fc" id="L25">        RenderingManager.addItem(this, RenderLayer.Transparent);</span>
-<span class="fc" id="L26">    }</span>
+<span class="nc" id="L21">        super();</span>
+<span class="nc" id="L22">        isVisible = true;</span>
+<span class="nc" id="L23">        type = ComponentType.Renderable;</span>
+<span class="nc" id="L24">        sprite = new Sprite();</span>
+<span class="nc" id="L25">        RenderingManager.addItem(this, RenderLayer.Transparent);</span>
+<span class="nc" id="L26">    }</span>
 
     /**
      * Associates Renderable with the given texture sprite and layer.
@@ -32,10 +32,10 @@ public class Renderable extends Component {
      * @param layer the rendering layer
      */
     public Renderable(int texId, RenderLayer layer) {
-<span class="fc" id="L35">        this();</span>
-<span class="fc" id="L36">        sprite = new Sprite(ResourceManager.getTexture(texId));</span>
-<span class="fc" id="L37">        RenderingManager.addItem(this, layer);</span>
-<span class="fc" id="L38">    }</span>
+<span class="nc" id="L35">        this();</span>
+<span class="nc" id="L36">        sprite = new Sprite(ResourceManager.getTexture(texId));</span>
+<span class="nc" id="L37">        RenderingManager.addItem(this, layer);</span>
+<span class="nc" id="L38">    }</span>
 
     /**
      * Associates Renderable with the given sprite from a texture atlas and a layer.
@@ -45,10 +45,10 @@ public class Renderable extends Component {
      * @param layer   the rendering layer
      */
     public Renderable(int atlasId, String texName, RenderLayer layer) {
-<span class="fc" id="L48">        this();</span>
-<span class="fc" id="L49">        sprite = new Sprite(ResourceManager.getSprite(atlasId, texName));</span>
-<span class="fc" id="L50">        RenderingManager.addItem(this, layer);</span>
-<span class="fc" id="L51">    }</span>
+<span class="nc" id="L48">        this();</span>
+<span class="nc" id="L49">        sprite = new Sprite(ResourceManager.getSprite(atlasId, texName));</span>
+<span class="nc" id="L50">        RenderingManager.addItem(this, layer);</span>
+<span class="nc" id="L51">    }</span>
 
     /**
      * Locates the sprite at the position of the parent's Transform component.
@@ -86,7 +86,7 @@ public class Renderable extends Component {
 <span class="nc" id="L86">    }</span>
 
     public Sprite getSprite() {
-<span class="fc" id="L89">        return sprite;</span>
+<span class="nc" id="L89">        return sprite;</span>
     }
 
     /**
@@ -94,25 +94,25 @@ public class Renderable extends Component {
      * @param s the sprite contain the texture
      */
     public void setTexture(Sprite s) {
-<span class="fc" id="L97">        Sprite a = getSprite();</span>
-<span class="fc" id="L98">        a.setTexture(s.getTexture());</span>
-<span class="fc" id="L99">        a.setU(s.getU());</span>
-<span class="fc" id="L100">        a.setV(s.getV());</span>
-<span class="fc" id="L101">        a.setU2(s.getU2());</span>
-<span class="fc" id="L102">        a.setV2(s.getV2());</span>
-<span class="fc" id="L103">    }</span>
+<span class="nc" id="L97">        Sprite a = getSprite();</span>
+<span class="nc" id="L98">        a.setTexture(s.getTexture());</span>
+<span class="nc" id="L99">        a.setU(s.getU());</span>
+<span class="nc" id="L100">        a.setV(s.getV());</span>
+<span class="nc" id="L101">        a.setU2(s.getU2());</span>
+<span class="nc" id="L102">        a.setV2(s.getV2());</span>
+<span class="nc" id="L103">    }</span>
 
     public boolean isVisible() {
-<span class="fc" id="L106">        return isVisible;</span>
+<span class="nc" id="L106">        return isVisible;</span>
     }
 
     public void show() {
-<span class="fc" id="L110">        isVisible = true;</span>
-<span class="fc" id="L111">    }</span>
+<span class="nc" id="L110">        isVisible = true;</span>
+<span class="nc" id="L111">    }</span>
 
     public void hide() {
-<span class="fc" id="L114">        isVisible = false;</span>
-<span class="fc" id="L115">    }</span>
+<span class="nc" id="L114">        isVisible = false;</span>
+<span class="nc" id="L115">    }</span>
 
     public void toggleVisibility() {
 <span class="nc bnc" id="L118" title="All 2 branches missed.">        isVisible = !isVisible;</span>

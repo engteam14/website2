@@ -18,18 +18,18 @@ public class Indicator extends Entity {
 	private boolean visible;
 
 	public Indicator(KillQuest kq) {
-<span class="fc" id="L21">		super(2);</span>
-<span class="fc" id="L22">		quest = kq;</span>
-<span class="fc" id="L23">		target = quest.getTarget().getParent();</span>
+<span class="nc" id="L21">		super(2);</span>
+<span class="nc" id="L22">		quest = kq;</span>
+<span class="nc" id="L23">		target = quest.getTarget().getParent();</span>
 
-<span class="fc" id="L25">		Transform t = new Transform();</span>
-<span class="fc" id="L26">		t.setPosition(800, 800);</span>
-<span class="fc" id="L27">		Renderable r = new Renderable(10, RenderLayer.Transparent);</span>
-<span class="fc" id="L28">		r.hide();</span>
+<span class="nc" id="L25">		Transform t = new Transform();</span>
+<span class="nc" id="L26">		t.setPosition(800, 800);</span>
+<span class="nc" id="L27">		Renderable r = new Renderable(10, RenderLayer.Transparent);</span>
+<span class="nc" id="L28">		r.hide();</span>
 
-<span class="fc" id="L30">		addComponents(t, r);</span>
-<span class="fc" id="L31">		gradient = updateGradient();</span>
-<span class="fc" id="L32">	}</span>
+<span class="nc" id="L30">		addComponents(t, r);</span>
+<span class="nc" id="L31">		gradient = updateGradient();</span>
+<span class="nc" id="L32">	}</span>
 
 	@Override
 	public void update(){
@@ -45,18 +45,18 @@ public class Indicator extends Entity {
 	 * Called when updating the gradient of the Indicator.
 	 */
 	public Vector2 updateGradient(){
-<span class="fc" id="L48">		Player p = GameManager.getPlayer();</span>
-<span class="fc" id="L49">		Transform self = p.getComponent(Transform.class);</span>
-<span class="fc" id="L50">		Transform goal = target.getComponent(Transform.class);</span>
+<span class="nc" id="L48">		Player p = GameManager.getPlayer();</span>
+<span class="nc" id="L49">		Transform self = p.getComponent(Transform.class);</span>
+<span class="nc" id="L50">		Transform goal = target.getComponent(Transform.class);</span>
 
 		// Calculate the gradient to draw the indicator at.
-<span class="fc" id="L53">		float changeInX = goal.getPosition().x - self.getPosition().x;</span>
-<span class="fc" id="L54">		float changeInY = goal.getPosition().y - self.getPosition().y;</span>
-<span class="fc" id="L55">		float scaleFactor = max(abs(changeInX),abs(changeInY));</span>
-<span class="fc" id="L56">		float dx = changeInX / scaleFactor;</span>
-<span class="fc" id="L57">		float dy = changeInY / scaleFactor;</span>
+<span class="nc" id="L53">		float changeInX = goal.getPosition().x - self.getPosition().x;</span>
+<span class="nc" id="L54">		float changeInY = goal.getPosition().y - self.getPosition().y;</span>
+<span class="nc" id="L55">		float scaleFactor = max(abs(changeInX),abs(changeInY));</span>
+<span class="nc" id="L56">		float dx = changeInX / scaleFactor;</span>
+<span class="nc" id="L57">		float dy = changeInY / scaleFactor;</span>
 
-<span class="fc" id="L59">		return (new Vector2(dx, dy));</span>
+<span class="nc" id="L59">		return (new Vector2(dx, dy));</span>
 	}
 
 	/**
