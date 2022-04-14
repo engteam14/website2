@@ -14,17 +14,17 @@ import java.util.ArrayList;
     private static ArrayList&lt;String&gt; entityNames;
     private static ArrayList&lt;Entity&gt; entities;
     private static ArrayList&lt;Component&gt; components;
-<span class="nc" id="L17">    private static boolean initialized = false;</span>
+<span class="fc" id="L17">    private static boolean initialized = false;</span>
 
     /**
      * Should only be called once although if it isn't called at all it will be called automatically
      */
     public static void Initialize() {
-<span class="nc" id="L23">        entityNames = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L24">        entities = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L25">        components = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L26">        initialized = true;</span>
-<span class="nc" id="L27">    }</span>
+<span class="fc" id="L23">        entityNames = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L24">        entities = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L25">        components = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L26">        initialized = true;</span>
+<span class="fc" id="L27">    }</span>
 
     /**
      * Dont call manually
@@ -32,9 +32,9 @@ import java.util.ArrayList;
      * @param c the comp to add
      */
     public static void addComponent(Component c) {
-<span class="nc" id="L35">        tryInit();</span>
-<span class="nc" id="L36">        components.add(c);</span>
-<span class="nc" id="L37">    }</span>
+<span class="fc" id="L35">        tryInit();</span>
+<span class="fc" id="L36">        components.add(c);</span>
+<span class="fc" id="L37">    }</span>
 
     /**
      * Dont call manually
@@ -42,10 +42,10 @@ import java.util.ArrayList;
      * @param e the entity to add
      */
     public static void addEntity(Entity e) {
-<span class="nc" id="L45">        tryInit();</span>
-<span class="nc" id="L46">        entities.add(e);</span>
-<span class="nc" id="L47">        entityNames.add(e.getName());</span>
-<span class="nc" id="L48">    }</span>
+<span class="fc" id="L45">        tryInit();</span>
+<span class="fc" id="L46">        entities.add(e);</span>
+<span class="fc" id="L47">        entityNames.add(e.getName());</span>
+<span class="fc" id="L48">    }</span>
 
     /**
      * gets the first entity found with the given name
@@ -64,8 +64,8 @@ import java.util.ArrayList;
      * @param new_ new name
      */
     public static void changeName(String prev, String new_) {
-<span class="nc" id="L67">        entityNames.set(entityNames.indexOf(prev), new_);</span>
-<span class="nc" id="L68">    }</span>
+<span class="fc" id="L67">        entityNames.set(entityNames.indexOf(prev), new_);</span>
+<span class="fc" id="L68">    }</span>
 
     /**
      * raises the appropriate events for each entity's component. then renders after all entities have being processed if render is requested
@@ -106,10 +106,10 @@ import java.util.ArrayList;
      * automatically calls initialised if not done so
      */
     private static void tryInit() {
-<span class="nc bnc" id="L109" title="All 2 branches missed.">        if (!initialized) {</span>
-<span class="nc" id="L110">            Initialize();</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        if (!initialized) {</span>
+<span class="fc" id="L110">            Initialize();</span>
         }
-<span class="nc" id="L112">    }</span>
+<span class="fc" id="L112">    }</span>
 
     /**
      * gets the time between the last from and the current
@@ -117,7 +117,7 @@ import java.util.ArrayList;
      * @return 1/FPS
      */
     public static float getDeltaTime() {
-<span class="nc" id="L120">        return Gdx.graphics.getDeltaTime();</span>
+<span class="fc" id="L120">        return Gdx.graphics.getDeltaTime();</span>
     }
 
     public static int getFPS() {

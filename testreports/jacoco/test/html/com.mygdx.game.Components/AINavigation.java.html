@@ -16,13 +16,13 @@ public class AINavigation extends Component implements Steerable&lt;Vector2&gt; 
     /**
      * NPC settings for steerable
      */
-<span class="nc" id="L19">    private static class Attributes {</span>
-<span class="nc" id="L20">        public float boundingRadius = 128;</span>
-<span class="nc" id="L21">        public float maxSpd = GameManager.getSettings().get(&quot;AI&quot;).getFloat(&quot;maxSpeed&quot;);</span>
-<span class="nc" id="L22">        public float maxAcc = 50000;</span>
-<span class="nc" id="L23">        public float maxAngSpd = 0;</span>
-<span class="nc" id="L24">        public float maxAngAcc = 0;</span>
-<span class="nc" id="L25">        public boolean isTagged = false;</span>
+<span class="fc" id="L19">    private static class Attributes {</span>
+<span class="fc" id="L20">        public float boundingRadius = 128;</span>
+<span class="fc" id="L21">        public float maxSpd = GameManager.getSettings().get(&quot;AI&quot;).getFloat(&quot;maxSpeed&quot;);</span>
+<span class="fc" id="L22">        public float maxAcc = 50000;</span>
+<span class="fc" id="L23">        public float maxAngSpd = 0;</span>
+<span class="fc" id="L24">        public float maxAngAcc = 0;</span>
+<span class="fc" id="L25">        public boolean isTagged = false;</span>
     }
 
     RigidBody rb;
@@ -32,26 +32,26 @@ public class AINavigation extends Component implements Steerable&lt;Vector2&gt; 
     SteeringAcceleration&lt;Vector2&gt; steeringOutput;
 
     public AINavigation() {
-<span class="nc" id="L35">        super();</span>
-<span class="nc" id="L36">        attributes = new Attributes();</span>
-<span class="nc" id="L37">        setRequirements(ComponentType.RigidBody);</span>
-<span class="nc" id="L38">        type = ComponentType.AINavigation;</span>
-<span class="nc" id="L39">        steeringOutput = new SteeringAcceleration&lt;&gt;(new Vector2());</span>
-<span class="nc" id="L40">    }</span>
+<span class="fc" id="L35">        super();</span>
+<span class="fc" id="L36">        attributes = new Attributes();</span>
+<span class="fc" id="L37">        setRequirements(ComponentType.RigidBody);</span>
+<span class="fc" id="L38">        type = ComponentType.AINavigation;</span>
+<span class="fc" id="L39">        steeringOutput = new SteeringAcceleration&lt;&gt;(new Vector2());</span>
+<span class="fc" id="L40">    }</span>
 
     public void setBehavior(SteeringBehavior&lt;Vector2&gt; behavior) {
-<span class="nc" id="L43">        this.behavior = behavior;</span>
-<span class="nc" id="L44">    }</span>
+<span class="fc" id="L43">        this.behavior = behavior;</span>
+<span class="fc" id="L44">    }</span>
 
     /**
      * Gets the components if != null
      */
     private void getComps() {
-<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (rb == null) {</span>
-<span class="nc" id="L51">            rb = parent.getComponent(RigidBody.class);</span>
-<span class="nc" id="L52">            t = parent.getComponent(Transform.class);</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        if (rb == null) {</span>
+<span class="fc" id="L51">            rb = parent.getComponent(RigidBody.class);</span>
+<span class="fc" id="L52">            t = parent.getComponent(Transform.class);</span>
         }
-<span class="nc" id="L54">    }</span>
+<span class="fc" id="L54">    }</span>
 
     /**
      * Called once per frame. Apply the steering behaviour and sets the ship direction, so it faces the right way
@@ -104,9 +104,9 @@ public class AINavigation extends Component implements Steerable&lt;Vector2&gt; 
      * Stops all motion
      */
     public void stop() {
-<span class="nc" id="L107">        getComps();</span>
-<span class="nc" id="L108">        rb.setVelocity(new Vector2(0, 0));</span>
-<span class="nc" id="L109">    }</span>
+<span class="fc" id="L107">        getComps();</span>
+<span class="fc" id="L108">        rb.setVelocity(new Vector2(0, 0));</span>
+<span class="fc" id="L109">    }</span>
 
     // Overrides for steerable
 

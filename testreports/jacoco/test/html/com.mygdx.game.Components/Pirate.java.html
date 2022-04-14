@@ -30,24 +30,24 @@ public class Pirate extends Component {
     private final QueueFIFO&lt;Ship&gt; targets;
 
     public Pirate() {
-<span class="nc" id="L33">        super();</span>
-<span class="nc" id="L34">        targets = new QueueFIFO&lt;&gt;();</span>
-<span class="nc" id="L35">        type = ComponentType.Pirate;</span>
-<span class="nc" id="L36">        factionId = 1;</span>
-<span class="nc" id="L37">        isAlive = true;</span>
+<span class="fc" id="L33">        super();</span>
+<span class="fc" id="L34">        targets = new QueueFIFO&lt;&gt;();</span>
+<span class="fc" id="L35">        type = ComponentType.Pirate;</span>
+<span class="fc" id="L36">        factionId = 1;</span>
+<span class="fc" id="L37">        isAlive = true;</span>
 
-<span class="nc" id="L39">        values = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L40">        JsonValue starting = GameManager.getSettings().get(&quot;starting&quot;);</span>
-<span class="nc" id="L41">        values.put(&quot;health&quot;, (float) starting.getInt(&quot;health&quot;));</span>
-<span class="nc" id="L42">        values.put(&quot;damage&quot;, (float) starting.getInt(&quot;damage&quot;));</span>
-<span class="nc" id="L43">        values.put(&quot;ammo&quot;, (float) starting.getInt(&quot;ammo&quot;));</span>
-<span class="nc" id="L44">        values.put(&quot;plunder&quot;, (float) starting.getInt(&quot;plunder&quot;));</span>
+<span class="fc" id="L39">        values = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L40">        JsonValue starting = GameManager.getSettings().get(&quot;starting&quot;);</span>
+<span class="fc" id="L41">        values.put(&quot;health&quot;, (float) starting.getInt(&quot;health&quot;));</span>
+<span class="fc" id="L42">        values.put(&quot;damage&quot;, (float) starting.getInt(&quot;damage&quot;));</span>
+<span class="fc" id="L43">        values.put(&quot;ammo&quot;, (float) starting.getInt(&quot;ammo&quot;));</span>
+<span class="fc" id="L44">        values.put(&quot;plunder&quot;, (float) starting.getInt(&quot;plunder&quot;));</span>
 
-<span class="nc" id="L46">        values.put(&quot;plunderRate&quot;, 1f);</span>
-<span class="nc" id="L47">        values.put(&quot;defense&quot;, 1f);</span>
+<span class="fc" id="L46">        values.put(&quot;plunderRate&quot;, 1f);</span>
+<span class="fc" id="L47">        values.put(&quot;defense&quot;, 1f);</span>
 
-<span class="nc" id="L49">        defaults = new HashMap&lt;&gt;(values);</span>
-<span class="nc" id="L50">    }</span>
+<span class="fc" id="L49">        defaults = new HashMap&lt;&gt;(values);</span>
+<span class="fc" id="L50">    }</span>
 
     /**
      * // New for assessment 2 //
@@ -56,7 +56,7 @@ public class Pirate extends Component {
      * @return      The value
      */
     public float getValue(String key) {
-<span class="nc" id="L59">        return values.get(key);</span>
+<span class="fc" id="L59">        return values.get(key);</span>
     }
 
     /**
@@ -77,8 +77,8 @@ public class Pirate extends Component {
      * @param value     The float to apply
      */
     public void setValue(String key, float value) {
-<span class="nc" id="L80">        values.replace(key, value);</span>
-<span class="nc" id="L81">    }</span>
+<span class="fc" id="L80">        values.replace(key, value);</span>
+<span class="fc" id="L81">    }</span>
 
     /**
      * // New for assessment 2 //
@@ -87,8 +87,8 @@ public class Pirate extends Component {
      * @param mult      The multiplication factor
      */
     public void multValue(String key, float mult) {
-<span class="nc" id="L90">        values.replace(key, values.get(key) * mult);</span>
-<span class="nc" id="L91">    }</span>
+<span class="fc" id="L90">        values.replace(key, values.get(key) * mult);</span>
+<span class="fc" id="L91">    }</span>
 
     /**
      * // New for assessment 2 //
@@ -96,32 +96,32 @@ public class Pirate extends Component {
      * @param key       The value to reset
      */
     public void resetToDefault(String key) {
-<span class="nc" id="L99">        values.replace(key, defaults.get(key));</span>
-<span class="nc" id="L100">    }</span>
+<span class="fc" id="L99">        values.replace(key, defaults.get(key));</span>
+<span class="fc" id="L100">    }</span>
 
     public void addTarget(Ship target) {
-<span class="nc" id="L103">        targets.add(target);</span>
-<span class="nc" id="L104">    }</span>
+<span class="fc" id="L103">        targets.add(target);</span>
+<span class="fc" id="L104">    }</span>
 
     public int getPlunder() {
-<span class="nc" id="L107">        return values.get(&quot;plunder&quot;).intValue();</span>
+<span class="fc" id="L107">        return values.get(&quot;plunder&quot;).intValue();</span>
     }
 
     public int getPoints() {
-<span class="nc" id="L111">        return points;</span>
+<span class="fc" id="L111">        return points;</span>
     }
 
     public void addPlunder(int money) {
         // Assessment 2 change: Plunder additions are now multiplied by plunderRate value
-<span class="nc" id="L116">        values.replace(&quot;plunder&quot; , values.get(&quot;plunder&quot;)+ Math.round(money * values.get(&quot;plunderRate&quot;)));</span>
-<span class="nc" id="L117">    }</span>
+<span class="fc" id="L116">        values.replace(&quot;plunder&quot; , values.get(&quot;plunder&quot;)+ Math.round(money * values.get(&quot;plunderRate&quot;)));</span>
+<span class="fc" id="L117">    }</span>
 
     public void addPoints(int increment) {
-<span class="nc" id="L120">        points += increment;</span>
-<span class="nc" id="L121">    }</span>
+<span class="fc" id="L120">        points += increment;</span>
+<span class="fc" id="L121">    }</span>
 
     public Faction getFaction() {
-<span class="nc" id="L124">        return GameManager.getFaction(factionId);</span>
+<span class="fc" id="L124">        return GameManager.getFaction(factionId);</span>
     }
 
     /**
@@ -133,39 +133,39 @@ public class Pirate extends Component {
     }
 
     public void setFactionId(int factionId) {
-<span class="nc" id="L136">        this.factionId = factionId;</span>
-<span class="nc" id="L137">    }</span>
+<span class="fc" id="L136">        this.factionId = factionId;</span>
+<span class="fc" id="L137">    }</span>
 
     /**
      * Added for Assessment 2, sets whether the pirate can ignore ammo costs for firing
      * @param status boolean value to set infiniteAmmo to
      */
     public void setInfiniteAmmo(boolean status) {
-<span class="nc" id="L144">        infiniteAmmo = status;</span>
-<span class="nc" id="L145">    }</span>
+<span class="fc" id="L144">        infiniteAmmo = status;</span>
+<span class="fc" id="L145">    }</span>
 
     /**
      * Added for Assessment 2, sets the buffer radius of this pirate
      * @param radius float value to set the buffer to
      */
     public void setBuffer(float radius) {
-<span class="nc" id="L152">        buffer = radius;</span>
-<span class="nc" id="L153">    }</span>
+<span class="fc" id="L152">        buffer = radius;</span>
+<span class="fc" id="L153">    }</span>
 
     /**
      * Added for Assessment 2
      * @return the damage dealt by attacks from this unit
      */
     public Float getAttackDmg() {
-<span class="nc" id="L160">        return values.get(&quot;damage&quot;);</span>
+<span class="fc" id="L160">        return values.get(&quot;damage&quot;);</span>
     }
 
     public void takeDamage(float dmg) {
         // Assessment 2 change: Refactored to include key for health instead of variable, as well as factor in new defense value
-<span class="nc" id="L165">        dmg *= (1f/values.get(&quot;defense&quot;));</span>
-<span class="nc" id="L166">        values.replace(&quot;health&quot;, getHealth() - dmg);</span>
-<span class="nc bnc" id="L167" title="All 2 branches missed.">        if (getHealth() &lt;= 0) kill();</span>
-<span class="nc" id="L168">    }</span>
+<span class="fc" id="L165">        dmg *= (1f/values.get(&quot;defense&quot;));</span>
+<span class="fc" id="L166">        values.replace(&quot;health&quot;, getHealth() - dmg);</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">        if (getHealth() &lt;= 0) kill();</span>
+<span class="fc" id="L168">    }</span>
 
     /**
      * Changed for Assessment 2:
@@ -174,8 +174,8 @@ public class Pirate extends Component {
      * @param direction the direction to shoot in
      */
     public void shoot(Vector2 direction) {
-<span class="nc" id="L177">        shoot(parent.getComponent(Transform.class).getPosition().cpy(),direction);</span>
-<span class="nc" id="L178">    }</span>
+<span class="fc" id="L177">        shoot(parent.getComponent(Transform.class).getPosition().cpy(),direction);</span>
+<span class="fc" id="L178">    }</span>
 
     /**
      * Added for Assessment 2
@@ -183,14 +183,14 @@ public class Pirate extends Component {
      * @param direction the direction to shoot in
      */
     public void shoot(Vector2 startPos, Vector2 direction){
-<span class="nc bnc" id="L186" title="All 4 branches missed.">        if(!infiniteAmmo &amp;&amp; (getAmmo() == 0)){</span>
+<span class="pc bpc" id="L186" title="1 of 4 branches missed.">        if(!infiniteAmmo &amp;&amp; (getAmmo() == 0)){</span>
 <span class="nc" id="L187">            return;</span>
         }
-<span class="nc bnc" id="L189" title="All 2 branches missed.">        if(!infiniteAmmo){</span>
-<span class="nc" id="L190">            values.replace(&quot;ammo&quot;, getAmmo()-1f);</span>
+<span class="fc bfc" id="L189" title="All 2 branches covered.">        if(!infiniteAmmo){</span>
+<span class="fc" id="L190">            values.replace(&quot;ammo&quot;, getAmmo()-1f);</span>
         }
-<span class="nc" id="L192">        GameManager.shoot(parent, startPos, direction);</span>
-<span class="nc" id="L193">    }</span>
+<span class="fc" id="L192">        GameManager.shoot(parent, startPos, direction);</span>
+<span class="fc" id="L193">    }</span>
 
     /**
      * Adds ammo
@@ -203,7 +203,7 @@ public class Pirate extends Component {
 
     public int getHealth() {
         // Assessment 2 change: Refactored to use key for health instead of variable
-<span class="nc" id="L206">        return Math.round(values.get(&quot;health&quot;));</span>
+<span class="fc" id="L206">        return Math.round(values.get(&quot;health&quot;));</span>
     }
 
     /**
@@ -211,12 +211,12 @@ public class Pirate extends Component {
      * target will be null if not in agro range
      */
     public boolean canAttack() {
-<span class="nc bnc" id="L214" title="All 2 branches missed.">        if (targets.peek() != null) {</span>
-<span class="nc" id="L215">            final Ship p = (Ship) parent;</span>
-<span class="nc" id="L216">            final Vector2 pos = p.getPosition();</span>
-<span class="nc" id="L217">            final float dst = pos.dst(targets.peek().getPosition());</span>
+<span class="pc bpc" id="L214" title="1 of 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="fc" id="L215">            final Ship p = (Ship) parent;</span>
+<span class="fc" id="L216">            final Vector2 pos = p.getPosition();</span>
+<span class="fc" id="L217">            final float dst = pos.dst(targets.peek().getPosition());</span>
             // withing attack range
-<span class="nc bnc" id="L219" title="All 2 branches missed.">            return dst &lt; Ship.getAttackRange();</span>
+<span class="pc bpc" id="L219" title="1 of 2 branches missed.">            return dst &lt; Ship.getAttackRange();</span>
         }
 <span class="nc" id="L221">        return false;</span>
     }
@@ -226,12 +226,12 @@ public class Pirate extends Component {
      * target will be null if not in agro range
      */
     public boolean isAgro() {
-<span class="nc bnc" id="L229" title="All 2 branches missed.">        if (targets.peek() != null) {</span>
-<span class="nc" id="L230">            final Ship p = (Ship) parent;</span>
-<span class="nc" id="L231">            final Vector2 pos = p.getPosition();</span>
-<span class="nc" id="L232">            final float dst = pos.dst(targets.peek().getPosition());</span>
+<span class="pc bpc" id="L229" title="1 of 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="fc" id="L230">            final Ship p = (Ship) parent;</span>
+<span class="fc" id="L231">            final Vector2 pos = p.getPosition();</span>
+<span class="fc" id="L232">            final float dst = pos.dst(targets.peek().getPosition());</span>
             // out of attack range but in agro range
-<span class="nc bnc" id="L234" title="All 2 branches missed.">            return dst &gt;= Ship.getAttackRange();</span>
+<span class="pc bpc" id="L234" title="1 of 2 branches missed.">            return dst &gt;= Ship.getAttackRange();</span>
         }
 <span class="nc" id="L236">        return false;</span>
     }
@@ -245,7 +245,7 @@ public class Pirate extends Component {
 <span class="nc" id="L245">    }</span>
 
     public boolean isAlive() {
-<span class="nc" id="L248">        return isAlive;</span>
+<span class="fc" id="L248">        return isAlive;</span>
     }
 
     /**
@@ -253,18 +253,18 @@ public class Pirate extends Component {
      */
     public void kill() {
         // Assessment 2 change: Refactored to use key for health instead of variable
-<span class="nc" id="L256">        values.replace(&quot;health&quot;, 0f);</span>
-<span class="nc" id="L257">        isAlive = false;</span>
-<span class="nc" id="L258">    }</span>
+<span class="fc" id="L256">        values.replace(&quot;health&quot;, 0f);</span>
+<span class="fc" id="L257">        isAlive = false;</span>
+<span class="fc" id="L258">    }</span>
 
     public void setAmmo(int ammo) {
         // Assessment 2 change: Refactored to use key for ammo instead of variable
-<span class="nc" id="L262">        values.replace(&quot;ammo&quot;, (float) ammo);</span>
-<span class="nc" id="L263">    }</span>
+<span class="fc" id="L262">        values.replace(&quot;ammo&quot;, (float) ammo);</span>
+<span class="fc" id="L263">    }</span>
 
     public int getAmmo() {
         // Assessment 2 change: Refactored to use key for ammo instead of variable
-<span class="nc" id="L267">        return Math.round(values.get(&quot;ammo&quot;));</span>
+<span class="fc" id="L267">        return Math.round(values.get(&quot;ammo&quot;));</span>
     }
 
     public int targetCount() {
