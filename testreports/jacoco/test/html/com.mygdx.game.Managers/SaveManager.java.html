@@ -64,28 +64,31 @@ import java.util.ArrayList;
 <span class="nc" id="L64">            float shipX = prefs.getFloat(&quot;ship&quot; + i + &quot;X&quot;, ship.getPosition().x);</span>
 <span class="nc" id="L65">            float shipY = prefs.getFloat(&quot;ship&quot; + i + &quot;Y&quot;, ship.getPosition().y);</span>
 <span class="nc" id="L66">            float shipH = prefs.getFloat(&quot;ship&quot; + i + &quot;H&quot;, ship.getHealth());</span>
-<span class="nc" id="L67">            int shipP = (int) prefs.getFloat(&quot;ship&quot; + i + &quot;P&quot;, ship.getPlunder());</span>
-<span class="nc" id="L68">            int shipA = prefs.getInteger(&quot;ship&quot; + i + &quot;A&quot;, ship.getComponent(Pirate.class).getAmmo());</span>
-<span class="nc" id="L69">            int shipF = prefs.getInteger(&quot;ship&quot; + i + &quot;F&quot;, ship.getComponent(Pirate.class).getFaction().id);</span>
+<span class="nc" id="L67">            int shipP = prefs.getInteger(&quot;ship&quot; + i + &quot;Pl&quot;, ship.getPlunder());</span>
+<span class="nc" id="L68">            int shipPo = prefs.getInteger(&quot;ship&quot; + i + &quot;Po&quot;, ship.getPlunder());</span>
+<span class="nc" id="L69">            int shipA = prefs.getInteger(&quot;ship&quot; + i + &quot;A&quot;, ship.getComponent(Pirate.class).getAmmo());</span>
+<span class="nc" id="L70">            int shipF = prefs.getInteger(&quot;ship&quot; + i + &quot;F&quot;, ship.getComponent(Pirate.class).getFaction().id);</span>
 
-<span class="nc" id="L71">            ship.getComponent(Pirate.class).addPlunder(ship.getPlunder() - shipP);</span>
-<span class="nc" id="L72">            ship.getComponent(Pirate.class).setAmmo(shipA);</span>
-<span class="nc" id="L73">            ship.getComponent(Transform.class).setPosition(shipX, shipY);</span>
-<span class="nc" id="L74">            ship.getComponent(Pirate.class).takeDamage(ship.getHealth() - shipH);</span>
-<span class="nc" id="L75">            ship.getComponent(Pirate.class).setFactionId(shipF);</span>
+
+<span class="nc" id="L73">            ship.getComponent(Pirate.class).addPlunder(shipP- ship.getPlunder() );</span>
+<span class="nc" id="L74">            ship.getComponent(Pirate.class).setAmmo(shipA);</span>
+<span class="nc" id="L75">            ship.getComponent(Transform.class).setPosition(shipX, shipY);</span>
+<span class="nc" id="L76">            ship.getComponent(Pirate.class).takeDamage(ship.getHealth() - shipH);</span>
+<span class="nc" id="L77">            ship.getComponent(Pirate.class).setFactionId(shipF);</span>
+<span class="nc" id="L78">            ship.getComponent(Pirate.class).addPoints(shipPo - ship.getPoints());</span>
 
         }
-<span class="nc" id="L78">        ArrayList&lt;College&gt; Colleges = GameManager.getColleges();</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">        for (College college : Colleges) {</span>
-<span class="nc" id="L80">            boolean isAlive = prefs.getBoolean(college.f.id+&quot;Alive&quot;, true);</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (!isAlive) {</span>
-<span class="nc" id="L82">                college.killThisCollege(null);</span>
+<span class="nc" id="L81">        ArrayList&lt;College&gt; Colleges = GameManager.getColleges();</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        for (College college : Colleges) {</span>
+<span class="nc" id="L83">            boolean isAlive = prefs.getBoolean(college.f.id+&quot;Alive&quot;, true);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (!isAlive) {</span>
+<span class="nc" id="L85">                college.killThisCollege(null);</span>
             }
-<span class="nc" id="L84">        }</span>
-<span class="nc" id="L85">        QuestManager.setCurrentQuest(prefs.getString(&quot;currentQuest&quot;));</span>
+<span class="nc" id="L87">        }</span>
+<span class="nc" id="L88">        QuestManager.setCurrentQuest(prefs.getString(&quot;currentQuest&quot;));</span>
 
 
-<span class="nc" id="L88">    }</span>
+<span class="nc" id="L91">    }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
