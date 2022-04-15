@@ -1,7 +1,7 @@
 baseurl: ""
 url: "https://engteam14.github.io/website2/"
 
-theme: minima
+theme: jekyll-theme-slate
 
 plugins:
   - jekyll-optional-front-matter
