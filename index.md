@@ -72,55 +72,69 @@
         <div id="main-area">
             <div id="text-area">
                 <h1>
-                    Our team:
+                    Home
                 </h1>
                 <p>
-                    The team name is "How hard can it be", this was to reflect our vast overconfidence on the ability to complete the assignment without any hitches.
+                    This is the website the York Pirates game.
+                </p>
+                <p>
+                    Made for the Computer Science module <b>Engineering 1: Assessment 2</b>, at the University of York, by <b>Bass2 (Team 14)</b>.
+                </p>
+                <p>
+                    The game may be downloaded <a href="game/desktop-1.0.jar">here</a>.
                 </p>
                 <hr>
-                <h1>
-                    Weekly Snapshots:
-                </h1>
-                <img src="Snapshots/a1.png">
-                <img src="Snapshots/a4.png">
-                <img src="Snapshots/a5.png">
-                <img src="Snapshots/a6.png">
-                <img src="Snapshots/a7.png">
-                <img src="Snapshots/a8.png">
-                <img src="Snapshots/a10.png">
-                <img src="Snapshots/s1.png">
-                <img src="Snapshots/s2.png">
-                <img src="Snapshots/s3.png">
-                <img src="Snapshots/s4.png">
-                <hr>
-                <h1>
-                    Deliverables:
-                </h1>
-                <h2>
-                    Game Files:
-                </h2>
-                <p>
-                    <a href="game/Pirate-Game-Group-3.jar" target="_blank">Executable (.jar)</a> <br> <br>
-                    <a href="https://github.com/AlexGUni/How-Hard-Can-It-Be" target="_blank">Source code</a>
-                </p>
-                <br>
-                <h2>
-                    PDFs:
-                </h2>
-                <p>
-                    <a href="pdfs/Req1.pdf" target="_blank">Requirements<br>(Req1.pdf)</a> <br> <br>
-                    <a href="pdfs/Arch1.pdf" target="_blank">Architecture<br>(Arch1.pdf)</a> <br> <br>
-                    <a href="pdfs/Plan1.pdf" target="_blank">Method selection and planning<br>(Plan1.pdf)</a> <br> <br>
-                    <a href="pdfs/Risk1.pdf" target="_blank">Risk assessment and mitigation<br>(Risk1.pdf)</a> <br> <br>
-                    <a href="pdfs/Impl1.pdf" target="_blank">Implementation<br>(Impl1.pdf)</a>
-                </p>
-                <br>
-                <h2>
-                    Website file:
-                </h2>
-                <p>
-                    <a href="url1.txt" target="_blank">url1.txt</a>
-                </p>
+                <h3>
+                    About this website
+                </h3>
+                <ul>
+                    <li>
+                        <a href="index.html"><b><i>Home</i></b></a> - This page shows the layout of the website and resources within it.
+                    </li>
+                    <br>
+                    <li>
+                        <a href="game.html"><b><i>Info</i></b></a> - An explanation of the game and it's features can be found here.
+                    </li>
+                    <br>
+                    <li>
+                        <b>Files</b>
+                        <ul>
+                            <li>
+                                <a href="game/desktop-1.0.jar"><b><i>Executable</i></b></a> - A downloadable executable .jar file for the game may be obtained here.
+                            </li>
+                            <li>
+                                <b><i>Source Code</i></b> - Links to all of the source code repositories can be found under this section of the navbar.
+                            </li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li>
+                        <a href="docs.html"><b><i>Javadoc</i></b></a> - Javadoc documentation for all of the game code may be found here.
+                    </li>
+                    <br>
+                    <li>
+                        <b>Testing</b>
+                        <ul>
+                            <li>
+                                <a href="tests.html"><b><i>Test Report</i></b></a> - An automated report showing the success rate of Junit tests may be found here.
+                            </li>
+                            <li>
+                                <a href="coverage.html"><b><i>Code Coverage</i></b></a> - An automated report showing the code coverage of Junit tests may be found here.
+                            </li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li>
+                        <b><i>Deliverables</i></b> - Non paginated raw markdown versions of deliverables may be found here. <i>Only containing assessment 2 deliverables.</i>
+                    </li>
+                    <br>
+                    <li>
+                        <b><i>Deliverables PDFs</i></b> - Paginated PDF form deliverables from both assessments may be found here.
+                    </li>
+                </ul>
+                <small><i>
+                    All of these can be reached through the navbar at the top.
+                </i></small>
             </div>
         </div>
     </div>
