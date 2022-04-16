@@ -121,8 +121,13 @@ html, body {
     display: block;
   }
 
+  h3.dropdown-header {
+      margin-left: 10px;
+  }
+
   .dropdown-header {
-    margin-bottom: 5px;
+      margin-top: 7px;
+      margin-bottom: 2px;
   }
 
   #background {

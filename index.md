@@ -8,26 +8,29 @@
     <a href="game.html">Info</a>
     <div class="dropdown">
         <button class="dropbtn">Files
-            <i class="fa fa-caret-down"></i>
+          <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
             <a href="game/desktop-1.0.jar" target="_blank">Executable (.jar)</a>
-            <a href="https://github.com/engteam14/yorkpirates2" target="_blank">Source code</a>
+            <h3 class="dropdown-header">Source Code</h3>
+            <a href="https://github.com/engteam14/yorkpirates2" target="_blank">Game</a>
+            <a href="https://github.com/engteam14/documentation2" target="_blank">Documentation</a>
+            <a href="https://github.com/engteam14/website2" target="_blank">Website</a>
         </div>
     </div>
+    <a href="docs.html">Javadoc</a>
     <div class="dropdown">
-        <button class="dropbtn">Documentation
-            <i class="fa fa-caret-down"></i>
+        <button class="dropbtn">Testing
+          <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
-            <a href="docs.html">Javadoc</a>
             <a href="tests.html">Test Report</a>
             <a href="coverage.html">Code Coverage</a>
         </div>
     </div>
     <div class="dropdown">
         <button class="dropbtn">Deliverables
-            <i class="fa fa-caret-down"></i>
+          <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
             <h2 class="dropdown-header">Assessment 2</h2>
@@ -41,7 +44,7 @@
     </div>
     <div class="dropdown">
         <button class="dropbtn">Deliverable PDFs
-            <i class="fa fa-caret-down"></i>
+          <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
             <!-- Assessment 1 -->
