@@ -1,8 +1,7 @@
-
 ## Requirements
 
 
-## A) Elicitation of requirements
+# Elicitation of requirements
 
 
 
@@ -16,14 +15,14 @@
 6. Resulting functional and non-functional requirements were closely evaluated for possible risks to their implementation; these were detailed within the risk register.
 
 
-## Research into requirement specification and presentation
+# Research into requirement specification and presentation
 
 
 
 * IEEE requirements engineering document<sup>1</sup>:
     * Provided comprehensive information on all aspects of requirement elicitation and presentation, although sections 5.1-5.2.8 and 6.1-6.6.3 were most helpful
     * Contained robust justification for the need for requirements and their role in the overall software lifecycle process
-    * Informed our choice of specific language, priority language(low/medium/high), the choice of imperative tone, and justifications for these
+    * Informed our choice of specific language, standardised subjects and verbs (user, shall, etc.), the choice of imperative tone, and justifications for these
     * Ultimately, aimed at larger, more critical projects than ours
 * ENG1 lecture on requirements engineering:
     * Provided an excellent overview of the motivations for requirements engineering and a lucid overview of this process
@@ -38,7 +37,7 @@
 
     <sup>1</sup> _Systems and software engineering -- Life cycle processes -- Requirements engineering_, ISO/IEC/IEEE 29148:2018(E), 2018.
 
-## B) Requirements Tables
+
  | ID | Description | Priority |
 | --- | --- | --- |
 | UR_PLATFORM | The user shall use a standard laptop PC to play the game | High |
@@ -64,7 +63,7 @@
 | **UR_OBSTACLE_ENCOUNTER** | The user may encounter obstacles while sailing in game | High |
 | **UR_WEATHER_ENCOUNTER** | The user may encounter bad weather while sailing | High |
 | **UR_SPEND_PLUNDER** | The user should be able spend the plunder earned | High |
-| **UR_POWER_UP** | The user should be able to obtain power ups through either the shop or at random locations on the map. | High |
+| **UR_POWER_U** | The user should be able to obtain power ups through either the shop or at random locations on the map. | High |
 | **UR_DFCLTY_LVL** | The user should be able to choose from 3 difficulty levels (e.g. easy, normal, hard) | High |
 | **UR_GAME_SAVE** | The user should be able to save the state of the game at any time and be able to resume it at a later point. | High |
 
