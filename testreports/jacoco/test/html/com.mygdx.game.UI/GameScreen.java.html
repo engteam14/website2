@@ -261,22 +261,24 @@ import static com.mygdx.utils.Constants.*;
 <span class="nc" id="L261">        GameManager.update();</span>
         // show end screen if esc is pressed
 <span class="nc bnc" id="L263" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {</span>
-<span class="nc" id="L264">            parent.setScreen(parent.end);</span>
+<span class="nc" id="L264">            parent.pause();</span>
+<span class="nc" id="L265">            pixmap = Pixmap.createFromFrameBuffer(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
+<span class="nc" id="L266">            parent.setScreen(parent.pause);</span>
         }
-<span class="nc" id="L266">        super.render(delta);</span>
-<span class="nc" id="L267">    }</span>
+<span class="nc" id="L268">        super.render(delta);</span>
+<span class="nc" id="L269">    }</span>
 
     /**
      * disposed of all stuff it something is missing from this method you will get memory leaks
      */
     @Override
     public void dispose() {
-<span class="nc" id="L274">        super.dispose();</span>
-<span class="nc" id="L275">        ResourceManager.cleanUp();</span>
-<span class="nc" id="L276">        EntityManager.cleanUp();</span>
-<span class="nc" id="L277">        RenderingManager.cleanUp();</span>
-<span class="nc" id="L278">        PhysicsManager.cleanUp();</span>
-<span class="nc" id="L279">    }</span>
+<span class="nc" id="L276">        super.dispose();</span>
+<span class="nc" id="L277">        ResourceManager.cleanUp();</span>
+<span class="nc" id="L278">        EntityManager.cleanUp();</span>
+<span class="nc" id="L279">        RenderingManager.cleanUp();</span>
+<span class="nc" id="L280">        PhysicsManager.cleanUp();</span>
+<span class="nc" id="L281">    }</span>
 
     /**
      * Resize camera, effectively setting the viewport to display game assets
@@ -288,14 +290,14 @@ import static com.mygdx.utils.Constants.*;
     @Override
     public void resize(int width, int height) {
         //((Table) actors.get(0)).setFillParent(false);
-<span class="nc" id="L291">        super.resize(width, height);</span>
-<span class="nc" id="L292">        OrthographicCamera cam = RenderingManager.getCamera();</span>
-<span class="nc" id="L293">        cam.viewportWidth = width / ZOOM;</span>
-<span class="nc" id="L294">        cam.viewportHeight = height / ZOOM;</span>
-<span class="nc" id="L295">        cam.update();</span>
+<span class="nc" id="L293">        super.resize(width, height);</span>
+<span class="nc" id="L294">        OrthographicCamera cam = RenderingManager.getCamera();</span>
+<span class="nc" id="L295">        cam.viewportWidth = width / ZOOM;</span>
+<span class="nc" id="L296">        cam.viewportHeight = height / ZOOM;</span>
+<span class="nc" id="L297">        cam.update();</span>
 
         // ((Table) actors.get(0)).setFillParent(true);
-<span class="nc" id="L298">    }</span>
+<span class="nc" id="L300">    }</span>
 
     /**
      * Update the UI with new values for health, quest status, etc.
@@ -304,19 +306,19 @@ import static com.mygdx.utils.Constants.*;
     //private String prevQuest = &quot;&quot;;
     @Override
     protected void update() {
-<span class="nc" id="L307">        super.update();</span>
-<span class="nc" id="L308">        Player p = GameManager.getPlayer();</span>
+<span class="nc" id="L309">        super.update();</span>
+<span class="nc" id="L310">        Player p = GameManager.getPlayer();</span>
 
-<span class="nc" id="L310">        healthLabel.setText(String.valueOf(p.getHealth()));</span>
-<span class="nc" id="L311">        money.setText(String.valueOf(p.getPlunder()));</span>
-<span class="nc" id="L312">        points.setText(String.valueOf(p.getPoints()));</span>
-<span class="nc" id="L313">        ammo.setText(String.valueOf(p.getAmmo()));</span>
-<span class="nc bnc" id="L314" title="All 2 branches missed.">        if (!QuestManager.anyQuests()) {</span>
-<span class="nc" id="L315">            parent.end.win();</span>
-<span class="nc" id="L316">            parent.setScreen(parent.end);</span>
+<span class="nc" id="L312">        healthLabel.setText(String.valueOf(p.getHealth()));</span>
+<span class="nc" id="L313">        money.setText(String.valueOf(p.getPlunder()));</span>
+<span class="nc" id="L314">        points.setText(String.valueOf(p.getPoints()));</span>
+<span class="nc" id="L315">        ammo.setText(String.valueOf(p.getAmmo()));</span>
+<span class="nc bnc" id="L316" title="All 2 branches missed.">        if (!QuestManager.anyQuests()) {</span>
+<span class="nc" id="L317">            parent.end.win();</span>
+<span class="nc" id="L318">            parent.setScreen(parent.end);</span>
 
         } else {
-<span class="nc" id="L319">            Quest q = QuestManager.currentQuest();</span>
+<span class="nc" id="L321">            Quest q = QuestManager.currentQuest();</span>
             /*if(Objects.equals(prevQuest, &quot;&quot;)) {
                 prevQuest = q.getDescription();
             }
@@ -324,12 +326,12 @@ import static com.mygdx.utils.Constants.*;
                 questComplete.setText(&quot;Quest Competed&quot;);
                 prevQuest = &quot;&quot;;
             }*/
-<span class="nc bnc" id="L327" title="All 4 branches missed.">            assert q != null;</span>
-<span class="nc" id="L328">            questName.setText(q.getName());</span>
-<span class="nc" id="L329">            questDesc.setText(q.getDescription());</span>
+<span class="nc bnc" id="L329" title="All 4 branches missed.">            assert q != null;</span>
+<span class="nc" id="L330">            questName.setText(q.getName());</span>
+<span class="nc" id="L331">            questDesc.setText(q.getDescription());</span>
         }
-<span class="nc bnc" id="L331" title="All 2 branches missed.">        if (!p.isAlive()) {</span>
-<span class="nc" id="L332">            parent.setScreen(parent.end);</span>
+<span class="nc bnc" id="L333" title="All 2 branches missed.">        if (!p.isAlive()) {</span>
+<span class="nc" id="L334">            parent.setScreen(parent.end);</span>
         }
         /*if(!questComplete.getText().equals(&quot;&quot;)) {
             showTimer += EntityManager.getDeltaTime();
@@ -338,42 +340,42 @@ import static com.mygdx.utils.Constants.*;
             showTimer = 0;
             questComplete.setText(&quot;&quot;);
         }*/
-<span class="nc" id="L341">    }</span>
+<span class="nc" id="L343">    }</span>
 
     /**
      * Draw UI elements showing player health, plunder, and ammo.
      */
     @Override
     protected void CreateActors() {
-<span class="nc" id="L348">        Table table = new Table();</span>
-<span class="nc" id="L349">        table.setFillParent(true);</span>
-<span class="nc" id="L350">        actors.add(table);</span>
+<span class="nc" id="L350">        Table table = new Table();</span>
+<span class="nc" id="L351">        table.setFillParent(true);</span>
+<span class="nc" id="L352">        actors.add(table);</span>
 
-<span class="nc" id="L352">        table.add(new Image(parent.skin.getDrawable(&quot;heart&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L353">        healthLabel = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L354">        table.add(healthLabel).top().left().size(50);</span>
+<span class="nc" id="L354">        table.add(new Image(parent.skin.getDrawable(&quot;heart&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L355">        healthLabel = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L356">        table.add(healthLabel).top().left().size(50);</span>
 
-<span class="nc" id="L356">        table.row();</span>
-<span class="nc" id="L357">        table.setDebug(false);</span>
+<span class="nc" id="L358">        table.row();</span>
+<span class="nc" id="L359">        table.setDebug(false);</span>
 
-<span class="nc" id="L359">        table.add(new Image(parent.skin.getDrawable(&quot;coin&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L360">        money = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L361">        table.add(money).top().left().size(50);</span>
+<span class="nc" id="L361">        table.add(new Image(parent.skin.getDrawable(&quot;coin&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L362">        money = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L363">        table.add(money).top().left().size(50);</span>
 
-<span class="nc" id="L363">        table.row();</span>
+<span class="nc" id="L365">        table.row();</span>
 
-<span class="nc" id="L365">        table.add(new Image(parent.skin.getDrawable(&quot;point&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L366">        points = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L367">        table.add(points).top().left().size(50);</span>
+<span class="nc" id="L367">        table.add(new Image(parent.skin.getDrawable(&quot;point&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L368">        points = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L369">        table.add(points).top().left().size(50);</span>
 
-<span class="nc" id="L369">        table.row();</span>
+<span class="nc" id="L371">        table.row();</span>
 
-<span class="nc" id="L371">        table.add(new Image(parent.skin.getDrawable(&quot;ball&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
-<span class="nc" id="L372">        ammo = new Label(&quot;N/A&quot;, parent.skin);</span>
-<span class="nc" id="L373">        table.add(ammo).top().left().size(50);</span>
+<span class="nc" id="L373">        table.add(new Image(parent.skin.getDrawable(&quot;ball&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L374">        ammo = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L375">        table.add(ammo).top().left().size(50);</span>
 
-<span class="nc" id="L375">        table.top().left();</span>
-<span class="nc" id="L376">    }</span>
+<span class="nc" id="L377">        table.top().left();</span>
+<span class="nc" id="L378">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
