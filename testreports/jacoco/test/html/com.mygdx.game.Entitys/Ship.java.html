@@ -70,58 +70,28 @@ public class Ship extends Entity implements CollisionCallBack {
 
     /**
      * // New for assessment 2 //
-     * Set the default for a Pirate value.
-     * @param key       The value to set to
-     * @param value     The default to apply
-     */
-    public void setDefault(String key, float value) {
-<span class="nc" id="L78">        getComponent(Pirate.class).setDefault(key, value);</span>
-<span class="nc" id="L79">    }</span>
-
-    /**
-     * // New for assessment 2 //
-     * Set a new value for Pirate while holding reference to what it was originally.
-     * @param key       The value to set to
-     * @param value     The float to apply
-     */
-    public void setValue(String key, float value) {
-<span class="nc" id="L88">        getComponent(Pirate.class).setValue(key, value);</span>
-<span class="nc" id="L89">    }</span>
-
-    /**
-     * // New for assessment 2 //
-     * Multiply a value for Pirate while holding reference to what it was originally.
-     * @param key       The value to multiply
-     * @param mult      The multiplication factor
-     */
-    public void multValue(String key, float mult) {
-<span class="nc" id="L98">        getComponent(Pirate.class).multValue(key, mult);</span>
-<span class="nc" id="L99">    }</span>
-
-    /**
-     * // New for assessment 2 //
      * Reset a Pirate value to what it originally was.
      * @param key       The value to reset
      */
     public void resetToDefault(String key) {
-<span class="nc" id="L107">        getComponent(Pirate.class).resetToDefault(key);</span>
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L77">        getComponent(Pirate.class).resetToDefault(key);</span>
+<span class="nc" id="L78">    }</span>
 
     public boolean isAlive() {
-<span class="nc bnc" id="L111" title="All 2 branches missed.">        return getComponent(Pirate.class).getHealth() &gt; 0;</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        return getComponent(Pirate.class).getHealth() &gt; 0;</span>
     }
 
     public static float getAttackRange() {
-<span class="nc" id="L115">        return Utilities.tilesToDistance(GameManager.getSettings().get(&quot;starting&quot;).getFloat(&quot;attackRange_tiles&quot;));</span>
+<span class="nc" id="L85">        return Utilities.tilesToDistance(GameManager.getSettings().get(&quot;starting&quot;).getFloat(&quot;attackRange_tiles&quot;));</span>
     }
 
     public void plunder(int money) {
-<span class="nc" id="L119">        getComponent(Pirate.class).addPlunder(money);</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L89">        getComponent(Pirate.class).addPlunder(money);</span>
+<span class="nc" id="L90">    }</span>
 
     public void points(int increment) {
-<span class="nc" id="L123">        getComponent(Pirate.class).addPoints(increment);</span>
-<span class="nc" id="L124">    }</span>
+<span class="nc" id="L93">        getComponent(Pirate.class).addPoints(increment);</span>
+<span class="nc" id="L94">    }</span>
 
     /**
      * Associates ship with faction and orients it to the default northern direction.
@@ -129,9 +99,9 @@ public class Ship extends Entity implements CollisionCallBack {
      * @param factionId the desired faction id
      */
     public void setFaction(int factionId) {
-<span class="nc" id="L132">        getComponent(Pirate.class).setFactionId(factionId);</span>
-<span class="nc" id="L133">        setShipDirection(&quot;-up&quot;);</span>
-<span class="nc" id="L134">    }</span>
+<span class="nc" id="L102">        getComponent(Pirate.class).setFactionId(factionId);</span>
+<span class="nc" id="L103">        setShipDirection(&quot;-up&quot;);</span>
+<span class="nc" id="L104">    }</span>
 
     /**
      * gets the string representation of the direction the ship is facing
@@ -140,11 +110,11 @@ public class Ship extends Entity implements CollisionCallBack {
      * @return the string representation of the direction
      */
     private String getShipDirection(Vector2 dir) {
-<span class="nc bnc" id="L143" title="All 4 branches missed.">        if (!currentDir.equals(dir) &amp;&amp; shipDirections.containsKey(dir)) {</span>
-<span class="nc" id="L144">            currentDir.set(dir);</span>
-<span class="nc" id="L145">            return shipDirections.get(dir);</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">        if (!currentDir.equals(dir) &amp;&amp; shipDirections.containsKey(dir)) {</span>
+<span class="nc" id="L114">            currentDir.set(dir);</span>
+<span class="nc" id="L115">            return shipDirections.get(dir);</span>
         }
-<span class="nc" id="L147">        return &quot;&quot;;</span>
+<span class="nc" id="L117">        return &quot;&quot;;</span>
     }
 
     /**
@@ -153,7 +123,7 @@ public class Ship extends Entity implements CollisionCallBack {
      * @return the faction colour
      */
     private String getColour() {
-<span class="nc" id="L156">        return getComponent(Pirate.class).getFaction().getColour();</span>
+<span class="nc" id="L126">        return getComponent(Pirate.class).getFaction().getColour();</span>
     }
 
     /**
@@ -162,8 +132,8 @@ public class Ship extends Entity implements CollisionCallBack {
      * @param dir the dir to face (used to get the correct sprite from the texture atlas
      */
     public void setShipDirection(Vector2 dir) {
-<span class="nc" id="L165">        setShipDirection(getShipDirection(dir));</span>
-<span class="nc" id="L166">    }</span>
+<span class="nc" id="L135">        setShipDirection(getShipDirection(dir));</span>
+<span class="nc" id="L136">    }</span>
 
     /**
      * will rotate the ship to face the direction (just changes the sprite doesn't actually rotate)
@@ -171,50 +141,50 @@ public class Ship extends Entity implements CollisionCallBack {
      * @param direction the dir to face (used to get the correct sprite from the texture atlas
      */
     public void setShipDirection(String direction) {
-<span class="nc bnc" id="L174" title="All 2 branches missed.">        if (Objects.equals(direction, &quot;&quot;)) {</span>
-<span class="nc" id="L175">            return;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        if (Objects.equals(direction, &quot;&quot;)) {</span>
+<span class="nc" id="L145">            return;</span>
         }
-<span class="nc" id="L177">        Renderable r = getComponent(Renderable.class);</span>
-<span class="nc" id="L178">        Sprite s = ResourceManager.getSprite(3, getColour() + direction);</span>
+<span class="nc" id="L147">        Renderable r = getComponent(Renderable.class);</span>
+<span class="nc" id="L148">        Sprite s = ResourceManager.getSprite(3, getColour() + direction);</span>
 
         try {
-<span class="nc" id="L181">            r.setTexture(s);</span>
-<span class="nc" id="L182">        } catch (Exception ignored) {</span>
+<span class="nc" id="L151">            r.setTexture(s);</span>
+<span class="nc" id="L152">        } catch (Exception ignored) {</span>
 
-<span class="nc" id="L184">        }</span>
-<span class="nc" id="L185">    }</span>
+<span class="nc" id="L154">        }</span>
+<span class="nc" id="L155">    }</span>
 
     public int getHealth() {
-<span class="nc" id="L188">        return getComponent(Pirate.class).getHealth();</span>
+<span class="nc" id="L158">        return getComponent(Pirate.class).getHealth();</span>
     }
 
     public int getPlunder() {
-<span class="nc" id="L192">        return getComponent(Pirate.class).getPlunder();</span>
+<span class="nc" id="L162">        return getComponent(Pirate.class).getPlunder();</span>
     }
 
     public int getPoints() {
-<span class="nc" id="L196">        return getComponent(Pirate.class).getPoints();</span>
+<span class="nc" id="L166">        return getComponent(Pirate.class).getPoints();</span>
     }
 
     /**
      * Calls shoot method with the current direction as parameter
      */
     public void shoot() {
-<span class="nc" id="L203">        shoot(currentDir);</span>
-<span class="nc" id="L204">    }</span>
+<span class="nc" id="L173">        shoot(currentDir);</span>
+<span class="nc" id="L174">    }</span>
 
     /**
      * Calls shoot method of internal component
      */
     public void shoot(Vector2 dir) {
-<span class="nc" id="L210">        getComponent(Pirate.class).shoot(dir);</span>
-<span class="nc" id="L211">    }</span>
+<span class="nc" id="L180">        getComponent(Pirate.class).shoot(dir);</span>
+<span class="nc" id="L181">    }</span>
 
     /**
      * @return copy of the transform's position
      */
     public Vector2 getPosition() {
-<span class="nc" id="L217">        return getComponent(Transform.class).getPosition().cpy();</span>
+<span class="nc" id="L187">        return getComponent(Transform.class).getPosition().cpy();</span>
     }
 
     /**
@@ -222,18 +192,18 @@ public class Ship extends Entity implements CollisionCallBack {
      * @return The Faction of the Pirate Component attached to this entity
      */
     public Faction getFaction() {
-<span class="nc" id="L225">        return getComponent(Pirate.class).getFaction();</span>
+<span class="nc" id="L195">        return getComponent(Pirate.class).getFaction();</span>
     }
 
     @Override
     public void BeginContact(CollisionInfo info) {
 
-<span class="nc" id="L231">    }</span>
+<span class="nc" id="L201">    }</span>
 
     @Override
     public void EndContact(CollisionInfo info) {
 
-<span class="nc" id="L236">    }</span>
+<span class="nc" id="L206">    }</span>
 
     /**
      * Amended for Assessment 2 (added functionality for when attacked by cannonball)
@@ -241,25 +211,25 @@ public class Ship extends Entity implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L244" title="All 2 branches missed.">        if (info.a instanceof CannonBall) {</span>
-<span class="nc" id="L245">            CannonBall a = (CannonBall) info.a;</span>
-<span class="nc bnc" id="L246" title="All 2 branches missed.">            if(a.getFaction() != getFaction()){</span>
-<span class="nc" id="L247">                getComponent(Pirate.class).takeDamage( a.getAttackDmg() );</span>
-<span class="nc" id="L248">                a.kill();</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        if (info.a instanceof CannonBall) {</span>
+<span class="nc" id="L215">            CannonBall a = (CannonBall) info.a;</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            if(a.getFaction() != getFaction()){</span>
+<span class="nc" id="L217">                getComponent(Pirate.class).takeDamage( a.getAttackDmg() );</span>
+<span class="nc" id="L218">                a.kill();</span>
             }
-<span class="nc bnc" id="L250" title="All 4 branches missed.">        }else if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
-<span class="nc" id="L251">            ((CollisionCallBack) info.b).EnterTrigger(info);</span>
+<span class="nc bnc" id="L220" title="All 4 branches missed.">        }else if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="nc" id="L221">            ((CollisionCallBack) info.b).EnterTrigger(info);</span>
         }
-<span class="nc" id="L253">    }</span>
+<span class="nc" id="L223">    }</span>
 
     /**
      * if called on a Player against anything else call it on the other thing
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L260" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
-<span class="nc" id="L261">            ((CollisionCallBack) info.b).ExitTrigger(info);</span>
+<span class="nc bnc" id="L230" title="All 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="nc" id="L231">            ((CollisionCallBack) info.b).ExitTrigger(info);</span>
         }
-<span class="nc" id="L263">    }</span>
+<span class="nc" id="L233">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

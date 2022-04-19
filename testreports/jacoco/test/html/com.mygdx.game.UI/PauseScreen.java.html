@@ -23,94 +23,89 @@ import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
  */
 public class PauseScreen extends Page{
 
-
     public PauseScreen(PirateGame game) {
-<span class="nc" id="L28">        super(game);</span>
-
-<span class="nc" id="L30">    }</span>
+<span class="nc" id="L27">        super(game);</span>
+<span class="nc" id="L28">    }</span>
 
     @Override
     protected void CreateActors() {
-<span class="nc" id="L34">        Table t = new Table();</span>
+<span class="nc" id="L32">        Table t = new Table();</span>
       //  t.debug();
 
-<span class="nc" id="L37">        float space = VIEWPORT_HEIGHT * 0.10f;</span>
-<span class="nc" id="L38">        t.setFillParent(true);</span>
-<span class="nc" id="L39">        actors.add(t);</span>
-<span class="nc" id="L40">        t.add();</span>
-<span class="nc" id="L41">        t.row();</span>
-<span class="nc" id="L42">        Label title = new Label(&quot;Paused&quot;, parent.skin);</span>
-<span class="nc" id="L43">        title.setFontScale(2);</span>
-<span class="nc" id="L44">        t.top();</span>
-<span class="nc" id="L45">        t.add(title).top().spaceTop(space).spaceBottom(space);</span>
-<span class="nc" id="L46">        t.row();</span>
-<span class="nc" id="L47">        TextButton resume = new TextButton(&quot;Resume&quot;, parent.skin);</span>
-<span class="nc" id="L48">        resume.addListener(new ChangeListener() {</span>
+<span class="nc" id="L35">        float space = VIEWPORT_HEIGHT * 0.10f;</span>
+<span class="nc" id="L36">        t.setFillParent(true);</span>
+<span class="nc" id="L37">        actors.add(t);</span>
+<span class="nc" id="L38">        t.add();</span>
+<span class="nc" id="L39">        t.row();</span>
+<span class="nc" id="L40">        Label title = new Label(&quot;Paused&quot;, parent.skin);</span>
+<span class="nc" id="L41">        title.setFontScale(2);</span>
+<span class="nc" id="L42">        t.top();</span>
+<span class="nc" id="L43">        t.add(title).top().spaceTop(space).spaceBottom(space);</span>
+<span class="nc" id="L44">        t.row();</span>
+<span class="nc" id="L45">        TextButton resume = new TextButton(&quot;Resume&quot;, parent.skin);</span>
+<span class="nc" id="L46">        resume.addListener(new ChangeListener() {</span>
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-<span class="nc" id="L51">                parent.setScreen(parent.game);</span>
-<span class="nc" id="L52">            }</span>
+<span class="nc" id="L49">                parent.setScreen(parent.game);</span>
+<span class="nc" id="L50">            }</span>
         });
-<span class="nc" id="L54">        t.add(resume).fill().spaceBottom(space);</span>
-<span class="nc" id="L55">        t.row();</span>
-<span class="nc" id="L56">        TextButton restart = new TextButton(&quot;Restart&quot;, parent.skin);</span>
-<span class="nc" id="L57">        restart.addListener(new ChangeListener() {</span>
+<span class="nc" id="L52">        t.add(resume).fill().spaceBottom(space);</span>
+<span class="nc" id="L53">        t.row();</span>
+<span class="nc" id="L54">        TextButton restart = new TextButton(&quot;Restart&quot;, parent.skin);</span>
+<span class="nc" id="L55">        restart.addListener(new ChangeListener() {</span>
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-<span class="nc" id="L60">                parent.game.hide();</span>
-<span class="nc" id="L61">                parent.restartGame();</span>
-
-
-<span class="nc" id="L64">            }</span>
+<span class="nc" id="L58">                parent.game.hide();</span>
+<span class="nc" id="L59">                parent.restartGame();</span>
+<span class="nc" id="L60">            }</span>
         });
-<span class="nc" id="L66">        t.add(restart).fill().spaceBottom(space);</span>
-<span class="nc" id="L67">        t.row();</span>
+<span class="nc" id="L62">        t.add(restart).fill().spaceBottom(space);</span>
+<span class="nc" id="L63">        t.row();</span>
 
-<span class="nc" id="L69">        TextButton SExit = new TextButton(&quot;Save + Exit&quot;, parent.skin);</span>
-<span class="nc" id="L70">        SExit.addListener(new ChangeListener() {</span>
+<span class="nc" id="L65">        TextButton SExit = new TextButton(&quot;Save + Exit&quot;, parent.skin);</span>
+<span class="nc" id="L66">        SExit.addListener(new ChangeListener() {</span>
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-<span class="nc" id="L73">                SaveManager.SaveGame();</span>
+<span class="nc" id="L69">                SaveManager.SaveGame();</span>
 
-<span class="nc" id="L75">                Gdx.app.exit();</span>
-<span class="nc" id="L76">                System.exit(0);</span>
+<span class="nc" id="L71">                Gdx.app.exit();</span>
+<span class="nc" id="L72">                System.exit(0);</span>
 
-<span class="nc" id="L78">            }</span>
+<span class="nc" id="L74">            }</span>
         });
-<span class="nc" id="L80">        t.add(SExit).fill().spaceBottom(space);</span>
-<span class="nc" id="L81">        t.row();</span>
-<span class="nc" id="L82">        TextButton exit = new TextButton(&quot;Exit&quot;, parent.skin);</span>
-<span class="nc" id="L83">        exit.addListener(new ChangeListener() {</span>
+<span class="nc" id="L76">        t.add(SExit).fill().spaceBottom(space);</span>
+<span class="nc" id="L77">        t.row();</span>
+<span class="nc" id="L78">        TextButton exit = new TextButton(&quot;Exit&quot;, parent.skin);</span>
+<span class="nc" id="L79">        exit.addListener(new ChangeListener() {</span>
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
-<span class="nc" id="L87">                Gdx.app.exit();</span>
-<span class="nc" id="L88">                System.exit(0);</span>
+<span class="nc" id="L83">                Gdx.app.exit();</span>
+<span class="nc" id="L84">                System.exit(0);</span>
 
-<span class="nc" id="L90">            }</span>
+<span class="nc" id="L86">            }</span>
         });
-<span class="nc" id="L92">        t.add(exit).fill().spaceBottom(space);</span>
-
-<span class="nc" id="L94">    }</span>
+<span class="nc" id="L88">        t.add(exit).fill().spaceBottom(space);</span>
+<span class="nc" id="L89">    }</span>
 
     @Override
     protected void update() {
-<span class="nc" id="L98">        super.update();</span>
+<span class="nc" id="L93">        super.update();</span>
 
-<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {</span>
-<span class="nc" id="L101">            Gdx.app.exit();</span>
-<span class="nc" id="L102">            System.exit(0);</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {</span>
+<span class="nc" id="L96">            Gdx.app.exit();</span>
+<span class="nc" id="L97">            System.exit(0);</span>
         }
-<span class="nc" id="L104">    }</span>
+<span class="nc" id="L99">    }</span>
 
     @Override
     public void resize(int width, int height) {
-<span class="nc" id="L108">        super.resize(width, height);</span>
-<span class="nc" id="L109">        Table t = (Table) actors.get(0);</span>
-<span class="nc" id="L110">        TextureRegion tex = new TextureRegion(new Texture(parent.game.pixmap));</span>
-<span class="nc" id="L111">        tex.flip(false, true);</span>
-<span class="nc" id="L112">        t.setBackground((new TextureRegionDrawable(tex)).tint(Color.GRAY));</span>
-<span class="nc" id="L113">    }</span>
+<span class="nc" id="L103">        super.resize(width, height);</span>
+<span class="nc" id="L104">        Table t = (Table) actors.get(0);</span>
+<span class="nc" id="L105">        TextureRegion tex = new TextureRegion(new Texture(parent.game.pixmap));</span>
+<span class="nc" id="L106">        tex.flip(false, true);</span>
+<span class="nc" id="L107">        t.setBackground((new TextureRegionDrawable(tex)).tint(Color.GRAY));</span>
+<span class="nc" id="L108">    }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -32,28 +32,6 @@ public class Obstacle extends Entity implements CollisionCallBack {
 <span class="nc" id="L32">    }</span>
 
     /**
-     * Generate an obstacle which only triggers a hit on initial collision.
-     * @param texName       The texture to show for the obstacle.
-     * @param trigger       True if the obstacle is trigger, otherwise is contact.
-     * @param damage        The damage that the obstacle does per 'hit'
-     * @param hitLimit      The number of 'hits' required to break the obstacle
-     */
-    public Obstacle(String texName, boolean trigger, float damage, int hitLimit) {
-<span class="nc" id="L42">        this(texName, trigger, damage, -1f, hitLimit);</span>
-<span class="nc" id="L43">    }</span>
-
-    /**
-     * Generate an obstacle which does not break.
-     * @param texName       The texture to show for the obstacle.
-     * @param trigger       True if the obstacle is trigger, otherwise is contact.
-     * @param damage        The damage that the obstacle does per 'hit'
-     * @param hitRate       The rate at which 'hits' occur while colliding
-     */
-    public Obstacle(String texName, boolean trigger, float damage, float hitRate) {
-<span class="nc" id="L53">        this(texName, trigger, damage, hitRate, -1);</span>
-<span class="nc" id="L54">    }</span>
-
-    /**
      * Generate an obstacle.
      * @param texName       The texture to show for the obstacle.
      * @param trigger       True if the obstacle is trigger, otherwise is contact.
@@ -62,57 +40,65 @@ public class Obstacle extends Entity implements CollisionCallBack {
      * @param hitLimit      The number of 'hits' required to break the obstacle
      */
     public Obstacle(String texName, boolean trigger, float damage, float hitRate, int hitLimit) {
-<span class="nc" id="L65">        super(4);</span>
+<span class="nc" id="L43">        super(4);</span>
 
-<span class="nc" id="L67">        Transform t = new Transform();</span>
-<span class="nc" id="L68">        Renderable r = new Renderable(ResourceManager.getId(&quot;obstacles.txt&quot;), texName, RenderLayer.Transparent);</span>
-<span class="nc" id="L69">        RigidBody rb = new RigidBody(PhysicsBodyType.Kinematic, r, t, trigger);</span>
-<span class="nc" id="L70">        rb.setCallback(this);</span>
-<span class="nc" id="L71">        ObstacleControl o = new ObstacleControl(damage, hitRate, hitLimit);</span>
+<span class="nc" id="L45">        Transform t = new Transform();</span>
+<span class="nc" id="L46">        Renderable r = new Renderable(ResourceManager.getId(&quot;obstacles.txt&quot;), texName, RenderLayer.Transparent);</span>
+<span class="nc" id="L47">        RigidBody rb = new RigidBody(PhysicsBodyType.Kinematic, r, t, trigger);</span>
+<span class="nc" id="L48">        rb.setCallback(this);</span>
+<span class="nc" id="L49">        ObstacleControl o = new ObstacleControl(damage, hitRate, hitLimit);</span>
 
-<span class="nc" id="L73">        addComponents(t, r, rb, o);</span>
+<span class="nc" id="L51">        addComponents(t, r, rb, o);</span>
 
-<span class="nc" id="L75">        doKill = false;</span>
-<span class="nc" id="L76">        colliding = false;</span>
-<span class="nc" id="L77">    }</span>
+<span class="nc" id="L53">        doKill = false;</span>
+<span class="nc" id="L54">        colliding = false;</span>
+<span class="nc" id="L55">    }</span>
 
     public void kill() {
-<span class="nc" id="L80">        doKill = true;</span>
-<span class="nc" id="L81">    }</span>
+<span class="nc" id="L58">        doKill = true;</span>
+<span class="nc" id="L59">    }</span>
 
     @Override
     public void update() {
-<span class="nc" id="L85">        super.update();</span>
+<span class="nc" id="L63">        super.update();</span>
 
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (doKill) {</span>
-<span class="nc" id="L88">            getComponent(Transform.class).setPosition(1000, -1000);</span>
-<span class="nc" id="L89">            doKill = false;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (doKill) {</span>
+<span class="nc" id="L66">            getComponent(Transform.class).setPosition(1000, -1000);</span>
+<span class="nc" id="L67">            doKill = false;</span>
         }
-<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (colliding) getComponent(ObstacleControl.class).TryHit(info, false);</span>
-<span class="nc" id="L92">    }</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (colliding) getComponent(ObstacleControl.class).TryHit(info, false);</span>
+<span class="nc" id="L70">    }</span>
 
     @Override
     public void BeginContact(CollisionInfo info) {
-<span class="nc" id="L96">        colliding = true;</span>
-<span class="nc" id="L97">        this.info = info;</span>
-<span class="nc" id="L98">        getComponent(ObstacleControl.class).TryHit(info, true);</span>
-<span class="nc" id="L99">    }</span>
+<span class="nc" id="L74">        colliding = true;</span>
+<span class="nc" id="L75">        this.info = info;</span>
+<span class="nc" id="L76">        getComponent(ObstacleControl.class).TryHit(info, true);</span>
+<span class="nc" id="L77">    }</span>
 
     @Override
     public void EndContact(CollisionInfo info) {
-<span class="nc" id="L103">        colliding = false;</span>
-<span class="nc" id="L104">    }</span>
+<span class="nc" id="L81">        colliding = false;</span>
+<span class="nc" id="L82">    }</span>
 
     @Override
     public void EnterTrigger(CollisionInfo info) {
-<span class="nc" id="L108">        colliding = true;</span>
-<span class="nc" id="L109">        this.info = info;</span>
-<span class="nc" id="L110">        getComponent(ObstacleControl.class).TryHit(info, true);</span>
-<span class="nc" id="L111">    }</span>
+<span class="nc" id="L86">        colliding = true;</span>
+<span class="nc" id="L87">        this.info = info;</span>
+<span class="nc" id="L88">        getComponent(ObstacleControl.class).TryHit(info, true);</span>
+<span class="nc" id="L89">    }</span>
 
     @Override
     public void ExitTrigger(CollisionInfo info) {
-<span class="nc" id="L115">        colliding = false;</span>
-<span class="nc" id="L116">    }</span>
+<span class="nc" id="L93">        colliding = false;</span>
+<span class="nc" id="L94">    }</span>
+
+    //    public Obstacle(String texName, boolean trigger, float damage, int hitLimit) {
+    //        this(texName, trigger, damage, -1f, hitLimit);
+    //    }
+
+    //    public Obstacle(String texName, boolean trigger, float damage, float hitRate) {
+    //        this(texName, trigger, damage, hitRate, -1);
+    //    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -16,14 +16,13 @@ import static com.mygdx.utils.Constants.UPDATE_VIEWPORT;
 public abstract class Page extends ScreenAdapter {
     PirateGame parent;
 
-
     protected ArrayList&lt;Actor&gt; actors;
 
-<span class="nc" id="L22">    public Page(PirateGame parent) {</span>
-<span class="nc" id="L23">        this.parent = parent;</span>
-<span class="nc" id="L24">        actors = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L25">        CreateActors();</span>
-<span class="nc" id="L26">    }</span>
+<span class="nc" id="L21">    public Page(PirateGame parent) {</span>
+<span class="nc" id="L22">        this.parent = parent;</span>
+<span class="nc" id="L23">        actors = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L24">        CreateActors();</span>
+<span class="nc" id="L25">    }</span>
 
     protected abstract void CreateActors();
 
@@ -38,12 +37,12 @@ public abstract class Page extends ScreenAdapter {
         //         button.setText(&quot;Good job!&quot;);
         //     }
         // });
-<span class="nc" id="L41">        super.show();</span>
-<span class="nc" id="L42">        Gdx.input.setInputProcessor(parent.stage);</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">        for (Actor a : actors) {</span>
-<span class="nc" id="L44">            parent.stage.addActor(a);</span>
-<span class="nc" id="L45">        }</span>
-<span class="nc" id="L46">    }</span>
+<span class="nc" id="L40">        super.show();</span>
+<span class="nc" id="L41">        Gdx.input.setInputProcessor(parent.stage);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        for (Actor a : actors) {</span>
+<span class="nc" id="L43">            parent.stage.addActor(a);</span>
+<span class="nc" id="L44">        }</span>
+<span class="nc" id="L45">    }</span>
 
     /**
      * draws the stage and acts upon it also calls update
@@ -52,24 +51,24 @@ public abstract class Page extends ScreenAdapter {
      */
     @Override
     public void render(float delta) {
-<span class="nc" id="L55">        update();</span>
-<span class="nc" id="L56">        super.render(delta);</span>
-<span class="nc" id="L57">        parent.stage.act(delta);</span>
-<span class="nc" id="L58">        parent.stage.draw();</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {</span>
-<span class="nc" id="L60">            parent.setScreen(parent.game);</span>
+<span class="nc" id="L54">        update();</span>
+<span class="nc" id="L55">        super.render(delta);</span>
+<span class="nc" id="L56">        parent.stage.act(delta);</span>
+<span class="nc" id="L57">        parent.stage.draw();</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {</span>
+<span class="nc" id="L59">            parent.setScreen(parent.game);</span>
         }
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L61">    }</span>
 
     /**
      * Called once the page is hidden. sets input handler to null and clears teh stage
      */
     @Override
     public void hide() {
-<span class="nc" id="L69">        super.hide();</span>
-<span class="nc" id="L70">        Gdx.input.setInputProcessor(null);</span>
-<span class="nc" id="L71">        parent.stage.clear();</span>
-<span class="nc" id="L72">    }</span>
+<span class="nc" id="L68">        super.hide();</span>
+<span class="nc" id="L69">        Gdx.input.setInputProcessor(null);</span>
+<span class="nc" id="L70">        parent.stage.clear();</span>
+<span class="nc" id="L71">    }</span>
 
     /**
      * Called once the window is resized
@@ -80,18 +79,18 @@ public abstract class Page extends ScreenAdapter {
      */
     @Override
     public void resize(int width, int height) {
-<span class="nc" id="L83">        super.resize(width, height);</span>
-<span class="nc" id="L84">        UPDATE_VIEWPORT(width, height);</span>
-<span class="nc" id="L85">        parent.stage.getCamera().viewportWidth = width;</span>
-<span class="nc" id="L86">        parent.stage.getCamera().viewportHeight = height;</span>
-<span class="nc" id="L87">        parent.stage.getViewport().update(width, height, true);</span>
-<span class="nc" id="L88">    }</span>
+<span class="nc" id="L82">        super.resize(width, height);</span>
+<span class="nc" id="L83">        UPDATE_VIEWPORT(width, height);</span>
+<span class="nc" id="L84">        parent.stage.getCamera().viewportWidth = width;</span>
+<span class="nc" id="L85">        parent.stage.getCamera().viewportHeight = height;</span>
+<span class="nc" id="L86">        parent.stage.getViewport().update(width, height, true);</span>
+<span class="nc" id="L87">    }</span>
 
     /**
      * Called once per frame
      */
     protected void update() {
 
-<span class="nc" id="L95">    }</span>
+<span class="nc" id="L94">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

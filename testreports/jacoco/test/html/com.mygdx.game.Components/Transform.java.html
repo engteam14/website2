@@ -77,57 +77,34 @@ public class Transform extends Component implements Location&lt;Vector2&gt; {
         }
 <span class="nc" id="L78">    }</span>
 
-    public void setScale(Vector2 pos) {
-<span class="nc" id="L81">        scale.set(pos);</span>
-<span class="nc" id="L82">    }</span>
-
     public void setScale(float x, float y) {
-<span class="nc" id="L85">        scale.set(x, y);</span>
-<span class="nc" id="L86">    }</span>
+<span class="nc" id="L81">        scale.set(x, y);</span>
+<span class="nc" id="L82">    }</span>
 
     /**
      * @param rot in Radians
      */
     public void setRotation(float rot) {
-<span class="nc" id="L92">        rotation = rot;</span>
-<span class="nc" id="L93">    }</span>
+<span class="nc" id="L88">        rotation = rot;</span>
+<span class="nc" id="L89">    }</span>
 
     public Vector2 getPosition() {
-<span class="nc" id="L96">        return position;</span>
+<span class="nc" id="L92">        return position;</span>
     }
-
-    /**
-     * returns the box2d position of the parent or the transform pos if no rigidbody found
-     *
-     * @return the center of the Entity or bottom left
-     */
-    public Vector2 getCenter() {
-<span class="nc" id="L105">        RigidBody rb = parent.getComponent(RigidBody.class);</span>
-<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (rb == null) {</span>
-<span class="nc" id="L107">            return getPosition();</span>
-        }
-<span class="nc" id="L109">        return rb.getBody().getWorldCenter();</span>
-    }
-
-    // For Ai Navigation
-
-    public void getLocation() {
-
-<span class="nc" id="L116">    }</span>
 
     @Override
     public float getOrientation() {
-<span class="nc" id="L120">        return 0;</span>
+<span class="nc" id="L97">        return 0;</span>
     }
 
     @Override
     public void setOrientation(float orientation) {
 
-<span class="nc" id="L126">    }</span>
+<span class="nc" id="L103">    }</span>
 
     @Override
     public float vectorToAngle(Vector2 vector) {
-<span class="nc" id="L130">        return Utilities.vectorToAngle(vector);</span>
+<span class="nc" id="L107">        return Utilities.vectorToAngle(vector);</span>
     }
 
     /**
@@ -139,23 +116,35 @@ public class Transform extends Component implements Location&lt;Vector2&gt; {
      */
     @Override
     public Vector2 angleToVector(Vector2 outVector, float angle) {
-<span class="nc" id="L142">        return Utilities.angleToVector(outVector, angle);</span>
+<span class="nc" id="L119">        return Utilities.angleToVector(outVector, angle);</span>
     }
 
     @Override
     public Location&lt;Vector2&gt; newLocation() {
-<span class="nc" id="L147">        return new Transform();</span>
+<span class="nc" id="L124">        return new Transform();</span>
     }
 
     public Vector2 getScale() {
-<span class="nc" id="L151">        return scale;</span>
+<span class="nc" id="L128">        return scale;</span>
     }
 
     /**
      * @return radians
      */
     public float getRotation() {
-<span class="nc" id="L158">        return rotation;</span>
+<span class="nc" id="L135">        return rotation;</span>
     }
+
+    //public void setScale(Vector2 pos) {
+    //        scale.set(pos);
+    //    }
+
+    //    public Vector2 getCenter() {
+    //        RigidBody rb = parent.getComponent(RigidBody.class);
+    //        if (rb == null) {
+    //            return getPosition();
+    //        }
+    //        return rb.getBody().getWorldCenter();
+    //    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

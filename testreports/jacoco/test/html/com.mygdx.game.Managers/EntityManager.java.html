@@ -48,24 +48,14 @@ import java.util.ArrayList;
 <span class="nc" id="L48">    }</span>
 
     /**
-     * gets the first entity found with the given name
-     *
-     * @param name name of the entity
-     * @return the found entity
-     */
-    public static Entity getEntity(String name) {
-<span class="nc" id="L57">        return entities.get(entityNames.indexOf(name));</span>
-    }
-
-    /**
      * changes the entity's name
      *
      * @param prev old name
      * @param new_ new name
      */
     public static void changeName(String prev, String new_) {
-<span class="nc" id="L67">        entityNames.set(entityNames.indexOf(prev), new_);</span>
-<span class="nc" id="L68">    }</span>
+<span class="nc" id="L57">        entityNames.set(entityNames.indexOf(prev), new_);</span>
+<span class="nc" id="L58">    }</span>
 
     /**
      * raises the appropriate events for each entity's component. then renders after all entities have being processed if render is requested
@@ -73,43 +63,43 @@ import java.util.ArrayList;
      * @param comps calls the events left to right
      */
     public static void raiseEvents(ComponentEvent... comps) {
-<span class="nc" id="L76">        tryInit();</span>
-<span class="nc bnc" id="L77" title="All 2 branches missed.">        for (Entity e : entities) {</span>
-<span class="nc" id="L78">            e.raiseEvents(comps);</span>
-<span class="nc" id="L79">        }</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">        for (ComponentEvent c : comps) {</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (c == ComponentEvent.Render) {</span>
-<span class="nc" id="L82">                RenderingManager.render();</span>
+<span class="nc" id="L66">        tryInit();</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        for (Entity e : entities) {</span>
+<span class="nc" id="L68">            e.raiseEvents(comps);</span>
+<span class="nc" id="L69">        }</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        for (ComponentEvent c : comps) {</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (c == ComponentEvent.Render) {</span>
+<span class="nc" id="L72">                RenderingManager.render();</span>
 
-<span class="nc" id="L84">                break;</span>
+<span class="nc" id="L74">                break;</span>
             }
         }
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        for (Entity e : entities) {</span>
-<span class="nc" id="L88">            e.update();</span>
-<span class="nc" id="L89">        }</span>
-<span class="nc" id="L90">    }</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        for (Entity e : entities) {</span>
+<span class="nc" id="L78">            e.update();</span>
+<span class="nc" id="L79">        }</span>
+<span class="nc" id="L80">    }</span>
 
     /**
      * Cleans up all entities and components. Disposes of the primary sprite batch
      */
     public static void cleanUp() {
-<span class="nc" id="L96">        tryInit();</span>
-<span class="nc bnc" id="L97" title="All 2 branches missed.">        for (Entity e : entities) {</span>
-<span class="nc" id="L98">            e.cleanUp();</span>
-<span class="nc" id="L99">        }</span>
-<span class="nc bnc" id="L100" title="All 2 branches missed.">        for (Component c : components) {</span>
-<span class="nc" id="L101">            c.cleanUp();</span>
-<span class="nc" id="L102">        }</span>
-<span class="nc" id="L103">    }</span>
+<span class="nc" id="L86">        tryInit();</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        for (Entity e : entities) {</span>
+<span class="nc" id="L88">            e.cleanUp();</span>
+<span class="nc" id="L89">        }</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        for (Component c : components) {</span>
+<span class="nc" id="L91">            c.cleanUp();</span>
+<span class="nc" id="L92">        }</span>
+<span class="nc" id="L93">    }</span>
 
     /**
      * automatically calls initialised if not done so
      */
     private static void tryInit() {
-<span class="nc bnc" id="L109" title="All 2 branches missed.">        if (!initialized) {</span>
-<span class="nc" id="L110">            Initialize();</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (!initialized) {</span>
+<span class="nc" id="L100">            Initialize();</span>
         }
-<span class="nc" id="L112">    }</span>
+<span class="nc" id="L102">    }</span>
 
     /**
      * gets the time between the last from and the current
@@ -117,11 +107,15 @@ import java.util.ArrayList;
      * @return 1/FPS
      */
     public static float getDeltaTime() {
-<span class="nc" id="L120">        return Gdx.graphics.getDeltaTime();</span>
+<span class="nc" id="L110">        return Gdx.graphics.getDeltaTime();</span>
     }
 
-    public static int getFPS() {
-<span class="nc" id="L124">        return Gdx.graphics.getFramesPerSecond();</span>
-    }
+    //    public static Entity getEntity(String name) {
+    //        return entities.get(entityNames.indexOf(name));
+    //    }
+
+    //public static int getFPS() {
+    //        return Gdx.graphics.getFramesPerSecond();
+    //    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

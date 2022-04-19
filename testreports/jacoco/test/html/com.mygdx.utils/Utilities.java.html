@@ -116,26 +116,6 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
     }
 
     /**
-     * helper for System.out.print
-     *
-     * @param v   string
-     * @param eol eol msg
-     */
-    public static void print(String v, String eol) {
-<span class="nc" id="L125">        System.out.print(v + eol);</span>
-<span class="nc" id="L126">    }</span>
-
-
-    /**
-     * helper for System.out.println
-     *
-     * @param v string
-     */
-    public static void print(String v) {
-<span class="nc" id="L135">        System.out.println(v);</span>
-<span class="nc" id="L136">    }</span>
-
-    /**
      * does array contain a
      *
      * @param array source
@@ -144,12 +124,20 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
      * @return true if contained otherwise false
      */
     public static &lt;T&gt; boolean contains(ArrayList&lt;T&gt; array, T a) {
-<span class="fc bfc" id="L147" title="All 2 branches covered.">        for (T b : array) {</span>
-<span class="fc bfc" id="L148" title="All 2 branches covered.">            if (b == a) {</span>
-<span class="fc" id="L149">                return true;</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        for (T b : array) {</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">            if (b == a) {</span>
+<span class="fc" id="L129">                return true;</span>
             }
-<span class="fc" id="L151">        }</span>
-<span class="fc" id="L152">        return false;</span>
+<span class="fc" id="L131">        }</span>
+<span class="fc" id="L132">        return false;</span>
     }
+
+    //public static void print(String v, String eol) {
+    //        System.out.print(v + eol);
+    //    }
+
+    //public static void print(String v) {
+    //        System.out.println(v);
+    //    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
