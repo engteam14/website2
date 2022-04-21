@@ -10,11 +10,11 @@ import com.mygdx.game.Entitys.Ship;
 /**
  * State machine used for NPC ships' behaviour
  */
-<span class="fc" id="L13">public enum EnemyState implements State&lt;NPCShip&gt; {</span>
+<span class="nc" id="L13">public enum EnemyState implements State&lt;NPCShip&gt; {</span>
     /**
      * Picks random pos and travels to it
      */
-<span class="fc" id="L17">    WANDER() {</span>
+<span class="nc" id="L17">    WANDER() {</span>
         @Override
         public void enter(NPCShip e) {
 <span class="nc" id="L20">            e.stopMovement();</span>
@@ -22,14 +22,14 @@ import com.mygdx.game.Entitys.Ship;
 
         @Override
         public void update(NPCShip e) {
-<span class="fc" id="L25">            super.update(e);</span>
-<span class="fc" id="L26">            e.circleOrigin();</span>
-<span class="fc" id="L27">        }</span>
+<span class="nc" id="L25">            super.update(e);</span>
+<span class="nc" id="L26">            e.circleOrigin();</span>
+<span class="nc" id="L27">        }</span>
     },
     /**
      * Tries to get into attack range of the player
      */
-<span class="fc" id="L32">    PURSUE() {</span>
+<span class="nc" id="L32">    PURSUE() {</span>
         @Override
         public void enter(NPCShip e) {
 <span class="nc" id="L35">            e.stopMovement();</span>
@@ -44,7 +44,7 @@ import com.mygdx.game.Entitys.Ship;
     /**
      * Actively looks for other enemies
      */
-<span class="fc" id="L47">    HUNT() {</span>
+<span class="nc" id="L47">    HUNT() {</span>
         @Override
         public void update(NPCShip e) {
 <span class="nc" id="L50">            super.update(e);</span>
@@ -53,11 +53,11 @@ import com.mygdx.game.Entitys.Ship;
     /**
      * Attempts to kill the enemy
      */
-<span class="fc" id="L56">    ATTACK() {</span>
+<span class="nc" id="L56">    ATTACK() {</span>
         @Override
         public void enter(NPCShip e) {
-<span class="fc" id="L59">            e.stopMovement();</span>
-<span class="fc" id="L60">        }</span>
+<span class="nc" id="L59">            e.stopMovement();</span>
+<span class="nc" id="L60">        }</span>
 
         @Override
         public void update(NPCShip e) {
@@ -73,14 +73,14 @@ import com.mygdx.game.Entitys.Ship;
      */
     @Override
     public void update(NPCShip e) {
-<span class="fc" id="L76">        StateMachine&lt;NPCShip, EnemyState&gt; m = e.stateMachine;</span>
-<span class="fc" id="L77">        Pirate p = e.getComponent(Pirate.class);</span>
-<span class="pc bpc" id="L78" title="4 of 5 branches missed.">        switch (m.getCurrentState()) {</span>
+<span class="nc" id="L76">        StateMachine&lt;NPCShip, EnemyState&gt; m = e.stateMachine;</span>
+<span class="nc" id="L77">        Pirate p = e.getComponent(Pirate.class);</span>
+<span class="nc bnc" id="L78" title="All 5 branches missed.">        switch (m.getCurrentState()) {</span>
             case WANDER:
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">                if (p.isAgro()) {</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">                if (p.isAgro()) {</span>
 <span class="nc" id="L81">                    m.changeState(PURSUE);</span>
-<span class="pc bpc" id="L82" title="1 of 2 branches missed.">                } else if (p.canAttack()) {</span>
-<span class="fc" id="L83">                    m.changeState(ATTACK);</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">                } else if (p.canAttack()) {</span>
+<span class="nc" id="L83">                    m.changeState(ATTACK);</span>
                 }
                 break;
             case PURSUE:
@@ -110,7 +110,7 @@ import com.mygdx.game.Entitys.Ship;
                 }
                 break;
         }
-<span class="fc" id="L113">    }</span>
+<span class="nc" id="L113">    }</span>
 
     /**
      * Called when a state is left
@@ -119,7 +119,7 @@ import com.mygdx.game.Entitys.Ship;
     @Override
     public void exit(NPCShip e) {
 
-<span class="fc" id="L122">    }</span>
+<span class="nc" id="L122">    }</span>
 
     /**
      * Called when a state is entered

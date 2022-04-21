@@ -17,7 +17,7 @@ import java.util.HashMap;
  * Manages all assets and disposes of them when appropriate
  */
 <span class="nc" id="L19">public final class ResourceManager {</span>
-<span class="fc" id="L20">    private static boolean initialized = false;</span>
+<span class="nc" id="L20">    private static boolean initialized = false;</span>
     private static boolean loaded;
     private static AssetManager manager;
     private static ArrayList&lt;String&gt; ids;
@@ -29,17 +29,17 @@ import java.util.HashMap;
      * The equivalent to a constructor
      */
     public static void Initialize() {
-<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (initialized) {</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (initialized) {</span>
 <span class="nc" id="L33">            return;</span>
         }
-<span class="fc" id="L35">        initialized = true;</span>
-<span class="fc" id="L36">        manager = new AssetManager();</span>
-<span class="fc" id="L37">        loaded = false;</span>
-<span class="fc" id="L38">        ids = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L39">        tileMaps = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L40">        fontGenerators = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L41">        fonts = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L42">    }</span>
+<span class="nc" id="L35">        initialized = true;</span>
+<span class="nc" id="L36">        manager = new AssetManager();</span>
+<span class="nc" id="L37">        loaded = false;</span>
+<span class="nc" id="L38">        ids = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L39">        tileMaps = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L40">        fontGenerators = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L41">        fonts = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L42">    }</span>
 
     /**
      * Schedules an asset for loading
@@ -48,11 +48,11 @@ import java.util.HashMap;
      * @return returns the id of the asset can be used in place of the name;
      */
     public static int addTexture(String fPath) {
-<span class="fc" id="L51">        tryInit();</span>
-<span class="fc" id="L52">        checkAdd();</span>
-<span class="fc" id="L53">        manager.load(fPath, Texture.class);</span>
-<span class="fc" id="L54">        ids.add(fPath);</span>
-<span class="fc" id="L55">        return ids.size();</span>
+<span class="nc" id="L51">        tryInit();</span>
+<span class="nc" id="L52">        checkAdd();</span>
+<span class="nc" id="L53">        manager.load(fPath, Texture.class);</span>
+<span class="nc" id="L54">        ids.add(fPath);</span>
+<span class="nc" id="L55">        return ids.size();</span>
     }
 
     /**
@@ -62,11 +62,11 @@ import java.util.HashMap;
      * @return returns the id of the asset can be used in place of the name;
      */
     public static int addTextureAtlas(String fPath) {
-<span class="fc" id="L65">        tryInit();</span>
-<span class="fc" id="L66">        checkAdd();</span>
-<span class="fc" id="L67">        manager.load(fPath, TextureAtlas.class);</span>
-<span class="fc" id="L68">        ids.add(fPath);</span>
-<span class="fc" id="L69">        return ids.size();</span>
+<span class="nc" id="L65">        tryInit();</span>
+<span class="nc" id="L66">        checkAdd();</span>
+<span class="nc" id="L67">        manager.load(fPath, TextureAtlas.class);</span>
+<span class="nc" id="L68">        ids.add(fPath);</span>
+<span class="nc" id="L69">        return ids.size();</span>
     }
 
     /**
@@ -76,12 +76,12 @@ import java.util.HashMap;
      * @return id of the asset
      */
     public static int addTileMap(String fPath) {
-<span class="fc" id="L79">        tryInit();</span>
-<span class="fc" id="L80">        checkAdd();</span>
-<span class="fc" id="L81">        TiledMap map = new TmxMapLoader().load(fPath);</span>
-<span class="fc" id="L82">        tileMaps.add(map);</span>
-<span class="fc" id="L83">        ids.add(&quot;|TM|&quot; + tileMaps.size() + fPath);</span>
-<span class="fc" id="L84">        return ids.size();</span>
+<span class="nc" id="L79">        tryInit();</span>
+<span class="nc" id="L80">        checkAdd();</span>
+<span class="nc" id="L81">        TiledMap map = new TmxMapLoader().load(fPath);</span>
+<span class="nc" id="L82">        tileMaps.add(map);</span>
+<span class="nc" id="L83">        ids.add(&quot;|TM|&quot; + tileMaps.size() + fPath);</span>
+<span class="nc" id="L84">        return ids.size();</span>
     }
 
     /**
@@ -162,10 +162,10 @@ import java.util.HashMap;
      * Actually loads the assets
      */
     public static void loadAssets() {
-<span class="fc" id="L165">        tryInit();</span>
-<span class="fc" id="L166">        loaded = true;</span>
-<span class="fc" id="L167">        manager.finishLoading();</span>
-<span class="fc" id="L168">    }</span>
+<span class="nc" id="L165">        tryInit();</span>
+<span class="nc" id="L166">        loaded = true;</span>
+<span class="nc" id="L167">        manager.finishLoading();</span>
+<span class="nc" id="L168">    }</span>
 
     public static Texture getTexture(String fPath) {
 <span class="nc" id="L171">        tryInit();</span>
@@ -173,12 +173,12 @@ import java.util.HashMap;
     }
 
     public static TextureAtlas getTextureAtlas(String fPath) {
-<span class="fc" id="L176">        tryInit();</span>
-<span class="fc" id="L177">        TextureAtlas t = manager.get(fPath);</span>
-<span class="fc bfc" id="L178" title="All 2 branches covered.">        for (Texture t0 : t.getTextures()) {</span>
-<span class="fc" id="L179">            t0.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);</span>
-<span class="fc" id="L180">        }</span>
-<span class="fc" id="L181">        return manager.get(fPath);</span>
+<span class="nc" id="L176">        tryInit();</span>
+<span class="nc" id="L177">        TextureAtlas t = manager.get(fPath);</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">        for (Texture t0 : t.getTextures()) {</span>
+<span class="nc" id="L179">            t0.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);</span>
+<span class="nc" id="L180">        }</span>
+<span class="nc" id="L181">        return manager.get(fPath);</span>
     }
 
     /**
@@ -207,15 +207,15 @@ import java.util.HashMap;
     }
 
     public static Texture getTexture(int id) {
-<span class="fc" id="L210">        tryInit();</span>
-<span class="fc" id="L211">        String fPath = ids.get(id - 1);</span>
-<span class="fc" id="L212">        return manager.get(fPath);</span>
+<span class="nc" id="L210">        tryInit();</span>
+<span class="nc" id="L211">        String fPath = ids.get(id - 1);</span>
+<span class="nc" id="L212">        return manager.get(fPath);</span>
     }
 
     public static TextureAtlas getTextureAtlas(int id) {
-<span class="fc" id="L216">        tryInit();</span>
-<span class="fc" id="L217">        String fPath = ids.get(id - 1);</span>
-<span class="fc" id="L218">        return getTextureAtlas(fPath);</span>
+<span class="nc" id="L216">        tryInit();</span>
+<span class="nc" id="L217">        String fPath = ids.get(id - 1);</span>
+<span class="nc" id="L218">        return getTextureAtlas(fPath);</span>
     }
 
     /**
@@ -229,8 +229,8 @@ import java.util.HashMap;
         // s.setV(0);
         // s.setU2(0.125f);
         // s.setV2(0.25f);
-<span class="fc" id="L232">        TextureAtlas t = getTextureAtlas(atlas_id);</span>
-<span class="fc" id="L233">        return getTextureAtlas(atlas_id).createSprite(name);</span>
+<span class="nc" id="L232">        TextureAtlas t = getTextureAtlas(atlas_id);</span>
+<span class="nc" id="L233">        return getTextureAtlas(atlas_id).createSprite(name);</span>
     }
 
     /**
@@ -262,7 +262,7 @@ import java.util.HashMap;
      */
     public static int getId(String name) {
         //tryInit();
-<span class="fc" id="L265">        return ids.indexOf(name) + 1;</span>
+<span class="nc" id="L265">        return ids.indexOf(name) + 1;</span>
     }
 
     public static BitmapFont getFont(int font_id) {
@@ -280,47 +280,47 @@ import java.util.HashMap;
      * It is imperative that this is called unless you want memory leeks
      */
     public static void cleanUp() {
-<span class="fc" id="L283">        tryInit();</span>
-<span class="fc" id="L284">        manager.dispose();</span>
-<span class="fc bfc" id="L285" title="All 2 branches covered.">        for (TiledMap map : tileMaps) {</span>
-<span class="fc" id="L286">            map.dispose();</span>
-<span class="fc" id="L287">        }</span>
-<span class="pc bpc" id="L288" title="1 of 2 branches missed.">        for (BitmapFont font : fonts.values()) {</span>
+<span class="nc" id="L283">        tryInit();</span>
+<span class="nc" id="L284">        manager.dispose();</span>
+<span class="nc bnc" id="L285" title="All 2 branches missed.">        for (TiledMap map : tileMaps) {</span>
+<span class="nc" id="L286">            map.dispose();</span>
+<span class="nc" id="L287">        }</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">        for (BitmapFont font : fonts.values()) {</span>
 <span class="nc" id="L289">            font.dispose();</span>
 <span class="nc" id="L290">        }</span>
-<span class="pc bpc" id="L291" title="1 of 2 branches missed.">        for (FreeTypeFontGenerator generator : fontGenerators.values()) {</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        for (FreeTypeFontGenerator generator : fontGenerators.values()) {</span>
 <span class="nc" id="L292">            generator.dispose();</span>
 <span class="nc" id="L293">        }</span>
-<span class="fc" id="L294">    }</span>
+<span class="nc" id="L294">    }</span>
 
     /**
      * Will check if new assets can be added if not throw an error
      */
     private static void checkAdd() {
-<span class="pc bpc" id="L300" title="1 of 2 branches missed.">        if (loaded) {</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">        if (loaded) {</span>
 <span class="nc" id="L301">            throw new RuntimeException(&quot;Can't load assets at this stage&quot;);</span>
         }
-<span class="fc" id="L303">    }</span>
+<span class="nc" id="L303">    }</span>
 
     /**
      * Calls Initialize if not already done so
      */
     private static void tryInit() {
-<span class="fc bfc" id="L309" title="All 2 branches covered.">        if (!initialized) {</span>
-<span class="fc" id="L310">            Initialize();</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">        if (!initialized) {</span>
+<span class="nc" id="L310">            Initialize();</span>
         }
-<span class="fc" id="L312">    }</span>
+<span class="nc" id="L312">    }</span>
 
     /**
      * Added for Assessment 2
      * Calls cleanup function and disposes of remaining assets
      */
     public static void dispose() {
-<span class="fc" id="L319">        cleanUp();</span>
-<span class="fc" id="L320">        initialized = false;</span>
-<span class="fc" id="L321">        loaded = false;</span>
-<span class="fc" id="L322">        ids = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L323">        fonts = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L324">    }</span>
+<span class="nc" id="L319">        cleanUp();</span>
+<span class="nc" id="L320">        initialized = false;</span>
+<span class="nc" id="L321">        loaded = false;</span>
+<span class="nc" id="L322">        ids = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L323">        fonts = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L324">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

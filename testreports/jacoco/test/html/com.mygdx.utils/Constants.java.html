@@ -35,29 +35,29 @@ import com.badlogic.gdx.math.Vector3;
      */
     public static void INIT_CONSTANTS() {
         // FULLSCREEN = !Boolean.parseBoolean(System.getProperty(&quot;windowed&quot;));
-<span class="fc" id="L38">        FULLSCREEN = false;</span>
+<span class="nc" id="L38">        FULLSCREEN = false;</span>
         try {
-<span class="fc" id="L40">            SCREEN_WIDTH = Gdx.graphics.getWidth();</span>
-<span class="fc" id="L41">            SCREEN_HEIGHT = Gdx.graphics.getHeight();</span>
+<span class="nc" id="L40">            SCREEN_WIDTH = Gdx.graphics.getWidth();</span>
+<span class="nc" id="L41">            SCREEN_HEIGHT = Gdx.graphics.getHeight();</span>
 <span class="nc" id="L42">        } catch (Exception e) {</span>
 <span class="nc" id="L43">            SCREEN_WIDTH = 1920;</span>
 <span class="nc" id="L44">            SCREEN_HEIGHT = 1080;</span>
-<span class="fc" id="L45">        }</span>
-<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        ASPECT_RATIO = !FULLSCREEN ? 1.0f : (float) SCREEN_WIDTH / (float) SCREEN_HEIGHT;</span>
-<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        VIEWPORT_HEIGHT = !FULLSCREEN ? 800 : SCREEN_HEIGHT;</span>
-<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        VIEWPORT_WIDTH = !FULLSCREEN ? (int) (ASPECT_RATIO * VIEWPORT_HEIGHT) : SCREEN_WIDTH;</span>
-<span class="fc" id="L49">        HALF_VIEWPORT_HEIGHT = VIEWPORT_WIDTH / 2;</span>
-<span class="fc" id="L50">        HALF_VIEWPORT_WIDTH = VIEWPORT_HEIGHT / 2;</span>
-<span class="fc" id="L51">        DIMENSIONS = new Vector2(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);</span>
-<span class="fc" id="L52">        HALF_DIMENSIONS = new Vector2(HALF_VIEWPORT_WIDTH, HALF_VIEWPORT_HEIGHT);</span>
-<span class="fc" id="L53">        VIEWPORT_TITLE = &quot;Pirate Game&quot;;</span>
-<span class="fc" id="L54">        BACKGROUND_COLOUR = new Vector3(0.0f, 0.0f, 0.0f);</span>
-<span class="fc" id="L55">        PHYSICS_TIME_STEP = 1.0f / 60.0f;</span>
+<span class="nc" id="L45">        }</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        ASPECT_RATIO = !FULLSCREEN ? 1.0f : (float) SCREEN_WIDTH / (float) SCREEN_HEIGHT;</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        VIEWPORT_HEIGHT = !FULLSCREEN ? 800 : SCREEN_HEIGHT;</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        VIEWPORT_WIDTH = !FULLSCREEN ? (int) (ASPECT_RATIO * VIEWPORT_HEIGHT) : SCREEN_WIDTH;</span>
+<span class="nc" id="L49">        HALF_VIEWPORT_HEIGHT = VIEWPORT_WIDTH / 2;</span>
+<span class="nc" id="L50">        HALF_VIEWPORT_WIDTH = VIEWPORT_HEIGHT / 2;</span>
+<span class="nc" id="L51">        DIMENSIONS = new Vector2(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);</span>
+<span class="nc" id="L52">        HALF_DIMENSIONS = new Vector2(HALF_VIEWPORT_WIDTH, HALF_VIEWPORT_HEIGHT);</span>
+<span class="nc" id="L53">        VIEWPORT_TITLE = &quot;Pirate Game&quot;;</span>
+<span class="nc" id="L54">        BACKGROUND_COLOUR = new Vector3(0.0f, 0.0f, 0.0f);</span>
+<span class="nc" id="L55">        PHYSICS_TIME_STEP = 1.0f / 60.0f;</span>
 
-<span class="fc" id="L57">        OPERATING_SYSTEM = System.getProperty(&quot;os.name&quot;);</span>
+<span class="nc" id="L57">        OPERATING_SYSTEM = System.getProperty(&quot;os.name&quot;);</span>
 
-<span class="fc" id="L59">        TILE_SIZE = 32;</span>
-<span class="fc" id="L60">    }</span>
+<span class="nc" id="L59">        TILE_SIZE = 32;</span>
+<span class="nc" id="L60">    }</span>
 
     /**
      * Update viewport data on resize

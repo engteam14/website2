@@ -20,7 +20,7 @@ import static com.mygdx.utils.Constants.PHYSICS_TIME_STEP;
  */
 <span class="nc" id="L21">public final class PhysicsManager {</span>
     private static final float TILE_SIZE_INV = 1.0f;
-<span class="fc" id="L23">    public static boolean initialized = false;</span>
+<span class="nc" id="L23">    public static boolean initialized = false;</span>
     public static World box2DWorld;
     private static ArrayList&lt;Body&gt; box2DBodies;
     private static Box2DDebugRenderer debug;
@@ -35,27 +35,27 @@ import static com.mygdx.utils.Constants.PHYSICS_TIME_STEP;
      * @param drawDebug true to show debug borders
      */
     public static void Initialize(boolean drawDebug) {
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (initialized) {</span>
-<span class="fc" id="L39">            return;</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (initialized) {</span>
+<span class="nc" id="L39">            return;</span>
         }
-<span class="fc" id="L41">        initialized = true;</span>
+<span class="nc" id="L41">        initialized = true;</span>
 
-<span class="fc" id="L43">        box2DWorld = new World(new Vector2(0, 0), true);</span>
-<span class="fc" id="L44">        box2DBodies = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L45">        box2DWorld.setContactListener(new CollisionManager());</span>
-<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (drawDebug) {</span>
+<span class="nc" id="L43">        box2DWorld = new World(new Vector2(0, 0), true);</span>
+<span class="nc" id="L44">        box2DBodies = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L45">        box2DWorld.setContactListener(new CollisionManager());</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (drawDebug) {</span>
 <span class="nc" id="L47">            debug = new Box2DDebugRenderer(true, false, true, true, false, true);</span>
         }
-<span class="fc" id="L49">    }</span>
+<span class="nc" id="L49">    }</span>
 
     public static int createBody(BodyDef bDef, FixtureDef fDef, Object userData) {
-<span class="fc" id="L52">        tryInit();</span>
-<span class="fc" id="L53">        bDef.fixedRotation = true;</span>
-<span class="fc" id="L54">        Body b = box2DWorld.createBody(bDef);</span>
-<span class="fc" id="L55">        b.createFixture(fDef);</span>
-<span class="fc" id="L56">        b.setUserData(userData);</span>
-<span class="fc" id="L57">        box2DBodies.add(b);</span>
-<span class="fc" id="L58">        return box2DBodies.size();</span>
+<span class="nc" id="L52">        tryInit();</span>
+<span class="nc" id="L53">        bDef.fixedRotation = true;</span>
+<span class="nc" id="L54">        Body b = box2DWorld.createBody(bDef);</span>
+<span class="nc" id="L55">        b.createFixture(fDef);</span>
+<span class="nc" id="L56">        b.setUserData(userData);</span>
+<span class="nc" id="L57">        box2DBodies.add(b);</span>
+<span class="nc" id="L58">        return box2DBodies.size();</span>
     }
 
     private static Shape tile_getShape(Rectangle rectangle) {
@@ -108,23 +108,23 @@ import static com.mygdx.utils.Constants.PHYSICS_TIME_STEP;
 <span class="nc" id="L108">    }</span>
 
     public static Body getBody(int id) {
-<span class="fc" id="L111">        return box2DBodies.get(id - 1);</span>
+<span class="nc" id="L111">        return box2DBodies.get(id - 1);</span>
     }
 
     private static void tryInit() {
-<span class="pc bpc" id="L115" title="1 of 2 branches missed.">        if (!initialized) {</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        if (!initialized) {</span>
 <span class="nc" id="L116">            Initialize();</span>
         }
-<span class="fc" id="L118">    }</span>
+<span class="nc" id="L118">    }</span>
 
     public static void update() {
-<span class="fc" id="L121">        tryInit();</span>
-<span class="fc" id="L122">        box2DWorld.step(PHYSICS_TIME_STEP, 6, 2);</span>
+<span class="nc" id="L121">        tryInit();</span>
+<span class="nc" id="L122">        box2DWorld.step(PHYSICS_TIME_STEP, 6, 2);</span>
 
-<span class="pc bpc" id="L124" title="1 of 2 branches missed.">        if (debug != null) {</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        if (debug != null) {</span>
 <span class="nc" id="L125">            debug.render(box2DWorld, RenderingManager.getCamera().combined);</span>
         }
-<span class="fc" id="L127">    }</span>
+<span class="nc" id="L127">    }</span>
 
     public static void cleanUp() {
 <span class="nc" id="L130">        tryInit();</span>

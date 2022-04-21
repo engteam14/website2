@@ -89,8 +89,8 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
      * @return rand Vector2
      */
     public static Vector2 randomPos(float min, float max) {
-<span class="fc" id="L92">        Random r = new Random();</span>
-<span class="fc" id="L93">        return new Vector2(min + r.nextFloat() * (max - min), min + r.nextFloat() * (max - min));</span>
+<span class="nc" id="L92">        Random r = new Random();</span>
+<span class="nc" id="L93">        return new Vector2(min + r.nextFloat() * (max - min), min + r.nextFloat() * (max - min));</span>
     }
 
     /**
@@ -101,8 +101,8 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
      * @return the random element
      */
     public static &lt;T&gt; T randomChoice(ArrayList&lt;T&gt; list) {
-<span class="fc" id="L104">        int choice = new Random().nextInt(list.size());</span>
-<span class="fc" id="L105">        return list.get(choice);</span>
+<span class="nc" id="L104">        int choice = new Random().nextInt(list.size());</span>
+<span class="nc" id="L105">        return list.get(choice);</span>
     }
 
     /**
