@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -182,50 +182,16 @@ implements com.badlogic.gdx.ai.pfa.indexed.IndexedGraph&lt;<a href="Node.html" t
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../utils/QueueFIFO.html" title="class in com.mygdx.utils">QueueFIFO</a>&lt;com.badlogic.gdx.math.Vector2&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findOptimisedPath(float,float,float,float)">findOptimisedPath</a></span>&#8203;(float&nbsp;x1,
-                 float&nbsp;y1,
-                 float&nbsp;x2,
-                 float&nbsp;y2)</code></th>
-<td class="colLast">
-<div class="block">Finds a sequence on locations which can be travelled to without collision</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../utils/QueueFIFO.html" title="class in com.mygdx.utils">QueueFIFO</a>&lt;com.badlogic.gdx.math.Vector2&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findOptimisedPath(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2)">findOptimisedPath</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;a,
-                 com.badlogic.gdx.math.Vector2&nbsp;b)</code></th>
-<td class="colLast">
-<div class="block">Finds a sequence on locations which can be travelled to without collision</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../utils/QueueFIFO.html" title="class in com.mygdx.utils">QueueFIFO</a>&lt;com.badlogic.gdx.math.Vector2&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findOptimisedPath(com.mygdx.game.AI.Node,com.mygdx.game.AI.Node)">findOptimisedPath</a></span>&#8203;(<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;a,
-                 <a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;b)</code></th>
-<td class="colLast">
-<div class="block">Finds a sequence of locations which can be travelled to without collision</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>com.badlogic.gdx.ai.pfa.GraphPath&lt;<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findPath(com.mygdx.game.AI.Node,com.mygdx.game.AI.Node)">findPath</a></span>&#8203;(<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;start,
-        <a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;goal)</code></th>
-<td class="colLast">
-<div class="block">Finds the path</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
 <td class="colFirst"><code>com.badlogic.gdx.utils.Array&lt;com.badlogic.gdx.ai.pfa.Connection&lt;<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getConnections(com.mygdx.game.AI.Node)">getConnections</a></span>&#8203;(<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;fromNode)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIndex(com.mygdx.game.AI.Node)">getIndex</a></span>&#8203;(<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;node)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="Node.html" title="class in com.mygdx.game.AI">Node</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNode(float,float)">getNode</a></span>&#8203;(float&nbsp;x,
        float&nbsp;y)</code></th>
@@ -233,7 +199,7 @@ implements com.badlogic.gdx.ai.pfa.indexed.IndexedGraph&lt;<a href="Node.html" t
 <div class="block">Node a position (x, y)</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNodeCount()">getNodeCount</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -301,82 +267,6 @@ implements com.badlogic.gdx.ai.pfa.indexed.IndexedGraph&lt;<a href="Node.html" t
 <dd><code>y</code> - co-ord</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Node at (x, y) or null</dd>
-</dl>
-</li>
-</ul>
-<a id="findPath(com.mygdx.game.AI.Node,com.mygdx.game.AI.Node)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>findPath</h4>
-<pre class="methodSignature">public&nbsp;com.badlogic.gdx.ai.pfa.GraphPath&lt;<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&gt;&nbsp;findPath&#8203;(<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;start,
-                                                        <a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;goal)</pre>
-<div class="block">Finds the path</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>start</code> - the starting node</dd>
-<dd><code>goal</code> - the ending node</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a queue of the nodes to visit null if no path id found</dd>
-</dl>
-</li>
-</ul>
-<a id="findOptimisedPath(com.mygdx.game.AI.Node,com.mygdx.game.AI.Node)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>findOptimisedPath</h4>
-<pre class="methodSignature">public&nbsp;<a href="../../utils/QueueFIFO.html" title="class in com.mygdx.utils">QueueFIFO</a>&lt;com.badlogic.gdx.math.Vector2&gt;&nbsp;findOptimisedPath&#8203;(<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;a,
-                                                                  <a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;b)</pre>
-<div class="block">Finds a sequence of locations which can be travelled to without collision</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>a</code> - starting node</dd>
-<dd><code>b</code> - destination node</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>queue of location to travel to in order</dd>
-</dl>
-</li>
-</ul>
-<a id="findOptimisedPath(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>findOptimisedPath</h4>
-<pre class="methodSignature">public&nbsp;<a href="../../utils/QueueFIFO.html" title="class in com.mygdx.utils">QueueFIFO</a>&lt;com.badlogic.gdx.math.Vector2&gt;&nbsp;findOptimisedPath&#8203;(com.badlogic.gdx.math.Vector2&nbsp;a,
-                                                                  com.badlogic.gdx.math.Vector2&nbsp;b)</pre>
-<div class="block">Finds a sequence on locations which can be travelled to without collision</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>a</code> - starting node location</dd>
-<dd><code>b</code> - destination node location</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>queue of location to travel to in order</dd>
-</dl>
-</li>
-</ul>
-<a id="findOptimisedPath(float,float,float,float)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>findOptimisedPath</h4>
-<pre class="methodSignature">public&nbsp;<a href="../../utils/QueueFIFO.html" title="class in com.mygdx.utils">QueueFIFO</a>&lt;com.badlogic.gdx.math.Vector2&gt;&nbsp;findOptimisedPath&#8203;(float&nbsp;x1,
-                                                                  float&nbsp;y1,
-                                                                  float&nbsp;x2,
-                                                                  float&nbsp;y2)</pre>
-<div class="block">Finds a sequence on locations which can be travelled to without collision</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>x1</code> - starting node x co-ords tile space</dd>
-<dd><code>y1</code> - starting node y co-ords tile space</dd>
-<dd><code>x2</code> - destination node x co-ords tile space</dd>
-<dd><code>y2</code> - destination node y co-ords tile space</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>queue of location to travel to in order</dd>
 </dl>
 </li>
 </ul>

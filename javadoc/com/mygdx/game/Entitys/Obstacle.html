@@ -176,15 +176,6 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,boolean,float,float)">Obstacle</a></span>&#8203;(java.lang.String&nbsp;texName,
-        boolean&nbsp;trigger,
-        float&nbsp;damage,
-        float&nbsp;hitRate)</code></th>
-<td class="colLast">
-<div class="block">Generate an obstacle which does not break.</div>
-</td>
-</tr>
-<tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,boolean,float,float,int)">Obstacle</a></span>&#8203;(java.lang.String&nbsp;texName,
         boolean&nbsp;trigger,
         float&nbsp;damage,
@@ -192,15 +183,6 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
         int&nbsp;hitLimit)</code></th>
 <td class="colLast">
 <div class="block">Generate an obstacle.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,boolean,float,int)">Obstacle</a></span>&#8203;(java.lang.String&nbsp;texName,
-        boolean&nbsp;trigger,
-        float&nbsp;damage,
-        int&nbsp;hitLimit)</code></th>
-<td class="colLast">
-<div class="block">Generate an obstacle which only triggers a hit on initial collision.</div>
 </td>
 </tr>
 </table>
@@ -267,7 +249,7 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.mygdx.game.Entitys.<a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a></h3>
-<code><a href="Entity.html#addComponent(com.mygdx.game.Components.Component)">addComponent</a>, <a href="Entity.html#addComponents(com.mygdx.game.Components.Component...)">addComponents</a>, <a href="Entity.html#cleanUp()">cleanUp</a>, <a href="Entity.html#dispose()">dispose</a>, <a href="Entity.html#getComponent(com.mygdx.game.Components.ComponentType)">getComponent</a>, <a href="Entity.html#getComponent(java.lang.Class)">getComponent</a>, <a href="Entity.html#getComponents(java.lang.Class)">getComponents</a>, <a href="Entity.html#getName()">getName</a>, <a href="Entity.html#raiseEvents(com.mygdx.game.Components.ComponentEvent...)">raiseEvents</a>, <a href="Entity.html#setName(java.lang.String)">setName</a></code></li>
+<code><a href="Entity.html#addComponent(com.mygdx.game.Components.Component)">addComponent</a>, <a href="Entity.html#addComponents(com.mygdx.game.Components.Component...)">addComponents</a>, <a href="Entity.html#cleanUp()">cleanUp</a>, <a href="Entity.html#dispose()">dispose</a>, <a href="Entity.html#getComponent(com.mygdx.game.Components.ComponentType)">getComponent</a>, <a href="Entity.html#getComponent(java.lang.Class)">getComponent</a>, <a href="Entity.html#getName()">getName</a>, <a href="Entity.html#raiseEvents(com.mygdx.game.Components.ComponentEvent...)">raiseEvents</a>, <a href="Entity.html#setName(java.lang.String)">setName</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -307,46 +289,6 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <dd><code>texName</code> - The texture to show for the obstacle.</dd>
 <dd><code>trigger</code> - True if the obstacle is trigger, otherwise is contact.</dd>
 <dd><code>damage</code> - The damage that the obstacle does per 'hit'</dd>
-</dl>
-</li>
-</ul>
-<a id="&lt;init&gt;(java.lang.String,boolean,float,int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>Obstacle</h4>
-<pre>public&nbsp;Obstacle&#8203;(java.lang.String&nbsp;texName,
-                boolean&nbsp;trigger,
-                float&nbsp;damage,
-                int&nbsp;hitLimit)</pre>
-<div class="block">Generate an obstacle which only triggers a hit on initial collision.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>texName</code> - The texture to show for the obstacle.</dd>
-<dd><code>trigger</code> - True if the obstacle is trigger, otherwise is contact.</dd>
-<dd><code>damage</code> - The damage that the obstacle does per 'hit'</dd>
-<dd><code>hitLimit</code> - The number of 'hits' required to break the obstacle</dd>
-</dl>
-</li>
-</ul>
-<a id="&lt;init&gt;(java.lang.String,boolean,float,float)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>Obstacle</h4>
-<pre>public&nbsp;Obstacle&#8203;(java.lang.String&nbsp;texName,
-                boolean&nbsp;trigger,
-                float&nbsp;damage,
-                float&nbsp;hitRate)</pre>
-<div class="block">Generate an obstacle which does not break.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>texName</code> - The texture to show for the obstacle.</dd>
-<dd><code>trigger</code> - True if the obstacle is trigger, otherwise is contact.</dd>
-<dd><code>damage</code> - The damage that the obstacle does per 'hit'</dd>
-<dd><code>hitRate</code> - The rate at which 'hits' occur while colliding</dd>
 </dl>
 </li>
 </ul>
