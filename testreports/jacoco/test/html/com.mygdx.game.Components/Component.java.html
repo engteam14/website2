@@ -15,20 +15,20 @@ public abstract class Component {
     protected ArrayList&lt;ComponentType&gt; requirements;
     protected boolean reqsMet;
 
-<span class="nc" id="L18">    protected Component() {</span>
-<span class="nc" id="L19">        reqsMet = false;</span>
-<span class="nc" id="L20">        type = ComponentType.Unknown;</span>
-<span class="nc" id="L21">        parent = null;</span>
-<span class="nc" id="L22">        requirements = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L23">        EntityManager.addComponent(this);</span>
-<span class="nc" id="L24">    }</span>
+<span class="fc" id="L18">    protected Component() {</span>
+<span class="fc" id="L19">        reqsMet = false;</span>
+<span class="fc" id="L20">        type = ComponentType.Unknown;</span>
+<span class="fc" id="L21">        parent = null;</span>
+<span class="fc" id="L22">        requirements = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L23">        EntityManager.addComponent(this);</span>
+<span class="fc" id="L24">    }</span>
 
     public void setParent(Entity e) {
-<span class="nc" id="L27">        parent = e;</span>
-<span class="nc" id="L28">    }</span>
+<span class="fc" id="L27">        parent = e;</span>
+<span class="fc" id="L28">    }</span>
 
     public Entity getParent() {
-<span class="nc" id="L31">        return parent;</span>
+<span class="fc" id="L31">        return parent;</span>
     }
 
     /**
@@ -37,27 +37,27 @@ public abstract class Component {
      * @param reqs take a guess
      */
     public final void setRequirements(ComponentType... reqs) {
-<span class="nc" id="L40">        requirements.addAll(Arrays.asList(reqs));</span>
-<span class="nc" id="L41">    }</span>
+<span class="fc" id="L40">        requirements.addAll(Arrays.asList(reqs));</span>
+<span class="fc" id="L41">    }</span>
 
     /**
      * Checks if the passed requirements exist will crash if they aren't
      */
     private void checkRequirements() {
-<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (reqsMet) {</span>
-<span class="nc" id="L48">            return;</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (reqsMet) {</span>
+<span class="fc" id="L48">            return;</span>
         }
-<span class="nc bnc" id="L50" title="All 2 branches missed.">        for (ComponentType t : requirements) {</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        for (ComponentType t : requirements) {</span>
 <span class="nc" id="L51">            Component c = parent.getComponent(t);</span>
 <span class="nc bnc" id="L52" title="All 2 branches missed.">            if (c == null) {</span>
 <span class="nc" id="L53">                throw new RuntimeException(&quot;Component: &quot; + t.name() + &quot; Is not found for &quot; + type.name());</span>
             }
 <span class="nc" id="L55">        }</span>
-<span class="nc" id="L56">        reqsMet = true;</span>
-<span class="nc" id="L57">    }</span>
+<span class="fc" id="L56">        reqsMet = true;</span>
+<span class="fc" id="L57">    }</span>
 
     public final ComponentType getType() {
-<span class="nc" id="L60">        return type;</span>
+<span class="fc" id="L60">        return type;</span>
     }
 
     /**
@@ -85,8 +85,8 @@ public abstract class Component {
      * Called once per frame
      */
     public void update() {
-<span class="nc" id="L88">        checkRequirements();</span>
-<span class="nc" id="L89">    }</span>
+<span class="fc" id="L88">        checkRequirements();</span>
+<span class="fc" id="L89">    }</span>
 
     /**
      * Called once per frame used exclusively for rendering

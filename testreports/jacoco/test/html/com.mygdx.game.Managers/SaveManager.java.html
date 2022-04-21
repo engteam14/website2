@@ -21,72 +21,74 @@ import java.util.ArrayList;
      * Saves the state of the game. Added for assesment 2
      */
     public static void SaveGame(){
-<span class="nc" id="L24">        prefs = Gdx.app.getPreferences(&quot;pirate/GameSave_game_1&quot;);</span>
-<span class="nc" id="L25">        prefs.putString(&quot;Difficulty&quot;, GameManager.getSettings().name);</span>
+<span class="fc" id="L24">        prefs = Gdx.app.getPreferences(&quot;pirate/GameSave_game_1&quot;);</span>
+<span class="fc" id="L25">        prefs.putString(&quot;Difficulty&quot;, GameManager.getSettings().name);</span>
 
-<span class="nc" id="L27">        ArrayList&lt;Ship&gt; ships = GameManager.getShips();</span>
+<span class="fc" id="L27">        ArrayList&lt;Ship&gt; ships = GameManager.getShips();</span>
         // save the stats of each ship where the first one is the player
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        for (int i = 0; i &lt; ships.size(); i++) {</span>
-<span class="nc" id="L30">            Ship ship = ships.get(i);</span>
-<span class="nc" id="L31">            prefs.putFloat(&quot;ship&quot;+i+&quot;X&quot;, ship.getPosition().x);</span>
-<span class="nc" id="L32">            prefs.putFloat(&quot;ship&quot;+i+&quot;Y&quot;, ship.getPosition().y);</span>
-<span class="nc" id="L33">            prefs.putFloat(&quot;ship&quot; + i + &quot;H&quot;, ship.getHealth());</span>
-<span class="nc" id="L34">            prefs.putInteger(&quot;ship&quot; + i + &quot;A&quot;, ship.getComponent(Pirate.class).getAmmo());</span>
-<span class="nc" id="L35">            prefs.putInteger(&quot;ship&quot; + &quot;F&quot;, ship.getComponent(Pirate.class).getFaction().id);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (int i = 0; i &lt; ships.size(); i++) {</span>
+<span class="fc" id="L30">            Ship ship = ships.get(i);</span>
+<span class="fc" id="L31">            prefs.putFloat(&quot;ship&quot;+i+&quot;X&quot;, ship.getPosition().x);</span>
+<span class="fc" id="L32">            prefs.putFloat(&quot;ship&quot;+i+&quot;Y&quot;, ship.getPosition().y);</span>
+<span class="fc" id="L33">            prefs.putFloat(&quot;ship&quot; + i + &quot;H&quot;, ship.getHealth());</span>
+<span class="fc" id="L34">            prefs.putInteger(&quot;ship&quot; + i + &quot;A&quot;, ship.getComponent(Pirate.class).getAmmo());</span>
+<span class="fc" id="L35">            prefs.putInteger(&quot;ship&quot; + &quot;F&quot;, ship.getComponent(Pirate.class).getFaction().id);</span>
         }
-<span class="nc" id="L37">        ArrayList&lt;College&gt; colleges = GameManager.getColleges();</span>
+<span class="fc" id="L37">        ArrayList&lt;College&gt; colleges = GameManager.getColleges();</span>
         //saves wether each college is alive of not
-<span class="nc bnc" id="L39" title="All 2 branches missed.">        for (College college : colleges) {</span>
-<span class="nc" id="L40">            prefs.putBoolean(college.f.id + &quot;Alive&quot;, college.isAlive());</span>
-<span class="nc" id="L41">        }</span>
-<span class="nc" id="L42">        prefs.flush();</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        for (College college : colleges) {</span>
+<span class="fc" id="L40">            prefs.putBoolean(college.f.id + &quot;Alive&quot;, college.isAlive());</span>
+<span class="fc" id="L41">        }</span>
+<span class="fc" id="L42">        prefs.flush();</span>
 
-<span class="nc" id="L44">    }</span>
+<span class="fc" id="L44">    }</span>
 
     /**
      * Added for assessment 2
      * loads the preferences file and sets the difficulty of the saved game
      */
     public static void LoadGame(){
-<span class="nc" id="L51">        prefs = Gdx.app.getPreferences(&quot;pirate/GameSave_game_1&quot;);</span>
-<span class="nc" id="L52">        String diff = prefs.getString(&quot;Difficulty&quot;, &quot;Regular&quot;);</span>
-<span class="nc" id="L53">        GameManager.changeDifficulty(diff);</span>
+<span class="fc" id="L51">        prefs = Gdx.app.getPreferences(&quot;pirate/GameSave_game_1&quot;);</span>
+<span class="fc" id="L52">        String diff = prefs.getString(&quot;Difficulty&quot;, &quot;Regular&quot;);</span>
+<span class="fc" id="L53">        GameManager.changeDifficulty(diff);</span>
 
-<span class="nc" id="L55">    }</span>
+<span class="fc" id="L55">    }</span>
     /**
      * Added for assessment 2
      * loads the state of the ships and colleges and sets the current quest
      */
     public static void SpawnGame(){
-<span class="nc" id="L61">        ArrayList&lt;Ship&gt; shipsAll = GameManager.getShips();</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">        for (int i = 0; i&lt; shipsAll.size(); i++){</span>
-<span class="nc" id="L63">            Ship ship = shipsAll.get(i);</span>
-<span class="nc" id="L64">            float shipX = prefs.getFloat(&quot;ship&quot; + i + &quot;X&quot;, ship.getPosition().x);</span>
-<span class="nc" id="L65">            float shipY = prefs.getFloat(&quot;ship&quot; + i + &quot;Y&quot;, ship.getPosition().y);</span>
-<span class="nc" id="L66">            float shipH = prefs.getFloat(&quot;ship&quot; + i + &quot;H&quot;, ship.getHealth());</span>
-<span class="nc" id="L67">            int shipP = prefs.getInteger(&quot;ship&quot; + i + &quot;Pl&quot;, ship.getPlunder());</span>
-<span class="nc" id="L68">            int shipPo = prefs.getInteger(&quot;ship&quot; + i + &quot;Po&quot;, ship.getPlunder());</span>
-<span class="nc" id="L69">            int shipA = prefs.getInteger(&quot;ship&quot; + i + &quot;A&quot;, ship.getComponent(Pirate.class).getAmmo());</span>
-<span class="nc" id="L70">            int shipF = prefs.getInteger(&quot;ship&quot; + i + &quot;F&quot;, ship.getComponent(Pirate.class).getFaction().id);</span>
+<span class="fc" id="L61">        ArrayList&lt;Ship&gt; shipsAll = GameManager.getShips();</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        for (int i = 0; i&lt; shipsAll.size(); i++){</span>
+<span class="fc" id="L63">            Ship ship = shipsAll.get(i);</span>
+<span class="fc" id="L64">            float shipX = prefs.getFloat(&quot;ship&quot; + i + &quot;X&quot;, ship.getPosition().x);</span>
+<span class="fc" id="L65">            float shipY = prefs.getFloat(&quot;ship&quot; + i + &quot;Y&quot;, ship.getPosition().y);</span>
+<span class="fc" id="L66">            float shipH = prefs.getFloat(&quot;ship&quot; + i + &quot;H&quot;, ship.getHealth());</span>
+<span class="fc" id="L67">            int shipP = prefs.getInteger(&quot;ship&quot; + i + &quot;Pl&quot;, ship.getPlunder());</span>
+<span class="fc" id="L68">            int shipPo = prefs.getInteger(&quot;ship&quot; + i + &quot;Po&quot;, ship.getPlunder());</span>
+<span class="fc" id="L69">            int shipA = prefs.getInteger(&quot;ship&quot; + i + &quot;A&quot;, ship.getComponent(Pirate.class).getAmmo());</span>
+<span class="fc" id="L70">            int shipF = prefs.getInteger(&quot;ship&quot; + i + &quot;F&quot;, ship.getComponent(Pirate.class).getFaction().id);</span>
 
 
-<span class="nc" id="L73">            ship.getComponent(Pirate.class).addPlunder(shipP- ship.getPlunder() );</span>
-<span class="nc" id="L74">            ship.getComponent(Pirate.class).setAmmo(shipA);</span>
-<span class="nc" id="L75">            ship.getComponent(Transform.class).setPosition(shipX, shipY);</span>
-<span class="nc" id="L76">            ship.getComponent(Pirate.class).takeDamage(ship.getHealth() - shipH);</span>
-<span class="nc" id="L77">            ship.getComponent(Pirate.class).setFactionId(shipF);</span>
-<span class="nc" id="L78">            ship.getComponent(Pirate.class).addPoints(shipPo - ship.getPoints());</span>
+<span class="fc" id="L73">            ship.getComponent(Pirate.class).addPlunder(shipP- ship.getPlunder() );</span>
+<span class="fc" id="L74">            ship.getComponent(Pirate.class).setAmmo(shipA);</span>
+<span class="fc" id="L75">            ship.getComponent(Transform.class).setPosition(shipX, shipY);</span>
+<span class="fc" id="L76">            ship.getComponent(Pirate.class).takeDamage(ship.getHealth() - shipH);</span>
+<span class="fc" id="L77">            ship.getComponent(Pirate.class).setFactionId(shipF);</span>
+<span class="fc" id="L78">            ship.getComponent(Pirate.class).addPoints(shipPo - ship.getPoints());</span>
 
         }
-<span class="nc" id="L81">        ArrayList&lt;College&gt; Colleges = GameManager.getColleges();</span>
-<span class="nc bnc" id="L82" title="All 2 branches missed.">        for (College college : Colleges) {</span>
-<span class="nc" id="L83">            boolean isAlive = prefs.getBoolean(college.f.id+&quot;Alive&quot;, true);</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (!isAlive) {</span>
-<span class="nc" id="L85">                college.killThisCollege(null);</span>
+<span class="fc" id="L81">        ArrayList&lt;College&gt; Colleges = GameManager.getColleges();</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        for (College college : Colleges) {</span>
+<span class="fc" id="L83">            boolean isAlive = prefs.getBoolean(college.f.id+&quot;Alive&quot;, true);</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">            if (!isAlive) {</span>
+<span class="fc" id="L85">                college.killThisCollege(null);</span>
             }
-<span class="nc" id="L87">        }</span>
-<span class="nc" id="L88">        QuestManager.setCurrentQuest(prefs.getString(&quot;currentQuest&quot;));</span>
-<span class="nc" id="L89">    }</span>
+<span class="fc" id="L87">        }</span>
+<span class="fc" id="L88">        QuestManager.setCurrentQuest(prefs.getString(&quot;currentQuest&quot;));</span>
+
+
+<span class="fc" id="L91">    }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

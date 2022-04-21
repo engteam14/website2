@@ -44,47 +44,48 @@ import java.util.Objects;
 <span class="nc" id="L44">        pause = new PauseScreen(this);</span>
 
 <span class="nc" id="L46">        setScreen(menu);</span>
-<span class="nc" id="L47">    }</span>
+
+<span class="nc" id="L48">    }</span>
 
     /**
      * Added for Assessment 2
      * Modularized resource loading so it can be called from tests and for code clarity
      */
     public static void loadResources() {
-<span class="nc" id="L54">        ResourceManager.addTexture(&quot;ship.png&quot;);</span>
-<span class="nc" id="L55">        id_map = ResourceManager.addTileMap(&quot;Map.tmx&quot;);</span>
+<span class="fc" id="L55">        ResourceManager.addTexture(&quot;ship.png&quot;);</span>
+<span class="fc" id="L56">        id_map = ResourceManager.addTileMap(&quot;Map.tmx&quot;);</span>
 
-<span class="nc" id="L57">        ResourceManager.addTextureAtlas(&quot;Boats.txt&quot;);</span>
-<span class="nc" id="L58">        ResourceManager.addTextureAtlas(&quot;UISkin/skin.atlas&quot;);</span>
-<span class="nc" id="L59">        ResourceManager.addTextureAtlas(&quot;Buildings.txt&quot;);</span>
-<span class="nc" id="L60">        ResourceManager.addTextureAtlas(&quot;powerups.txt&quot;);</span>
-<span class="nc" id="L61">        ResourceManager.addTextureAtlas(&quot;obstacles.txt&quot;);</span>
+<span class="fc" id="L58">        ResourceManager.addTextureAtlas(&quot;Boats.txt&quot;);</span>
+<span class="fc" id="L59">        ResourceManager.addTextureAtlas(&quot;UISkin/skin.atlas&quot;);</span>
+<span class="fc" id="L60">        ResourceManager.addTextureAtlas(&quot;Buildings.txt&quot;);</span>
+<span class="fc" id="L61">        ResourceManager.addTextureAtlas(&quot;powerups.txt&quot;);</span>
+<span class="fc" id="L62">        ResourceManager.addTextureAtlas(&quot;obstacles.txt&quot;);</span>
 
 
-<span class="nc" id="L64">        ResourceManager.addTexture(&quot;menuBG.jpg&quot;);</span>
-<span class="nc" id="L65">        ResourceManager.addTexture(&quot;Chest.png&quot;);</span>
-<span class="nc" id="L66">        ResourceManager.addTexture(&quot;questArrow.png&quot;);</span>
+<span class="fc" id="L65">        ResourceManager.addTexture(&quot;menuBG.jpg&quot;);</span>
+<span class="fc" id="L66">        ResourceManager.addTexture(&quot;Chest.png&quot;);</span>
+<span class="fc" id="L67">        ResourceManager.addTexture(&quot;questArrow.png&quot;);</span>
 
-<span class="nc" id="L68">        ResourceManager.loadAssets();</span>
-<span class="nc" id="L69">    }</span>
+<span class="fc" id="L69">        ResourceManager.loadAssets();</span>
+<span class="fc" id="L70">    }</span>
 
     /**
      * Clean up prevent memory leeks
      */
     @Override
     public void dispose() {
-<span class="nc" id="L76">        menu.dispose();</span>
-<span class="nc" id="L77">        game.dispose();</span>
-<span class="nc" id="L78">        stage.dispose();</span>
-<span class="nc" id="L79">        skin.dispose();</span>
-<span class="nc" id="L80">    }</span>
+<span class="nc" id="L77">        menu.dispose();</span>
+<span class="nc" id="L78">        game.dispose();</span>
+<span class="nc" id="L79">        stage.dispose();</span>
+<span class="nc" id="L80">        skin.dispose();</span>
+<span class="nc" id="L81">    }</span>
 
     /**
      * load ui skin from assets
      */
     private void createSkin() {
-<span class="nc" id="L86">        skin = new Skin(Gdx.files.internal(&quot;UISkin/skin.json&quot;));</span>
-<span class="nc" id="L87">    }</span>
+<span class="nc" id="L87">        skin = new Skin(Gdx.files.internal(&quot;UISkin/skin.json&quot;));</span>
+<span class="nc" id="L88">    }</span>
 
     /**
      * New for assessment 2
@@ -93,13 +94,13 @@ import java.util.Objects;
      */
     @Override
     public void setScreen (Screen screen) {
-<span class="nc bnc" id="L96" title="All 4 branches missed.">        if (this.screen != null &amp;&amp; screen != pause) this.screen.hide();</span>
-<span class="nc" id="L97">        this.screen = screen;</span>
-<span class="nc bnc" id="L98" title="All 2 branches missed.">        if (this.screen != null) {</span>
-<span class="nc" id="L99">            this.screen.show();</span>
-<span class="nc" id="L100">            this.screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
+<span class="nc bnc" id="L97" title="All 4 branches missed.">        if (this.screen != null &amp;&amp; screen != pause) this.screen.hide();</span>
+<span class="nc" id="L98">        this.screen = screen;</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (this.screen != null) {</span>
+<span class="nc" id="L100">            this.screen.show();</span>
+<span class="nc" id="L101">            this.screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
         }
-<span class="nc" id="L102">    }</span>
+<span class="nc" id="L103">    }</span>
 
     /**
      * New for assessment 2
@@ -107,58 +108,61 @@ import java.util.Objects;
      */
     public void restartGame(){
         // can't load any more resources after this point (just functionally I choose not to implement)
-<span class="nc" id="L110">        RenderingManager.Initialize();</span>
-<span class="nc" id="L111">        EntityManager.Initialize();</span>
-<span class="nc" id="L112">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L111">        RenderingManager.Initialize();</span>
+<span class="nc" id="L112">        EntityManager.Initialize();</span>
+<span class="nc" id="L113">        GameManager.Initialize(difficulty);</span>
 
-<span class="nc" id="L114">        game = new GameScreen(this, id_map);</span>
-<span class="nc" id="L115">        setScreen(menu);</span>
-<span class="nc" id="L116">    }</span>
+<span class="nc" id="L115">        game = new GameScreen(this, id_map);</span>
+
+<span class="nc" id="L117">        setScreen(menu);</span>
+
+
+<span class="nc" id="L120">    }</span>
 
     /**
      * New for assessment 2
      * Changes the difficulty for the game by changing the enum and calling GameManager.getSettings()
      */
     public void setDifficulty(String selected){
-<span class="nc bnc" id="L123" title="All 2 branches missed.">        if (Objects.equals(selected, &quot;Easy&quot;)){</span>
-<span class="nc" id="L124">            difficulty = GameDifficulty.Easy;</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        if (Objects.equals(selected, &quot;Easy&quot;)){</span>
+<span class="nc" id="L128">            difficulty = GameDifficulty.Easy;</span>
         }
-<span class="nc bnc" id="L126" title="All 2 branches missed.">        else if (Objects.equals(selected, &quot;Regular&quot;)) {</span>
-<span class="nc" id="L127">            difficulty = GameDifficulty.Regular;</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        else if (Objects.equals(selected, &quot;Regular&quot;)) {</span>
+<span class="nc" id="L131">            difficulty = GameDifficulty.Regular;</span>
         }
-<span class="nc bnc" id="L129" title="All 2 branches missed.">        else if (Objects.equals(selected, &quot;Hard&quot;)) {</span>
-<span class="nc" id="L130">            difficulty = GameDifficulty.Hard;</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        else if (Objects.equals(selected, &quot;Hard&quot;)) {</span>
+<span class="nc" id="L134">            difficulty = GameDifficulty.Hard;</span>
         }
         else{
-<span class="nc" id="L133">            difficulty = GameDifficulty.Regular;</span>
+<span class="nc" id="L137">            difficulty = GameDifficulty.Regular;</span>
 
         }
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L140">    }</span>
     /**
     Added for assessment 2 so that the game doesn't start until after the difficulty has been chosen by the player
      */
     public void StartGame(){
-<span class="nc" id="L141">        PhysicsManager.Initialize();</span>
-<span class="nc" id="L142">        GameManager.Initialize(difficulty);</span>
-<span class="nc" id="L143">        game = new GameScreen(this, id_map);</span>
-<span class="nc" id="L144">        setScreen(game);</span>
-<span class="nc" id="L145">    }</span>
+<span class="nc" id="L145">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L146">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L147">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L148">        setScreen(game);</span>
+<span class="nc" id="L149">    }</span>
 
     /**
      * New for assesment 2
      * Loads the game from the saved data
      */
     public void LoadGame(){
-<span class="nc" id="L152">        PhysicsManager.Initialize();</span>
-<span class="nc" id="L153">        SaveManager.LoadGame();</span>
+<span class="nc" id="L156">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L157">        SaveManager.LoadGame();</span>
 
-<span class="nc" id="L155">        GameManager.Initialize(difficulty);</span>
-<span class="nc" id="L156">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L159">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L160">        game = new GameScreen(this, id_map);</span>
 
-<span class="nc" id="L158">        SaveManager.SpawnGame();</span>
+<span class="nc" id="L162">        SaveManager.SpawnGame();</span>
 
-<span class="nc" id="L160">        setScreen(game);</span>
-<span class="nc" id="L161">    }</span>
+<span class="nc" id="L164">        setScreen(game);</span>
+<span class="nc" id="L165">    }</span>
  }
 
 

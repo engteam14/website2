@@ -42,7 +42,7 @@ public class MenuScreen extends Page {
 <span class="nc" id="L42">        t.add(l).top().spaceBottom(space);</span>
 <span class="nc" id="L43">        t.row();</span>
 
-<span class="nc" id="L45">        hardness = new SelectBox&lt;&gt;(parent.skin);</span>
+<span class="nc" id="L45">        hardness = new SelectBox&lt;String&gt;(parent.skin);</span>
 
 
 <span class="nc" id="L48">        String[] values = new String[]{&quot;Easy&quot;, &quot;Regular&quot;, &quot;Hard&quot;};</span>
@@ -99,21 +99,24 @@ public class MenuScreen extends Page {
 <span class="nc" id="L99">        actors.add(t);</span>
 <span class="nc" id="L100">    }</span>
 
+
+
     @Override
     public void show() {
-<span class="nc" id="L104">        super.show();</span>
-<span class="nc" id="L105">    }</span>
+<span class="nc" id="L106">        super.show();</span>
+<span class="nc" id="L107">    }</span>
+
 
     @Override
     public void hide() {
-<span class="nc" id="L109">        super.hide();</span>
-<span class="nc" id="L110">    }</span>
+<span class="nc" id="L112">        super.hide();</span>
+<span class="nc" id="L113">    }</span>
 
     @Override
     public void resize(int width, int height) {
-<span class="nc" id="L114">        super.resize(width, height);</span>
-<span class="nc" id="L115">        Table t = (Table) actors.get(0);</span>
-<span class="nc" id="L116">        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture(&quot;menuBG.jpg&quot;))); // prevent the bg being stretched</span>
-<span class="nc" id="L117">    }</span>
+<span class="nc" id="L117">        super.resize(width, height);</span>
+<span class="nc" id="L118">        Table t = (Table) actors.get(0);</span>
+<span class="nc" id="L119">        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture(&quot;menuBG.jpg&quot;))); // prevent the bg being stretched</span>
+<span class="nc" id="L120">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

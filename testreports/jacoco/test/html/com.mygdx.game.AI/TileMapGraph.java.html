@@ -21,7 +21,7 @@ import static com.mygdx.utils.TileMapCells.PASSABLE;
  * The Graphical representation of the tilemap with each cell being bidirectionally to the adjacent nodes.
  */
 public class TileMapGraph implements IndexedGraph&lt;Node&gt; {
-    //private final NodeHeuristic heuristic;
+    private final NodeHeuristic heuristic;
     private final Array&lt;Node&gt; nodes;
     private final Array&lt;Path&gt; paths;
     private final Vector2 mapDim;
@@ -30,7 +30,7 @@ public class TileMapGraph implements IndexedGraph&lt;Node&gt; {
 
 <span class="nc" id="L31">    private TileMapGraph() {</span>
 
-        //heuristic = new NodeHeuristic();
+<span class="nc" id="L33">        heuristic = new NodeHeuristic();</span>
 <span class="nc" id="L34">        nodes = new Array&lt;&gt;();</span>
 <span class="nc" id="L35">        paths = new Array&lt;&gt;();</span>
 <span class="nc" id="L36">        nodePaths = new ObjectMap&lt;&gt;();</span>
@@ -183,75 +183,106 @@ public class TileMapGraph implements IndexedGraph&lt;Node&gt; {
 <span class="nc" id="L183">        addPath(a, b);</span>
 <span class="nc" id="L184">    }</span>
 
+    /**
+     * Finds the path
+     *
+     * @param start the starting node
+     * @param goal  the ending node
+     * @return a queue of the nodes to visit null if no path id found
+     */
+    public GraphPath&lt;Node&gt; findPath(Node start, Node goal) {
+<span class="nc bnc" id="L194" title="All 4 branches missed.">        if (start == null || goal == null) {</span>
+<span class="nc" id="L195">            return null;</span>
+        }
+<span class="nc" id="L197">        GraphPath&lt;Node&gt; path = new DefaultGraphPath&lt;&gt;();</span>
+<span class="nc" id="L198">        new IndexedAStarPathFinder&lt;&gt;(this).searchNodePath(start, goal, heuristic, path);</span>
+<span class="nc" id="L199">        return path;</span>
+    }
+
+    /**
+     * Finds a sequence of locations which can be travelled to without collision
+     *
+     * @param a starting node
+     * @param b destination node
+     * @return queue of location to travel to in order
+     */
+    public QueueFIFO&lt;Vector2&gt; findOptimisedPath(Node a, Node b) {
+<span class="nc" id="L210">        GraphPath&lt;Node&gt; path = findPath(a, b);</span>
+<span class="nc" id="L211">        QueueFIFO&lt;Vector2&gt; res = new QueueFIFO&lt;&gt;();</span>
+<span class="nc" id="L212">        Vector2 delta = new Vector2();</span>
+<span class="nc" id="L213">        float sequenceLength = 0; // the amount of times a</span>
+<span class="nc" id="L214">        Vector2 cur = new Vector2();</span>
+
+<span class="nc" id="L216">        Vector2 prev = path.get(0).getPosition();</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        for (int i = 1; i &lt; path.getCount(); i++) {</span>
+<span class="nc" id="L218">            Node n = path.get(i);</span>
+<span class="nc" id="L219">            cur.set(n.getPosition());</span>
+            // d contains the current vector between the current pos an prev
+<span class="nc" id="L221">            Vector2 d = cur.cpy();</span>
+<span class="nc" id="L222">            d.sub(prev);</span>
+
+
+<span class="nc bnc" id="L225" title="All 4 branches missed.">            if (delta.x == d.x &amp;&amp; delta.y == d.y) {</span>
+<span class="nc" id="L226">                sequenceLength++;</span>
+            } else {
+<span class="nc" id="L228">                res.add(delta.scl(sequenceLength));</span>
+<span class="nc" id="L229">                delta = d;</span>
+<span class="nc" id="L230">                sequenceLength = 1;</span>
+            }
+<span class="nc" id="L232">            prev.set(cur);</span>
+        }
+<span class="nc" id="L234">        res.remove(0);</span>
+<span class="nc" id="L235">        res.add(delta.scl(sequenceLength));</span>
+<span class="nc" id="L236">        return res;</span>
+    }
+
+    /**
+     * Finds a sequence on locations which can be travelled to without collision
+     *
+     * @param a starting node location
+     * @param b destination node location
+     * @return queue of location to travel to in order
+     */
+    public QueueFIFO&lt;Vector2&gt; findOptimisedPath(Vector2 a, Vector2 b) {
+<span class="nc" id="L247">        Node n1 = getNode(a.x, a.y);</span>
+<span class="nc" id="L248">        Node n2 = getNode(b.x, b.y);</span>
+<span class="nc" id="L249">        return findOptimisedPath(n1, n2);</span>
+    }
+
+    /**
+     * Finds a sequence on locations which can be travelled to without collision
+     *
+     * @param x1 starting node x co-ords tile space
+     * @param y1 starting node y co-ords tile space
+     * @param x2 destination node x co-ords tile space
+     * @param y2 destination node y co-ords tile space
+     * @return queue of location to travel to in order
+     */
+    public QueueFIFO&lt;Vector2&gt; findOptimisedPath(float x1, float y1, float x2, float y2) {
+<span class="nc" id="L262">        Node a = getNode(x1, y1);</span>
+<span class="nc" id="L263">        Node b = getNode(x2, y2);</span>
+<span class="nc" id="L264">        return findOptimisedPath(a, b);</span>
+    }
+
+
     // The Interface
     @Override
     public int getIndex(Node node) {
-<span class="nc" id="L189">        return getIndex(node.getPosition().x, node.getPosition().y);</span>
+<span class="nc" id="L271">        return getIndex(node.getPosition().x, node.getPosition().y);</span>
     }
 
     @Override
     public int getNodeCount() {
-<span class="nc" id="L194">        return (int) (mapDim.x * mapDim.y);</span>
+<span class="nc" id="L276">        return (int) (mapDim.x * mapDim.y);</span>
     }
 
     @Override
     public Array&lt;Connection&lt;Node&gt;&gt; getConnections(Node fromNode) {
-<span class="nc bnc" id="L199" title="All 2 branches missed.">        if (nodePaths.containsKey(fromNode)) {</span>
-<span class="nc" id="L200">            return nodePaths.get(fromNode);</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">        if (nodePaths.containsKey(fromNode)) {</span>
+<span class="nc" id="L282">            return nodePaths.get(fromNode);</span>
         }
 
-<span class="nc" id="L203">        return new Array&lt;&gt;();</span>
+<span class="nc" id="L285">        return new Array&lt;&gt;();</span>
     }
-
-    //public GraphPath&lt;Node&gt; findPath(Node start, Node goal) {
-    //        if (start == null || goal == null) {
-    //            return null;
-    //        }
-    //        GraphPath&lt;Node&gt; path = new DefaultGraphPath&lt;&gt;();
-    //        new IndexedAStarPathFinder&lt;&gt;(this).searchNodePath(start, goal, heuristic, path);
-    //        return path;
-    //    }
-
-    //public QueueFIFO&lt;Vector2&gt; findOptimisedPath(Node a, Node b) {
-    //        GraphPath&lt;Node&gt; path = findPath(a, b);
-    //        QueueFIFO&lt;Vector2&gt; res = new QueueFIFO&lt;&gt;();
-    //        Vector2 delta = new Vector2();
-    //        float sequenceLength = 0; // the amount of times a
-    //        Vector2 cur = new Vector2();
-    //
-    //        Vector2 prev = path.get(0).getPosition();
-    //        for (int i = 1; i &lt; path.getCount(); i++) {
-    //            Node n = path.get(i);
-    //            cur.set(n.getPosition());
-    //            // d contains the current vector between the current pos an prev
-    //            Vector2 d = cur.cpy();
-    //            d.sub(prev);
-    //
-    //
-    //            if (delta.x == d.x &amp;&amp; delta.y == d.y) {
-    //                sequenceLength++;
-    //            } else {
-    //                res.add(delta.scl(sequenceLength));
-    //                delta = d;
-    //                sequenceLength = 1;
-    //            }
-    //            prev.set(cur);
-    //        }
-    //        res.remove(0);
-    //        res.add(delta.scl(sequenceLength));
-    //        return res;
-    //    }
-
-    //public QueueFIFO&lt;Vector2&gt; findOptimisedPath(Vector2 a, Vector2 b) {
-    //      Node n1 = getNode(a.x, a.y);
-    //      Node n2 = getNode(b.x, b.y);
-    //      return findOptimisedPath(n1, n2);
-    //    }
-
-    //public QueueFIFO&lt;Vector2&gt; findOptimisedPath(float x1, float y1, float x2, float y2) {
-    //    Node a = getNode(x1, y1);
-    //    Node b = getNode(x2, y2);
-    //    return findOptimisedPath(a, b);
-    //    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

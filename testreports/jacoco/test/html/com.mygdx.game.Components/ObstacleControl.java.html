@@ -25,27 +25,27 @@ public class ObstacleControl extends Component {
      * @param hitRate       The rate at which 'hits' occur while colliding
      * @param hitLimit      The number of 'hits' required to break the obstacle
      */
-<span class="nc" id="L28">    public ObstacleControl(float damage, float hitRate, int hitLimit) {</span>
-<span class="nc" id="L29">        this.hitDamage = damage;</span>
-<span class="nc" id="L30">        this.hitRate = hitRate * 1000f;</span>
-<span class="nc" id="L31">        this.hitLimit = hitLimit;</span>
+<span class="fc" id="L28">    public ObstacleControl(float damage, float hitRate, int hitLimit) {</span>
+<span class="fc" id="L29">        this.hitDamage = damage;</span>
+<span class="fc" id="L30">        this.hitRate = hitRate * 1000f;</span>
+<span class="fc" id="L31">        this.hitLimit = hitLimit;</span>
 
-<span class="nc" id="L33">        lastHit = 0;</span>
-<span class="nc" id="L34">        hitCount = 0;</span>
-<span class="nc" id="L35">    }</span>
+<span class="fc" id="L33">        lastHit = 0;</span>
+<span class="fc" id="L34">        hitCount = 0;</span>
+<span class="fc" id="L35">    }</span>
 
     public void TryHit(CollisionInfo collision, boolean enter) {
-<span class="nc bnc" id="L38" title="All 6 branches missed.">        boolean doHit = (enter || (TimeUtils.timeSinceMillis(lastHit) &gt;= hitRate &amp;&amp; hitRate &gt; 0));</span>
-<span class="nc bnc" id="L39" title="All 4 branches missed.">        if (collision.a instanceof Player &amp;&amp; doHit) {</span>
-<span class="nc" id="L40">            Player player = (Player) collision.a;</span>
-<span class="nc" id="L41">            player.getComponent(Pirate.class).takeDamage(hitDamage);</span>
-<span class="nc" id="L42">            lastHit = TimeUtils.millis();</span>
-<span class="nc" id="L43">            hitCount++;</span>
-<span class="nc bnc" id="L44" title="All 4 branches missed.">            if (hitCount &gt;= hitLimit &amp;&amp; hitLimit &gt; 0) {</span>
+<span class="pc bpc" id="L38" title="1 of 6 branches missed.">        boolean doHit = (enter || (TimeUtils.timeSinceMillis(lastHit) &gt;= hitRate &amp;&amp; hitRate &gt; 0));</span>
+<span class="fc bfc" id="L39" title="All 4 branches covered.">        if (collision.a instanceof Player &amp;&amp; doHit) {</span>
+<span class="fc" id="L40">            Player player = (Player) collision.a;</span>
+<span class="fc" id="L41">            player.getComponent(Pirate.class).takeDamage(hitDamage);</span>
+<span class="fc" id="L42">            lastHit = TimeUtils.millis();</span>
+<span class="fc" id="L43">            hitCount++;</span>
+<span class="pc bpc" id="L44" title="2 of 4 branches missed.">            if (hitCount &gt;= hitLimit &amp;&amp; hitLimit &gt; 0) {</span>
 <span class="nc" id="L45">                ((Obstacle) parent).kill();</span>
             }
         }
-<span class="nc" id="L48">    }</span>
+<span class="fc" id="L48">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

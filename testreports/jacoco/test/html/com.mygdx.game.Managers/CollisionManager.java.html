@@ -9,14 +9,14 @@ import com.mygdx.game.Physics.CollisionInfo;
  * Handels collision callbacks for box2d
  */
 public class CollisionManager implements ContactListener {
-<span class="nc" id="L12">    private static boolean initialized = false;</span>
+<span class="fc" id="L12">    private static boolean initialized = false;</span>
 
-<span class="nc" id="L14">    public CollisionManager() {</span>
-<span class="nc bnc" id="L15" title="All 2 branches missed.">        if (initialized) {</span>
+<span class="fc" id="L14">    public CollisionManager() {</span>
+<span class="pc bpc" id="L15" title="1 of 2 branches missed.">        if (initialized) {</span>
 <span class="nc" id="L16">            throw new RuntimeException(&quot;Collision manager cant be instantiated more then once&quot;);</span>
         }
-<span class="nc" id="L18">        initialized = true;</span>
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L18">        initialized = true;</span>
+<span class="fc" id="L19">    }</span>
 
     /**
      * called for every contact that box2d detects prior to collision restitution (doesn't matter if it is a trigger/sensor)
@@ -26,35 +26,35 @@ public class CollisionManager implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
         // generally calls the correct callback on the appropriate objects (not as intuitive as id like though)
-<span class="nc" id="L29">        Fixture fa = contact.getFixtureA();</span>
-<span class="nc" id="L30">        Body ba = fa.getBody();</span>
-<span class="nc" id="L31">        Object oa = ba.getUserData();</span>
-<span class="nc" id="L32">        CollisionCallBack cbA = (CollisionCallBack) oa;</span>
+<span class="fc" id="L29">        Fixture fa = contact.getFixtureA();</span>
+<span class="fc" id="L30">        Body ba = fa.getBody();</span>
+<span class="fc" id="L31">        Object oa = ba.getUserData();</span>
+<span class="fc" id="L32">        CollisionCallBack cbA = (CollisionCallBack) oa;</span>
 
-<span class="nc" id="L34">        Fixture fb = contact.getFixtureB();</span>
-<span class="nc" id="L35">        Body bb = fb.getBody();</span>
-<span class="nc" id="L36">        Object ob = bb.getUserData();</span>
-<span class="nc" id="L37">        CollisionCallBack cbB = (CollisionCallBack) ob;</span>
+<span class="fc" id="L34">        Fixture fb = contact.getFixtureB();</span>
+<span class="fc" id="L35">        Body bb = fb.getBody();</span>
+<span class="fc" id="L36">        Object ob = bb.getUserData();</span>
+<span class="fc" id="L37">        CollisionCallBack cbB = (CollisionCallBack) ob;</span>
 
-<span class="nc" id="L39">        final CollisionInfo info = new CollisionInfo(fa,fb,ba,bb,(Entity) cbA,(Entity) cbB);</span>
+<span class="fc" id="L39">        final CollisionInfo info = new CollisionInfo(fa,fb,ba,bb,(Entity) cbA,(Entity) cbB);</span>
 
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (cbA != null) {</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (cbA != null) {</span>
             // fa is sensor but not fb
-<span class="nc bnc" id="L43" title="All 6 branches missed.">            if (fa.isSensor() &amp;&amp; cbB != null &amp;&amp; !fb.isSensor()) {</span>
-<span class="nc" id="L44">                cbB.EnterTrigger(info);</span>
+<span class="pc bpc" id="L43" title="1 of 6 branches missed.">            if (fa.isSensor() &amp;&amp; cbB != null &amp;&amp; !fb.isSensor()) {</span>
+<span class="fc" id="L44">                cbB.EnterTrigger(info);</span>
             } else {
-<span class="nc" id="L46">                cbA.BeginContact(info);</span>
+<span class="fc" id="L46">                cbA.BeginContact(info);</span>
             }
         }
 
-<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (cbB != null) {</span>
-<span class="nc bnc" id="L51" title="All 6 branches missed.">            if (fb.isSensor() &amp;&amp; cbA != null &amp;&amp; !fa.isSensor()) {</span>
-<span class="nc" id="L52">                cbA.EnterTrigger(info);</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        if (cbB != null) {</span>
+<span class="pc bpc" id="L51" title="1 of 6 branches missed.">            if (fb.isSensor() &amp;&amp; cbA != null &amp;&amp; !fa.isSensor()) {</span>
+<span class="fc" id="L52">                cbA.EnterTrigger(info);</span>
             } else {
-<span class="nc" id="L54">                cbB.BeginContact(info);</span>
+<span class="fc" id="L54">                cbB.BeginContact(info);</span>
             }
         }
-<span class="nc" id="L57">    }</span>
+<span class="fc" id="L57">    }</span>
 
     /**
      * called for every contact that box2d detects after collision restitution (doesn't matter if it is a trigger/sensor)
@@ -64,43 +64,43 @@ public class CollisionManager implements ContactListener {
     @Override
     public void endContact(Contact contact) {
         // generally calls the correct callback on the appropriate objects (not as intuitive as id like though)
-<span class="nc" id="L67">        Fixture fa = contact.getFixtureA();</span>
-<span class="nc" id="L68">        Body ba = fa.getBody();</span>
-<span class="nc" id="L69">        Object oa = ba.getUserData();</span>
-<span class="nc" id="L70">        CollisionCallBack cbA = (CollisionCallBack) oa;</span>
+<span class="fc" id="L67">        Fixture fa = contact.getFixtureA();</span>
+<span class="fc" id="L68">        Body ba = fa.getBody();</span>
+<span class="fc" id="L69">        Object oa = ba.getUserData();</span>
+<span class="fc" id="L70">        CollisionCallBack cbA = (CollisionCallBack) oa;</span>
 
-<span class="nc" id="L72">        Fixture fb = contact.getFixtureB();</span>
-<span class="nc" id="L73">        Body bb = fb.getBody();</span>
-<span class="nc" id="L74">        Object ob = bb.getUserData();</span>
-<span class="nc" id="L75">        CollisionCallBack cbB = (CollisionCallBack) ob;</span>
+<span class="fc" id="L72">        Fixture fb = contact.getFixtureB();</span>
+<span class="fc" id="L73">        Body bb = fb.getBody();</span>
+<span class="fc" id="L74">        Object ob = bb.getUserData();</span>
+<span class="fc" id="L75">        CollisionCallBack cbB = (CollisionCallBack) ob;</span>
 
-<span class="nc" id="L77">        final CollisionInfo info = new CollisionInfo(fa,fb,ba,bb,(Entity) cbA,(Entity) cbB);</span>
+<span class="fc" id="L77">        final CollisionInfo info = new CollisionInfo(fa,fb,ba,bb,(Entity) cbA,(Entity) cbB);</span>
 
-<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (cbA != null) {</span>
-<span class="nc bnc" id="L80" title="All 6 branches missed.">            if (fa.isSensor() &amp;&amp; cbB != null &amp;&amp; !fb.isSensor()) {</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">        if (cbA != null) {</span>
+<span class="pc bpc" id="L80" title="2 of 6 branches missed.">            if (fa.isSensor() &amp;&amp; cbB != null &amp;&amp; !fb.isSensor()) {</span>
 <span class="nc" id="L81">                cbB.ExitTrigger(info);</span>
             } else {
-<span class="nc" id="L83">                cbA.EndContact(info);</span>
+<span class="fc" id="L83">                cbA.EndContact(info);</span>
             }
         }
 
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (cbB != null) {</span>
-<span class="nc bnc" id="L88" title="All 6 branches missed.">            if (fb.isSensor() &amp;&amp; cbA != null &amp;&amp; !fa.isSensor()) {</span>
-<span class="nc" id="L89">                cbA.ExitTrigger(info);</span>
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">        if (cbB != null) {</span>
+<span class="pc bpc" id="L88" title="1 of 6 branches missed.">            if (fb.isSensor() &amp;&amp; cbA != null &amp;&amp; !fa.isSensor()) {</span>
+<span class="fc" id="L89">                cbA.ExitTrigger(info);</span>
             } else {
-<span class="nc" id="L91">                cbB.EndContact(info);</span>
+<span class="fc" id="L91">                cbB.EndContact(info);</span>
             }
         }
-<span class="nc" id="L94">    }</span>
+<span class="fc" id="L94">    }</span>
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
 
-<span class="nc" id="L99">    }</span>
+<span class="fc" id="L99">    }</span>
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
-<span class="nc" id="L104">    }</span>
+<span class="fc" id="L104">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
