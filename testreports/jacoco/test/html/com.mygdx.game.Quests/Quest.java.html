@@ -12,13 +12,13 @@ public abstract class Quest {
     protected int pointReward;
     protected boolean isCompleted;
 
-<span class="nc" id="L15">    public Quest() {</span>
-<span class="nc" id="L16">        name = &quot;&quot;;</span>
-<span class="nc" id="L17">        description = &quot;&quot;;</span>
-<span class="nc" id="L18">        plunderReward = 0;</span>
-<span class="nc" id="L19">        pointReward = 0;</span>
-<span class="nc" id="L20">        isCompleted = false;</span>
-<span class="nc" id="L21">    }</span>
+<span class="fc" id="L15">    public Quest() {</span>
+<span class="fc" id="L16">        name = &quot;&quot;;</span>
+<span class="fc" id="L17">        description = &quot;&quot;;</span>
+<span class="fc" id="L18">        plunderReward = 0;</span>
+<span class="fc" id="L19">        pointReward = 0;</span>
+<span class="fc" id="L20">        isCompleted = false;</span>
+<span class="fc" id="L21">    }</span>
 
     /**
      * Checks if the given player has met the complete condition
@@ -29,15 +29,15 @@ public abstract class Quest {
     public abstract boolean checkCompleted(Player p);
 
     public int getPlunderReward() {
-<span class="nc" id="L32">        return plunderReward;</span>
+<span class="fc" id="L32">        return plunderReward;</span>
     }
 
     public int getPointReward() {
-<span class="nc" id="L36">        return pointReward;</span>
+<span class="fc" id="L36">        return pointReward;</span>
     }
 
     public boolean isCompleted() {
-<span class="nc" id="L40">        return isCompleted;</span>
+<span class="fc" id="L40">        return isCompleted;</span>
     }
 
 

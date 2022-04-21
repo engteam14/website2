@@ -22,32 +22,32 @@ public class Player extends Ship {
      * @param speed of movement across map
      */
     private Player(float speed) {
-<span class="nc" id="L25">        super();</span>
+<span class="fc" id="L25">        super();</span>
 
-<span class="nc" id="L27">        PlayerController pc = new PlayerController(this, speed);</span>
-<span class="nc" id="L28">        addComponent(pc);</span>
-<span class="nc" id="L29">        setName(&quot;Player&quot;);</span>
+<span class="fc" id="L27">        PlayerController pc = new PlayerController(this, speed);</span>
+<span class="fc" id="L28">        addComponent(pc);</span>
+<span class="fc" id="L29">        setName(&quot;Player&quot;);</span>
 
-<span class="nc" id="L31">        lastPointTime = TimeUtils.millis() / 1000;</span>
-<span class="nc" id="L32">    }</span>
+<span class="fc" id="L31">        lastPointTime = TimeUtils.millis() / 1000;</span>
+<span class="fc" id="L32">    }</span>
 
     /**
      * Adds ship with PlayerController component, loading its speed from GameManager settings.
      */
     public Player() {
-<span class="nc" id="L38">        this(GameManager.getSettings().get(&quot;starting&quot;).getFloat(&quot;playerSpeed&quot;));</span>
-<span class="nc" id="L39">    }</span>
+<span class="fc" id="L38">        this(GameManager.getSettings().get(&quot;starting&quot;).getFloat(&quot;playerSpeed&quot;));</span>
+<span class="fc" id="L39">    }</span>
 
     @Override
     public void update(){
-<span class="nc" id="L43">        super.update();</span>
-<span class="nc" id="L44">        isAlive();</span>
-<span class="nc" id="L45">        long current = TimeUtils.millis() / 1000;</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (current &gt; lastPointTime) {</span>
-<span class="nc" id="L47">            points(1);</span>
+<span class="fc" id="L43">        super.update();</span>
+<span class="fc" id="L44">        isAlive();</span>
+<span class="fc" id="L45">        long current = TimeUtils.millis() / 1000;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (current &gt; lastPointTime) {</span>
+<span class="fc" id="L47">            points(1);</span>
         }
-<span class="nc" id="L49">        lastPointTime = current;</span>
-<span class="nc" id="L50">    }</span>
+<span class="fc" id="L49">        lastPointTime = current;</span>
+<span class="fc" id="L50">    }</span>
 
     @Override
     public void cleanUp() {
@@ -55,7 +55,7 @@ public class Player extends Ship {
 <span class="nc" id="L55">    }</span>
 
     public int getAmmo() {
-<span class="nc" id="L58">        return getComponent(Pirate.class).getAmmo();</span>
+<span class="fc" id="L58">        return getComponent(Pirate.class).getAmmo();</span>
     }
 
     /**
@@ -63,7 +63,7 @@ public class Player extends Ship {
      * @return the Faction attached to the pirate component of this object
      */
 	public Faction getFaction() {
-<span class="nc" id="L66">        return getComponent(Pirate.class).getFaction();</span>
+<span class="fc" id="L66">        return getComponent(Pirate.class).getFaction();</span>
 	}
 
 }
