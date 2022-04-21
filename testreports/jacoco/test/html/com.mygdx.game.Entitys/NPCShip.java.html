@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NPCShip.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Entitys</a> &gt; <span class="el_source">NPCShip.java</span></div><h1>NPCShip.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Entitys;
+
+import com.badlogic.gdx.ai.fsm.DefaultStateMachine;
+import com.badlogic.gdx.ai.fsm.StateMachine;
+import com.badlogic.gdx.ai.steer.behaviors.Arrive;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.JsonValue;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.AI.EnemyState;
+import com.mygdx.game.Components.*;
+import com.mygdx.game.Managers.GameManager;
+import com.mygdx.game.Physics.CollisionCallBack;
+import com.mygdx.game.Physics.CollisionInfo;
+import com.mygdx.utils.QueueFIFO;
+import com.mygdx.utils.Utilities;
+
+import java.util.Objects;
+
+/**
+ * NPC ship entity class.
+ */
+public class NPCShip extends Ship implements CollisionCallBack {
+    public StateMachine&lt;NPCShip, EnemyState&gt; stateMachine;
+    private static JsonValue AISettings;
+    private long lastShootTime; //Added for Assessment 2, stores the time when the ship last attacked
+
+    /**
+     * Creates an initial state machine
+     * Changed for Assessment 2:
+     *  - Added lastShootTime to store the time when the ship last attacked
+     */
+    public NPCShip() {
+<span class="fc" id="L33">        super();</span>
+        //QueueFIFO&lt;Vector2&gt; path = new QueueFIFO&lt;&gt;();
+
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (AISettings == null) {</span>
+<span class="fc" id="L37">            AISettings = GameManager.getSettings().get(&quot;AI&quot;);</span>
+        }
+
+<span class="fc" id="L40">        stateMachine = new DefaultStateMachine&lt;&gt;(this, EnemyState.WANDER);</span>
+
+<span class="fc" id="L42">        setName(&quot;NPC&quot;);</span>
+<span class="fc" id="L43">        AINavigation nav = new AINavigation();</span>
+
+<span class="fc" id="L45">        addComponent(nav);</span>
+
+
+<span class="fc" id="L48">        RigidBody rb = getComponent(RigidBody.class);</span>
+        // rb.setCallback(this);
+
+<span class="fc" id="L51">        JsonValue starting = GameManager.getSettings().get(&quot;starting&quot;);</span>
+
+        // agro trigger
+<span class="fc" id="L54">        rb.addTrigger(Utilities.tilesToDistance(starting.getFloat(&quot;argoRange_tiles&quot;)), &quot;agro&quot;);</span>
+<span class="fc" id="L55">        getComponent(Pirate.class).setInfiniteAmmo(true);</span>
+
+<span class="fc" id="L57">        lastShootTime = TimeUtils.millis() / 1000;</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * gets the top of targets from pirate component
+     *
+     * @return the top target
+     */
+    private Ship getTarget() {
+<span class="nc" id="L66">        return getComponent(Pirate.class).getTarget();</span>
+    }
+
+    /**
+     * Amended for Assessment 2: Added check for life and kills stateMachine and ship in case of death
+     * updates the state machine
+     */
+    @Override
+    public void update() {
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">        if(!isAlive()) {</span>
+<span class="nc" id="L76">           kill();</span>
+<span class="nc" id="L77">           stateMachine = null;</span>
+        }else{
+<span class="fc" id="L79">            super.update();</span>
+<span class="fc" id="L80">            stateMachine.update();</span>
+        }
+<span class="fc" id="L82">    }</span>
+
+    /**
+     * Added for Assessment 2
+     * Removes the ship from play
+     */
+    private void kill() {
+<span class="nc" id="L89">        getComponent(Renderable.class).hide();</span>
+<span class="nc" id="L90">        Transform t = getComponent(Transform.class);</span>
+<span class="nc" id="L91">        t.setPosition(20000, 20000);</span>
+
+<span class="nc" id="L93">        RigidBody rb = getComponent(RigidBody.class);</span>
+<span class="nc" id="L94">        rb.setPosition(t.getPosition());</span>
+<span class="nc" id="L95">        rb.setVelocity(0, 0);</span>
+
+<span class="nc" id="L97">        dispose();</span>
+<span class="nc" id="L98">    }</span>
+
+    /**
+     * creates a new steering behaviour that will make the NPC beeline for the target, doesn't factor in obstetrical
+     */
+    public void followTarget() {
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (getTarget() == null) {</span>
+<span class="nc" id="L105">            stopMovement();</span>
+<span class="nc" id="L106">            return;</span>
+        }
+<span class="nc" id="L108">        AINavigation nav = getComponent(AINavigation.class);</span>
+
+<span class="nc" id="L110">        Arrive&lt;Vector2&gt; arrives = new Arrive&lt;&gt;(nav,</span>
+<span class="nc" id="L111">                getTarget().getComponent(Transform.class))</span>
+<span class="nc" id="L112">                .setTimeToTarget(AISettings.getFloat(&quot;accelerationTime&quot;))</span>
+<span class="nc" id="L113">                .setArrivalTolerance(AISettings.getFloat(&quot;arrivalTolerance&quot;))</span>
+<span class="nc" id="L114">                .setDecelerationRadius(AISettings.getFloat(&quot;slowRadius&quot;));</span>
+
+<span class="nc" id="L116">        nav.setBehavior(arrives);</span>
+<span class="nc" id="L117">    }</span>
+
+    public void circleOrigin() {
+<span class="fc" id="L120">        College origin = GameManager.getCollege(getFaction().id);</span>
+<span class="fc" id="L121">        Vector2 dirToOrigin = new Vector2( (origin.getPosition().x - getPosition().x),(origin.getPosition().y - getPosition().y) );</span>
+<span class="fc" id="L122">        double currentAngle = Utilities.vectorToAngle(dirToOrigin);</span>
+
+        double theta;
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">        if (dirToOrigin.x &gt; 0){</span>
+<span class="fc" id="L126">            theta = currentAngle - (Math.PI)/12;</span>
+        }else{
+<span class="nc" id="L128">            theta = currentAngle + (Math.PI)/12;</span>
+        }
+
+<span class="fc" id="L131">        Transform target = new Transform();</span>
+<span class="fc" id="L132">        float radius = Utilities.tilesToDistance(30);</span>
+<span class="fc" id="L133">        float xPos = (float) (origin.getPosition().x + (radius * Math.cos(theta)));</span>
+<span class="fc" id="L134">        float yPos = (float) (origin.getPosition().y + (radius * Math.sin(theta)));</span>
+<span class="fc" id="L135">        target.setPosition(xPos,yPos);</span>
+
+<span class="fc" id="L137">        AINavigation nav = getComponent(AINavigation.class);</span>
+
+<span class="fc" id="L139">        Arrive&lt;Vector2&gt; arrives = new Arrive&lt;&gt;(nav,target)</span>
+<span class="fc" id="L140">                .setTimeToTarget(AISettings.getFloat(&quot;accelerationTime&quot;))</span>
+<span class="fc" id="L141">                .setArrivalTolerance(AISettings.getFloat(&quot;arrivalTolerance&quot;))</span>
+<span class="fc" id="L142">                .setDecelerationRadius(AISettings.getFloat(&quot;slowRadius&quot;));</span>
+
+<span class="fc" id="L144">        nav.setBehavior(arrives);</span>
+<span class="fc" id="L145">    }</span>
+
+    /**
+     * stops all movement and sets the behaviour to null
+     */
+    public void stopMovement() {
+<span class="fc" id="L151">        AINavigation nav = getComponent(AINavigation.class);</span>
+<span class="fc" id="L152">        nav.setBehavior(null);</span>
+<span class="fc" id="L153">        nav.stop();</span>
+<span class="fc" id="L154">    }</span>
+
+    /**
+     * Added for Assessment 2, calculates the direction an Enemy Ship is in
+     */
+    public Vector2 directionToShip(Ship ship) {
+<span class="nc" id="L160">        Vector2 shipLocale = ship.getPosition();</span>
+<span class="nc" id="L161">        Vector2 thisPosition = getPosition();</span>
+
+<span class="nc" id="L163">        float xDiff = shipLocale.x-thisPosition.x;</span>
+<span class="nc" id="L164">        float yDiff = shipLocale.y-thisPosition.y;</span>
+
+<span class="nc" id="L166">        return new Vector2(xDiff,yDiff);</span>
+    }
+
+    /**
+     * Added for Assessment 2, shoots a cannonball towards the player ship
+     */
+    public void attackShip(Ship ship) {
+<span class="nc" id="L173">        long current = TimeUtils.millis() / 1000;</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">        if (current &gt; lastShootTime) {</span>
+<span class="nc" id="L175">            Vector2 direction = directionToShip(ship);</span>
+<span class="nc" id="L176">            shoot(direction);</span>
+        }
+<span class="nc" id="L178">        lastShootTime = current;</span>
+<span class="nc" id="L179">    }</span>
+
+    public EnemyState getCurrentState() {
+<span class="fc" id="L182">        return stateMachine.getCurrentState();</span>
+    }
+
+    /**
+     * if the agro fixture hit a ship set it as the target
+     * @param info the collision info
+     */
+    @Override
+    public void EnterTrigger(CollisionInfo info) {
+<span class="fc" id="L191">        super.EnterTrigger(info);</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">        if (info.a instanceof Ship) {</span>
+<span class="fc" id="L193">            Ship other = (Ship) info.a;</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">            if (Objects.equals(other.getComponent(Pirate.class).getFaction(), getComponent(Pirate.class).getFaction())) {</span>
+                // is the same faction
+<span class="fc" id="L196">                return;</span>
+            }
+            // add the new collision as a new target
+<span class="fc" id="L199">            Pirate pirate = getComponent(Pirate.class);</span>
+<span class="fc" id="L200">            pirate.addTarget(other);</span>
+        }
+<span class="fc" id="L202">    }</span>
+
+    /**
+     * if a target has left remove it from the potential targets Queue
+     * @param info collision info
+     */
+    @Override
+    public void ExitTrigger(CollisionInfo info) {
+<span class="nc bnc" id="L210" title="All 2 branches missed.">        if (!(info.a instanceof Ship)) {</span>
+<span class="nc" id="L211">            return;</span>
+        }
+<span class="nc" id="L213">        Pirate pirate = getComponent(Pirate.class);</span>
+<span class="nc" id="L214">        Ship o = (Ship) info.a;</span>
+        // remove the object from the targets list
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        for (Ship targ : pirate.getTargets()) {</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            if (targ == o) {</span>
+<span class="nc" id="L218">                pirate.getTargets().remove(targ);</span>
+<span class="nc" id="L219">                break;</span>
+            }
+<span class="nc" id="L221">        }</span>
+<span class="nc" id="L222">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

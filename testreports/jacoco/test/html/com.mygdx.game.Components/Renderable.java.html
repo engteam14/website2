@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Renderable.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Components</a> &gt; <span class="el_source">Renderable.java</span></div><h1>Renderable.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Components;
+
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Managers.RenderLayer;
+import com.mygdx.game.Managers.RenderingManager;
+import com.mygdx.game.Managers.ResourceManager;
+
+/**
+ * Add the ability for the object to be shown
+ */
+public class Renderable extends Component {
+    protected Sprite sprite;
+    private boolean isVisible;
+
+    /**
+     * Called in other constructors, loads no textures by itself.
+     */
+    public Renderable() {
+<span class="fc" id="L21">        super();</span>
+<span class="fc" id="L22">        isVisible = true;</span>
+<span class="fc" id="L23">        type = ComponentType.Renderable;</span>
+<span class="fc" id="L24">        sprite = new Sprite();</span>
+<span class="fc" id="L25">        RenderingManager.addItem(this, RenderLayer.Transparent);</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Associates Renderable with the given texture sprite and layer.
+     *
+     * @param texId the id of the texture the sprite will take on
+     * @param layer the rendering layer
+     */
+    public Renderable(int texId, RenderLayer layer) {
+<span class="fc" id="L35">        this();</span>
+<span class="fc" id="L36">        sprite = new Sprite(ResourceManager.getTexture(texId));</span>
+<span class="fc" id="L37">        RenderingManager.addItem(this, layer);</span>
+<span class="fc" id="L38">    }</span>
+
+    /**
+     * Associates Renderable with the given sprite from a texture atlas and a layer.
+     *
+     * @param atlasId the id of the texture atlas containing the sprite
+     * @param texName the name of the texture the sprite will take on
+     * @param layer   the rendering layer
+     */
+    public Renderable(int atlasId, String texName, RenderLayer layer) {
+<span class="fc" id="L48">        this();</span>
+<span class="fc" id="L49">        sprite = new Sprite(ResourceManager.getSprite(atlasId, texName));</span>
+<span class="fc" id="L50">        RenderingManager.addItem(this, layer);</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Locates the sprite at the position of the parent's Transform component.
+     */
+    @Override
+    public void update() {
+<span class="nc" id="L58">        super.update();</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (sprite == null) {</span>
+<span class="nc" id="L60">            return;</span>
+        }
+<span class="nc" id="L62">        Transform c = parent.getComponent(Transform.class);</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (c == null) {</span>
+<span class="nc" id="L64">            return;</span>
+        }
+<span class="nc" id="L66">        Vector2 p = c.getPosition();</span>
+<span class="nc" id="L67">        Vector2 s = c.getScale();</span>
+
+<span class="nc" id="L69">        sprite.setPosition(p.x, p.y);</span>
+<span class="nc" id="L70">        sprite.setRotation(MathUtils.radiansToDegrees * c.getRotation());</span>
+<span class="nc" id="L71">        sprite.setScale(s.x, s.y);</span>
+<span class="nc" id="L72">    }</span>
+
+    @Override
+    public void render() {
+<span class="nc" id="L76">        super.render();</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (sprite == null || !isVisible) {</span>
+<span class="nc" id="L78">            return;</span>
+        }
+<span class="nc" id="L80">        sprite.draw(RenderingManager.getBatch());</span>
+<span class="nc" id="L81">    }</span>
+
+    @Override
+    public void cleanUp() {
+<span class="nc" id="L85">        super.cleanUp();</span>
+<span class="nc" id="L86">    }</span>
+
+    public Sprite getSprite() {
+<span class="fc" id="L89">        return sprite;</span>
+    }
+
+    /**
+     * Assigns a new texture compatible with textures sourced from atlas
+     * @param s the sprite contain the texture
+     */
+    public void setTexture(Sprite s) {
+<span class="fc" id="L97">        Sprite a = getSprite();</span>
+<span class="fc" id="L98">        a.setTexture(s.getTexture());</span>
+<span class="fc" id="L99">        a.setU(s.getU());</span>
+<span class="fc" id="L100">        a.setV(s.getV());</span>
+<span class="fc" id="L101">        a.setU2(s.getU2());</span>
+<span class="fc" id="L102">        a.setV2(s.getV2());</span>
+<span class="fc" id="L103">    }</span>
+
+    public boolean isVisible() {
+<span class="fc" id="L106">        return isVisible;</span>
+    }
+
+    public void show() {
+<span class="fc" id="L110">        isVisible = true;</span>
+<span class="fc" id="L111">    }</span>
+
+    public void hide() {
+<span class="fc" id="L114">        isVisible = false;</span>
+<span class="fc" id="L115">    }</span>
+
+    //public void toggleVisibility() {
+    //    isVisible = !isVisible;
+    //}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
