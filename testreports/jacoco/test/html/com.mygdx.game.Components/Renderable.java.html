@@ -27,66 +27,73 @@ public class Renderable extends Component {
 
     /**
      * Associates Renderable with the given texture sprite and layer.
-     *
      * @param texId the id of the texture the sprite will take on
      * @param layer the rendering layer
      */
     public Renderable(int texId, RenderLayer layer) {
-<span class="fc" id="L35">        this();</span>
-<span class="fc" id="L36">        sprite = new Sprite(ResourceManager.getTexture(texId));</span>
-<span class="fc" id="L37">        RenderingManager.addItem(this, layer);</span>
-<span class="fc" id="L38">    }</span>
+<span class="fc" id="L34">        this();</span>
+<span class="fc" id="L35">        sprite = new Sprite(ResourceManager.getTexture(texId));</span>
+<span class="fc" id="L36">        RenderingManager.addItem(this, layer);</span>
+<span class="fc" id="L37">    }</span>
 
     /**
      * Associates Renderable with the given sprite from a texture atlas and a layer.
-     *
      * @param atlasId the id of the texture atlas containing the sprite
      * @param texName the name of the texture the sprite will take on
      * @param layer   the rendering layer
      */
     public Renderable(int atlasId, String texName, RenderLayer layer) {
-<span class="fc" id="L48">        this();</span>
-<span class="fc" id="L49">        sprite = new Sprite(ResourceManager.getSprite(atlasId, texName));</span>
-<span class="fc" id="L50">        RenderingManager.addItem(this, layer);</span>
-<span class="fc" id="L51">    }</span>
+<span class="fc" id="L46">        this();</span>
+<span class="fc" id="L47">        sprite = new Sprite(ResourceManager.getSprite(atlasId, texName));</span>
+<span class="fc" id="L48">        RenderingManager.addItem(this, layer);</span>
+<span class="fc" id="L49">    }</span>
 
     /**
      * Locates the sprite at the position of the parent's Transform component.
      */
     @Override
     public void update() {
-<span class="nc" id="L58">        super.update();</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (sprite == null) {</span>
-<span class="nc" id="L60">            return;</span>
+<span class="nc" id="L56">        super.update();</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if (sprite == null) {</span>
+<span class="nc" id="L58">            return;</span>
         }
-<span class="nc" id="L62">        Transform c = parent.getComponent(Transform.class);</span>
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (c == null) {</span>
-<span class="nc" id="L64">            return;</span>
+<span class="nc" id="L60">        Transform c = parent.getComponent(Transform.class);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        if (c == null) {</span>
+<span class="nc" id="L62">            return;</span>
         }
-<span class="nc" id="L66">        Vector2 p = c.getPosition();</span>
-<span class="nc" id="L67">        Vector2 s = c.getScale();</span>
+<span class="nc" id="L64">        Vector2 p = c.getPosition();</span>
+<span class="nc" id="L65">        Vector2 s = c.getScale();</span>
 
-<span class="nc" id="L69">        sprite.setPosition(p.x, p.y);</span>
-<span class="nc" id="L70">        sprite.setRotation(MathUtils.radiansToDegrees * c.getRotation());</span>
-<span class="nc" id="L71">        sprite.setScale(s.x, s.y);</span>
-<span class="nc" id="L72">    }</span>
+<span class="nc" id="L67">        sprite.setPosition(p.x, p.y);</span>
+<span class="nc" id="L68">        sprite.setRotation(MathUtils.radiansToDegrees * c.getRotation());</span>
+<span class="nc" id="L69">        sprite.setScale(s.x, s.y);</span>
+<span class="nc" id="L70">    }</span>
 
+    /**
+     * Checks if the sprite exists and should be visible, then renders it
+     */
     @Override
     public void render() {
-<span class="nc" id="L76">        super.render();</span>
-<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (sprite == null || !isVisible) {</span>
-<span class="nc" id="L78">            return;</span>
+<span class="nc" id="L77">        super.render();</span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">        if (sprite == null || !isVisible) {</span>
+<span class="nc" id="L79">            return;</span>
         }
-<span class="nc" id="L80">        sprite.draw(RenderingManager.getBatch());</span>
-<span class="nc" id="L81">    }</span>
+<span class="nc" id="L81">        sprite.draw(RenderingManager.getBatch());</span>
+<span class="nc" id="L82">    }</span>
 
+    /**
+     * Called once after the update loop has finished.
+     */
     @Override
     public void cleanUp() {
-<span class="nc" id="L85">        super.cleanUp();</span>
-<span class="nc" id="L86">    }</span>
+<span class="nc" id="L89">        super.cleanUp();</span>
+<span class="nc" id="L90">    }</span>
 
+    /**
+     * @return the Sprite for this object
+     */
     public Sprite getSprite() {
-<span class="fc" id="L89">        return sprite;</span>
+<span class="fc" id="L96">        return sprite;</span>
     }
 
     /**
@@ -94,25 +101,34 @@ public class Renderable extends Component {
      * @param s the sprite contain the texture
      */
     public void setTexture(Sprite s) {
-<span class="fc" id="L97">        Sprite a = getSprite();</span>
-<span class="fc" id="L98">        a.setTexture(s.getTexture());</span>
-<span class="fc" id="L99">        a.setU(s.getU());</span>
-<span class="fc" id="L100">        a.setV(s.getV());</span>
-<span class="fc" id="L101">        a.setU2(s.getU2());</span>
-<span class="fc" id="L102">        a.setV2(s.getV2());</span>
-<span class="fc" id="L103">    }</span>
+<span class="fc" id="L104">        Sprite a = getSprite();</span>
+<span class="fc" id="L105">        a.setTexture(s.getTexture());</span>
+<span class="fc" id="L106">        a.setU(s.getU());</span>
+<span class="fc" id="L107">        a.setV(s.getV());</span>
+<span class="fc" id="L108">        a.setU2(s.getU2());</span>
+<span class="fc" id="L109">        a.setV2(s.getV2());</span>
+<span class="fc" id="L110">    }</span>
 
+    /**
+     * @return whether the object should currently be visible
+     */
     public boolean isVisible() {
-<span class="fc" id="L106">        return isVisible;</span>
+<span class="fc" id="L116">        return isVisible;</span>
     }
 
+    /**
+     * Changes the visibility to active
+     */
     public void show() {
-<span class="fc" id="L110">        isVisible = true;</span>
-<span class="fc" id="L111">    }</span>
+<span class="fc" id="L123">        isVisible = true;</span>
+<span class="fc" id="L124">    }</span>
 
+    /**
+     * Changes the visibility to inactive
+     */
     public void hide() {
-<span class="fc" id="L114">        isVisible = false;</span>
-<span class="fc" id="L115">    }</span>
+<span class="fc" id="L130">        isVisible = false;</span>
+<span class="fc" id="L131">    }</span>
 
     //public void toggleVisibility() {
     //    isVisible = !isVisible;

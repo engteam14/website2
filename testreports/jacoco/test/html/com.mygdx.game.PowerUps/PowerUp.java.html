@@ -103,7 +103,7 @@ public class PowerUp {
 <span class="pc bpc" id="L103" title="1 of 2 branches missed.">        if (duration &gt; 0) {</span>
 <span class="fc" id="L104">            long timeSoFar = TimeUtils.timeSinceMillis(startTime) / 1000;</span>
 <span class="fc bfc" id="L105" title="All 2 branches covered.">            if (timeSoFar &gt;= duration) {</span>
-<span class="fc bfc" id="L106" title="All 2 branches covered.">                if (pirate != null) DisablePowerUp(pirate);</span>
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">                if (pirate != null) DisablePowerUp(pirate);</span>
 <span class="fc" id="L107">                return true;</span>
             }
 <span class="fc" id="L109">        } return false;</span>
@@ -118,15 +118,21 @@ public class PowerUp {
 <span class="fc" id="L118">        done = true;</span>
 <span class="fc" id="L119">    }</span>
 
+    /**
+     * Removes plunder from the player in order to apply the power-up to themselves
+     */
     public void buyPowerUp(){
-<span class="pc bpc" id="L122" title="1 of 2 branches missed.">        if (GameManager.getPlayer().getPlunder() &gt;= this.cost) {</span>
-<span class="fc" id="L123">            GameManager.getPlayer().plunder((-this.cost));</span>
-<span class="fc" id="L124">            GameManager.getPlayer().getComponent(PowerUpAssigned.class).AssignPowerUp(this);</span>
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">        if (GameManager.getPlayer().getPlunder() &gt;= this.cost) {</span>
+<span class="fc" id="L126">            GameManager.getPlayer().plunder((-this.cost));</span>
+<span class="fc" id="L127">            GameManager.getPlayer().getComponent(PowerUpAssigned.class).AssignPowerUp(this);</span>
         }
-<span class="fc" id="L126">      }</span>
+<span class="fc" id="L129">      }</span>
 
+    /**
+     * @return the name of the power-up
+     */
     public String getName() {
-<span class="nc" id="L129">        return name;</span>
+<span class="nc" id="L135">        return name;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

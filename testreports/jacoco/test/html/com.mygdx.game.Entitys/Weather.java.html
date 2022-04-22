@@ -6,6 +6,9 @@ import com.mygdx.game.Components.RigidBody;
 import com.mygdx.game.Managers.GameManager;
 import com.mygdx.utils.Utilities;
 
+/**
+ * Added for Assessment 2 in order to meet weather condition requirements
+ */
 public class Weather extends Obstacle {
 
     private final float speed;
@@ -14,29 +17,40 @@ public class Weather extends Obstacle {
     private long lastDir;
     private Vector2 dir;
 
+    /**
+     * Creates a Weather Object
+     * @param damage The damage dealt to an object which collides with this weather effect
+     * @param hitRate The rate at which damage is dealt
+     */
     public Weather(float damage, float hitRate) {
-<span class="fc" id="L18">        super(&quot;storm&quot;, true, damage, hitRate, -1);</span>
+<span class="fc" id="L26">        super(&quot;storm&quot;, true, damage, hitRate, -1);</span>
 
-<span class="fc" id="L20">        speed = GameManager.getSettings().get(&quot;Weather&quot;).getFloat(&quot;maxSpeed&quot;);</span>
-<span class="fc" id="L21">        freq = GameManager.getSettings().get(&quot;Weather&quot;).getInt(&quot;moveFreq&quot;);</span>
+<span class="fc" id="L28">        speed = GameManager.getSettings().get(&quot;Weather&quot;).getFloat(&quot;maxSpeed&quot;);</span>
+<span class="fc" id="L29">        freq = GameManager.getSettings().get(&quot;Weather&quot;).getInt(&quot;moveFreq&quot;);</span>
 
-<span class="fc" id="L23">        lastDir = 0;</span>
-<span class="fc" id="L24">        newDir();</span>
-<span class="fc" id="L25">    }</span>
-
-    @Override
-    public void update() {
-<span class="fc" id="L29">        super.update();</span>
-
-<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if (TimeUtils.timeSinceMillis(lastDir) &gt; freq) newDir();</span>
-<span class="fc" id="L32">        getComponent(RigidBody.class).setVelocity(dir);</span>
+<span class="fc" id="L31">        lastDir = 0;</span>
+<span class="fc" id="L32">        newDir();</span>
 <span class="fc" id="L33">    }</span>
 
+    /**
+     * Called once every frame
+     */
+    @Override
+    public void update() {
+<span class="fc" id="L40">        super.update();</span>
+
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        if (TimeUtils.timeSinceMillis(lastDir) &gt; freq) newDir();</span>
+<span class="fc" id="L43">        getComponent(RigidBody.class).setVelocity(dir);</span>
+<span class="fc" id="L44">    }</span>
+
+    /**
+     * Determines a new direction for the weather effect to move in
+     */
     private void newDir() {
-<span class="fc" id="L36">        dir = Utilities.randomPos(-1, 1);</span>
-<span class="fc" id="L37">        dir = new Vector2(dir.x * speed, dir.y * speed);</span>
-<span class="fc" id="L38">        lastDir = TimeUtils.millis();</span>
-<span class="fc" id="L39">    }</span>
+<span class="fc" id="L50">        dir = Utilities.randomPos(-1, 1);</span>
+<span class="fc" id="L51">        dir = new Vector2(dir.x * speed, dir.y * speed);</span>
+<span class="fc" id="L52">        lastDir = TimeUtils.millis();</span>
+<span class="fc" id="L53">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

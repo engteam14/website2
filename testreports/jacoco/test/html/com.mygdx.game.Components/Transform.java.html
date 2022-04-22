@@ -72,67 +72,89 @@ public class Transform extends Component implements Location&lt;Vector2&gt; {
 <span class="fc bfc" id="L72" title="All 2 branches covered.">        if (parent != null) {</span>
 <span class="fc" id="L73">            RigidBody rb = parent.getComponent(RigidBody.class);</span>
 <span class="fc bfc" id="L74" title="All 2 branches covered.">            if (rb != null) {</span>
-<span class="fc" id="L75">                rb.setPosition(position, true);</span>
+<span class="fc" id="L75">                rb.setPosition(position);</span>
             }
         }
 <span class="fc" id="L78">    }</span>
 
+    /**
+     * Sets the scale of the component
+     * @param x    the x dimension
+     * @param y    the y dimension
+     */
     public void setScale(float x, float y) {
-<span class="fc" id="L81">        scale.set(x, y);</span>
-<span class="fc" id="L82">    }</span>
+<span class="fc" id="L86">        scale.set(x, y);</span>
+<span class="fc" id="L87">    }</span>
 
     /**
      * @param rot in Radians
      */
     public void setRotation(float rot) {
-<span class="nc" id="L88">        rotation = rot;</span>
-<span class="nc" id="L89">    }</span>
+<span class="nc" id="L93">        rotation = rot;</span>
+<span class="nc" id="L94">    }</span>
 
+    /**
+     * @return the position of the component on the grid
+     */
     public Vector2 getPosition() {
-<span class="fc" id="L92">        return position;</span>
+<span class="fc" id="L100">        return position;</span>
     }
 
+    /**
+     * @return the orientation of the component `unused`
+     */
     @Override
     public float getOrientation() {
-<span class="nc" id="L97">        return 0;</span>
+<span class="nc" id="L108">        return 0;</span>
     }
 
+    /**
+     * @param orientation the float value to set the orientation of the component to `unused`
+     */
     @Override
-    public void setOrientation(float orientation) {
+<span class="nc" id="L115">    public void setOrientation(float orientation) {}</span>
 
-<span class="nc" id="L103">    }</span>
-
+    /**
+     * Return new angle in radians from input vector.
+     * @param vector 2D vector
+     * @return the vector as an angle
+     */
     @Override
     public float vectorToAngle(Vector2 vector) {
-<span class="nc" id="L107">        return Utilities.vectorToAngle(vector);</span>
+<span class="nc" id="L124">        return Utilities.vectorToAngle(vector);</span>
     }
 
     /**
      * Return new vector combining input vector with input angle in radians.
-     *
      * @param outVector 2D vector
      * @param angle     in radians
      * @return the angle as a vector
      */
     @Override
     public Vector2 angleToVector(Vector2 outVector, float angle) {
-<span class="nc" id="L119">        return Utilities.angleToVector(outVector, angle);</span>
-    }
-
-    @Override
-    public Location&lt;Vector2&gt; newLocation() {
-<span class="nc" id="L124">        return new Transform();</span>
-    }
-
-    public Vector2 getScale() {
-<span class="fc" id="L128">        return scale;</span>
+<span class="nc" id="L135">        return Utilities.angleToVector(outVector, angle);</span>
     }
 
     /**
-     * @return radians
+     * @return a Transform object at a new location
+     */
+    @Override
+    public Location&lt;Vector2&gt; newLocation() {
+<span class="nc" id="L143">        return new Transform();</span>
+    }
+
+    /**
+     * @return the scale of this object
+     */
+    public Vector2 getScale() {
+<span class="fc" id="L150">        return scale;</span>
+    }
+
+    /**
+     * @return the angle of this object in radians
      */
     public float getRotation() {
-<span class="fc" id="L135">        return rotation;</span>
+<span class="fc" id="L157">        return rotation;</span>
     }
 
     //public void setScale(Vector2 pos) {

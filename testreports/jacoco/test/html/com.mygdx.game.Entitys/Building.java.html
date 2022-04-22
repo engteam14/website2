@@ -87,19 +87,12 @@ public class Building extends Entity implements CollisionCallBack {
 <span class="fc" id="L87">        college.setMostRecentAttacker(conqueror);</span>
 <span class="fc" id="L88">    }</span>
 
+    /**
+     * @return the boolean value of the alive status of the Pirate Component
+     */
     public boolean isAlive() {
-<span class="fc" id="L91">        return getComponent(Pirate.class).isAlive();</span>
+<span class="fc" id="L94">        return getComponent(Pirate.class).isAlive();</span>
     }
-
-    @Override
-    public void BeginContact(CollisionInfo info) {
-
-<span class="fc" id="L97">    }</span>
-
-    @Override
-    public void EndContact(CollisionInfo info) {
-
-<span class="nc" id="L102">    }</span>
 
     /**
      * Destroys the building and marks cannonball for removal.
@@ -108,18 +101,33 @@ public class Building extends Entity implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-<span class="pc bpc" id="L111" title="1 of 6 branches missed.">        if (info.a instanceof CannonBall &amp;&amp; isAlive() &amp;&amp; !isFlag) {</span>
-<span class="fc" id="L112">            CannonBall a = (CannonBall) info.a;</span>
-<span class="fc bfc" id="L113" title="All 2 branches covered.">            if(a.getFaction() != college.getFaction()){</span>
-<span class="fc" id="L114">                destroy(a.getFaction());</span>
+<span class="pc bpc" id="L104" title="1 of 6 branches missed.">        if (info.a instanceof CannonBall &amp;&amp; isAlive() &amp;&amp; !isFlag) {</span>
+<span class="fc" id="L105">            CannonBall a = (CannonBall) info.a;</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">            if(a.getFaction() != college.getFaction()){</span>
+<span class="fc" id="L107">                destroy(a.getFaction());</span>
             }
-<span class="fc" id="L116">            a.kill();</span>
+<span class="fc" id="L109">            a.kill();</span>
         }
-<span class="fc" id="L118">    }</span>
+<span class="fc" id="L111">    }</span>
 
+    /**
+     * Unused
+     */
+    @Override
+<span class="fc" id="L117">    public void BeginContact(CollisionInfo info) {}</span>
+
+    /**
+     * Unused
+     */
+    @Override
+<span class="nc" id="L123">    public void EndContact(CollisionInfo info) {}</span>
+
+    /**
+     * Unused
+     */
     @Override
     public void ExitTrigger(CollisionInfo info) {
 
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L131">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -9,24 +9,38 @@ public class Path implements Connection&lt;Node&gt; {
     Node from;
     Node to;
 
-<span class="nc" id="L12">    public Path(Node f, Node t) {</span>
-<span class="nc" id="L13">        from = f;</span>
-<span class="nc" id="L14">        to = t;</span>
-<span class="nc" id="L15">    }</span>
+    /**
+     * Creates a path from F to T
+     * @param f the start Node
+     * @param t the end Node
+     */
+<span class="nc" id="L17">    public Path(Node f, Node t) {</span>
+<span class="nc" id="L18">        from = f;</span>
+<span class="nc" id="L19">        to = t;</span>
+<span class="nc" id="L20">    }</span>
 
+    /**
+     * @return the cost of traveling the path
+     */
     @Override
     public float getCost() {
-<span class="nc" id="L19">        return to.cost;</span>
+<span class="nc" id="L27">        return to.cost;</span>
     }
 
+    /**
+     * @return the start node of the path
+     */
     @Override
     public Node getFromNode() {
-<span class="nc" id="L24">        return from;</span>
+<span class="nc" id="L35">        return from;</span>
     }
 
+    /**
+     * @return the end node of the path
+     */
     @Override
     public Node getToNode() {
-<span class="nc" id="L29">        return to;</span>
+<span class="nc" id="L43">        return to;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

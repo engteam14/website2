@@ -14,6 +14,7 @@ import com.mygdx.game.Physics.PhysicsBodyType;
 import com.mygdx.game.PowerUps.PowerUp;
 
 /**
+ * Added for Assessment 2
  * Simple entity shown on locate quests origin
  */
 public class PowerUpPickup extends Entity implements CollisionCallBack {
@@ -25,70 +26,102 @@ public class PowerUpPickup extends Entity implements CollisionCallBack {
     private final long cooldown;
     private long lastHit;
 
+    /**
+     * Generate an obstacle.
+     * @param powerUp       The Power Up being picked up
+     * @param texName       The texture to show for the obstacle.
+     * @param pos           The position of the power up
+     * @param cooldown      The cooldown before the power up can be used again
+     */
     public PowerUpPickup(PowerUp powerUp, String texName, Vector2 pos, int cooldown) {
-<span class="fc" id="L29">        super(3);</span>
+<span class="fc" id="L37">        super(3);</span>
 
-<span class="fc" id="L31">        Transform t = new Transform();</span>
-<span class="fc" id="L32">        Renderable r = new Renderable(ResourceManager.getId(&quot;powerups.txt&quot;), texName, RenderLayer.Transparent);</span>
-<span class="fc" id="L33">        RigidBody rb = new RigidBody(PhysicsBodyType.Kinematic, r, t, true);</span>
-<span class="fc" id="L34">        rb.setCallback(this);</span>
+<span class="fc" id="L39">        Transform t = new Transform();</span>
+<span class="fc" id="L40">        Renderable r = new Renderable(ResourceManager.getId(&quot;powerups.txt&quot;), texName, RenderLayer.Transparent);</span>
+<span class="fc" id="L41">        RigidBody rb = new RigidBody(PhysicsBodyType.Kinematic, r, t, true);</span>
+<span class="fc" id="L42">        rb.setCallback(this);</span>
 
-<span class="fc" id="L36">        addComponents(t, r, rb);</span>
+<span class="fc" id="L44">        addComponents(t, r, rb);</span>
 
-<span class="fc" id="L38">        this.powerUp = powerUp;</span>
+<span class="fc" id="L46">        this.powerUp = powerUp;</span>
 
-<span class="fc" id="L40">        hideToggle = false;</span>
-<span class="fc" id="L41">        showToggle = false;</span>
+<span class="fc" id="L48">        hideToggle = false;</span>
+<span class="fc" id="L49">        showToggle = false;</span>
 
-<span class="fc" id="L43">        position = pos;</span>
-<span class="fc" id="L44">        setPosition(pos);</span>
+<span class="fc" id="L51">        position = pos;</span>
+<span class="fc" id="L52">        setPosition(pos);</span>
 
-<span class="fc" id="L46">        this.cooldown = 1000L * cooldown;</span>
-<span class="fc" id="L47">        lastHit = 0;</span>
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L54">        this.cooldown = 1000L * cooldown;</span>
+<span class="fc" id="L55">        lastHit = 0;</span>
+<span class="fc" id="L56">    }</span>
 
+    /**
+     * @param pos   The position of the power up to be set
+     */
     private void setPosition(Vector2 pos) {
-<span class="fc" id="L51">        getComponent(RigidBody.class).setPosition(pos);</span>
-<span class="fc" id="L52">    }</span>
+<span class="fc" id="L62">        getComponent(RigidBody.class).setPosition(pos);</span>
+<span class="fc" id="L63">    }</span>
 
+    /**
+     * Reveals the power-up if its cooldown has expired
+     */
     private void tryShow() {
-<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (TimeUtils.timeSinceMillis(lastHit) &gt; cooldown) {</span>
-<span class="nc" id="L56">            setPosition(position);</span>
-<span class="nc" id="L57">            showToggle = false;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (TimeUtils.timeSinceMillis(lastHit) &gt; cooldown) {</span>
+<span class="nc" id="L70">            setPosition(position);</span>
+<span class="nc" id="L71">            showToggle = false;</span>
         }
-<span class="nc" id="L59">    }</span>
-
-    private void tryHide() {
-<span class="nc" id="L62">        setPosition(new Vector2(1000, -1000));</span>
-<span class="nc" id="L63">        hideToggle = false;</span>
-<span class="nc" id="L64">        showToggle = true;</span>
-<span class="nc" id="L65">        lastHit = TimeUtils.millis();</span>
-<span class="nc" id="L66">    }</span>
-
-    @Override
-    public void update() {
-<span class="nc" id="L70">        super.update();</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        if      (hideToggle)    tryHide();</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">        else if (showToggle)    tryShow();</span>
 <span class="nc" id="L73">    }</span>
 
-    @Override
-    public void BeginContact(CollisionInfo info) {
-<span class="fc" id="L77">    }</span>
+    /**
+     * Hides the power-up
+     */
+    private void tryHide() {
+<span class="nc" id="L79">        setPosition(new Vector2(1000, -1000));</span>
+<span class="nc" id="L80">        hideToggle = false;</span>
+<span class="nc" id="L81">        showToggle = true;</span>
+<span class="nc" id="L82">        lastHit = TimeUtils.millis();</span>
+<span class="nc" id="L83">    }</span>
 
+    /**
+     * Called once per frame
+     */
     @Override
-    public void EndContact(CollisionInfo info) {
-<span class="nc" id="L81">    }</span>
+    public void update() {
+<span class="nc" id="L90">        super.update();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if      (hideToggle)    tryHide();</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        else if (showToggle)    tryShow();</span>
+<span class="nc" id="L93">    }</span>
 
+    /**
+     * applies the attached power up to the colliding entity then sets the power up to be hidden next update
+     * @param info the collision info used in the conjunction
+     */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-<span class="fc" id="L85">        PowerUpAssigned playerPow = info.a.getComponent(PowerUpAssigned.class);</span>
-<span class="fc" id="L86">        playerPow.AssignPowerUp(powerUp);</span>
-<span class="fc" id="L87">        hideToggle = true;</span>
-<span class="fc" id="L88">    }</span>
+<span class="fc" id="L101">        PowerUpAssigned playerPow = info.a.getComponent(PowerUpAssigned.class);</span>
+<span class="fc" id="L102">        playerPow.AssignPowerUp(powerUp);</span>
+<span class="fc" id="L103">        hideToggle = true;</span>
+<span class="fc" id="L104">    }</span>
 
+    /**
+     * `unused`
+     */
+    @Override
+    public void BeginContact(CollisionInfo info) {
+<span class="fc" id="L111">    }</span>
+
+    /**
+     * `unused`
+     */
+    @Override
+    public void EndContact(CollisionInfo info) {
+<span class="nc" id="L118">    }</span>
+
+    /**
+     * `unused`
+     */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-<span class="nc" id="L92">    }</span>
+<span class="nc" id="L125">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

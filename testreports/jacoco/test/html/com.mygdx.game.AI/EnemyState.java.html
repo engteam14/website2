@@ -23,7 +23,7 @@ import com.mygdx.game.Entitys.Ship;
         @Override
         public void update(NPCShip e) {
 <span class="fc" id="L25">            super.update(e);</span>
-<span class="fc" id="L26">            e.circleOrigin();</span>
+<span class="fc" id="L26">            e.circleOrigin(); //Added in Assessment 2 so idle ships would patrol around colleges</span>
 <span class="fc" id="L27">        }</span>
     },
     /**
@@ -42,29 +42,20 @@ import com.mygdx.game.Entitys.Ship;
 <span class="nc" id="L42">        }</span>
     },
     /**
-     * Actively looks for other enemies
-     */
-<span class="fc" id="L47">    HUNT() {</span>
-        @Override
-        public void update(NPCShip e) {
-<span class="nc" id="L50">            super.update(e);</span>
-<span class="nc" id="L51">        }</span>
-    },
-    /**
      * Attempts to kill the enemy
      */
-<span class="fc" id="L56">    ATTACK() {</span>
+<span class="fc" id="L47">    ATTACK() {</span>
         @Override
         public void enter(NPCShip e) {
-<span class="fc" id="L59">            e.stopMovement();</span>
-<span class="fc" id="L60">        }</span>
+<span class="fc" id="L50">            e.stopMovement();</span>
+<span class="fc" id="L51">        }</span>
 
         @Override
         public void update(NPCShip e) {
-<span class="nc" id="L64">            super.update(e);</span>
-<span class="nc" id="L65">            Ship ship = e.getComponent(Pirate.class).getTarget();</span>
-<span class="nc" id="L66">            e.attackShip(ship);</span>
-<span class="nc" id="L67">        }</span>
+<span class="nc" id="L55">            super.update(e);</span>
+<span class="nc" id="L56">            Ship ship = e.getComponent(Pirate.class).getTarget();</span>
+<span class="nc" id="L57">            e.attackShip(ship);</span>
+<span class="nc" id="L58">        }</span>
     };
 
     /**
@@ -73,44 +64,38 @@ import com.mygdx.game.Entitys.Ship;
      */
     @Override
     public void update(NPCShip e) {
-<span class="fc" id="L76">        StateMachine&lt;NPCShip, EnemyState&gt; m = e.stateMachine;</span>
-<span class="fc" id="L77">        Pirate p = e.getComponent(Pirate.class);</span>
-<span class="pc bpc" id="L78" title="4 of 5 branches missed.">        switch (m.getCurrentState()) {</span>
+<span class="fc" id="L67">        StateMachine&lt;NPCShip, EnemyState&gt; m = e.stateMachine;</span>
+<span class="fc" id="L68">        Pirate p = e.getComponent(Pirate.class);</span>
+<span class="pc bpc" id="L69" title="3 of 4 branches missed.">        switch (m.getCurrentState()) {</span>
             case WANDER:
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">                if (p.isAgro()) {</span>
-<span class="nc" id="L81">                    m.changeState(PURSUE);</span>
-<span class="pc bpc" id="L82" title="1 of 2 branches missed.">                } else if (p.canAttack()) {</span>
-<span class="fc" id="L83">                    m.changeState(ATTACK);</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">                if (p.isAggro()) {</span>
+<span class="nc" id="L72">                    m.changeState(PURSUE);</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">                } else if (p.canAttack()) {</span>
+<span class="fc" id="L74">                    m.changeState(ATTACK);</span>
                 }
                 break;
             case PURSUE:
                 // if enter attack range attack
-<span class="nc bnc" id="L88" title="All 2 branches missed.">                if (p.canAttack()) {</span>
-<span class="nc" id="L89">                    m.changeState(ATTACK);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                if (p.canAttack()) {</span>
+<span class="nc" id="L80">                    m.changeState(ATTACK);</span>
                 }
                 // if leave detection range wander
-<span class="nc bnc" id="L92" title="All 4 branches missed.">                if (!p.canAttack() &amp;&amp; !p.isAgro()) {</span>
-<span class="nc" id="L93">                    m.changeState(WANDER);</span>
-                }
-                break;
-            case HUNT:
-                // if enter detection range pursue
-<span class="nc bnc" id="L98" title="All 2 branches missed.">                if (p.isAgro()) {</span>
-<span class="nc" id="L99">                    m.changeState(PURSUE);</span>
+<span class="nc bnc" id="L83" title="All 4 branches missed.">                if (!p.canAttack() &amp;&amp; !p.isAggro()) {</span>
+<span class="nc" id="L84">                    m.changeState(WANDER);</span>
                 }
                 break;
             case ATTACK:
                 // if leave attack range pursue
-<span class="nc bnc" id="L104" title="All 4 branches missed.">                if (p.isAgro() &amp;&amp; !p.canAttack()) {</span>
-<span class="nc" id="L105">                    m.changeState(PURSUE);</span>
+<span class="nc bnc" id="L89" title="All 4 branches missed.">                if (p.isAggro() &amp;&amp; !p.canAttack()) {</span>
+<span class="nc" id="L90">                    m.changeState(PURSUE);</span>
                 }
                 // if target dead
-<span class="nc bnc" id="L108" title="All 2 branches missed.">                else if (!p.getTarget().isAlive()) {</span>
-<span class="nc" id="L109">                    m.changeState(WANDER);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">                else if (!p.getTarget().isAlive()) {</span>
+<span class="nc" id="L94">                    m.changeState(WANDER);</span>
                 }
                 break;
         }
-<span class="fc" id="L113">    }</span>
+<span class="fc" id="L98">    }</span>
 
     /**
      * Called when a state is left
@@ -119,7 +104,7 @@ import com.mygdx.game.Entitys.Ship;
     @Override
     public void exit(NPCShip e) {
 
-<span class="fc" id="L122">    }</span>
+<span class="fc" id="L107">    }</span>
 
     /**
      * Called when a state is entered
@@ -128,14 +113,14 @@ import com.mygdx.game.Entitys.Ship;
     @Override
     public void enter(NPCShip entity) {
 
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L116">    }</span>
 
     /**
      * not used
      */
     @Override
     public boolean onMessage(NPCShip e, Telegram telegram) {
-<span class="nc" id="L138">        return false;</span>
+<span class="nc" id="L123">        return false;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

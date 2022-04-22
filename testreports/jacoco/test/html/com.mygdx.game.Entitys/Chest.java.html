@@ -7,18 +7,25 @@ import com.mygdx.game.Managers.RenderLayer;
 import com.mygdx.game.Managers.ResourceManager;
 
 /**
+ * Added for Assessment 2 in order to implement quest functionality
  * Simple entity shown on locate quests origin
  */
 public class Chest extends Entity {
+    /**
+     * Constructs the Chest object
+     */
     public Chest() {
-<span class="fc" id="L14">        super(2);</span>
-<span class="fc" id="L15">        Transform t = new Transform();</span>
-<span class="fc" id="L16">        Renderable r = new Renderable(ResourceManager.getId(&quot;Chest.png&quot;), RenderLayer.Transparent);</span>
-<span class="fc" id="L17">        addComponents(t, r);</span>
-<span class="fc" id="L18">    }</span>
+<span class="fc" id="L18">        super(2);</span>
+<span class="fc" id="L19">        Transform t = new Transform();</span>
+<span class="fc" id="L20">        Renderable r = new Renderable(ResourceManager.getId(&quot;Chest.png&quot;), RenderLayer.Transparent);</span>
+<span class="fc" id="L21">        addComponents(t, r);</span>
+<span class="fc" id="L22">    }</span>
 
+    /**
+     * @param pos The Vector2 to set the position of the chest to
+     */
     public void setPosition(Vector2 pos) {
-<span class="nc" id="L21">        getComponent(Transform.class).setPosition(pos);</span>
-<span class="nc" id="L22">    }</span>
+<span class="nc" id="L28">        getComponent(Transform.class).setPosition(pos);</span>
+<span class="nc" id="L29">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

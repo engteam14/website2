@@ -10,68 +10,79 @@ import com.mygdx.game.Quests.KillQuest;
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
 
+/**
+ * Added for Assessment 2 in order to increase visual clarity on Kill Quests
+ */
 public class Indicator extends Entity {
 	private final Entity target;
 	private final KillQuest quest;
-
 	private Vector2 gradient;
-	private boolean visible;
 
+	/**
+	 * Creates an indicator attached to a kill quest and targeting a college
+	 * @param kq the Kill Quest this indicator is attached to
+	 */
 	public Indicator(KillQuest kq) {
-<span class="fc" id="L21">		super(2);</span>
-<span class="fc" id="L22">		quest = kq;</span>
-<span class="fc" id="L23">		target = quest.getTarget().getParent();</span>
+<span class="fc" id="L26">		super(2);</span>
+<span class="fc" id="L27">		quest = kq;</span>
+<span class="fc" id="L28">		target = quest.getTarget().getParent();</span>
 
-<span class="fc" id="L25">		Transform t = new Transform();</span>
-<span class="fc" id="L26">		t.setPosition(800, 800);</span>
-<span class="fc" id="L27">		Renderable r = new Renderable(10, RenderLayer.Transparent);</span>
-<span class="fc" id="L28">		r.hide();</span>
+<span class="fc" id="L30">		Transform t = new Transform();</span>
+<span class="fc" id="L31">		t.setPosition(800, 800);</span>
+<span class="fc" id="L32">		Renderable r = new Renderable(10, RenderLayer.Transparent);</span>
+<span class="fc" id="L33">		r.hide();</span>
 
-<span class="fc" id="L30">		addComponents(t, r);</span>
-<span class="fc" id="L31">		gradient = updateGradient();</span>
-<span class="fc" id="L32">	}</span>
+<span class="fc" id="L35">		addComponents(t, r);</span>
+<span class="fc" id="L36">		gradient = updateGradient();</span>
+<span class="fc" id="L37">	}</span>
 
+	/**
+	 * Called once per frame
+	 */
 	@Override
 	public void update(){
-<span class="nc bnc" id="L36" title="All 2 branches missed.">		if(QuestManager.currentQuest() == quest){</span>
-<span class="nc" id="L37">			getComponent(Renderable.class).show();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">		if(QuestManager.currentQuest() == quest){</span>
+<span class="nc" id="L45">			getComponent(Renderable.class).show();</span>
 		}else{
-<span class="nc" id="L39">			getComponent(Renderable.class).hide();</span>
+<span class="nc" id="L47">			getComponent(Renderable.class).hide();</span>
 		}
-<span class="nc" id="L41">		followPlayer();</span>
-<span class="nc" id="L42">	}</span>
+<span class="nc" id="L49">		followPlayer();</span>
+<span class="nc" id="L50">	}</span>
 
 	/**
 	 * Called when updating the gradient of the Indicator.
 	 */
 	public Vector2 updateGradient(){
-<span class="fc" id="L48">		Player p = GameManager.getPlayer();</span>
-<span class="fc" id="L49">		Transform self = p.getComponent(Transform.class);</span>
-<span class="fc" id="L50">		Transform goal = target.getComponent(Transform.class);</span>
+<span class="fc" id="L56">		Player p = GameManager.getPlayer();</span>
+<span class="fc" id="L57">		Transform self = p.getComponent(Transform.class);</span>
+<span class="fc" id="L58">		Transform goal = target.getComponent(Transform.class);</span>
 
 		// Calculate the gradient to draw the indicator at.
-<span class="fc" id="L53">		float changeInX = goal.getPosition().x - self.getPosition().x;</span>
-<span class="fc" id="L54">		float changeInY = goal.getPosition().y - self.getPosition().y;</span>
-<span class="fc" id="L55">		float scaleFactor = max(abs(changeInX),abs(changeInY));</span>
-<span class="fc" id="L56">		float dx = changeInX / scaleFactor;</span>
-<span class="fc" id="L57">		float dy = changeInY / scaleFactor;</span>
+<span class="fc" id="L61">		float changeInX = goal.getPosition().x - self.getPosition().x;</span>
+<span class="fc" id="L62">		float changeInY = goal.getPosition().y - self.getPosition().y;</span>
+<span class="fc" id="L63">		float scaleFactor = max(abs(changeInX),abs(changeInY));</span>
+<span class="fc" id="L64">		float dx = changeInX / scaleFactor;</span>
+<span class="fc" id="L65">		float dy = changeInY / scaleFactor;</span>
 
-<span class="fc" id="L59">		return (new Vector2(dx, dy));</span>
+<span class="fc" id="L67">		return (new Vector2(dx, dy));</span>
 	}
 
 	/**
 	 * Called when updating the position of the Indicator.
 	 */
 	public void followPlayer() {
-<span class="nc" id="L66">		gradient = updateGradient();</span>
-<span class="nc" id="L67">		rotateSprite();</span>
-<span class="nc" id="L68">		Player p = GameManager.getPlayer();</span>
-<span class="nc" id="L69">		Vector2 position = new Vector2( p.getPosition().x + (50 * gradient.x), p.getPosition().y + (50 * gradient.y) );</span>
-<span class="nc" id="L70">		getComponent(Transform.class).setPosition(position);</span>
-<span class="nc" id="L71">	}</span>
+<span class="nc" id="L74">		gradient = updateGradient();</span>
+<span class="nc" id="L75">		rotateSprite();</span>
+<span class="nc" id="L76">		Player p = GameManager.getPlayer();</span>
+<span class="nc" id="L77">		Vector2 position = new Vector2( p.getPosition().x + (50 * gradient.x), p.getPosition().y + (50 * gradient.y) );</span>
+<span class="nc" id="L78">		getComponent(Transform.class).setPosition(position);</span>
+<span class="nc" id="L79">	}</span>
 
+	/**
+	 * Called when rotating the sprite of the Indicator.
+	 */
 	public void rotateSprite() {
-<span class="nc" id="L74">		getComponent(Transform.class).setRotation((float) Math.atan2(gradient.y,gradient.x));</span>
-<span class="nc" id="L75">	}</span>
+<span class="nc" id="L85">		getComponent(Transform.class).setRotation((float) Math.atan2(gradient.y,gradient.x));</span>
+<span class="nc" id="L86">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

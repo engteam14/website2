@@ -22,98 +22,113 @@ import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 public class MenuScreen extends Page {
     private SelectBox&lt;String&gt; hardness;
 
+    /**
+     * Creates a Menu Screen
+     * @param parent The game object this screen is viewing
+     */
     public MenuScreen(PirateGame parent) {
-<span class="nc" id="L26">        super(parent);</span>
-<span class="nc" id="L27">    }</span>
+<span class="nc" id="L30">        super(parent);</span>
+<span class="nc" id="L31">    }</span>
 
     /**
      * Create menu widgets such as start button, labels, etc.
      */
     @Override
     protected void CreateActors() {
-<span class="nc" id="L34">        Table t = new Table();</span>
-<span class="nc" id="L35">        t.setFillParent(true);</span>
+<span class="nc" id="L38">        Table t = new Table();</span>
+<span class="nc" id="L39">        t.setFillParent(true);</span>
 
-<span class="nc" id="L37">        float space = VIEWPORT_HEIGHT * 0.15f;</span>
+<span class="nc" id="L41">        float space = VIEWPORT_HEIGHT * 0.15f;</span>
 
-<span class="nc" id="L39">        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture(&quot;menuBG.jpg&quot;)));</span>
-<span class="nc" id="L40">        Label l = new Label(&quot;Pirates the movie the game&quot;, parent.skin);</span>
-<span class="nc" id="L41">        l.setFontScale(2);</span>
-<span class="nc" id="L42">        t.add(l).top().spaceBottom(space);</span>
-<span class="nc" id="L43">        t.row();</span>
+<span class="nc" id="L43">        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture(&quot;menuBG.jpg&quot;)));</span>
+<span class="nc" id="L44">        Label l = new Label(&quot;Pirates the movie the game&quot;, parent.skin);</span>
+<span class="nc" id="L45">        l.setFontScale(2);</span>
+<span class="nc" id="L46">        t.add(l).top().spaceBottom(space);</span>
+<span class="nc" id="L47">        t.row();</span>
 
-<span class="nc" id="L45">        hardness = new SelectBox&lt;&gt;(parent.skin);</span>
+<span class="nc" id="L49">        hardness = new SelectBox&lt;&gt;(parent.skin);</span>
 
 
-<span class="nc" id="L48">        String[] values = new String[]{&quot;Easy&quot;, &quot;Regular&quot;, &quot;Hard&quot;};</span>
-<span class="nc" id="L49">        hardness.setItems(values);</span>
-<span class="nc" id="L50">        hardness.setSelected(values[1]);</span>
-<span class="nc" id="L51">        t.add(hardness);</span>
-<span class="nc" id="L52">        t.row();</span>
-<span class="nc" id="L53">        t.add().pad(20);</span>
-<span class="nc" id="L54">        t.row();</span>
-<span class="nc" id="L55">        TextButton play = new TextButton(&quot;Play&quot;, parent.skin);</span>
-<span class="nc" id="L56">        play.addListener(new ChangeListener() {</span>
+<span class="nc" id="L52">        String[] values = new String[]{&quot;Easy&quot;, &quot;Regular&quot;, &quot;Hard&quot;};</span>
+<span class="nc" id="L53">        hardness.setItems(values);</span>
+<span class="nc" id="L54">        hardness.setSelected(values[1]);</span>
+<span class="nc" id="L55">        t.add(hardness);</span>
+<span class="nc" id="L56">        t.row();</span>
+<span class="nc" id="L57">        t.add().pad(20);</span>
+<span class="nc" id="L58">        t.row();</span>
+<span class="nc" id="L59">        TextButton play = new TextButton(&quot;Play&quot;, parent.skin);</span>
+<span class="nc" id="L60">        play.addListener(new ChangeListener() {</span>
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 // start of assessment 2 change
-<span class="nc" id="L60">                parent.setDifficulty(hardness.getSelected());</span>
-<span class="nc" id="L61">                parent.StartGame();</span>
+<span class="nc" id="L64">                parent.setDifficulty(hardness.getSelected());</span>
+<span class="nc" id="L65">                parent.StartGame();</span>
                 //end of assessment 2 change
-<span class="nc" id="L63">            }</span>
+<span class="nc" id="L67">            }</span>
         });
-<span class="nc" id="L65">        t.add(play).top().size(100, 25).spaceBottom(space);</span>
-<span class="nc" id="L66">        t.row();</span>
-<span class="nc" id="L67">        t.add().pad(20);</span>
-<span class="nc" id="L68">        t.row();</span>
-<span class="nc" id="L69">        Preferences prefs = Gdx.app.getPreferences(&quot;pirate/GameSave_game_1&quot;);</span>
-<span class="nc" id="L70">        String resume = &quot;Resume&quot;;</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        if (prefs.get().isEmpty()) {</span>
-<span class="nc" id="L72">            resume = &quot;&quot;;</span>
+<span class="nc" id="L69">        t.add(play).top().size(100, 25).spaceBottom(space);</span>
+<span class="nc" id="L70">        t.row();</span>
+<span class="nc" id="L71">        t.add().pad(20);</span>
+<span class="nc" id="L72">        t.row();</span>
+<span class="nc" id="L73">        Preferences prefs = Gdx.app.getPreferences(&quot;pirate/GameSave_game_1&quot;);</span>
+<span class="nc" id="L74">        String resume = &quot;Resume&quot;;</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (prefs.get().isEmpty()) {</span>
+<span class="nc" id="L76">            resume = &quot;&quot;;</span>
         }
-<span class="nc" id="L74">        TextButton playLoad = new TextButton(resume, parent.skin);</span>
-<span class="nc" id="L75">        playLoad.addListener(new ChangeListener() {</span>
+<span class="nc" id="L78">        TextButton playLoad = new TextButton(resume, parent.skin);</span>
+<span class="nc" id="L79">        playLoad.addListener(new ChangeListener() {</span>
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 // start of assessment 2 change
-<span class="nc" id="L79">                parent.LoadGame();</span>
+<span class="nc" id="L83">                parent.LoadGame();</span>
                 //end of assessment 2 change
-<span class="nc" id="L81">            }</span>
+<span class="nc" id="L85">            }</span>
         });
-<span class="nc" id="L83">        t.add(playLoad).top().size(100, 25).spaceBottom(space);</span>
-<span class="nc" id="L84">        t.row();</span>
-<span class="nc" id="L85">        t.add().pad(20);</span>
-<span class="nc" id="L86">        t.row();</span>
-<span class="nc" id="L87">        TextButton quit = new TextButton(&quot;Quit&quot;, parent.skin);</span>
-<span class="nc" id="L88">        quit.addListener(new ChangeListener() {</span>
+<span class="nc" id="L87">        t.add(playLoad).top().size(100, 25).spaceBottom(space);</span>
+<span class="nc" id="L88">        t.row();</span>
+<span class="nc" id="L89">        t.add().pad(20);</span>
+<span class="nc" id="L90">        t.row();</span>
+<span class="nc" id="L91">        TextButton quit = new TextButton(&quot;Quit&quot;, parent.skin);</span>
+<span class="nc" id="L92">        quit.addListener(new ChangeListener() {</span>
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-<span class="nc" id="L91">                Gdx.app.exit();</span>
-<span class="nc" id="L92">                System.exit(0);</span>
-<span class="nc" id="L93">            }</span>
+<span class="nc" id="L95">                Gdx.app.exit();</span>
+<span class="nc" id="L96">                System.exit(0);</span>
+<span class="nc" id="L97">            }</span>
         });
-<span class="nc" id="L95">        t.add(quit).size(100, 25).top().spaceBottom(space);</span>
+<span class="nc" id="L99">        t.add(quit).size(100, 25).top().spaceBottom(space);</span>
 
-<span class="nc" id="L97">        t.top();</span>
+<span class="nc" id="L101">        t.top();</span>
 
-<span class="nc" id="L99">        actors.add(t);</span>
-<span class="nc" id="L100">    }</span>
+<span class="nc" id="L103">        actors.add(t);</span>
+<span class="nc" id="L104">    }</span>
 
+    /**
+     * Shows the Menu Screen
+     */
     @Override
     public void show() {
-<span class="nc" id="L104">        super.show();</span>
-<span class="nc" id="L105">    }</span>
+<span class="nc" id="L111">        super.show();</span>
+<span class="nc" id="L112">    }</span>
 
+    /**
+     * Hides the Menu Screen
+     */
     @Override
     public void hide() {
-<span class="nc" id="L109">        super.hide();</span>
-<span class="nc" id="L110">    }</span>
+<span class="nc" id="L119">        super.hide();</span>
+<span class="nc" id="L120">    }</span>
 
+    /**
+     * Resizes the viewport
+     * @param width The horizontal dimension of the viewport
+     * @param height The vertical dimension of the viewport
+     */
     @Override
     public void resize(int width, int height) {
-<span class="nc" id="L114">        super.resize(width, height);</span>
-<span class="nc" id="L115">        Table t = (Table) actors.get(0);</span>
-<span class="nc" id="L116">        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture(&quot;menuBG.jpg&quot;))); // prevent the bg being stretched</span>
-<span class="nc" id="L117">    }</span>
+<span class="nc" id="L129">        super.resize(width, height);</span>
+<span class="nc" id="L130">        Table t = (Table) actors.get(0);</span>
+<span class="nc" id="L131">        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture(&quot;menuBG.jpg&quot;))); // prevent the bg being stretched</span>
+<span class="nc" id="L132">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -12,41 +12,57 @@ public abstract class Quest {
     protected int pointReward;
     protected boolean isCompleted;
 
-<span class="fc" id="L15">    public Quest() {</span>
-<span class="fc" id="L16">        name = &quot;&quot;;</span>
-<span class="fc" id="L17">        description = &quot;&quot;;</span>
-<span class="fc" id="L18">        plunderReward = 0;</span>
-<span class="fc" id="L19">        pointReward = 0;</span>
-<span class="fc" id="L20">        isCompleted = false;</span>
-<span class="fc" id="L21">    }</span>
+    /**
+     * Constructs a quest with base values filled in
+     */
+<span class="fc" id="L18">    public Quest() {</span>
+<span class="fc" id="L19">        name = &quot;&quot;;</span>
+<span class="fc" id="L20">        description = &quot;&quot;;</span>
+<span class="fc" id="L21">        plunderReward = 0;</span>
+<span class="fc" id="L22">        pointReward = 0;</span>
+<span class="fc" id="L23">        isCompleted = false;</span>
+<span class="fc" id="L24">    }</span>
 
     /**
      * Checks if the given player has met the complete condition
-     *
      * @param p the player
      * @return has completed
      */
     public abstract boolean checkCompleted(Player p);
 
+    /**
+     * @return The plunder reward for this quest
+     */
     public int getPlunderReward() {
-<span class="fc" id="L32">        return plunderReward;</span>
+<span class="fc" id="L37">        return plunderReward;</span>
     }
 
+    /**
+     * @return The point reward for this quest
+     */
     public int getPointReward() {
-<span class="fc" id="L36">        return pointReward;</span>
+<span class="fc" id="L44">        return pointReward;</span>
     }
 
+    /**
+     * @return The completion status of the current quest
+     */
     public boolean isCompleted() {
-<span class="fc" id="L40">        return isCompleted;</span>
+<span class="fc" id="L51">        return isCompleted;</span>
     }
 
-
+    /**
+     * @return The name of this quest
+     */
     public String getName() {
-<span class="nc" id="L45">        return name;</span>
+<span class="nc" id="L58">        return name;</span>
     }
 
+    /**
+     * @return The description of this quest
+     */
     public String getDescription() {
-<span class="nc" id="L49">        return description;</span>
+<span class="nc" id="L65">        return description;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -9,16 +9,23 @@ import com.mygdx.game.Managers.RenderLayer;
  * The world map
  */
 public class WorldMap extends Entity {
+    /**
+     * Creates the World Map
+     * @param mapId The ID of the map to create
+     */
     public WorldMap(int mapId) {
-<span class="nc" id="L13">        super(1);</span>
-<span class="nc" id="L14">        setName(&quot;WorldMap&quot;);</span>
-<span class="nc" id="L15">        TileMap map = new TileMap(mapId, RenderLayer.Five);</span>
-<span class="nc" id="L16">        addComponent(map);</span>
-<span class="nc" id="L17">        PhysicsManager.createMapCollision(map);</span>
-<span class="nc" id="L18">    }</span>
+<span class="nc" id="L17">        super(1);</span>
+<span class="nc" id="L18">        setName(&quot;WorldMap&quot;);</span>
+<span class="nc" id="L19">        TileMap map = new TileMap(mapId, RenderLayer.Five);</span>
+<span class="nc" id="L20">        addComponent(map);</span>
+<span class="nc" id="L21">        PhysicsManager.createMapCollision(map);</span>
+<span class="nc" id="L22">    }</span>
 
+    /**
+     * @return the Tile Map attached to this object
+     */
     public TiledMap getTileMap() {
-<span class="nc" id="L21">        return getComponent(TileMap.class).getTileMap();</span>
+<span class="nc" id="L28">        return getComponent(TileMap.class).getTileMap();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

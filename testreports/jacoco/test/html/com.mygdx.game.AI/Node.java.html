@@ -11,27 +11,29 @@ public class Node {
 
     /**
      * Position the node exists at
-     *
      * @param x co-ord
      * @param y co-ord
      */
-<span class="nc" id="L18">    public Node(float x, float y) {</span>
-<span class="nc" id="L19">        position = new Vector2(x, y);</span>
-<span class="nc" id="L20">        cost = -1;</span>
-<span class="nc" id="L21">    }</span>
+<span class="nc" id="L17">    public Node(float x, float y) {</span>
+<span class="nc" id="L18">        position = new Vector2(x, y);</span>
+<span class="nc" id="L19">        cost = -1;</span>
+<span class="nc" id="L20">    }</span>
 
+    /**
+     * Position the node exists at
+     * @return the position of the node
+     */
     public Vector2 getPosition() {
-<span class="nc" id="L24">        return position;</span>
+<span class="nc" id="L27">        return position;</span>
     }
 
     /**
      * Sets position
-     *
      * @param x co-ord
      * @param y co-ord
      */
     public void set(float x, float y) {
-<span class="nc" id="L34">        position.set(x, y);</span>
-<span class="nc" id="L35">    }</span>
+<span class="nc" id="L36">        position.set(x, y);</span>
+<span class="nc" id="L37">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

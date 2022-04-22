@@ -98,7 +98,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
 <span class="nc" id="L98">    }</span>
 
     /**
-     * creates a new steering behaviour that will make the NPC beeline for the target, doesn't factor in obstetrical
+     * creates a new steering behaviour that will make the NPC beeline for the target (doesn't factor in obstacles)
      */
     public void followTarget() {
 <span class="nc bnc" id="L104" title="All 2 branches missed.">        if (getTarget() == null) {</span>
@@ -116,70 +116,77 @@ public class NPCShip extends Ship implements CollisionCallBack {
 <span class="nc" id="L116">        nav.setBehavior(arrives);</span>
 <span class="nc" id="L117">    }</span>
 
+    /**
+     * Added for Assessment 2
+     * Creates a new steering behaviour that will make the NPC circle the college it is attached to (doesn't factor in obstacles)
+     */
     public void circleOrigin() {
-<span class="fc" id="L120">        College origin = GameManager.getCollege(getFaction().id);</span>
-<span class="fc" id="L121">        Vector2 dirToOrigin = new Vector2( (origin.getPosition().x - getPosition().x),(origin.getPosition().y - getPosition().y) );</span>
-<span class="fc" id="L122">        double currentAngle = Utilities.vectorToAngle(dirToOrigin);</span>
+<span class="fc" id="L124">        College origin = GameManager.getCollege(getFaction().id);</span>
+<span class="fc" id="L125">        Vector2 dirToOrigin = new Vector2( (origin.getPosition().x - getPosition().x),(origin.getPosition().y - getPosition().y) );</span>
+<span class="fc" id="L126">        double currentAngle = Utilities.vectorToAngle(dirToOrigin);</span>
 
         double theta;
-<span class="pc bpc" id="L125" title="1 of 2 branches missed.">        if (dirToOrigin.x &gt; 0){</span>
-<span class="fc" id="L126">            theta = currentAngle - (Math.PI)/12;</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">        if (dirToOrigin.x &gt; 0){</span>
+<span class="fc" id="L130">            theta = currentAngle - (Math.PI)/12;</span>
         }else{
-<span class="nc" id="L128">            theta = currentAngle + (Math.PI)/12;</span>
+<span class="nc" id="L132">            theta = currentAngle + (Math.PI)/12;</span>
         }
 
-<span class="fc" id="L131">        Transform target = new Transform();</span>
-<span class="fc" id="L132">        float radius = Utilities.tilesToDistance(30);</span>
-<span class="fc" id="L133">        float xPos = (float) (origin.getPosition().x + (radius * Math.cos(theta)));</span>
-<span class="fc" id="L134">        float yPos = (float) (origin.getPosition().y + (radius * Math.sin(theta)));</span>
-<span class="fc" id="L135">        target.setPosition(xPos,yPos);</span>
+<span class="fc" id="L135">        Transform target = new Transform();</span>
+<span class="fc" id="L136">        float radius = Utilities.tilesToDistance(30);</span>
+<span class="fc" id="L137">        float xPos = (float) (origin.getPosition().x + (radius * Math.cos(theta)));</span>
+<span class="fc" id="L138">        float yPos = (float) (origin.getPosition().y + (radius * Math.sin(theta)));</span>
+<span class="fc" id="L139">        target.setPosition(xPos,yPos);</span>
 
-<span class="fc" id="L137">        AINavigation nav = getComponent(AINavigation.class);</span>
+<span class="fc" id="L141">        AINavigation nav = getComponent(AINavigation.class);</span>
 
-<span class="fc" id="L139">        Arrive&lt;Vector2&gt; arrives = new Arrive&lt;&gt;(nav,target)</span>
-<span class="fc" id="L140">                .setTimeToTarget(AISettings.getFloat(&quot;accelerationTime&quot;))</span>
-<span class="fc" id="L141">                .setArrivalTolerance(AISettings.getFloat(&quot;arrivalTolerance&quot;))</span>
-<span class="fc" id="L142">                .setDecelerationRadius(AISettings.getFloat(&quot;slowRadius&quot;));</span>
+<span class="fc" id="L143">        Arrive&lt;Vector2&gt; arrives = new Arrive&lt;&gt;(nav,target)</span>
+<span class="fc" id="L144">                .setTimeToTarget(AISettings.getFloat(&quot;accelerationTime&quot;))</span>
+<span class="fc" id="L145">                .setArrivalTolerance(AISettings.getFloat(&quot;arrivalTolerance&quot;))</span>
+<span class="fc" id="L146">                .setDecelerationRadius(AISettings.getFloat(&quot;slowRadius&quot;));</span>
 
-<span class="fc" id="L144">        nav.setBehavior(arrives);</span>
-<span class="fc" id="L145">    }</span>
+<span class="fc" id="L148">        nav.setBehavior(arrives);</span>
+<span class="fc" id="L149">    }</span>
 
     /**
      * stops all movement and sets the behaviour to null
      */
     public void stopMovement() {
-<span class="fc" id="L151">        AINavigation nav = getComponent(AINavigation.class);</span>
-<span class="fc" id="L152">        nav.setBehavior(null);</span>
-<span class="fc" id="L153">        nav.stop();</span>
-<span class="fc" id="L154">    }</span>
+<span class="fc" id="L155">        AINavigation nav = getComponent(AINavigation.class);</span>
+<span class="fc" id="L156">        nav.setBehavior(null);</span>
+<span class="fc" id="L157">        nav.stop();</span>
+<span class="fc" id="L158">    }</span>
 
     /**
      * Added for Assessment 2, calculates the direction an Enemy Ship is in
      */
     public Vector2 directionToShip(Ship ship) {
-<span class="nc" id="L160">        Vector2 shipLocale = ship.getPosition();</span>
-<span class="nc" id="L161">        Vector2 thisPosition = getPosition();</span>
+<span class="nc" id="L164">        Vector2 shipLocale = ship.getPosition();</span>
+<span class="nc" id="L165">        Vector2 thisPosition = getPosition();</span>
 
-<span class="nc" id="L163">        float xDiff = shipLocale.x-thisPosition.x;</span>
-<span class="nc" id="L164">        float yDiff = shipLocale.y-thisPosition.y;</span>
+<span class="nc" id="L167">        float xDiff = shipLocale.x-thisPosition.x;</span>
+<span class="nc" id="L168">        float yDiff = shipLocale.y-thisPosition.y;</span>
 
-<span class="nc" id="L166">        return new Vector2(xDiff,yDiff);</span>
+<span class="nc" id="L170">        return new Vector2(xDiff,yDiff);</span>
     }
 
     /**
      * Added for Assessment 2, shoots a cannonball towards the player ship
      */
     public void attackShip(Ship ship) {
-<span class="nc" id="L173">        long current = TimeUtils.millis() / 1000;</span>
-<span class="nc bnc" id="L174" title="All 2 branches missed.">        if (current &gt; lastShootTime) {</span>
-<span class="nc" id="L175">            Vector2 direction = directionToShip(ship);</span>
-<span class="nc" id="L176">            shoot(direction);</span>
+<span class="nc" id="L177">        long current = TimeUtils.millis() / 1000;</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">        if (current &gt; lastShootTime) {</span>
+<span class="nc" id="L179">            Vector2 direction = directionToShip(ship);</span>
+<span class="nc" id="L180">            shoot(direction);</span>
         }
-<span class="nc" id="L178">        lastShootTime = current;</span>
-<span class="nc" id="L179">    }</span>
+<span class="nc" id="L182">        lastShootTime = current;</span>
+<span class="nc" id="L183">    }</span>
 
+    /**
+     * @return the current state the NPCShip is in
+     */
     public EnemyState getCurrentState() {
-<span class="fc" id="L182">        return stateMachine.getCurrentState();</span>
+<span class="fc" id="L189">        return stateMachine.getCurrentState();</span>
     }
 
     /**
@@ -188,18 +195,18 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-<span class="fc" id="L191">        super.EnterTrigger(info);</span>
-<span class="fc bfc" id="L192" title="All 2 branches covered.">        if (info.a instanceof Ship) {</span>
-<span class="fc" id="L193">            Ship other = (Ship) info.a;</span>
-<span class="fc bfc" id="L194" title="All 2 branches covered.">            if (Objects.equals(other.getComponent(Pirate.class).getFaction(), getComponent(Pirate.class).getFaction())) {</span>
+<span class="fc" id="L198">        super.EnterTrigger(info);</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">        if (info.a instanceof Ship) {</span>
+<span class="fc" id="L200">            Ship other = (Ship) info.a;</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">            if (Objects.equals(other.getComponent(Pirate.class).getFaction(), getComponent(Pirate.class).getFaction())) {</span>
                 // is the same faction
-<span class="fc" id="L196">                return;</span>
+<span class="fc" id="L203">                return;</span>
             }
             // add the new collision as a new target
-<span class="fc" id="L199">            Pirate pirate = getComponent(Pirate.class);</span>
-<span class="fc" id="L200">            pirate.addTarget(other);</span>
+<span class="fc" id="L206">            Pirate pirate = getComponent(Pirate.class);</span>
+<span class="fc" id="L207">            pirate.addTarget(other);</span>
         }
-<span class="fc" id="L202">    }</span>
+<span class="fc" id="L209">    }</span>
 
     /**
      * if a target has left remove it from the potential targets Queue
@@ -207,18 +214,18 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L210" title="All 2 branches missed.">        if (!(info.a instanceof Ship)) {</span>
-<span class="nc" id="L211">            return;</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        if (!(info.a instanceof Ship)) {</span>
+<span class="nc" id="L218">            return;</span>
         }
-<span class="nc" id="L213">        Pirate pirate = getComponent(Pirate.class);</span>
-<span class="nc" id="L214">        Ship o = (Ship) info.a;</span>
+<span class="nc" id="L220">        Pirate pirate = getComponent(Pirate.class);</span>
+<span class="nc" id="L221">        Ship o = (Ship) info.a;</span>
         // remove the object from the targets list
-<span class="nc bnc" id="L216" title="All 2 branches missed.">        for (Ship targ : pirate.getTargets()) {</span>
-<span class="nc bnc" id="L217" title="All 2 branches missed.">            if (targ == o) {</span>
-<span class="nc" id="L218">                pirate.getTargets().remove(targ);</span>
-<span class="nc" id="L219">                break;</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        for (Ship targ : pirate.getTargets()) {</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">            if (targ == o) {</span>
+<span class="nc" id="L225">                pirate.getTargets().remove(targ);</span>
+<span class="nc" id="L226">                break;</span>
             }
-<span class="nc" id="L221">        }</span>
-<span class="nc" id="L222">    }</span>
+<span class="nc" id="L228">        }</span>
+<span class="nc" id="L229">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

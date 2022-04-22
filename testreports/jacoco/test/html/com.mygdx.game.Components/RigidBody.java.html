@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RigidBody.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Components</a> &gt; <span class="el_source">RigidBody.java</span></div><h1>RigidBody.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Components;
 
 import com.badlogic.gdx.math.Vector2;
-//import com.badlogic.gdx.physics.box2d;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Managers.PhysicsManager;
 import com.mygdx.game.Physics.CollisionCallBack;
@@ -14,12 +13,15 @@ public class RigidBody extends Component {
     int bodyId;
     private final Vector2 halfDim;
 
+    /**
+     * Sets up the base values of the RigidBody component
+     */
     public RigidBody() {
-<span class="fc" id="L18">        super();</span>
-<span class="fc" id="L19">        type = ComponentType.RigidBody;</span>
-<span class="fc" id="L20">        halfDim = new Vector2();</span>
-<span class="fc" id="L21">        setRequirements(ComponentType.Transform, ComponentType.Renderable);</span>
-<span class="fc" id="L22">    }</span>
+<span class="fc" id="L20">        super();</span>
+<span class="fc" id="L21">        type = ComponentType.RigidBody;</span>
+<span class="fc" id="L22">        halfDim = new Vector2();</span>
+<span class="fc" id="L23">        setRequirements(ComponentType.Transform, ComponentType.Renderable);</span>
+<span class="fc" id="L24">    }</span>
 
     /**
      * Calls constructor with is trigger false
@@ -29,8 +31,8 @@ public class RigidBody extends Component {
      * @param t    used for positioning and scaling the collider
      */
     public RigidBody(PhysicsBodyType type, Renderable r, Transform t) {
-<span class="fc" id="L32">        this(type, r, t, false);</span>
-<span class="fc" id="L33">    }</span>
+<span class="fc" id="L34">        this(type, r, t, false);</span>
+<span class="fc" id="L35">    }</span>
 
     /**
      * Can create body that is trigger or callable
@@ -41,104 +43,94 @@ public class RigidBody extends Component {
      * @param isTrigger false allows for collision true doesn't
      */
     public RigidBody(PhysicsBodyType type, Renderable r, Transform t, boolean isTrigger) {
-<span class="fc" id="L44">        this();</span>
-<span class="fc" id="L45">        BodyDef def = new BodyDef();</span>
-<span class="pc bpc" id="L46" title="1 of 4 branches missed.">        switch (type) {</span>
+<span class="fc" id="L46">        this();</span>
+<span class="fc" id="L47">        BodyDef def = new BodyDef();</span>
+<span class="pc bpc" id="L48" title="1 of 4 branches missed.">        switch (type) {</span>
             case Static:
-<span class="fc" id="L48">                def.type = BodyDef.BodyType.StaticBody;</span>
-<span class="fc" id="L49">                break;</span>
+<span class="fc" id="L50">                def.type = BodyDef.BodyType.StaticBody;</span>
+<span class="fc" id="L51">                break;</span>
             case Dynamic:
-<span class="fc" id="L51">                def.type = BodyDef.BodyType.DynamicBody;</span>
-<span class="fc" id="L52">                break;</span>
+<span class="fc" id="L53">                def.type = BodyDef.BodyType.DynamicBody;</span>
+<span class="fc" id="L54">                break;</span>
             case Kinematic:
-<span class="fc" id="L54">                def.type = BodyDef.BodyType.KinematicBody;</span>
+<span class="fc" id="L56">                def.type = BodyDef.BodyType.KinematicBody;</span>
                 break;
         }
-<span class="fc" id="L57">        float h_x = r.sprite.getWidth() * 0.5f;</span>
-<span class="fc" id="L58">        float h_y = r.sprite.getHeight() * 0.5f;</span>
-<span class="fc" id="L59">        halfDim.set(h_x, h_y);</span>
+<span class="fc" id="L59">        float h_x = r.sprite.getWidth() * 0.5f;</span>
+<span class="fc" id="L60">        float h_y = r.sprite.getHeight() * 0.5f;</span>
+<span class="fc" id="L61">        halfDim.set(h_x, h_y);</span>
 
-<span class="fc" id="L61">        def.position.set(t.getPosition().x, t.getPosition().y); //Removed halfDim addition for Assessment 2</span>
-<span class="fc" id="L62">        h_x *= t.getScale().x;</span>
-<span class="fc" id="L63">        h_y *= t.getScale().y;</span>
+<span class="fc" id="L63">        def.position.set(t.getPosition().x, t.getPosition().y); //Removed halfDim addition for Assessment 2</span>
+<span class="fc" id="L64">        h_x *= t.getScale().x;</span>
+<span class="fc" id="L65">        h_y *= t.getScale().y;</span>
 
-<span class="fc" id="L65">        def.angle = t.getRotation();</span>
+<span class="fc" id="L67">        def.angle = t.getRotation();</span>
 
-<span class="fc" id="L67">        PolygonShape shape = new PolygonShape();</span>
-<span class="fc" id="L68">        shape.setAsBox(h_x, h_y);</span>
+<span class="fc" id="L69">        PolygonShape shape = new PolygonShape();</span>
+<span class="fc" id="L70">        shape.setAsBox(h_x, h_y);</span>
 
-<span class="fc" id="L70">        FixtureDef f = new FixtureDef();</span>
-<span class="fc" id="L71">        f.isSensor = isTrigger;</span>
-<span class="fc" id="L72">        f.shape = shape;</span>
-<span class="fc bfc" id="L73" title="All 2 branches covered.">        f.density = type == PhysicsBodyType.Static ? 0.0f : 1.0f;</span>
-<span class="fc" id="L74">        f.restitution = 0; // prevents bouncing</span>
-<span class="fc" id="L75">        f.friction = 0;</span>
+<span class="fc" id="L72">        FixtureDef f = new FixtureDef();</span>
+<span class="fc" id="L73">        f.isSensor = isTrigger;</span>
+<span class="fc" id="L74">        f.shape = shape;</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        f.density = type == PhysicsBodyType.Static ? 0.0f : 1.0f;</span>
+<span class="fc" id="L76">        f.restitution = 0; // prevents bouncing</span>
+<span class="fc" id="L77">        f.friction = 0;</span>
 
-<span class="fc" id="L77">        bodyId = PhysicsManager.createBody(def, f, null);</span>
+<span class="fc" id="L79">        bodyId = PhysicsManager.createBody(def, f, null);</span>
 
-<span class="fc" id="L79">        shape.dispose();</span>
-<span class="fc" id="L80">    }</span>
+<span class="fc" id="L81">        shape.dispose();</span>
+<span class="fc" id="L82">    }</span>
 
     /**
      * Adds a new circular fixture to the body as a trigger
      */
     public void addTrigger(float radius, Object data) {
-<span class="fc" id="L86">        Body b = getBody();</span>
+<span class="fc" id="L88">        Body b = getBody();</span>
 
-<span class="fc" id="L88">        FixtureDef fDef = new FixtureDef();</span>
-<span class="fc" id="L89">        fDef.isSensor = true;</span>
-<span class="fc" id="L90">        CircleShape shape = new CircleShape();</span>
-<span class="fc" id="L91">        shape.setRadius(radius);</span>
+<span class="fc" id="L90">        FixtureDef fDef = new FixtureDef();</span>
+<span class="fc" id="L91">        fDef.isSensor = true;</span>
+<span class="fc" id="L92">        CircleShape shape = new CircleShape();</span>
+<span class="fc" id="L93">        shape.setRadius(radius);</span>
 
-<span class="fc" id="L93">        fDef.shape = shape;</span>
+<span class="fc" id="L95">        fDef.shape = shape;</span>
 
-<span class="fc" id="L95">        fDef.density = 0.0f;</span>
-<span class="fc" id="L96">        fDef.restitution = 0.0f;</span>
-<span class="fc" id="L97">        fDef.friction = 0.0f;</span>
+<span class="fc" id="L97">        fDef.density = 0.0f;</span>
+<span class="fc" id="L98">        fDef.restitution = 0.0f;</span>
+<span class="fc" id="L99">        fDef.friction = 0.0f;</span>
 
-<span class="fc" id="L99">        Fixture f = b.createFixture(fDef);</span>
-<span class="fc" id="L100">        f.setUserData(data);</span>
-<span class="fc" id="L101">    }</span>
+<span class="fc" id="L101">        Fixture f = b.createFixture(fDef);</span>
+<span class="fc" id="L102">        f.setUserData(data);</span>
+<span class="fc" id="L103">    }</span>
 
     /**
      * Is used during collision phase to add more functionality
-     *
      * @param data class that inherits from CollisionCallBack
      */
     public void setCallback(CollisionCallBack data) {
-<span class="fc" id="L109">        getBody().setUserData(data);</span>
-<span class="fc" id="L110">    }</span>
+<span class="fc" id="L110">        getBody().setUserData(data);</span>
+<span class="fc" id="L111">    }</span>
 
     public void setVelocity(Vector2 vel) {
-<span class="fc" id="L113">        Body b = PhysicsManager.getBody(bodyId);</span>
-<span class="fc" id="L114">        b.setLinearVelocity(vel);</span>
-<span class="fc" id="L115">    }</span>
+<span class="fc" id="L114">        Body b = PhysicsManager.getBody(bodyId);</span>
+<span class="fc" id="L115">        b.setLinearVelocity(vel);</span>
+<span class="fc" id="L116">    }</span>
 
     public void setVelocity(float x, float y) {
-<span class="nc" id="L118">        setVelocity(new Vector2(x, y));</span>
-<span class="nc" id="L119">    }</span>
+<span class="nc" id="L119">        setVelocity(new Vector2(x, y));</span>
+<span class="nc" id="L120">    }</span>
 
     /**
      * Sets the center pos of the object
      */
     public void setPosition(Vector2 position) {
-<span class="fc" id="L125">        setPosition(position, false);</span>
-<span class="fc" id="L126">    }</span>
-
-    /**
-     * Sets the bottom left position of the object
-     *
-     * @param offset should plly offset
-     */
-    public void setPosition(Vector2 position, boolean offset) {
-<span class="fc" id="L134">        Body b = PhysicsManager.getBody(bodyId);</span>
+<span class="fc" id="L126">        Body b = PhysicsManager.getBody(bodyId);</span>
         /* Removed in Assessment 2
         if (offset) {
             position.add(halfDim);
         }
         */
-<span class="fc" id="L140">        b.setTransform(position, 0);</span>
-<span class="fc" id="L141">    }</span>
+<span class="fc" id="L132">        b.setTransform(position, 0);</span>
+<span class="fc" id="L133">    }</span>
 
     /**
      * Gets the current player position.
@@ -146,12 +138,15 @@ public class RigidBody extends Component {
      * @return player position.
      */
     public Vector2 getPosition(){
-<span class="fc" id="L149">        Body b = getBody();</span>
-<span class="fc" id="L150">        return b.getTransform().getPosition();</span>
+<span class="fc" id="L141">        Body b = getBody();</span>
+<span class="fc" id="L142">        return b.getTransform().getPosition();</span>
     }
 
+    /**
+     * @return the Body of this object
+     */
     public Body getBody() {
-<span class="fc" id="L154">        return PhysicsManager.getBody(bodyId);</span>
+<span class="fc" id="L149">        return PhysicsManager.getBody(bodyId);</span>
     }
 
     /**
@@ -159,25 +154,34 @@ public class RigidBody extends Component {
      */
     @Override
     public void update() {
-<span class="nc" id="L162">        super.update();</span>
+<span class="nc" id="L157">        super.update();</span>
         // parent.getComponent(Transform.class).setPosition(PhysicsManager.getBody(bodyId).getPosition());
-<span class="nc" id="L164">        Transform t = parent.getComponent(Transform.class);</span>
-<span class="nc" id="L165">        Body b = getBody();</span>
-<span class="nc" id="L166">        Vector2 p = b.getPosition().cpy();</span>
+<span class="nc" id="L159">        Transform t = parent.getComponent(Transform.class);</span>
+<span class="nc" id="L160">        Body b = getBody();</span>
+<span class="nc" id="L161">        Vector2 p = b.getPosition().cpy();</span>
         //p.sub(halfDim); //Removed in Assessment 2
-<span class="nc" id="L168">        t.setPosition(p, false);</span>
-<span class="nc" id="L169">    }</span>
+<span class="nc" id="L163">        t.setPosition(p, false);</span>
+<span class="nc" id="L164">    }</span>
 
+    /**
+     * @return the Linear Velocity of this object
+     */
     public Vector2 getVelocity() {
-<span class="nc" id="L172">        return getBody().getLinearVelocity();</span>
+<span class="nc" id="L170">        return getBody().getLinearVelocity();</span>
     }
 
+    /**
+     * @return the Angular Velocity of this object
+     */
     public float getAngularVelocity() {
-<span class="nc" id="L176">        return getBody().getAngularVelocity();</span>
+<span class="nc" id="L177">        return getBody().getAngularVelocity();</span>
     }
 
+    /**
+     * @param force the force to apply to the center of the object
+     */
     public void applyForce(Vector2 force) {
-<span class="nc" id="L180">        getBody().applyForceToCenter(force, true);</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L184">        getBody().applyForceToCenter(force, true);</span>
+<span class="nc" id="L185">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

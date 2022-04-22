@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
     /**
      * Added for assessment 2
-     * Saves the state of the game. Added for assesment 2
+     * Saves the state of the game. Added for assessment 2
      */
     public static void SaveGame(){
 <span class="fc" id="L24">        prefs = Gdx.app.getPreferences(&quot;pirate/GameSave_game_1&quot;);</span>
@@ -35,7 +35,7 @@ import java.util.ArrayList;
 <span class="fc" id="L35">            prefs.putInteger(&quot;ship&quot; + &quot;F&quot;, ship.getComponent(Pirate.class).getFaction().id);</span>
         }
 <span class="fc" id="L37">        ArrayList&lt;College&gt; colleges = GameManager.getColleges();</span>
-        //saves wether each college is alive of not
+        //saves whether each college is alive or not
 <span class="fc bfc" id="L39" title="All 2 branches covered.">        for (College college : colleges) {</span>
 <span class="fc" id="L40">            prefs.putBoolean(college.f.id + &quot;Alive&quot;, college.isAlive());</span>
 <span class="fc" id="L41">        }</span>
