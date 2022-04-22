@@ -84,7 +84,7 @@ Task assignment took place once we had gathered all the requirements for the gam
 
 Our first step in planning this assessment was to create a "road-map" for the entire project in the form of a Gantt Chart, as shown below. 
 
-![Fig.1](https://github.com/engteam14/documentation2/blob/Method-Selection-and-Planning/road-map2-initial.png ?raw=true)
+![Fig.1](https://github.com/engteam14/documentation2/blob/Method-Selection-and-Planning/road-map2-initial.png/?raw=true)
 *Fig.1*
 
 We made this road-map by referring to both, the Product Brief and the Team Assessment documents, highlighting all the main tasks which had to be completed in order to successfully complete and submit this project on time. Although the submission deadline was the 4th of May, we decided to set an early deadline for ourselves so that we could maximize efficiency and will have a few "buffer" days if in case things go wrong (e.g., a member falling ill and unable to do their assigned tasks so someone else taking over). Once we had an initial road-map, we then decided to edit this road-map every week during our Review Sessions in order to keep track of our progress, which would then help us to make any neccessary changes to our plan, hence clearly showing the evolution of our plan throughout the project. Below you can find our final road-map as shown in Fig.2 and the intermediate road-map gantt charts can be found on our website. 
@@ -94,7 +94,7 @@ Once we had a Project Plan, we then assigned tasks to individuals/teams, using a
 * Documentation Team: Saud, Felix, Joachim
 
 
-![Team Tasks1](https://github.com/engteam14/documentation2/blob/Method-Selection-and-Planning/Team-Task-Assignments-1.png)
+![Team Tasks1](https://github.com/engteam14/documentation2/blob/Method-Selection-and-Planning/Team-Task-Assignments-1.png/?raw=true)
 *Task assignments using a colour-coding scheme*
 
 
