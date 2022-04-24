@@ -175,7 +175,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     public void attackShip(Ship ship) {
 <span class="fc" id="L177">        long current = TimeUtils.millis() / 1000;</span>
-<span class="fc bfc" id="L178" title="All 2 branches covered.">        if (current &gt; lastShootTime) {</span>
+<span class="pc bpc" id="L178" title="1 of 2 branches missed.">        if (current &gt; lastShootTime) {</span>
 <span class="fc" id="L179">            Vector2 direction = directionToShip(ship);</span>
 <span class="fc" id="L180">            shoot(direction);</span>
         }
@@ -214,8 +214,8 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-<span class="nc bnc" id="L217" title="All 2 branches missed.">        if (!(info.a instanceof Ship)) {</span>
-<span class="nc" id="L218">            return;</span>
+<span class="pc bpc" id="L217" title="1 of 2 branches missed.">        if (!(info.a instanceof Ship)) {</span>
+<span class="fc" id="L218">            return;</span>
         }
 <span class="nc" id="L220">        Pirate pirate = getComponent(Pirate.class);</span>
 <span class="nc" id="L221">        Ship o = (Ship) info.a;</span>

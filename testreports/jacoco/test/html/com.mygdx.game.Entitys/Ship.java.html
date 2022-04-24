@@ -233,7 +233,7 @@ public class Ship extends Entity implements CollisionCallBack {
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-<span class="pc bpc" id="L236" title="1 of 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="fc bfc" id="L236" title="All 4 branches covered.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
 <span class="fc" id="L237">            ((CollisionCallBack) info.b).ExitTrigger(info);</span>
         }
 <span class="fc" id="L239">    }</span>

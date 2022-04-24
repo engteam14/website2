@@ -52,10 +52,10 @@ import com.mygdx.game.Entitys.Ship;
 
         @Override
         public void update(NPCShip e) {
-<span class="fc" id="L55">            super.update(e);</span>
-<span class="fc" id="L56">            Ship ship = e.getComponent(Pirate.class).getTarget();</span>
-<span class="fc" id="L57">            e.attackShip(ship);</span>
-<span class="fc" id="L58">        }</span>
+<span class="nc" id="L55">            super.update(e);</span>
+<span class="nc" id="L56">            Ship ship = e.getComponent(Pirate.class).getTarget();</span>
+<span class="nc" id="L57">            e.attackShip(ship);</span>
+<span class="nc" id="L58">        }</span>
     };
 
     /**
@@ -66,7 +66,7 @@ import com.mygdx.game.Entitys.Ship;
     public void update(NPCShip e) {
 <span class="fc" id="L67">        StateMachine&lt;NPCShip, EnemyState&gt; m = e.stateMachine;</span>
 <span class="fc" id="L68">        Pirate p = e.getComponent(Pirate.class);</span>
-<span class="pc bpc" id="L69" title="2 of 4 branches missed.">        switch (m.getCurrentState()) {</span>
+<span class="pc bpc" id="L69" title="3 of 4 branches missed.">        switch (m.getCurrentState()) {</span>
             case WANDER:
 <span class="pc bpc" id="L71" title="1 of 2 branches missed.">                if (p.isAggro()) {</span>
 <span class="nc" id="L72">                    m.changeState(PURSUE);</span>
@@ -86,11 +86,11 @@ import com.mygdx.game.Entitys.Ship;
                 break;
             case ATTACK:
                 // if leave attack range pursue
-<span class="pc bpc" id="L89" title="3 of 4 branches missed.">                if (p.isAggro() &amp;&amp; !p.canAttack()) {</span>
+<span class="nc bnc" id="L89" title="All 4 branches missed.">                if (p.isAggro() &amp;&amp; !p.canAttack()) {</span>
 <span class="nc" id="L90">                    m.changeState(PURSUE);</span>
                 }
                 // if target dead
-<span class="pc bpc" id="L93" title="1 of 2 branches missed.">                else if (!p.getTarget().isAlive()) {</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">                else if (!p.getTarget().isAlive()) {</span>
 <span class="nc" id="L94">                    m.changeState(WANDER);</span>
                 }
                 break;

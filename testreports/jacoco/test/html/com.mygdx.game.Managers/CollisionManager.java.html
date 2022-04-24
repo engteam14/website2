@@ -77,7 +77,7 @@ public class CollisionManager implements ContactListener {
 <span class="fc" id="L77">        final CollisionInfo info = new CollisionInfo(fa,fb,ba,bb,(Entity) cbA,(Entity) cbB);</span>
 
 <span class="pc bpc" id="L79" title="1 of 2 branches missed.">        if (cbA != null) {</span>
-<span class="pc bpc" id="L80" title="2 of 6 branches missed.">            if (fa.isSensor() &amp;&amp; cbB != null &amp;&amp; !fb.isSensor()) {</span>
+<span class="pc bpc" id="L80" title="1 of 6 branches missed.">            if (fa.isSensor() &amp;&amp; cbB != null &amp;&amp; !fb.isSensor()) {</span>
 <span class="fc" id="L81">                cbB.ExitTrigger(info);</span>
             } else {
 <span class="fc" id="L83">                cbA.EndContact(info);</span>
@@ -85,7 +85,7 @@ public class CollisionManager implements ContactListener {
         }
 
 <span class="pc bpc" id="L87" title="1 of 2 branches missed.">        if (cbB != null) {</span>
-<span class="pc bpc" id="L88" title="2 of 6 branches missed.">            if (fb.isSensor() &amp;&amp; cbA != null &amp;&amp; !fa.isSensor()) {</span>
+<span class="pc bpc" id="L88" title="1 of 6 branches missed.">            if (fb.isSensor() &amp;&amp; cbA != null &amp;&amp; !fa.isSensor()) {</span>
 <span class="fc" id="L89">                cbA.ExitTrigger(info);</span>
             } else {
 <span class="fc" id="L91">                cbB.EndContact(info);</span>
