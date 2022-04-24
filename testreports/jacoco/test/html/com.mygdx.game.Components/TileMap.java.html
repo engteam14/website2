@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TileMap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Components</a> &gt; <span class="el_source">TileMap.java</span></div><h1>TileMap.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Components;
+
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Managers.RenderLayer;
+import com.mygdx.game.Managers.RenderingManager;
+import com.mygdx.game.Managers.ResourceManager;
+
+import static com.mygdx.utils.Constants.TILE_SIZE;
+
+/**
+ * Component that allows the rendering of tile-maps (has its own sprite batch)
+ */
+public class TileMap extends Component {
+    TiledMap map;
+    TiledMapRenderer renderer;
+
+    /**
+     * Sets up the base values of the TileMap component
+     */
+    private TileMap() {
+<span class="nc" id="L25">        super();</span>
+<span class="nc" id="L26">        type = ComponentType.TileMap;</span>
+        // CollisionManager.addTileMap(this);
+<span class="nc" id="L28">    }</span>
+
+    /**
+     * @param id    resource id of the tilemap
+     * @param layer rendering layer
+     */
+    public TileMap(int id, RenderLayer layer) {
+<span class="nc" id="L35">        this();</span>
+<span class="nc" id="L36">        map = ResourceManager.getTileMap(id);</span>
+<span class="nc" id="L37">        renderer = new OrthogonalTiledMapRenderer(map);</span>
+<span class="nc" id="L38">        RenderingManager.addItem(this, layer);</span>
+
+<span class="nc" id="L40">        TILE_SIZE = getTileDim().x;</span>
+<span class="nc" id="L41">    }</span>
+
+    /**
+     * @return the dimensions of the tilemap
+     */
+    public Vector2 getTileDim() {
+<span class="nc" id="L47">        return new Vector2(</span>
+<span class="nc" id="L48">                ((TiledMapTileLayer) map.getLayers().get(0)).getTileWidth(),</span>
+<span class="nc" id="L49">                ((TiledMapTileLayer) map.getLayers().get(0)).getTileHeight());</span>
+    }
+
+    /**
+     * @return the map attached to this object
+     */
+    public TiledMap getTileMap() {
+<span class="nc" id="L56">        return map;</span>
+    }
+
+    /**
+     * Updates the renderer's view with the rendering camera
+     */
+    @Override
+    public void update() {
+<span class="nc" id="L64">        super.update();</span>
+<span class="nc" id="L65">        renderer.setView(RenderingManager.getCamera());</span>
+<span class="nc" id="L66">    }</span>
+
+    /**
+     * draws the first 2 layers
+     */
+    @Override
+    public void render() {
+<span class="nc" id="L73">        super.render();</span>
+<span class="nc" id="L74">        renderer.render(new int[]{0, 1});</span>
+<span class="nc" id="L75">    }</span>
+
+    /**
+     * Calls the Clean-Up function of the Component class
+     */
+    @Override
+    public void cleanUp() {
+<span class="nc" id="L82">        super.cleanUp();</span>
+<span class="nc" id="L83">    }</span>
+
+    //public TiledMapTileLayer.Cell getCell(Vector2 pos) {
+    //        Vector2 p = pos.cpy();
+    //        TiledMapTileLayer l = (TiledMapTileLayer) map.getLayers().get(1);
+    //        p.x /= l.getTileWidth();
+    //        p.y /= l.getTileHeight();
+    //
+    //        return l.getCell((int) p.x, (int) p.y);
+    //    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

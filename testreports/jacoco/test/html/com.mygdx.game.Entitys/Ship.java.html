@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Ship.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Entitys</a> &gt; <span class="el_source">Ship.java</span></div><h1>Ship.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Entitys;
+
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.ObjectMap;
+import com.mygdx.game.Components.*;
+import com.mygdx.game.Faction;
+import com.mygdx.game.Managers.GameManager;
+import com.mygdx.game.Managers.RenderLayer;
+import com.mygdx.game.Managers.ResourceManager;
+import com.mygdx.game.Physics.CollisionCallBack;
+import com.mygdx.game.Physics.CollisionInfo;
+import com.mygdx.game.Physics.PhysicsBodyType;
+import com.mygdx.utils.Utilities;
+
+import java.util.Objects;
+
+/**
+ * Base class for game ships, Player &amp; NPC.
+ */
+public class Ship extends Entity implements CollisionCallBack {
+<span class="fc" id="L22">    private static int shipCount = 0;</span>
+    public static ObjectMap&lt;Vector2, String&gt; shipDirections;
+
+    private final Vector2 currentDir;
+
+    /**
+     * Creates a ship entity, containing Transform, Renderable, RigidBody, and Pirate components.
+     */
+    public Ship() {
+<span class="fc" id="L31">        super(5);</span>
+<span class="fc" id="L32">        currentDir = new Vector2();</span>
+<span class="fc" id="L33">        setName(&quot;Ship (&quot; + shipCount++ + &quot;)&quot;); // each ship has a unique name</span>
+
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (shipDirections == null) {</span>
+<span class="fc" id="L36">            shipDirections = new ObjectMap&lt;&gt;();</span>
+<span class="fc" id="L37">            shipDirections.put(new Vector2(0, 1), &quot;-up&quot;);</span>
+<span class="fc" id="L38">            shipDirections.put(new Vector2(0, -1), &quot;-down&quot;);</span>
+<span class="fc" id="L39">            shipDirections.put(new Vector2(1, 0), &quot;-right&quot;);</span>
+<span class="fc" id="L40">            shipDirections.put(new Vector2(-1, 0), &quot;-left&quot;);</span>
+<span class="fc" id="L41">            shipDirections.put(new Vector2(1, 1), &quot;-ur&quot;);</span>
+<span class="fc" id="L42">            shipDirections.put(new Vector2(-1, 1), &quot;-ul&quot;);</span>
+<span class="fc" id="L43">            shipDirections.put(new Vector2(1, -1), &quot;-dr&quot;);</span>
+<span class="fc" id="L44">            shipDirections.put(new Vector2(-1, -1), &quot;-dl&quot;);</span>
+        }
+
+<span class="fc" id="L47">        Transform t = new Transform();</span>
+<span class="fc" id="L48">        t.setPosition(800, 800);</span>
+<span class="fc" id="L49">        Renderable r = new Renderable(3, &quot;white-up&quot;, RenderLayer.Transparent);</span>
+<span class="fc" id="L50">        RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);</span>
+<span class="fc" id="L51">        rb.setCallback(this);</span>
+
+<span class="fc" id="L53">        Pirate p = new Pirate();</span>
+<span class="fc" id="L54">        PowerUpAssigned pow = new PowerUpAssigned();</span>
+
+        // rb.setCallback(this);
+
+<span class="fc" id="L58">        addComponents(t, r, rb, p, pow);</span>
+<span class="fc" id="L59">    }</span>
+
+    /**
+     * // New for assessment 2 //
+     * Get a Pirate value.
+     * @param key   The value to get
+     * @return      The value
+     */
+    public float getValue(String key) {
+<span class="fc" id="L68">        return getComponent(Pirate.class).getValue(key);</span>
+    }
+
+    /**
+     * // New for assessment 2 //
+     * Reset a Pirate value to what it originally was.
+     * @param key       The value to reset
+     */
+    public void resetToDefault(String key) {
+<span class="fc" id="L77">        getComponent(Pirate.class).resetToDefault(key);</span>
+<span class="fc" id="L78">    }</span>
+
+    /**
+     * @return the boolean value of life attached to the Pirate Component
+     */
+    public boolean isAlive() {
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        return getComponent(Pirate.class).getHealth() &gt; 0;</span>
+    }
+
+    /**
+     * @return the range at which this ship can attack
+     */
+    public static float getAttackRange() {
+<span class="fc" id="L91">        return Utilities.tilesToDistance(GameManager.getSettings().get(&quot;starting&quot;).getFloat(&quot;attackRange_tiles&quot;));</span>
+    }
+
+    /**
+     * @param money the integer to be added to the money value attached to the Pirate Component
+     */
+    public void plunder(int money) {
+<span class="fc" id="L98">        getComponent(Pirate.class).addPlunder(money);</span>
+<span class="fc" id="L99">    }</span>
+
+    /**
+     * @param increment the integer to be added to the points value attached to the Pirate Component
+     */
+    public void points(int increment) {
+<span class="fc" id="L105">        getComponent(Pirate.class).addPoints(increment);</span>
+<span class="fc" id="L106">    }</span>
+
+    /**
+     * Associates ship with faction and orients it to the default northern direction.
+     * @param factionId the desired faction id
+     */
+    public void setFaction(int factionId) {
+<span class="fc" id="L113">        getComponent(Pirate.class).setFactionId(factionId);</span>
+<span class="fc" id="L114">        setShipDirection(&quot;-up&quot;);</span>
+<span class="fc" id="L115">    }</span>
+
+    /**
+     * gets the string representation of the direction the ship is facing
+     * @param dir the vector dir the ship is facing
+     * @return the string representation of the direction
+     */
+    private String getShipDirection(Vector2 dir) {
+<span class="nc bnc" id="L123" title="All 4 branches missed.">        if (!currentDir.equals(dir) &amp;&amp; shipDirections.containsKey(dir)) {</span>
+<span class="nc" id="L124">            currentDir.set(dir);</span>
+<span class="nc" id="L125">            return shipDirections.get(dir);</span>
+        }
+<span class="nc" id="L127">        return &quot;&quot;;</span>
+    }
+
+    /**
+     * gets the faction colour
+     * @return the faction colour
+     */
+    private String getColour() {
+<span class="fc" id="L135">        return getComponent(Pirate.class).getFaction().getColour();</span>
+    }
+
+    /**
+     * will rotate the ship to face the direction (just changes the sprite doesn't actually rotate)
+     * @param dir the dir to face (used to get the correct sprite from the texture atlas
+     */
+    public void setShipDirection(Vector2 dir) {
+<span class="nc" id="L143">        setShipDirection(getShipDirection(dir));</span>
+<span class="nc" id="L144">    }</span>
+
+    /**
+     * will rotate the ship to face the direction (just changes the sprite doesn't actually rotate)
+     * @param direction the dir to face (used to get the correct sprite from the texture atlas
+     */
+    public void setShipDirection(String direction) {
+<span class="pc bpc" id="L151" title="1 of 2 branches missed.">        if (Objects.equals(direction, &quot;&quot;)) {</span>
+<span class="nc" id="L152">            return;</span>
+        }
+<span class="fc" id="L154">        Renderable r = getComponent(Renderable.class);</span>
+<span class="fc" id="L155">        Sprite s = ResourceManager.getSprite(3, getColour() + direction);</span>
+
+        try {
+<span class="fc" id="L158">            r.setTexture(s);</span>
+<span class="nc" id="L159">        } catch (Exception ignored) {</span>
+
+<span class="fc" id="L161">        }</span>
+<span class="fc" id="L162">    }</span>
+
+    /**
+     * @return the health attached to the Pirate Component
+     */
+    public int getHealth() {
+<span class="fc" id="L168">        return getComponent(Pirate.class).getHealth();</span>
+    }
+
+    /**
+     * @return the plunder attached to the Pirate Component
+     */
+    public int getPlunder() {
+<span class="fc" id="L175">        return getComponent(Pirate.class).getPlunder();</span>
+    }
+
+    /**
+     * @return the points attached to the Pirate Component
+     */
+    public int getPoints() {
+<span class="fc" id="L182">        return getComponent(Pirate.class).getPoints();</span>
+    }
+
+    /**
+     * Calls shoot method with the current direction as parameter
+     */
+    public void shoot() {
+<span class="nc" id="L189">        shoot(currentDir);</span>
+<span class="nc" id="L190">    }</span>
+
+    /**
+     * Calls shoot method of internal component
+     */
+    public void shoot(Vector2 dir) {
+<span class="fc" id="L196">        getComponent(Pirate.class).shoot(dir);</span>
+<span class="fc" id="L197">    }</span>
+
+    /**
+     * @return copy of the transform's position
+     */
+    public Vector2 getPosition() {
+<span class="fc" id="L203">        return getComponent(Transform.class).getPosition().cpy();</span>
+    }
+
+    /**
+     * Added for Assessment 2
+     * @return The Faction of the Pirate Component attached to this entity
+     */
+    public Faction getFaction() {
+<span class="fc" id="L211">        return getComponent(Pirate.class).getFaction();</span>
+    }
+
+    /**
+     * Amended for Assessment 2 (added functionality for when attacked by cannonball)
+     * if called on a Player against anything else call it on the other thing
+     */
+    @Override
+    public void EnterTrigger(CollisionInfo info) {
+<span class="fc bfc" id="L220" title="All 2 branches covered.">        if (info.a instanceof CannonBall) {</span>
+<span class="fc" id="L221">            CannonBall a = (CannonBall) info.a;</span>
+<span class="fc bfc" id="L222" title="All 2 branches covered.">            if(a.getFaction() != getFaction()){</span>
+<span class="fc" id="L223">                getComponent(Pirate.class).takeDamage( a.getAttackDmg() );</span>
+<span class="fc" id="L224">                a.kill();</span>
+            }
+<span class="pc bpc" id="L226" title="1 of 4 branches missed.">        }else if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="fc" id="L227">            ((CollisionCallBack) info.b).EnterTrigger(info);</span>
+        }
+<span class="fc" id="L229">    }</span>
+
+    /**
+     * if called on a Player against anything else call it on the other thing
+     */
+    @Override
+    public void ExitTrigger(CollisionInfo info) {
+<span class="pc bpc" id="L236" title="2 of 4 branches missed.">        if (this instanceof Player &amp;&amp; !(info.b instanceof Player)) {</span>
+<span class="fc" id="L237">            ((CollisionCallBack) info.b).ExitTrigger(info);</span>
+        }
+<span class="fc" id="L239">    }</span>
+
+    /**
+     * `unused`
+     */
+    @Override
+    public void BeginContact(CollisionInfo info) {
+
+<span class="fc" id="L247">    }</span>
+
+    /**
+     * `unused`
+     */
+    @Override
+    public void EndContact(CollisionInfo info) {
+
+<span class="fc" id="L255">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

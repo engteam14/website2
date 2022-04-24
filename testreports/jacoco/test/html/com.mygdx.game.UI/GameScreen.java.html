@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameScreen.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.UI</a> &gt; <span class="el_source">GameScreen.java</span></div><h1>GameScreen.java</h1><pre class="source lang-java linenums">package com.mygdx.game.UI;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.JsonValue;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.Components.ComponentEvent;
+import com.mygdx.game.Entitys.Player;
+import com.mygdx.game.Managers.*;
+import com.mygdx.game.PirateGame;
+import com.mygdx.game.PowerUps.PowerUp;
+import com.mygdx.game.Quests.Quest;
+
+import java.util.HashMap;
+
+import static com.mygdx.utils.Constants.*;
+
+<span class="nc bnc" id="L23" title="All 2 branches missed.">public class GameScreen extends Page {</span>
+    private Label healthLabel;
+    private Label money;
+    private Label points;
+    private Label ammo;
+    private final Label questDesc;
+    private final Label questName;
+
+    public Pixmap pixmap;
+    private float accumulator;
+
+    //private PauseScreen pause;
+    /*private final Label questComplete;
+    private float showTimer = 0;
+    // in seconds
+    private static final float showDuration = 1;*/
+
+    /**
+     * Boots up the actual game: starts PhysicsManager, GameManager, EntityManager,
+     * loads texture atlases into ResourceManager. Draws quest and control info.
+     *
+     * @param parent PirateGame UI screen container
+     * @param id_map the resource id of the tile map
+     */
+    public GameScreen(PirateGame parent, int id_map) {
+<span class="nc" id="L48">        super(parent);</span>
+<span class="nc" id="L49">        INIT_CONSTANTS();</span>
+<span class="nc" id="L50">        PhysicsManager.Initialize(false);</span>
+        /*int id_ship = ResourceManager.addTexture(&quot;ship.png&quot;);
+        int id_map = ResourceManager.addTileMap(&quot;Map.tmx&quot;);
+        int atlas_id = ResourceManager.addTextureAtlas(&quot;Boats.txt&quot;);
+        int extras_id = ResourceManager.addTextureAtlas(&quot;UISkin/skin.atlas&quot;);
+        int buildings_id = ResourceManager.addTextureAtlas(&quot;Buildings.txt&quot;);
+        ResourceManager.loadAssets();*/
+
+<span class="nc" id="L58">        GameManager.SpawnGame(id_map);</span>
+        //QuestManager.addQuest(new KillQuest(c));
+
+<span class="nc" id="L61">        EntityManager.raiseEvents(ComponentEvent.Awake, ComponentEvent.Start);</span>
+
+<span class="nc" id="L63">        Window questWindow = new Window(&quot;Current Quest&quot;, parent.skin);</span>
+
+<span class="nc" id="L65">        Quest q = QuestManager.currentQuest();</span>
+<span class="nc" id="L66">        Table t = new Table();</span>
+<span class="nc" id="L67">        questName = new Label(&quot;NAME&quot;, parent.skin);</span>
+<span class="nc" id="L68">        t.add(questName);</span>
+<span class="nc" id="L69">        t.row();</span>
+<span class="nc" id="L70">        questDesc = new Label(&quot;DESCRIPTION&quot;, parent.skin);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        if (q != null) {</span>
+<span class="nc" id="L72">            questName.setText(q.getName());</span>
+<span class="nc" id="L73">            questDesc.setText(q.getDescription());</span>
+        }
+        /*questComplete = new Label(&quot;&quot;, parent.skin);
+        actors.add(questComplete);*/
+
+<span class="nc" id="L78">        t.add(questDesc).left();</span>
+<span class="nc" id="L79">        questWindow.add(t);</span>
+<span class="nc" id="L80">        actors.add(questWindow);</span>
+
+<span class="nc" id="L82">        Table t1 = new Table();</span>
+<span class="nc" id="L83">        t1.top().right();</span>
+<span class="nc" id="L84">        t1.setFillParent(true);</span>
+<span class="nc" id="L85">        actors.add(t1);</span>
+
+<span class="nc" id="L87">        Window tutWindow = new Window(&quot;Controls&quot;, parent.skin);</span>
+<span class="nc" id="L88">        Table table = new Table();</span>
+<span class="nc" id="L89">        tutWindow.add(table);</span>
+<span class="nc" id="L90">        t1.add(tutWindow);</span>
+
+<span class="nc" id="L92">        table.add(new Label(&quot;Move with&quot;, parent.skin)).top().left();</span>
+<span class="nc" id="L93">        table.add(new Image(parent.skin, &quot;key-w&quot;));</span>
+<span class="nc" id="L94">        table.add(new Image(parent.skin, &quot;key-s&quot;));</span>
+<span class="nc" id="L95">        table.add(new Image(parent.skin, &quot;key-a&quot;));</span>
+<span class="nc" id="L96">        table.add(new Image(parent.skin, &quot;key-d&quot;));</span>
+<span class="nc" id="L97">        table.row();</span>
+<span class="nc" id="L98">        table.add(new Label(&quot;Shoot in direction of mouse&quot;, parent.skin)).left();</span>
+        //table.add(new Image(parent.skin, &quot;space&quot;));
+<span class="nc" id="L100">        table.add(new Image(parent.skin, &quot;mouse&quot;));</span>
+<span class="nc" id="L101">        table.row();</span>
+<span class="nc" id="L102">        table.add(new Label(&quot;Shoot in direction of ship&quot;, parent.skin)).left();</span>
+<span class="nc" id="L103">        table.add(new Image(parent.skin, &quot;space&quot;));</span>
+<span class="nc" id="L104">        table.row();</span>
+<span class="nc" id="L105">        table.add(new Label(&quot;Pause&quot;, parent.skin)).left(); // changed to pause for assessment 2</span>
+<span class="nc" id="L106">        table.add(new Image(parent.skin, &quot;key-esc&quot;));</span>
+
+<span class="nc" id="L108">        HashMap&lt;String, PowerUp&gt; powerUps = new HashMap&lt;&gt;();</span>
+
+        //create power ups
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        for (JsonValue powData : GameManager.getSettings().get(&quot;powerups&quot;)) {</span>
+            //String texName = powData.getString(&quot;sprite&quot;);
+<span class="nc" id="L113">            int cooldown = powData.getInt(&quot;spawnCooldown&quot;);</span>
+<span class="nc" id="L114">            PowerUp pow = new PowerUp(powData);</span>
+<span class="nc" id="L115">            powerUps.put(powData.getString(&quot;id&quot;), pow);</span>
+<span class="nc" id="L116">        }</span>
+
+        // start of addition for assessment 2 to add a shop to the UI
+<span class="nc" id="L119">        Table shop = new Table();</span>
+<span class="nc" id="L120">        Window shopWin = new Window(&quot;Shop&quot;, parent.skin);</span>
+<span class="nc" id="L121">        Table shopTable = new Table();</span>
+
+<span class="nc" id="L123">        shop.bottom().right();</span>
+<span class="nc" id="L124">        shop.setFillParent(true);</span>
+<span class="nc" id="L125">        shop.add(shopWin);</span>
+<span class="nc" id="L126">        shopWin.add(shopTable);</span>
+<span class="nc" id="L127">        shopTable.pad(10);</span>
+        //power up 1
+<span class="nc" id="L129">        PowerUp pow1 = powerUps.get(&quot;1&quot;);</span>
+<span class="nc" id="L130">        TextButton powerUp1 = new TextButton(pow1.getName(), parent.skin);</span>
+<span class="nc" id="L131">        shopTable.add(powerUp1).pad(10);</span>
+<span class="nc" id="L132">        powerUp1.addListener(new ChangeListener() {</span>
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+<span class="nc" id="L135">                pow1.buyPowerUp();</span>
+<span class="nc" id="L136">            }</span>
+        });
+<span class="nc" id="L138">        TextTooltip powerUp1TT = new TextTooltip(pow1.getName(), parent.skin);</span>
+<span class="nc" id="L139">        powerUp1TT.setInstant(true);</span>
+<span class="nc" id="L140">        powerUp1.addListener(powerUp1TT);</span>
+<span class="nc" id="L141">        shopTable.row();</span>
+        //power up 2
+<span class="nc" id="L143">        PowerUp pow2 = powerUps.get(&quot;2&quot;);</span>
+
+<span class="nc" id="L145">        TextButton powerUp2 = new TextButton(pow2.getName(), parent.skin);</span>
+<span class="nc" id="L146">        shopTable.add(powerUp2).pad(10);</span>
+<span class="nc" id="L147">        powerUp2.addListener(new ChangeListener() {</span>
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+<span class="nc" id="L150">                pow2.buyPowerUp();</span>
+<span class="nc" id="L151">            }</span>
+        });
+<span class="nc" id="L153">        TextTooltip powerUp2TT = new TextTooltip(pow2.getName(), parent.skin);</span>
+<span class="nc" id="L154">        powerUp2TT.setInstant(true);</span>
+<span class="nc" id="L155">        powerUp2.addListener(powerUp2TT);</span>
+<span class="nc" id="L156">        shopTable.row();</span>
+
+        //power up 3
+<span class="nc" id="L159">        PowerUp pow3 = powerUps.get(&quot;3&quot;);</span>
+<span class="nc" id="L160">        TextButton powerUp3 = new TextButton(pow3.getName(), parent.skin);</span>
+<span class="nc" id="L161">        shopTable.add(powerUp3).pad(10);</span>
+<span class="nc" id="L162">        powerUp3.addListener(new ChangeListener() {</span>
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+<span class="nc" id="L165">                pow3.buyPowerUp();</span>
+<span class="nc" id="L166">            }</span>
+        });
+<span class="nc" id="L168">        TextTooltip powerUp3TT = new TextTooltip(pow3.getName(), parent.skin);</span>
+<span class="nc" id="L169">        powerUp3TT.setInstant(true);</span>
+<span class="nc" id="L170">        powerUp3.addListener(powerUp3TT);</span>
+<span class="nc" id="L171">        shopTable.row();</span>
+
+        //power up 4
+<span class="nc" id="L174">        PowerUp pow4 = powerUps.get(&quot;4&quot;);</span>
+<span class="nc" id="L175">        TextButton powerUp4 = new TextButton(pow4.getName(), parent.skin);</span>
+<span class="nc" id="L176">        shopTable.add(powerUp4).pad(10);</span>
+<span class="nc" id="L177">        powerUp4.addListener(new ChangeListener() {</span>
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+<span class="nc" id="L180">                pow4.buyPowerUp();</span>
+<span class="nc" id="L181">            }</span>
+        });
+<span class="nc" id="L183">        TextTooltip powerUp4TT = new TextTooltip(pow4.getName(), parent.skin);</span>
+<span class="nc" id="L184">        powerUp4TT.setInstant(true);</span>
+<span class="nc" id="L185">        powerUp4.addListener(powerUp4TT);</span>
+<span class="nc" id="L186">        shopTable.row();</span>
+
+        //power up 5
+<span class="nc" id="L189">        PowerUp pow5 = powerUps.get(&quot;5&quot;);</span>
+<span class="nc" id="L190">        TextButton powerUp5 = new TextButton(pow5.getName(), parent.skin);</span>
+<span class="nc" id="L191">        shopTable.add(powerUp5).pad(10);</span>
+<span class="nc" id="L192">        powerUp5.addListener(new ChangeListener() {</span>
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+<span class="nc" id="L195">                pow5.buyPowerUp();</span>
+<span class="nc" id="L196">            }</span>
+        });
+<span class="nc" id="L198">        TextTooltip powerUp5TT = new TextTooltip(pow5.getName(), parent.skin);</span>
+<span class="nc" id="L199">        powerUp4TT.setInstant(true);</span>
+<span class="nc" id="L200">        powerUp4.addListener(powerUp5TT);</span>
+<span class="nc" id="L201">        shopTable.row();</span>
+
+        //power up 6
+<span class="nc" id="L204">        PowerUp pow6 = powerUps.get(&quot;6&quot;);</span>
+<span class="nc" id="L205">        TextButton powerUp6 = new TextButton(pow6.getName(), parent.skin);</span>
+<span class="nc" id="L206">        shopTable.add(powerUp6).pad(10);</span>
+<span class="nc" id="L207">        powerUp6.addListener(new ChangeListener() {</span>
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+<span class="nc" id="L210">                pow6.buyPowerUp();</span>
+<span class="nc" id="L211">            }</span>
+        });
+<span class="nc" id="L213">        TextTooltip powerUp6TT = new TextTooltip(pow6.getName(), parent.skin);</span>
+<span class="nc" id="L214">        powerUp4TT.setInstant(true);</span>
+<span class="nc" id="L215">        powerUp4.addListener(powerUp6TT);</span>
+<span class="nc" id="L216">        shopTable.row();</span>
+
+
+        //power up 7
+<span class="nc" id="L220">        PowerUp pow7 = powerUps.get(&quot;7&quot;);</span>
+<span class="nc" id="L221">        TextButton powerUp7 = new TextButton(pow7.getName(), parent.skin);</span>
+<span class="nc" id="L222">        shopTable.add(powerUp7).pad(10);</span>
+<span class="nc" id="L223">        powerUp7.addListener(new ChangeListener() {</span>
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+<span class="nc" id="L226">                pow7.buyPowerUp();</span>
+<span class="nc" id="L227">            }</span>
+        });
+<span class="nc" id="L229">        TextTooltip powerUp7TT = new TextTooltip(pow7.getName(), parent.skin);</span>
+<span class="nc" id="L230">        powerUp4TT.setInstant(true);</span>
+<span class="nc" id="L231">        powerUp4.addListener(powerUp7TT);</span>
+        //shopTable.debug();
+
+<span class="nc" id="L234">        actors.add(shop);</span>
+        // end of addition for assessment 2
+<span class="nc" id="L236">    }</span>
+
+    /**
+     * Called every frame calls all other functions that need to be called every frame by rasing events and update methods
+     *
+     * @param delta delta time
+     */
+    @Override
+    public void render(float delta) {
+<span class="nc" id="L245">        ScreenUtils.clear(BACKGROUND_COLOUR.x, BACKGROUND_COLOUR.y, BACKGROUND_COLOUR.z, 1);</span>
+
+<span class="nc" id="L247">        EntityManager.raiseEvents(ComponentEvent.Update, ComponentEvent.Render);</span>
+
+<span class="nc" id="L249">        accumulator += EntityManager.getDeltaTime();</span>
+
+        // fixed update loop so that physics manager is called regally rather than somewhat randomly
+<span class="nc bnc" id="L252" title="All 2 branches missed.">        while (accumulator &gt;= PHYSICS_TIME_STEP) {</span>
+<span class="nc" id="L253">            PhysicsManager.update();</span>
+<span class="nc" id="L254">            accumulator -= PHYSICS_TIME_STEP;</span>
+        }
+
+<span class="nc" id="L257">        GameManager.update();</span>
+        // show end screen if esc is pressed
+<span class="nc bnc" id="L259" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {</span>
+<span class="nc" id="L260">            parent.pause();</span>
+<span class="nc" id="L261">            pixmap = Pixmap.createFromFrameBuffer(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());</span>
+<span class="nc" id="L262">            parent.setScreen(parent.pause);</span>
+        }
+<span class="nc" id="L264">        super.render(delta);</span>
+<span class="nc" id="L265">    }</span>
+
+    /**
+     * disposed of all stuff it something is missing from this method you will get memory leaks
+     */
+    @Override
+    public void dispose() {
+<span class="nc" id="L272">        super.dispose();</span>
+<span class="nc" id="L273">        ResourceManager.cleanUp();</span>
+<span class="nc" id="L274">        EntityManager.cleanUp();</span>
+<span class="nc" id="L275">        RenderingManager.cleanUp();</span>
+<span class="nc" id="L276">        PhysicsManager.cleanUp();</span>
+<span class="nc" id="L277">    }</span>
+
+    /**
+     * Resize camera, effectively setting the viewport to display game assets
+     * at pixel ratios other than 1:1.
+     *
+     * @param width  of camera viewport
+     * @param height of camera viewport
+     */
+    @Override
+    public void resize(int width, int height) {
+        //((Table) actors.get(0)).setFillParent(false);
+<span class="nc" id="L289">        super.resize(width, height);</span>
+<span class="nc" id="L290">        OrthographicCamera cam = RenderingManager.getCamera();</span>
+<span class="nc" id="L291">        cam.viewportWidth = width / ZOOM;</span>
+<span class="nc" id="L292">        cam.viewportHeight = height / ZOOM;</span>
+<span class="nc" id="L293">        cam.update();</span>
+
+        // ((Table) actors.get(0)).setFillParent(true);
+<span class="nc" id="L296">    }</span>
+
+    /**
+     * Update the UI with new values for health, quest status, etc.
+     * also called once per frame but used for actors by my own convention
+     */
+    //private String prevQuest = &quot;&quot;;
+    @Override
+    protected void update() {
+<span class="nc" id="L305">        super.update();</span>
+<span class="nc" id="L306">        Player p = GameManager.getPlayer();</span>
+
+<span class="nc" id="L308">        healthLabel.setText(String.valueOf(p.getHealth()));</span>
+<span class="nc" id="L309">        money.setText(String.valueOf(p.getPlunder()));</span>
+<span class="nc" id="L310">        points.setText(String.valueOf(p.getPoints()));</span>
+<span class="nc" id="L311">        ammo.setText(String.valueOf(p.getAmmo()));</span>
+<span class="nc bnc" id="L312" title="All 2 branches missed.">        if (!QuestManager.anyQuests()) {</span>
+<span class="nc" id="L313">            parent.end.win();</span>
+<span class="nc" id="L314">            parent.setScreen(parent.end);</span>
+
+        } else {
+<span class="nc" id="L317">            Quest q = QuestManager.currentQuest();</span>
+            /*if(Objects.equals(prevQuest, &quot;&quot;)) {
+                prevQuest = q.getDescription();
+            }
+            if(!Objects.equals(prevQuest, q.getDescription())) {
+                questComplete.setText(&quot;Quest Competed&quot;);
+                prevQuest = &quot;&quot;;
+            }*/
+<span class="nc bnc" id="L325" title="All 4 branches missed.">            assert q != null;</span>
+<span class="nc" id="L326">            questName.setText(q.getName());</span>
+<span class="nc" id="L327">            questDesc.setText(q.getDescription());</span>
+        }
+<span class="nc bnc" id="L329" title="All 2 branches missed.">        if (!p.isAlive()) {</span>
+<span class="nc" id="L330">            parent.setScreen(parent.end);</span>
+        }
+        /*if(!questComplete.getText().equals(&quot;&quot;)) {
+            showTimer += EntityManager.getDeltaTime();
+        }
+        if(showTimer &gt;= showDuration) {
+            showTimer = 0;
+            questComplete.setText(&quot;&quot;);
+        }*/
+<span class="nc" id="L339">    }</span>
+
+    /**
+     * Draw UI elements showing player health, plunder, and ammo.
+     */
+    @Override
+    protected void CreateActors() {
+<span class="nc" id="L346">        Table table = new Table();</span>
+<span class="nc" id="L347">        table.setFillParent(true);</span>
+<span class="nc" id="L348">        actors.add(table);</span>
+
+<span class="nc" id="L350">        table.add(new Image(parent.skin.getDrawable(&quot;heart&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L351">        healthLabel = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L352">        table.add(healthLabel).top().left().size(50);</span>
+
+<span class="nc" id="L354">        table.row();</span>
+<span class="nc" id="L355">        table.setDebug(false);</span>
+
+<span class="nc" id="L357">        table.add(new Image(parent.skin.getDrawable(&quot;coin&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L358">        money = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L359">        table.add(money).top().left().size(50);</span>
+
+<span class="nc" id="L361">        table.row();</span>
+
+<span class="nc" id="L363">        table.add(new Image(parent.skin.getDrawable(&quot;point&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L364">        points = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L365">        table.add(points).top().left().size(50);</span>
+
+<span class="nc" id="L367">        table.row();</span>
+
+<span class="nc" id="L369">        table.add(new Image(parent.skin.getDrawable(&quot;ball&quot;))).top().left().size(1.25f * TILE_SIZE);</span>
+<span class="nc" id="L370">        ammo = new Label(&quot;N/A&quot;, parent.skin);</span>
+<span class="nc" id="L371">        table.add(ammo).top().left().size(50);</span>
+
+<span class="nc" id="L373">        table.top().left();</span>
+<span class="nc" id="L374">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

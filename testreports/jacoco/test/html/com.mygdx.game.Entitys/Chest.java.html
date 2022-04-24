@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Chest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Entitys</a> &gt; <span class="el_source">Chest.java</span></div><h1>Chest.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Entitys;
+
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Components.Renderable;
+import com.mygdx.game.Components.Transform;
+import com.mygdx.game.Managers.RenderLayer;
+import com.mygdx.game.Managers.ResourceManager;
+
+/**
+ * Added for Assessment 2 in order to implement quest functionality
+ * Simple entity shown on locate quests origin
+ */
+public class Chest extends Entity {
+    /**
+     * Constructs the Chest object
+     */
+    public Chest() {
+<span class="fc" id="L18">        super(2);</span>
+<span class="fc" id="L19">        Transform t = new Transform();</span>
+<span class="fc" id="L20">        Renderable r = new Renderable(ResourceManager.getId(&quot;Chest.png&quot;), RenderLayer.Transparent);</span>
+<span class="fc" id="L21">        addComponents(t, r);</span>
+<span class="fc" id="L22">    }</span>
+
+    /**
+     * @param pos The Vector2 to set the position of the chest to
+     */
+    public void setPosition(Vector2 pos) {
+<span class="nc" id="L28">        getComponent(Transform.class).setPosition(pos);</span>
+<span class="nc" id="L29">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

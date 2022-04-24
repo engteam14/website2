@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PowerUpPickup.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Entitys</a> &gt; <span class="el_source">PowerUpPickup.java</span></div><h1>PowerUpPickup.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Entitys;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.Components.PowerUpAssigned;
+import com.mygdx.game.Components.Renderable;
+import com.mygdx.game.Components.RigidBody;
+import com.mygdx.game.Components.Transform;
+import com.mygdx.game.Managers.RenderLayer;
+import com.mygdx.game.Managers.ResourceManager;
+import com.mygdx.game.Physics.CollisionCallBack;
+import com.mygdx.game.Physics.CollisionInfo;
+import com.mygdx.game.Physics.PhysicsBodyType;
+import com.mygdx.game.PowerUps.PowerUp;
+
+/**
+ * Added for Assessment 2
+ * Simple entity shown on locate quests origin
+ */
+public class PowerUpPickup extends Entity implements CollisionCallBack {
+
+    private final PowerUp powerUp;
+    private boolean hideToggle;
+    private boolean showToggle;
+    private final Vector2 position;
+    private final long cooldown;
+    private long lastHit;
+
+    /**
+     * Generate an obstacle.
+     * @param powerUp       The Power Up being picked up
+     * @param texName       The texture to show for the obstacle.
+     * @param pos           The position of the power up
+     * @param cooldown      The cooldown before the power up can be used again
+     */
+    public PowerUpPickup(PowerUp powerUp, String texName, Vector2 pos, int cooldown) {
+<span class="fc" id="L37">        super(3);</span>
+
+<span class="fc" id="L39">        Transform t = new Transform();</span>
+<span class="fc" id="L40">        Renderable r = new Renderable(ResourceManager.getId(&quot;powerups.txt&quot;), texName, RenderLayer.Transparent);</span>
+<span class="fc" id="L41">        RigidBody rb = new RigidBody(PhysicsBodyType.Kinematic, r, t, true);</span>
+<span class="fc" id="L42">        rb.setCallback(this);</span>
+
+<span class="fc" id="L44">        addComponents(t, r, rb);</span>
+
+<span class="fc" id="L46">        this.powerUp = powerUp;</span>
+
+<span class="fc" id="L48">        hideToggle = false;</span>
+<span class="fc" id="L49">        showToggle = false;</span>
+
+<span class="fc" id="L51">        position = pos;</span>
+<span class="fc" id="L52">        setPosition(pos);</span>
+
+<span class="fc" id="L54">        this.cooldown = 1000L * cooldown;</span>
+<span class="fc" id="L55">        lastHit = 0;</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * @param pos   The position of the power up to be set
+     */
+    private void setPosition(Vector2 pos) {
+<span class="fc" id="L62">        getComponent(RigidBody.class).setPosition(pos);</span>
+<span class="fc" id="L63">    }</span>
+
+    /**
+     * Reveals the power-up if its cooldown has expired
+     */
+    private void tryShow() {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (TimeUtils.timeSinceMillis(lastHit) &gt; cooldown) {</span>
+<span class="nc" id="L70">            setPosition(position);</span>
+<span class="nc" id="L71">            showToggle = false;</span>
+        }
+<span class="nc" id="L73">    }</span>
+
+    /**
+     * Hides the power-up
+     */
+    private void tryHide() {
+<span class="nc" id="L79">        setPosition(new Vector2(1000, -1000));</span>
+<span class="nc" id="L80">        hideToggle = false;</span>
+<span class="nc" id="L81">        showToggle = true;</span>
+<span class="nc" id="L82">        lastHit = TimeUtils.millis();</span>
+<span class="nc" id="L83">    }</span>
+
+    /**
+     * Called once per frame
+     */
+    @Override
+    public void update() {
+<span class="nc" id="L90">        super.update();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if      (hideToggle)    tryHide();</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        else if (showToggle)    tryShow();</span>
+<span class="nc" id="L93">    }</span>
+
+    /**
+     * applies the attached power up to the colliding entity then sets the power up to be hidden next update
+     * @param info the collision info used in the conjunction
+     */
+    @Override
+    public void EnterTrigger(CollisionInfo info) {
+<span class="fc" id="L101">        PowerUpAssigned playerPow = info.a.getComponent(PowerUpAssigned.class);</span>
+<span class="fc" id="L102">        playerPow.AssignPowerUp(powerUp);</span>
+<span class="fc" id="L103">        hideToggle = true;</span>
+<span class="fc" id="L104">    }</span>
+
+    /**
+     * `unused`
+     */
+    @Override
+    public void BeginContact(CollisionInfo info) {
+<span class="fc" id="L111">    }</span>
+
+    /**
+     * `unused`
+     */
+    @Override
+    public void EndContact(CollisionInfo info) {
+<span class="nc" id="L118">    }</span>
+
+    /**
+     * `unused`
+     */
+    @Override
+    public void ExitTrigger(CollisionInfo info) {
+<span class="nc" id="L125">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

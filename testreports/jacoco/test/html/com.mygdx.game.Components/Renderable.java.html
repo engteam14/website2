@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Renderable.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Components</a> &gt; <span class="el_source">Renderable.java</span></div><h1>Renderable.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Components;
+
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Managers.RenderLayer;
+import com.mygdx.game.Managers.RenderingManager;
+import com.mygdx.game.Managers.ResourceManager;
+
+/**
+ * Add the ability for the object to be shown
+ */
+public class Renderable extends Component {
+    protected Sprite sprite;
+    private boolean isVisible;
+
+    /**
+     * Called in other constructors, loads no textures by itself.
+     */
+    public Renderable() {
+<span class="fc" id="L21">        super();</span>
+<span class="fc" id="L22">        isVisible = true;</span>
+<span class="fc" id="L23">        type = ComponentType.Renderable;</span>
+<span class="fc" id="L24">        sprite = new Sprite();</span>
+<span class="fc" id="L25">        RenderingManager.addItem(this, RenderLayer.Transparent);</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Associates Renderable with the given texture sprite and layer.
+     * @param texId the id of the texture the sprite will take on
+     * @param layer the rendering layer
+     */
+    public Renderable(int texId, RenderLayer layer) {
+<span class="fc" id="L34">        this();</span>
+<span class="fc" id="L35">        sprite = new Sprite(ResourceManager.getTexture(texId));</span>
+<span class="fc" id="L36">        RenderingManager.addItem(this, layer);</span>
+<span class="fc" id="L37">    }</span>
+
+    /**
+     * Associates Renderable with the given sprite from a texture atlas and a layer.
+     * @param atlasId the id of the texture atlas containing the sprite
+     * @param texName the name of the texture the sprite will take on
+     * @param layer   the rendering layer
+     */
+    public Renderable(int atlasId, String texName, RenderLayer layer) {
+<span class="fc" id="L46">        this();</span>
+<span class="fc" id="L47">        sprite = new Sprite(ResourceManager.getSprite(atlasId, texName));</span>
+<span class="fc" id="L48">        RenderingManager.addItem(this, layer);</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * Locates the sprite at the position of the parent's Transform component.
+     */
+    @Override
+    public void update() {
+<span class="nc" id="L56">        super.update();</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if (sprite == null) {</span>
+<span class="nc" id="L58">            return;</span>
+        }
+<span class="nc" id="L60">        Transform c = parent.getComponent(Transform.class);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        if (c == null) {</span>
+<span class="nc" id="L62">            return;</span>
+        }
+<span class="nc" id="L64">        Vector2 p = c.getPosition();</span>
+<span class="nc" id="L65">        Vector2 s = c.getScale();</span>
+
+<span class="nc" id="L67">        sprite.setPosition(p.x, p.y);</span>
+<span class="nc" id="L68">        sprite.setRotation(MathUtils.radiansToDegrees * c.getRotation());</span>
+<span class="nc" id="L69">        sprite.setScale(s.x, s.y);</span>
+<span class="nc" id="L70">    }</span>
+
+    /**
+     * Checks if the sprite exists and should be visible, then renders it
+     */
+    @Override
+    public void render() {
+<span class="nc" id="L77">        super.render();</span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">        if (sprite == null || !isVisible) {</span>
+<span class="nc" id="L79">            return;</span>
+        }
+<span class="nc" id="L81">        sprite.draw(RenderingManager.getBatch());</span>
+<span class="nc" id="L82">    }</span>
+
+    /**
+     * Called once after the update loop has finished.
+     */
+    @Override
+    public void cleanUp() {
+<span class="fc" id="L89">        super.cleanUp();</span>
+<span class="fc" id="L90">    }</span>
+
+    /**
+     * @return the Sprite for this object
+     */
+    public Sprite getSprite() {
+<span class="fc" id="L96">        return sprite;</span>
+    }
+
+    /**
+     * Assigns a new texture compatible with textures sourced from atlas
+     * @param s the sprite contain the texture
+     */
+    public void setTexture(Sprite s) {
+<span class="fc" id="L104">        Sprite a = getSprite();</span>
+<span class="fc" id="L105">        a.setTexture(s.getTexture());</span>
+<span class="fc" id="L106">        a.setU(s.getU());</span>
+<span class="fc" id="L107">        a.setV(s.getV());</span>
+<span class="fc" id="L108">        a.setU2(s.getU2());</span>
+<span class="fc" id="L109">        a.setV2(s.getV2());</span>
+<span class="fc" id="L110">    }</span>
+
+    /**
+     * @return whether the object should currently be visible
+     */
+    public boolean isVisible() {
+<span class="fc" id="L116">        return isVisible;</span>
+    }
+
+    /**
+     * Changes the visibility to active
+     */
+    public void show() {
+<span class="fc" id="L123">        isVisible = true;</span>
+<span class="fc" id="L124">    }</span>
+
+    /**
+     * Changes the visibility to inactive
+     */
+    public void hide() {
+<span class="fc" id="L130">        isVisible = false;</span>
+<span class="fc" id="L131">    }</span>
+
+    //public void toggleVisibility() {
+    //    isVisible = !isVisible;
+    //}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

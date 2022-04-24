@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AINavigation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Components</a> &gt; <span class="el_source">AINavigation.java</span></div><h1>AINavigation.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Components;
+
+import com.badlogic.gdx.ai.steer.Steerable;
+import com.badlogic.gdx.ai.steer.SteeringAcceleration;
+import com.badlogic.gdx.ai.steer.SteeringBehavior;
+import com.badlogic.gdx.ai.utils.Location;
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Entitys.Ship;
+import com.mygdx.game.Managers.GameManager;
+import com.mygdx.utils.Utilities;
+
+/**
+ * Used to control NPCs with steerable for movement and state machines for behaviour
+ */
+public class AINavigation extends Component implements Steerable&lt;Vector2&gt; {
+    /**
+     * NPC settings class to be used for steerable units
+     */
+<span class="fc" id="L19">    private static class Attributes {</span>
+<span class="fc" id="L20">        public float boundingRadius = 128;</span>
+<span class="fc" id="L21">        public float maxSpd = GameManager.getSettings().get(&quot;AI&quot;).getFloat(&quot;maxSpeed&quot;);</span>
+<span class="fc" id="L22">        public float maxAcc = 50000;</span>
+<span class="fc" id="L23">        public float maxAngSpd = 0;</span>
+<span class="fc" id="L24">        public float maxAngAcc = 0;</span>
+<span class="fc" id="L25">        public boolean isTagged = false;</span>
+    }
+
+    RigidBody rb;
+    Transform t;
+    Attributes attributes;
+    SteeringBehavior&lt;Vector2&gt; behavior;
+    SteeringAcceleration&lt;Vector2&gt; steeringOutput;
+
+    /**
+     * Creates a simple navigation component
+     */
+    public AINavigation() {
+<span class="fc" id="L38">        super();</span>
+<span class="fc" id="L39">        attributes = new Attributes();</span>
+<span class="fc" id="L40">        setRequirements(ComponentType.RigidBody);</span>
+<span class="fc" id="L41">        type = ComponentType.AINavigation;</span>
+<span class="fc" id="L42">        steeringOutput = new SteeringAcceleration&lt;&gt;(new Vector2());</span>
+<span class="fc" id="L43">    }</span>
+
+    /**
+     * @param behavior the behavior the AI will be set to
+     */
+    public void setBehavior(SteeringBehavior&lt;Vector2&gt; behavior) {
+<span class="fc" id="L49">        this.behavior = behavior;</span>
+<span class="fc" id="L50">    }</span>
+
+    /**
+     * Gets the components if != null
+     */
+    private void getComps() {
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (rb == null) {</span>
+<span class="fc" id="L57">            rb = parent.getComponent(RigidBody.class);</span>
+<span class="fc" id="L58">            t = parent.getComponent(Transform.class);</span>
+        }
+<span class="fc" id="L60">    }</span>
+
+    /**
+     * Called once per frame. Apply the steering behaviour and sets the ship direction, so it faces the right way
+     */
+    @Override
+    public void update() {
+<span class="nc" id="L67">        super.update();</span>
+<span class="nc" id="L68">        getComps();</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (behavior != null) {</span>
+<span class="nc" id="L70">            behavior.calculateSteering(steeringOutput);</span>
+<span class="nc" id="L71">            applySteering();</span>
+        } else {
+<span class="nc" id="L73">            stop();</span>
+        }
+
+<span class="nc" id="L76">        Vector2 vel = rb.getVelocity().cpy();</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (vel.x == 0 &amp;&amp; vel.y == 0) {</span>
+<span class="nc" id="L78">            ((Ship) parent).setShipDirection(&quot;-up&quot;);</span>
+<span class="nc" id="L79">            return;</span>
+        }
+<span class="nc" id="L81">        vel.nor();</span>
+<span class="nc" id="L82">        Utilities.round(vel);</span>
+
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (Ship.shipDirections.containsKey(vel)) {</span>
+<span class="nc" id="L85">            ((Ship) parent).setShipDirection(vel);</span>
+        }
+<span class="nc" id="L87">    }</span>
+
+    /**
+     * Calculates the forces required by the steering behaviour (no rotation)
+     */
+    private void applySteering() {
+<span class="nc" id="L93">        boolean anyAcc = false;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (!steeringOutput.linear.isZero()) {</span>
+<span class="nc" id="L95">            Vector2 f = steeringOutput.linear;</span>
+<span class="nc" id="L96">            rb.applyForce(f);</span>
+<span class="nc" id="L97">            anyAcc = true;</span>
+        }
+
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (anyAcc) {</span>
+<span class="nc" id="L101">            Vector2 vel = rb.getVelocity();</span>
+<span class="nc" id="L102">            float speed = vel.len2();</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (speed &gt; attributes.maxSpd * attributes.maxSpd) {</span>
+<span class="nc" id="L104">                rb.setVelocity(vel.scl(attributes.maxSpd / (float) Math.sqrt(speed)));</span>
+            }
+        }
+<span class="nc" id="L107">    }</span>
+
+    /**
+     * Stops all motion
+     */
+    public void stop() {
+<span class="fc" id="L113">        getComps();</span>
+<span class="fc" id="L114">        rb.setVelocity(new Vector2(0, 0));</span>
+<span class="fc" id="L115">    }</span>
+
+    /**
+     * @return the linear velocity of the rigid body this AI is attached to
+     */
+    @Override
+    public Vector2 getLinearVelocity() {
+<span class="nc" id="L122">        getComps();</span>
+<span class="nc" id="L123">        return rb.getVelocity();</span>
+    }
+
+    /**
+     * @return the angular velocity of the rigid body this AI is attached to
+     */
+    @Override
+    public float getAngularVelocity() {
+<span class="nc" id="L131">        getComps();</span>
+<span class="nc" id="L132">        return rb.getAngularVelocity();</span>
+    }
+
+    /**
+     * @return the bounding radius of the AI's area
+     */
+    @Override
+    public float getBoundingRadius() {
+<span class="nc" id="L140">        return attributes.boundingRadius;</span>
+    }
+
+    /**
+     * @return whether the AI has been tagged
+     */
+    @Override
+    public boolean isTagged() {
+<span class="nc" id="L148">        return attributes.isTagged;</span>
+    }
+
+    /**
+     * @param tagged the boolean to set the tagged status to
+     */
+    @Override
+    public void setTagged(boolean tagged) {
+<span class="nc" id="L156">        attributes.isTagged = tagged;</span>
+<span class="nc" id="L157">    }</span>
+
+    /**
+     * @return the Zero Linear Speed Threshold `unused`
+     */
+    @Override
+    public float getZeroLinearSpeedThreshold() {
+<span class="nc" id="L164">        return 0.01f;</span>
+    }
+
+    /**
+     * @param value the float to set the Zero Linear Speed Threshold to `unused`
+     */
+    @Override
+<span class="nc" id="L171">    public void setZeroLinearSpeedThreshold(float value) {}</span>
+
+    /**
+     * @return the maximum Linear Speed
+     */
+    @Override
+    public float getMaxLinearSpeed() {
+<span class="nc" id="L178">        return attributes.maxSpd;</span>
+    }
+
+    /**
+     * @param maxLinearSpeed the float to set the maximum Linear Speed to
+     */
+    @Override
+    public void setMaxLinearSpeed(float maxLinearSpeed) {
+<span class="nc" id="L186">        attributes.maxSpd = maxLinearSpeed;</span>
+<span class="nc" id="L187">    }</span>
+
+    /**
+     * @return the maximum Linear Acceleration
+     */
+    @Override
+    public float getMaxLinearAcceleration() {
+<span class="nc" id="L194">        return attributes.maxAcc;</span>
+    }
+
+    /**
+     * @param maxLinearAcceleration the float to set the maximum Linear Acceleration to
+     */
+    @Override
+    public void setMaxLinearAcceleration(float maxLinearAcceleration) {
+<span class="nc" id="L202">        attributes.maxAcc = maxLinearAcceleration;</span>
+<span class="nc" id="L203">    }</span>
+
+    /**
+     * @return the maximum Angular Speed
+     */
+    @Override
+    public float getMaxAngularSpeed() {
+<span class="nc" id="L210">        return attributes.maxAngSpd;</span>
+    }
+
+    /**
+     * @param maxAngularSpeed the float to set the maximum Angular Speed to
+     */
+    @Override
+    public void setMaxAngularSpeed(float maxAngularSpeed) {
+<span class="nc" id="L218">        attributes.maxAngSpd = maxAngularSpeed;</span>
+<span class="nc" id="L219">    }</span>
+
+    /**
+     * @return the maximum Angular Acceleration
+     */
+    @Override
+    public float getMaxAngularAcceleration() {
+<span class="nc" id="L226">        return attributes.maxAngAcc;</span>
+    }
+
+    /**
+     * @param maxAngularAcceleration the float to set the maximum Angular Acceleration to
+     */
+    @Override
+    public void setMaxAngularAcceleration(float maxAngularAcceleration) {
+<span class="nc" id="L234">        attributes.maxAngAcc = maxAngularAcceleration;</span>
+<span class="nc" id="L235">    }</span>
+
+    /**
+     * @return the position of the AI
+     */
+    @Override
+    public Vector2 getPosition() {
+<span class="nc" id="L242">        getComps();</span>
+<span class="nc" id="L243">        return t.getPosition();</span>
+    }
+
+    /**
+     * @return the orientation of the AI
+     */
+    @Override
+    public float getOrientation() {
+<span class="nc" id="L251">        getComps();</span>
+<span class="nc" id="L252">        return t.getRotation();</span>
+    }
+
+    /**
+     * @param orientation the float to set the orientation to `unused`
+     */
+    @Override
+<span class="nc" id="L259">    public void setOrientation(float orientation) {}</span>
+
+    /**
+     * @param vector the vector to be converted
+     * @return the parsed vector as an angle
+     */
+    @Override
+    public float vectorToAngle(Vector2 vector) {
+<span class="nc" id="L267">        return Utilities.vectorToAngle(vector);</span>
+    }
+
+    /**
+     * @param angle the angle to be converted
+     * @return the parsed angle as a vector
+     */
+    @Override
+    public Vector2 angleToVector(Vector2 outVector, float angle) {
+<span class="nc" id="L276">        return Utilities.angleToVector(outVector, angle);</span>
+    }
+
+    /**
+     * @return an empty location
+     */
+    @Override
+    public Location&lt;Vector2&gt; newLocation() {
+<span class="nc" id="L284">        getComps();</span>
+<span class="nc" id="L285">        return t;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

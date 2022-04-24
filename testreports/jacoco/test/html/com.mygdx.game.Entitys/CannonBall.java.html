@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CannonBall.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">com.mygdx.game.Entitys</a> &gt; <span class="el_source">CannonBall.java</span></div><h1>CannonBall.java</h1><pre class="source lang-java linenums">package com.mygdx.game.Entitys;
+
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Components.Pirate;
+import com.mygdx.game.Components.Renderable;
+import com.mygdx.game.Components.RigidBody;
+import com.mygdx.game.Components.Transform;
+import com.mygdx.game.Faction;
+import com.mygdx.game.Managers.EntityManager;
+import com.mygdx.game.Managers.GameManager;
+import com.mygdx.game.Managers.RenderLayer;
+import com.mygdx.game.Physics.CollisionCallBack;
+import com.mygdx.game.Physics.CollisionInfo;
+import com.mygdx.game.Physics.PhysicsBodyType;
+
+import static com.mygdx.utils.Constants.TILE_SIZE;
+
+/**
+ * Cannonball entity and the methods to get it flying.
+ */
+public class CannonBall extends Entity implements CollisionCallBack {
+    private static float speed;
+    private boolean toggleLife;
+    private static final int MAX_AGE = 5;
+    private Entity shooter; // Changed for Assessment 2, type switched from Ship to Entity
+
+    /**
+     * Constructs the cannonball object by generating components
+     */
+    public CannonBall() {
+<span class="fc" id="L31">        super(3);</span>
+<span class="fc" id="L32">        setName(&quot;ball&quot;);</span>
+<span class="fc" id="L33">        toggleLife = false;</span>
+<span class="fc" id="L34">        Transform t = new Transform();</span>
+<span class="fc" id="L35">        t.setPosition(-100, 100);</span>
+<span class="fc" id="L36">        t.setScale(0.5f, 0.5f);</span>
+<span class="fc" id="L37">        Renderable r = new Renderable(4, &quot;ball&quot;, RenderLayer.Transparent);</span>
+<span class="fc" id="L38">        RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t, true);</span>
+<span class="fc" id="L39">        rb.setCallback(this);</span>
+
+<span class="fc" id="L41">        addComponents(t, r, rb);</span>
+
+<span class="fc" id="L43">        speed = GameManager.getSettings().get(&quot;starting&quot;).getFloat(&quot;cannonSpeed&quot;);</span>
+<span class="fc" id="L44">        r.hide();</span>
+<span class="fc" id="L45">    }</span>
+
+    /**
+     * Called once per frame
+     */
+    @Override
+    public void update() {
+<span class="fc" id="L52">        super.update();</span>
+<span class="fc" id="L53">        removeOnCollision();</span>
+<span class="fc" id="L54">    }</span>
+
+    /**
+     * Removes the cannonball offscreen once it hits a target.
+     */
+    private void removeOnCollision() {
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (toggleLife) {</span>
+<span class="fc" id="L61">            getComponent(Renderable.class).hide();</span>
+<span class="fc" id="L62">            Transform t = getComponent(Transform.class);</span>
+<span class="fc" id="L63">            t.setPosition(10000, 10000);</span>
+
+<span class="fc" id="L65">            RigidBody rb = getComponent(RigidBody.class);</span>
+<span class="fc" id="L66">            rb.setPosition(t.getPosition());</span>
+<span class="fc" id="L67">            rb.setVelocity(0, 0);</span>
+<span class="fc" id="L68">            toggleLife = false;</span>
+        }
+        /*else{
+            age += EntityManager.getDeltaTime();
+        }
+        if(age &gt; MAX_AGE) {
+            age = 0;
+            kill();
+        }*/
+<span class="fc" id="L77">    }</span>
+
+    /**
+     * Teleport the cannonball in from offscreen and send in flying away from the ship.
+     *
+     * @param pos    2D vector location from where it sets off
+     * @param dir    2D vector direction for its movement
+     * @param sender ship entity firing it
+     */
+    public void fire(Entity sender, Vector2 pos, Vector2 dir) {
+<span class="fc" id="L87">        Transform t = getComponent(Transform.class);</span>
+<span class="fc" id="L88">        t.setPosition(pos);</span>
+
+<span class="fc" id="L90">        RigidBody rb = getComponent(RigidBody.class);</span>
+<span class="fc" id="L91">        Vector2 ta = dir.cpy().scl(speed * EntityManager.getDeltaTime());</span>
+<span class="fc" id="L92">        Vector2 o = new Vector2(TILE_SIZE * t.getScale().x, TILE_SIZE * t.getScale().y);</span>
+<span class="fc" id="L93">        Vector2 v = ta.cpy().sub(o);</span>
+
+<span class="fc" id="L95">        rb.setVelocity(v);</span>
+
+<span class="fc" id="L97">        getComponent(Renderable.class).show();</span>
+<span class="fc" id="L98">        shooter = sender;</span>
+<span class="fc" id="L99">    }</span>
+
+    /**
+     * Marks cannonball for removal on next update.
+     */
+    public void kill() {
+<span class="fc" id="L105">        toggleLife = true;</span>
+<span class="fc" id="L106">    }</span>
+
+    /**
+     * Added for Assessment 2
+     * @return The Faction of the Pirate Component attached to this entity
+     */
+    public Faction getFaction() {
+<span class="fc" id="L113">        return shooter.getComponent(Pirate.class).getFaction();</span>
+    }
+
+    /**
+     * Added for Assessment 2
+     * @return the damage dealt by the unit shooting this cannonball
+     */
+    public Float getAttackDmg() {
+<span class="fc" id="L121">        return shooter.getComponent(Pirate.class).getAttackDmg();</span>
+    }
+
+    /**
+     * `unused`
+     */
+    @Override
+    public void BeginContact(CollisionInfo info) {
+
+<span class="fc" id="L130">    }</span>
+
+    /**
+     * `unused`
+     */
+    @Override
+    public void EndContact(CollisionInfo info) {
+
+<span class="nc" id="L138">    }</span>
+
+    /**
+     * `unused`
+     */
+    @Override
+    public void EnterTrigger(CollisionInfo info) {
+
+<span class="fc" id="L146">    }</span>
+
+    /**
+     * `unused`
+     */
+    @Override
+    public void ExitTrigger(CollisionInfo info) {
+
+<span class="nc" id="L154">    }</span>
+
+    //    public Entity getShooter() {
+    //        return shooter;
+    //    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
