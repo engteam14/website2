@@ -181,7 +181,9 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">AINavigation</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates a simple navigation component</div>
+</td>
 </tr>
 </table>
 </li>
@@ -364,6 +366,7 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <li class="blockList">
 <h4>AINavigation</h4>
 <pre>public&nbsp;AINavigation()</pre>
+<div class="block">Creates a simple navigation component</div>
 </li>
 </ul>
 </li>
@@ -383,6 +386,10 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <li class="blockList">
 <h4>setBehavior</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setBehavior&#8203;(com.badlogic.gdx.ai.steer.SteeringBehavior&lt;com.badlogic.gdx.math.Vector2&gt;&nbsp;behavior)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>behavior</code> - the behavior the AI will be set to</dd>
+</dl>
 </li>
 </ul>
 <a id="update()">
@@ -419,6 +426,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getLinearVelocity</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the linear velocity of the rigid body this AI is attached to</dd>
 </dl>
 </li>
 </ul>
@@ -432,6 +441,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getAngularVelocity</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the angular velocity of the rigid body this AI is attached to</dd>
 </dl>
 </li>
 </ul>
@@ -445,6 +456,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getBoundingRadius</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the bounding radius of the AI's area</dd>
 </dl>
 </li>
 </ul>
@@ -458,6 +471,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>isTagged</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the AI has been tagged</dd>
 </dl>
 </li>
 </ul>
@@ -471,6 +486,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>setTagged</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>tagged</code> - the boolean to set the tagged status to</dd>
 </dl>
 </li>
 </ul>
@@ -484,6 +501,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getZeroLinearSpeedThreshold</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Limiter</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Zero Linear Speed Threshold `unused`</dd>
 </dl>
 </li>
 </ul>
@@ -497,6 +516,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>setZeroLinearSpeedThreshold</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Limiter</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>value</code> - the float to set the Zero Linear Speed Threshold to `unused`</dd>
 </dl>
 </li>
 </ul>
@@ -510,6 +531,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getMaxLinearSpeed</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Limiter</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the maximum Linear Speed</dd>
 </dl>
 </li>
 </ul>
@@ -523,6 +546,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>setMaxLinearSpeed</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Limiter</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>maxLinearSpeed</code> - the float to set the maximum Linear Speed to</dd>
 </dl>
 </li>
 </ul>
@@ -536,6 +561,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getMaxLinearAcceleration</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Limiter</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the maximum Linear Acceleration</dd>
 </dl>
 </li>
 </ul>
@@ -549,6 +576,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>setMaxLinearAcceleration</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Limiter</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>maxLinearAcceleration</code> - the float to set the maximum Linear Acceleration to</dd>
 </dl>
 </li>
 </ul>
@@ -562,6 +591,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getMaxAngularSpeed</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Limiter</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the maximum Angular Speed</dd>
 </dl>
 </li>
 </ul>
@@ -575,6 +606,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>setMaxAngularSpeed</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Limiter</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>maxAngularSpeed</code> - the float to set the maximum Angular Speed to</dd>
 </dl>
 </li>
 </ul>
@@ -588,6 +621,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getMaxAngularAcceleration</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Limiter</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the maximum Angular Acceleration</dd>
 </dl>
 </li>
 </ul>
@@ -601,6 +636,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>setMaxAngularAcceleration</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.steer.Limiter</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>maxAngularAcceleration</code> - the float to set the maximum Angular Acceleration to</dd>
 </dl>
 </li>
 </ul>
@@ -614,6 +651,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getPosition</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the position of the AI</dd>
 </dl>
 </li>
 </ul>
@@ -627,6 +666,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getOrientation</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the orientation of the AI</dd>
 </dl>
 </li>
 </ul>
@@ -640,6 +681,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>setOrientation</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>orientation</code> - the float to set the orientation to `unused`</dd>
 </dl>
 </li>
 </ul>
@@ -653,6 +696,10 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>vectorToAngle</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vector</code> - the vector to be converted</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the parsed vector as an angle</dd>
 </dl>
 </li>
 </ul>
@@ -667,6 +714,10 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>angleToVector</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>angle</code> - the angle to be converted</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the parsed angle as a vector</dd>
 </dl>
 </li>
 </ul>
@@ -680,6 +731,8 @@ implements com.badlogic.gdx.ai.steer.Steerable&lt;com.badlogic.gdx.math.Vector2&
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>newLocation</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>an empty location</dd>
 </dl>
 </li>
 </ul>

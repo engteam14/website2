@@ -285,12 +285,16 @@ implements com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&g
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setScale(float,float)">setScale</a></span>&#8203;(float&nbsp;x,
         float&nbsp;y)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Sets the scale of the component</div>
+</td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#vectorToAngle(com.badlogic.gdx.math.Vector2)">vectorToAngle</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;vector)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Return new angle in radians from input vector.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -418,6 +422,12 @@ implements com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&g
 <h4>setScale</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setScale&#8203;(float&nbsp;x,
                      float&nbsp;y)</pre>
+<div class="block">Sets the scale of the component</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - the x dimension</dd>
+<dd><code>y</code> - the y dimension</dd>
+</dl>
 </li>
 </ul>
 <a id="setRotation(float)">
@@ -443,6 +453,8 @@ implements com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&g
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getPosition</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the position of the component on the grid</dd>
 </dl>
 </li>
 </ul>
@@ -456,6 +468,8 @@ implements com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&g
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getOrientation</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the orientation of the component `unused`</dd>
 </dl>
 </li>
 </ul>
@@ -469,6 +483,8 @@ implements com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&g
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>setOrientation</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>orientation</code> - the float value to set the orientation of the component to `unused`</dd>
 </dl>
 </li>
 </ul>
@@ -479,9 +495,14 @@ implements com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&g
 <li class="blockList">
 <h4>vectorToAngle</h4>
 <pre class="methodSignature">public&nbsp;float&nbsp;vectorToAngle&#8203;(com.badlogic.gdx.math.Vector2&nbsp;vector)</pre>
+<div class="block">Return new angle in radians from input vector.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>vectorToAngle</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vector</code> - 2D vector</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the vector as an angle</dd>
 </dl>
 </li>
 </ul>
@@ -515,6 +536,8 @@ implements com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&g
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>newLocation</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a Transform object at a new location</dd>
 </dl>
 </li>
 </ul>
@@ -525,6 +548,10 @@ implements com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&g
 <li class="blockList">
 <h4>getScale</h4>
 <pre class="methodSignature">public&nbsp;com.badlogic.gdx.math.Vector2&nbsp;getScale()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the scale of this object</dd>
+</dl>
 </li>
 </ul>
 <a id="getRotation()">
@@ -536,7 +563,7 @@ implements com.badlogic.gdx.ai.utils.Location&lt;com.badlogic.gdx.math.Vector2&g
 <pre class="methodSignature">public&nbsp;float&nbsp;getRotation()</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>radians</dd>
+<dd>the angle of this object in radians</dd>
 </dl>
 </li>
 </ul>

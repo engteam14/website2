@@ -176,13 +176,15 @@ extends <a href="Quest.html" title="class in com.mygdx.game.Quests">Quest</a></p
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">LocateQuest</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates a Location Quest, with all the base attributes filled in with templates</div>
+</td>
 </tr>
 <tr class="rowColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.badlogic.gdx.math.Vector2,float)">LocateQuest</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;pos,
            float&nbsp;r)</code></th>
 <td class="colLast">
-<div class="block">The loc to go to and radius that the play has to be in to completed it</div>
+<div class="block">The loc to go to and radius that the play has to be in to complete it</div>
 </td>
 </tr>
 </table>
@@ -253,6 +255,7 @@ extends <a href="Quest.html" title="class in com.mygdx.game.Quests">Quest</a></p
 <li class="blockList">
 <h4>LocateQuest</h4>
 <pre>public&nbsp;LocateQuest()</pre>
+<div class="block">Creates a Location Quest, with all the base attributes filled in with templates</div>
 </li>
 </ul>
 <a id="&lt;init&gt;(com.badlogic.gdx.math.Vector2,float)">
@@ -263,7 +266,7 @@ extends <a href="Quest.html" title="class in com.mygdx.game.Quests">Quest</a></p
 <h4>LocateQuest</h4>
 <pre>public&nbsp;LocateQuest&#8203;(com.badlogic.gdx.math.Vector2&nbsp;pos,
                    float&nbsp;r)</pre>
-<div class="block">The loc to go to and radius that the play has to be in to completed it</div>
+<div class="block">The loc to go to and radius that the play has to be in to complete it</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>pos</code> - location to find</dd>
@@ -296,7 +299,7 @@ extends <a href="Quest.html" title="class in com.mygdx.game.Quests">Quest</a></p
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>p</code> - the player</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>has completed</dd>
+<dd>The completion status of the quest</dd>
 </dl>
 </li>
 </ul>
@@ -307,6 +310,10 @@ extends <a href="Quest.html" title="class in com.mygdx.game.Quests">Quest</a></p
 <li class="blockList">
 <h4>getLocation</h4>
 <pre class="methodSignature">public&nbsp;com.badlogic.gdx.math.Vector2&nbsp;getLocation()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The end location of the quest</dd>
+</dl>
 </li>
 </ul>
 </li>

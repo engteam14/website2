@@ -137,7 +137,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">TileMap</span>
 extends <a href="Component.html" title="class in com.mygdx.game.Components">Component</a></pre>
-<div class="block">Component that allows the rendering of tilemaps (has its own sprite batch)</div>
+<div class="block">Component that allows the rendering of tile-maps (has its own sprite batch)</div>
 </li>
 </ul>
 </div>
@@ -201,7 +201,7 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#cleanUp()">cleanUp</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Called once after the update loop has finished.</div>
+<div class="block">Calls the Clean-Up function of the Component class</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -291,6 +291,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>getTileDim</h4>
 <pre class="methodSignature">public&nbsp;com.badlogic.gdx.math.Vector2&nbsp;getTileDim()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the dimensions of the tilemap</dd>
+</dl>
 </li>
 </ul>
 <a id="getTileMap()">
@@ -300,6 +304,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>getTileMap</h4>
 <pre class="methodSignature">public&nbsp;com.badlogic.gdx.maps.tiled.TiledMap&nbsp;getTileMap()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the map attached to this object</dd>
+</dl>
 </li>
 </ul>
 <a id="update()">
@@ -337,8 +345,7 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>cleanUp</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;cleanUp()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Component.html#cleanUp()">Component</a></code></span></div>
-<div class="block">Called once after the update loop has finished.</div>
+<div class="block">Calls the Clean-Up function of the Component class</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="Component.html#cleanUp()">cleanUp</a></code>&nbsp;in class&nbsp;<code><a href="Component.html" title="class in com.mygdx.game.Components">Component</a></code></dd>

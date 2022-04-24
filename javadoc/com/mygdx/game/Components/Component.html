@@ -198,7 +198,9 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>protected </code></td>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Component</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">sets up the Component</div>
+</td>
 </tr>
 </table>
 </li>
@@ -352,6 +354,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Component</h4>
 <pre>protected&nbsp;Component()</pre>
+<div class="block">sets up the Component</div>
 </li>
 </ul>
 </li>
@@ -371,6 +374,10 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setParent</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setParent&#8203;(<a href="../Entitys/Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>&nbsp;e)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>e</code> - the Entity to set the parent of this component to</dd>
+</dl>
 </li>
 </ul>
 <a id="getParent()">
@@ -380,6 +387,10 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getParent</h4>
 <pre class="methodSignature">public&nbsp;<a href="../Entitys/Entity.html" title="class in com.mygdx.game.Entitys">Entity</a>&nbsp;getParent()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the parent of this component</dd>
+</dl>
 </li>
 </ul>
 <a id="setRequirements(com.mygdx.game.Components.ComponentType...)">
@@ -403,6 +414,10 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getType</h4>
 <pre class="methodSignature">public final&nbsp;<a href="ComponentType.html" title="enum in com.mygdx.game.Components">ComponentType</a>&nbsp;getType()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the type of the component</dd>
+</dl>
 </li>
 </ul>
 <a id="awake()">

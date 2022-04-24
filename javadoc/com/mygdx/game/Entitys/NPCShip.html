@@ -233,7 +233,10 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#circleOrigin()">circleOrigin</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Added for Assessment 2
+ Creates a new steering behaviour that will make the NPC circle the college it is attached to (doesn't factor in obstacles)</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>com.badlogic.gdx.math.Vector2</code></td>
@@ -260,7 +263,7 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#followTarget()">followTarget</a></span>()</code></th>
 <td class="colLast">
-<div class="block">creates a new steering behaviour that will make the NPC beeline for the target, doesn't factor in obstetrical</div>
+<div class="block">creates a new steering behaviour that will make the NPC beeline for the target (doesn't factor in obstacles)</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
@@ -391,7 +394,7 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>followTarget</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;followTarget()</pre>
-<div class="block">creates a new steering behaviour that will make the NPC beeline for the target, doesn't factor in obstetrical</div>
+<div class="block">creates a new steering behaviour that will make the NPC beeline for the target (doesn't factor in obstacles)</div>
 </li>
 </ul>
 <a id="circleOrigin()">
@@ -401,6 +404,8 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>circleOrigin</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;circleOrigin()</pre>
+<div class="block">Added for Assessment 2
+ Creates a new steering behaviour that will make the NPC circle the college it is attached to (doesn't factor in obstacles)</div>
 </li>
 </ul>
 <a id="stopMovement()">
@@ -440,6 +445,10 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>getCurrentState</h4>
 <pre class="methodSignature">public&nbsp;<a href="../AI/EnemyState.html" title="enum in com.mygdx.game.AI">EnemyState</a>&nbsp;getCurrentState()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the current state the NPCShip is in</dd>
+</dl>
 </li>
 </ul>
 <a id="EnterTrigger(com.mygdx.game.Physics.CollisionInfo)">

@@ -217,14 +217,14 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#BeginContact(com.mygdx.game.Physics.CollisionInfo)">BeginContact</a></span>&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</code></th>
 <td class="colLast">
-<div class="block">Called once a collision has being notices</div>
+<div class="block">`unused`</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#EndContact(com.mygdx.game.Physics.CollisionInfo)">EndContact</a></span>&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</code></th>
 <td class="colLast">
-<div class="block">Called after the collision has being solved</div>
+<div class="block">`unused`</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -449,6 +449,10 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>isAlive</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isAlive()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the boolean value of life attached to the Pirate Component</dd>
+</dl>
 </li>
 </ul>
 <a id="getAttackRange()">
@@ -458,6 +462,10 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>getAttackRange</h4>
 <pre class="methodSignature">public static&nbsp;float&nbsp;getAttackRange()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the range at which this ship can attack</dd>
+</dl>
 </li>
 </ul>
 <a id="plunder(int)">
@@ -467,6 +475,10 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>plunder</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;plunder&#8203;(int&nbsp;money)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>money</code> - the integer to be added to the money value attached to the Pirate Component</dd>
+</dl>
 </li>
 </ul>
 <a id="points(int)">
@@ -476,6 +488,10 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>points</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;points&#8203;(int&nbsp;increment)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>increment</code> - the integer to be added to the points value attached to the Pirate Component</dd>
+</dl>
 </li>
 </ul>
 <a id="setFaction(int)">
@@ -527,6 +543,10 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>getHealth</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getHealth()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the health attached to the Pirate Component</dd>
+</dl>
 </li>
 </ul>
 <a id="getPlunder()">
@@ -536,6 +556,10 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>getPlunder</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getPlunder()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the plunder attached to the Pirate Component</dd>
+</dl>
 </li>
 </ul>
 <a id="getPoints()">
@@ -545,6 +569,10 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <li class="blockList">
 <h4>getPoints</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getPoints()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the points attached to the Pirate Component</dd>
+</dl>
 </li>
 </ul>
 <a id="shoot()">
@@ -594,36 +622,6 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 </dl>
 </li>
 </ul>
-<a id="BeginContact(com.mygdx.game.Physics.CollisionInfo)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>BeginContact</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;BeginContact&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../Physics/CollisionCallBack.html#BeginContact(com.mygdx.game.Physics.CollisionInfo)">CollisionCallBack</a></code></span></div>
-<div class="block">Called once a collision has being notices</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../Physics/CollisionCallBack.html#BeginContact(com.mygdx.game.Physics.CollisionInfo)">BeginContact</a></code>&nbsp;in interface&nbsp;<code><a href="../Physics/CollisionCallBack.html" title="interface in com.mygdx.game.Physics">CollisionCallBack</a></code></dd>
-</dl>
-</li>
-</ul>
-<a id="EndContact(com.mygdx.game.Physics.CollisionInfo)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>EndContact</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;EndContact&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../Physics/CollisionCallBack.html#EndContact(com.mygdx.game.Physics.CollisionInfo)">CollisionCallBack</a></code></span></div>
-<div class="block">Called after the collision has being solved</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../Physics/CollisionCallBack.html#EndContact(com.mygdx.game.Physics.CollisionInfo)">EndContact</a></code>&nbsp;in interface&nbsp;<code><a href="../Physics/CollisionCallBack.html" title="interface in com.mygdx.game.Physics">CollisionCallBack</a></code></dd>
-</dl>
-</li>
-</ul>
 <a id="EnterTrigger(com.mygdx.game.Physics.CollisionInfo)">
 <!--   -->
 </a>
@@ -642,7 +640,7 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <a id="ExitTrigger(com.mygdx.game.Physics.CollisionInfo)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>ExitTrigger</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;ExitTrigger&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</pre>
@@ -650,6 +648,34 @@ implements <a href="../Physics/CollisionCallBack.html" title="interface in com.m
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../Physics/CollisionCallBack.html#ExitTrigger(com.mygdx.game.Physics.CollisionInfo)">ExitTrigger</a></code>&nbsp;in interface&nbsp;<code><a href="../Physics/CollisionCallBack.html" title="interface in com.mygdx.game.Physics">CollisionCallBack</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="BeginContact(com.mygdx.game.Physics.CollisionInfo)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>BeginContact</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;BeginContact&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</pre>
+<div class="block">`unused`</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../Physics/CollisionCallBack.html#BeginContact(com.mygdx.game.Physics.CollisionInfo)">BeginContact</a></code>&nbsp;in interface&nbsp;<code><a href="../Physics/CollisionCallBack.html" title="interface in com.mygdx.game.Physics">CollisionCallBack</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="EndContact(com.mygdx.game.Physics.CollisionInfo)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>EndContact</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;EndContact&#8203;(<a href="../Physics/CollisionInfo.html" title="class in com.mygdx.game.Physics">CollisionInfo</a>&nbsp;info)</pre>
+<div class="block">`unused`</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../Physics/CollisionCallBack.html#EndContact(com.mygdx.game.Physics.CollisionInfo)">EndContact</a></code>&nbsp;in interface&nbsp;<code><a href="../Physics/CollisionCallBack.html" title="interface in com.mygdx.game.Physics">CollisionCallBack</a></code></dd>
 </dl>
 </li>
 </ul>

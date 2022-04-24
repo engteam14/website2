@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -189,7 +189,9 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Pirate</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates the base Pirate Component, setting up its initial values</div>
+</td>
 </tr>
 </table>
 </li>
@@ -284,7 +286,7 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAgro()">isAgro</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAggro()">isAggro</a></span>()</code></th>
 <td class="colLast">
 <div class="block">if dst to target is >= attack range
  target will be null if not in agro range</div>
@@ -326,26 +328,17 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDefault(java.lang.String,float)">setDefault</a></span>&#8203;(java.lang.String&nbsp;key,
-          float&nbsp;value)</code></th>
-<td class="colLast">
-<div class="block">// New for assessment 2 //
- Set the default for a Pirate value.</div>
-</td>
-</tr>
-<tr id="i20" class="altColor">
-<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFactionId(int)">setFactionId</a></span>&#8203;(int&nbsp;factionId)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setInfiniteAmmo(boolean)">setInfiniteAmmo</a></span>&#8203;(boolean&nbsp;status)</code></th>
 <td class="colLast">
 <div class="block">Added for Assessment 2, sets whether the pirate can ignore ammo costs for firing</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setValue(java.lang.String,float)">setValue</a></span>&#8203;(java.lang.String&nbsp;key,
         float&nbsp;value)</code></th>
@@ -354,7 +347,7 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
  Set a new value for Pirate while holding reference to what it was originally.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot(com.badlogic.gdx.math.Vector2)">shoot</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;direction)</code></th>
 <td class="colLast">
@@ -363,19 +356,21 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
     to allow for differentiation between when a start position is or isn't provided.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shoot(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2)">shoot</a></span>&#8203;(com.badlogic.gdx.math.Vector2&nbsp;startPos,
      com.badlogic.gdx.math.Vector2&nbsp;direction)</code></th>
 <td class="colLast">
 <div class="block">Added for Assessment 2
- Will shoot a cannonball from the startPos in the direction, assigning this.parent as the cannonball's parent</div>
+ Will shoot a cannonball from the startPos in the direction, assigning this.Parent as the cannonball's parent</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#takeDamage(float)">takeDamage</a></span>&#8203;(float&nbsp;dmg)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Deducts damage taken from Pirate's health and kills the pirate if that reduces health to less than or equal to 0</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -434,6 +429,7 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>Pirate</h4>
 <pre>public&nbsp;Pirate()</pre>
+<div class="block">Creates the base Pirate Component, setting up its initial values</div>
 </li>
 </ul>
 </li>
@@ -460,23 +456,6 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <dd><code>key</code> - The value to get</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The value</dd>
-</dl>
-</li>
-</ul>
-<a id="setDefault(java.lang.String,float)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setDefault</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setDefault&#8203;(java.lang.String&nbsp;key,
-                       float&nbsp;value)</pre>
-<div class="block">// New for assessment 2 //
- Set the default for a Pirate value.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>key</code> - The value to set to</dd>
-<dd><code>value</code> - The default to apply</dd>
 </dl>
 </li>
 </ul>
@@ -536,6 +515,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>addTarget</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addTarget&#8203;(<a href="../Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a>&nbsp;target)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>target</code> - The Ship to be added to the list of potential targets</dd>
+</dl>
 </li>
 </ul>
 <a id="getPlunder()">
@@ -545,6 +528,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>getPlunder</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getPlunder()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the plunder value attached to this pirate</dd>
+</dl>
 </li>
 </ul>
 <a id="getPoints()">
@@ -554,6 +541,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>getPoints</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getPoints()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the points value attached to this pirate</dd>
+</dl>
 </li>
 </ul>
 <a id="addPlunder(int)">
@@ -563,6 +554,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>addPlunder</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addPlunder&#8203;(int&nbsp;money)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>money</code> - The integer value to be added to the pirate's stored plunder amount</dd>
+</dl>
 </li>
 </ul>
 <a id="addPoints(int)">
@@ -572,6 +567,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>addPoints</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addPoints&#8203;(int&nbsp;increment)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>increment</code> - The integer value to be added to the pirate's stored point amount</dd>
+</dl>
 </li>
 </ul>
 <a id="getFaction()">
@@ -581,6 +580,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>getFaction</h4>
 <pre class="methodSignature">public&nbsp;<a href="../Faction.html" title="class in com.mygdx.game">Faction</a>&nbsp;getFaction()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Faction value attached to this pirate</dd>
+</dl>
 </li>
 </ul>
 <a id="setFactionId(int)">
@@ -590,6 +593,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>setFactionId</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setFactionId&#8203;(int&nbsp;factionId)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>factionId</code> - The ID of the faction to set this pirate to</dd>
+</dl>
 </li>
 </ul>
 <a id="setInfiniteAmmo(boolean)">
@@ -627,6 +634,11 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>takeDamage</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;takeDamage&#8203;(float&nbsp;dmg)</pre>
+<div class="block">Deducts damage taken from Pirate's health and kills the pirate if that reduces health to less than or equal to 0</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>dmg</code> - The float value to be removed from this pirate's health total</dd>
+</dl>
 </li>
 </ul>
 <a id="shoot(com.badlogic.gdx.math.Vector2)">
@@ -654,7 +666,7 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <pre class="methodSignature">public&nbsp;void&nbsp;shoot&#8203;(com.badlogic.gdx.math.Vector2&nbsp;startPos,
                   com.badlogic.gdx.math.Vector2&nbsp;direction)</pre>
 <div class="block">Added for Assessment 2
- Will shoot a cannonball from the startPos in the direction, assigning this.parent as the cannonball's parent</div>
+ Will shoot a cannonball from the startPos in the direction, assigning this.Parent as the cannonball's parent</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>direction</code> - the direction to shoot in</dd>
@@ -668,6 +680,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>getHealth</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getHealth()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the health value attached to this pirate</dd>
+</dl>
 </li>
 </ul>
 <a id="canAttack()">
@@ -681,13 +697,13 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
  target will be null if not in agro range</div>
 </li>
 </ul>
-<a id="isAgro()">
+<a id="isAggro()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isAgro</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isAgro()</pre>
+<h4>isAggro</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isAggro()</pre>
 <div class="block">if dst to target is >= attack range
  target will be null if not in agro range</div>
 </li>
@@ -699,6 +715,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>getTarget</h4>
 <pre class="methodSignature">public&nbsp;<a href="../Entitys/Ship.html" title="class in com.mygdx.game.Entitys">Ship</a>&nbsp;getTarget()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the current target value attached to this pirate</dd>
+</dl>
 </li>
 </ul>
 <a id="isAlive()">
@@ -708,6 +728,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>isAlive</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isAlive()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the boolean alive value attached to this pirate</dd>
+</dl>
 </li>
 </ul>
 <a id="kill()">
@@ -727,6 +751,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>setAmmo</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setAmmo&#8203;(int&nbsp;ammo)</pre>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>ammo</code> - The integer to be added to the amount of ammo this pirate has access to</dd>
+</dl>
 </li>
 </ul>
 <a id="getAmmo()">
@@ -736,6 +764,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>getAmmo</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getAmmo()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the ammo value attached to this pirate</dd>
+</dl>
 </li>
 </ul>
 <a id="getTargets()">

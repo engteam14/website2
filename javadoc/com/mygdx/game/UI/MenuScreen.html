@@ -185,7 +185,9 @@ extends <a href="Page.html" title="class in com.mygdx.game.UI">Page</a></pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.mygdx.game.PirateGame)">MenuScreen</a></span>&#8203;(<a href="../PirateGame.html" title="class in com.mygdx.game">PirateGame</a>&nbsp;parent)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates a Menu Screen</div>
+</td>
 </tr>
 </table>
 </li>
@@ -216,7 +218,7 @@ extends <a href="Page.html" title="class in com.mygdx.game.UI">Page</a></pre>
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hide()">hide</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Called once the page is hidden.</div>
+<div class="block">Hides the Menu Screen</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -224,15 +226,14 @@ extends <a href="Page.html" title="class in com.mygdx.game.UI">Page</a></pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resize(int,int)">resize</a></span>&#8203;(int&nbsp;width,
       int&nbsp;height)</code></th>
 <td class="colLast">
-<div class="block">Called once the window is resized
- updates constants and stage</div>
+<div class="block">Resizes the viewport</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#show()">show</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Called once the page is show sets input handler and adds actors</div>
+<div class="block">Shows the Menu Screen</div>
 </td>
 </tr>
 </table>
@@ -280,6 +281,11 @@ extends <a href="Page.html" title="class in com.mygdx.game.UI">Page</a></pre>
 <li class="blockList">
 <h4>MenuScreen</h4>
 <pre>public&nbsp;MenuScreen&#8203;(<a href="../PirateGame.html" title="class in com.mygdx.game">PirateGame</a>&nbsp;parent)</pre>
+<div class="block">Creates a Menu Screen</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>parent</code> - The game object this screen is viewing</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -313,8 +319,7 @@ extends <a href="Page.html" title="class in com.mygdx.game.UI">Page</a></pre>
 <li class="blockList">
 <h4>show</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;show()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Page.html#show()">Page</a></code></span></div>
-<div class="block">Called once the page is show sets input handler and adds actors</div>
+<div class="block">Shows the Menu Screen</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>show</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.Screen</code></dd>
@@ -330,8 +335,7 @@ extends <a href="Page.html" title="class in com.mygdx.game.UI">Page</a></pre>
 <li class="blockList">
 <h4>hide</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;hide()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Page.html#hide()">Page</a></code></span></div>
-<div class="block">Called once the page is hidden. sets input handler to null and clears teh stage</div>
+<div class="block">Hides the Menu Screen</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>hide</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.Screen</code></dd>
@@ -348,17 +352,15 @@ extends <a href="Page.html" title="class in com.mygdx.game.UI">Page</a></pre>
 <h4>resize</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;resize&#8203;(int&nbsp;width,
                    int&nbsp;height)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Page.html#resize(int,int)">Page</a></code></span></div>
-<div class="block">Called once the window is resized
- updates constants and stage</div>
+<div class="block">Resizes the viewport</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>resize</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.Screen</code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="Page.html#resize(int,int)">resize</a></code>&nbsp;in class&nbsp;<code><a href="Page.html" title="class in com.mygdx.game.UI">Page</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>width</code> - new dim x</dd>
-<dd><code>height</code> - new dom y</dd>
+<dd><code>width</code> - The horizontal dimension of the viewport</dd>
+<dd><code>height</code> - The vertical dimension of the viewport</dd>
 </dl>
 </li>
 </ul>

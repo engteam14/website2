@@ -241,7 +241,9 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hide()">hide</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Changes the visibility to inactive</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -252,7 +254,7 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#render()">render</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Called once per frame used exclusively for rendering</div>
+<div class="block">Checks if the sprite exists and should be visible, then renders it</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -265,7 +267,9 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#show()">show</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Changes the visibility to active</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -399,8 +403,7 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>render</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;render()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Component.html#render()">Component</a></code></span></div>
-<div class="block">Called once per frame used exclusively for rendering</div>
+<div class="block">Checks if the sprite exists and should be visible, then renders it</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="Component.html#render()">render</a></code>&nbsp;in class&nbsp;<code><a href="Component.html" title="class in com.mygdx.game.Components">Component</a></code></dd>
@@ -414,7 +417,6 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>cleanUp</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;cleanUp()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Component.html#cleanUp()">Component</a></code></span></div>
 <div class="block">Called once after the update loop has finished.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
@@ -429,6 +431,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>getSprite</h4>
 <pre class="methodSignature">public&nbsp;com.badlogic.gdx.graphics.g2d.Sprite&nbsp;getSprite()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Sprite for this object</dd>
+</dl>
 </li>
 </ul>
 <a id="setTexture(com.badlogic.gdx.graphics.g2d.Sprite)">
@@ -452,6 +458,10 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>isVisible</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isVisible()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the object should currently be visible</dd>
+</dl>
 </li>
 </ul>
 <a id="show()">
@@ -461,6 +471,7 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>show</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;show()</pre>
+<div class="block">Changes the visibility to active</div>
 </li>
 </ul>
 <a id="hide()">
@@ -470,6 +481,7 @@ extends <a href="Component.html" title="class in com.mygdx.game.Components">Comp
 <li class="blockList">
 <h4>hide</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;hide()</pre>
+<div class="block">Changes the visibility to inactive</div>
 </li>
 </ul>
 </li>

@@ -160,7 +160,9 @@ implements com.badlogic.gdx.ai.pfa.Connection&lt;<a href="Node.html" title="clas
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.mygdx.game.AI.Node,com.mygdx.game.AI.Node)">Path</a></span>&#8203;(<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;f,
     <a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;t)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates a path from F to T</div>
+</td>
 </tr>
 </table>
 </li>
@@ -227,6 +229,12 @@ implements com.badlogic.gdx.ai.pfa.Connection&lt;<a href="Node.html" title="clas
 <h4>Path</h4>
 <pre>public&nbsp;Path&#8203;(<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;f,
             <a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&nbsp;t)</pre>
+<div class="block">Creates a path from F to T</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>f</code> - the start Node</dd>
+<dd><code>t</code> - the end Node</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -249,6 +257,8 @@ implements com.badlogic.gdx.ai.pfa.Connection&lt;<a href="Node.html" title="clas
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getCost</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.pfa.Connection&lt;<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the cost of traveling the path</dd>
 </dl>
 </li>
 </ul>
@@ -262,6 +272,8 @@ implements com.badlogic.gdx.ai.pfa.Connection&lt;<a href="Node.html" title="clas
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getFromNode</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.pfa.Connection&lt;<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the start node of the path</dd>
 </dl>
 </li>
 </ul>
@@ -275,6 +287,8 @@ implements com.badlogic.gdx.ai.pfa.Connection&lt;<a href="Node.html" title="clas
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>getToNode</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ai.pfa.Connection&lt;<a href="Node.html" title="class in com.mygdx.game.AI">Node</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the end node of the path</dd>
 </dl>
 </li>
 </ul>

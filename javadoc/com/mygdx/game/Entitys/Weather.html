@@ -146,6 +146,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">Weather</span>
 extends <a href="Obstacle.html" title="class in com.mygdx.game.Entitys">Obstacle</a></pre>
+<div class="block">Added for Assessment 2 in order to meet weather condition requirements</div>
 </li>
 </ul>
 </div>
@@ -168,7 +169,9 @@ extends <a href="Obstacle.html" title="class in com.mygdx.game.Entitys">Obstacle
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(float,float)">Weather</a></span>&#8203;(float&nbsp;damage,
        float&nbsp;hitRate)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates a Weather Object</div>
+</td>
 </tr>
 </table>
 </li>
@@ -192,7 +195,7 @@ extends <a href="Obstacle.html" title="class in com.mygdx.game.Entitys">Obstacle
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Similar to the Component's update event</div>
+<div class="block">Called once every frame</div>
 </td>
 </tr>
 </table>
@@ -241,6 +244,12 @@ extends <a href="Obstacle.html" title="class in com.mygdx.game.Entitys">Obstacle
 <h4>Weather</h4>
 <pre>public&nbsp;Weather&#8203;(float&nbsp;damage,
                float&nbsp;hitRate)</pre>
+<div class="block">Creates a Weather Object</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>damage</code> - The damage dealt to an object which collides with this weather effect</dd>
+<dd><code>hitRate</code> - The rate at which damage is dealt</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -260,8 +269,7 @@ extends <a href="Obstacle.html" title="class in com.mygdx.game.Entitys">Obstacle
 <li class="blockList">
 <h4>update</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;update()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Entity.html#update()">Entity</a></code></span></div>
-<div class="block">Similar to the Component's update event</div>
+<div class="block">Called once every frame</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="Obstacle.html#update()">update</a></code>&nbsp;in class&nbsp;<code><a href="Obstacle.html" title="class in com.mygdx.game.Entitys">Obstacle</a></code></dd>

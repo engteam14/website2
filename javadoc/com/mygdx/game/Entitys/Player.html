@@ -211,7 +211,7 @@ extends <a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></pr
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#cleanUp()">cleanUp</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Similar to the Component's cleanUp event</div>
+<div class="block">Cleans up hanging data parts</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -230,7 +230,7 @@ extends <a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></pr
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Similar to the Component's update event</div>
+<div class="block">Is run once per frame</div>
 </td>
 </tr>
 </table>
@@ -298,8 +298,7 @@ extends <a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></pr
 <li class="blockList">
 <h4>update</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;update()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Entity.html#update()">Entity</a></code></span></div>
-<div class="block">Similar to the Component's update event</div>
+<div class="block">Is run once per frame</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="Entity.html#update()">update</a></code>&nbsp;in class&nbsp;<code><a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a></code></dd>
@@ -313,8 +312,7 @@ extends <a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></pr
 <li class="blockList">
 <h4>cleanUp</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;cleanUp()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="Entity.html#cleanUp()">Entity</a></code></span></div>
-<div class="block">Similar to the Component's cleanUp event</div>
+<div class="block">Cleans up hanging data parts</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="Entity.html#cleanUp()">cleanUp</a></code>&nbsp;in class&nbsp;<code><a href="Entity.html" title="class in com.mygdx.game.Entitys">Entity</a></code></dd>
@@ -328,6 +326,10 @@ extends <a href="Ship.html" title="class in com.mygdx.game.Entitys">Ship</a></pr
 <li class="blockList">
 <h4>getAmmo</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getAmmo()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the amount of ammo available to the player</dd>
+</dl>
 </li>
 </ul>
 <a id="getFaction()">
