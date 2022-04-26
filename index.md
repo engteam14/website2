@@ -6,6 +6,7 @@
 <nav id="navbar" class="topnav">
     <a class="active" href="index.html">Home</a>
     <a href="game.html">Info</a>
+    <a href="roadmap.html">Roadmap</a>
     <div class="dropdown">
         <button class="dropbtn">Files
           <i class="fa fa-caret-down"></i>
@@ -40,6 +41,7 @@
             <a href="method-selection-planning.html">Method Selection and Planning</a>
             <a href="requirements.html">Requirements</a>
             <a href="risk-assessment.html">Risk Assessment</a>
+            <a href="testing.html">Testing</a>
         </div>
     </div>
     <div class="dropdown">
@@ -49,11 +51,11 @@
         <div class="dropdown-content">
             <!-- Assessment 1 -->
             <h2 class="dropdown-header">Assessment 1</h2>
-            <a href="pdfs/Req1.pdf" target="_blank">Architecture</a>
             <a href="pdfs/Arch1.pdf" target="_blank">Architecture</a>
+            <a href="pdfs/Impl1.pdf" target="_blank">Implementation</a>
             <a href="pdfs/Plan1.pdf" target="_blank">Method selection and planning</a>
             <a href="pdfs/Risk1.pdf" target="_blank">Risk assessment and mitigation</a>
-            <a href="pdfs/Impl1.pdf" target="_blank">Implementation</a>
+            <a href="pdfs/Req1.pdf" target="_blank">Requirements</a>
 
             <!-- Assessment 2 -->
             <h2 class="dropdown-header">Assessment 2</h2>
@@ -63,6 +65,7 @@
             <a href="pdfs/Method Selection and Planning.pdf" target="_blank">Method Selection and Planning</a>
             <a href="pdfs/Requirements.pdf" target="_blank">Requirements</a>
             <a href="pdfs/Risk Assessment.pdf" target="_blank">Risk Assessment</a>
+            <a href="pdfs/Testing.pdf" target="_blank">Testing</a>
         </div>
     </div>
     <!-- <a href="">About</a> -->
