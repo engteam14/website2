@@ -222,9 +222,9 @@ public class Pirate extends Component {
     public boolean isAggro() {
 <span class="fc" id="L223">        final Ship p = (Ship) parent;</span>
 <span class="fc" id="L224">        final Vector2 pos = p.getPosition();</span>
-<span class="pc bpc" id="L225" title="1 of 2 branches missed.">        final float dst = pos.dst(targets.peek() != null ? targets.peek().getPosition() : null);</span>
         // out of attack range but in aggro range
-<span class="pc bpc" id="L227" title="1 of 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="pc bpc" id="L226" title="1 of 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">            final float dst = pos.dst(targets.peek() != null ? targets.peek().getPosition() : null);</span>
 <span class="pc bpc" id="L228" title="1 of 2 branches missed.">            return dst &gt;= Ship.getAttackRange();</span>
         }else{
 <span class="nc" id="L230">            return false;</span>
@@ -271,7 +271,7 @@ public class Pirate extends Component {
     }
 
     public QueueFIFO&lt;Ship&gt; getTargets() {
-<span class="nc" id="L274">        return targets;</span>
+<span class="fc" id="L274">        return targets;</span>
     }
 
     //public int targetCount() {

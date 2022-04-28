@@ -44,9 +44,9 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
 <span class="fc" id="L44">            enemy = GameManager.getCollege(id);</span>
 <span class="fc" id="L45">            i++;</span>
         }
-<span class="fc bfc" id="L47" title="All 4 branches covered.">        while (Utilities.contains(exclude, id) &amp;&amp; i &lt; 5);</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (i == 5) {</span>
-<span class="fc" id="L49">            return 0;</span>
+<span class="pc bpc" id="L47" title="1 of 4 branches missed.">        while (Utilities.contains(exclude, id) &amp;&amp; i &lt; 5);</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if (i == 5) {</span>
+<span class="nc" id="L49">            return 0;</span>
         }
 <span class="fc" id="L51">        addQuest(new KillQuest(enemy));</span>
 <span class="fc" id="L52">        return id;</span>
@@ -74,7 +74,7 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
         }
 <span class="fc" id="L75">        x *= TILE_SIZE;</span>
 <span class="fc" id="L76">        y *= TILE_SIZE;</span>
-<span class="fc" id="L77">        addQuest(new LocateQuest(new Vector2(x, y), 5 * TILE_SIZE));</span>
+<span class="fc" id="L77">        addQuest(new LocateQuest(new Vector2(x, y), 1 * TILE_SIZE));</span>
 <span class="fc" id="L78">    }</span>
 
     /**

@@ -214,18 +214,18 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-<span class="pc bpc" id="L217" title="1 of 2 branches missed.">        if (!(info.a instanceof Ship)) {</span>
+<span class="fc bfc" id="L217" title="All 2 branches covered.">        if (!(info.a instanceof Ship)) {</span>
 <span class="fc" id="L218">            return;</span>
         }
-<span class="nc" id="L220">        Pirate pirate = getComponent(Pirate.class);</span>
-<span class="nc" id="L221">        Ship o = (Ship) info.a;</span>
+<span class="fc" id="L220">        Pirate pirate = getComponent(Pirate.class);</span>
+<span class="fc" id="L221">        Ship o = (Ship) info.a;</span>
         // remove the object from the targets list
-<span class="nc bnc" id="L223" title="All 2 branches missed.">        for (Ship targ : pirate.getTargets()) {</span>
-<span class="nc bnc" id="L224" title="All 2 branches missed.">            if (targ == o) {</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">        for (Ship targ : pirate.getTargets()) {</span>
+<span class="pc bpc" id="L224" title="1 of 2 branches missed.">            if (targ == o) {</span>
 <span class="nc" id="L225">                pirate.getTargets().remove(targ);</span>
 <span class="nc" id="L226">                break;</span>
             }
-<span class="nc" id="L228">        }</span>
-<span class="nc" id="L229">    }</span>
+<span class="fc" id="L228">        }</span>
+<span class="fc" id="L229">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
