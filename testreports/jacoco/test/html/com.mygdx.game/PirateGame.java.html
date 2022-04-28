@@ -109,55 +109,53 @@ import java.util.Objects;
 <span class="nc" id="L109">        RenderingManager.Initialize();</span>
 <span class="nc" id="L110">        EntityManager.Initialize();</span>
 <span class="nc" id="L111">        GameManager.Initialize(difficulty);</span>
-
-<span class="nc" id="L113">        game = new GameScreen(this, id_map);</span>
-<span class="nc" id="L114">        setScreen(menu);</span>
-<span class="nc" id="L115">    }</span>
+<span class="nc" id="L112">        setScreen(menu);</span>
+<span class="nc" id="L113">    }</span>
 
     /**
      * New for assessment 2
      * Changes the difficulty for the game by changing the enum and calling GameManager.getSettings()
      */
     public void setDifficulty(String selected){
-<span class="fc bfc" id="L122" title="All 2 branches covered.">        if (Objects.equals(selected, &quot;Easy&quot;)){</span>
-<span class="fc" id="L123">            difficulty = GameDifficulty.Easy;</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        if (Objects.equals(selected, &quot;Easy&quot;)){</span>
+<span class="fc" id="L121">            difficulty = GameDifficulty.Easy;</span>
         }
-<span class="fc bfc" id="L125" title="All 2 branches covered.">        else if (Objects.equals(selected, &quot;Regular&quot;)) {</span>
-<span class="fc" id="L126">            difficulty = GameDifficulty.Regular;</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        else if (Objects.equals(selected, &quot;Regular&quot;)) {</span>
+<span class="fc" id="L124">            difficulty = GameDifficulty.Regular;</span>
         }
-<span class="fc bfc" id="L128" title="All 2 branches covered.">        else if (Objects.equals(selected, &quot;Hard&quot;)) {</span>
-<span class="fc" id="L129">            difficulty = GameDifficulty.Hard;</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">        else if (Objects.equals(selected, &quot;Hard&quot;)) {</span>
+<span class="fc" id="L127">            difficulty = GameDifficulty.Hard;</span>
         }
         else{
-<span class="fc" id="L132">            difficulty = GameDifficulty.Regular;</span>
+<span class="fc" id="L130">            difficulty = GameDifficulty.Regular;</span>
 
         }
-<span class="fc" id="L135">    }</span>
+<span class="fc" id="L133">    }</span>
     /**
     Added for assessment 2 so that the game doesn't start until after the difficulty has been chosen by the player
      */
     public void StartGame(){
-<span class="nc" id="L140">        PhysicsManager.Initialize();</span>
-<span class="nc" id="L141">        GameManager.Initialize(difficulty);</span>
-<span class="nc" id="L142">        game = new GameScreen(this, id_map);</span>
-<span class="nc" id="L143">        setScreen(game);</span>
-<span class="nc" id="L144">    }</span>
+<span class="nc" id="L138">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L139">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L140">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L141">        setScreen(game);</span>
+<span class="nc" id="L142">    }</span>
 
     /**
      * New for assessment 2
      * Loads the game from the saved data
      */
     public void LoadGame(){
-<span class="nc" id="L151">        PhysicsManager.Initialize();</span>
-<span class="nc" id="L152">        SaveManager.LoadGame();</span>
+<span class="nc" id="L149">        PhysicsManager.Initialize();</span>
+<span class="nc" id="L150">        SaveManager.LoadGame();</span>
 
-<span class="nc" id="L154">        GameManager.Initialize(difficulty);</span>
-<span class="nc" id="L155">        game = new GameScreen(this, id_map);</span>
+<span class="nc" id="L152">        GameManager.Initialize(difficulty);</span>
+<span class="nc" id="L153">        game = new GameScreen(this, id_map);</span>
 
-<span class="nc" id="L157">        SaveManager.SpawnGame();</span>
+<span class="nc" id="L155">        SaveManager.SpawnGame();</span>
 
-<span class="nc" id="L159">        setScreen(game);</span>
-<span class="nc" id="L160">    }</span>
+<span class="nc" id="L157">        setScreen(game);</span>
+<span class="nc" id="L158">    }</span>
  }
 
 
