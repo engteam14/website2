@@ -51,7 +51,6 @@
 | UR_HOSTILE_SHIP_ENCOUNTER | The user shall encounter hostile NPC ships | Low |
 | UR_FIRE_WEAPONS | The user shall be able to fire weapons from the ship | High |
 | UR_BULLET_DODGE | The user shall be able to maneuver their ship to dodge fired munitions | Medium |
-| UR_FRIENDLY_BUILDING_INTERACT | The user shall interact with friendly buildings | Low |
 | UR_HOSTILE_BUILDING_COMBAT | The user shall engage in combat with hostile buildings | Medium |
 | UR_HOSTILE_COLLEGE_CAPTURE | The user shall capture other colleges via combat | High |
 | UR_EARN_PLUNDER | The user shall earn plunder | High |
@@ -74,20 +73,21 @@
 | ID | Description | User requirement | Risks | Priority |
 | --- | --- | --- | --- | --- |
 | FR_MENU_KB_INPUT | The game shall accept keyboard input for menu navigation | UR_PLATFORM |  | Low |
-| FR_VIEWPORT_SCALING | The game shall render on a 13"-27" monitor | UR_PLATFORM | R6 | High |
-| FR_MIN_FPS | The game shall render at a minimum of 30 FPS | UR_PLATFORM | R7, R3 | High |
+| FR_VIEWPORT_SCALING | The game shall render on a 13"-27" monitor | UR_PLATFORM | R5 | High |
+| FR_MIN_FPS | The game shall render at a minimum of 30 FPS | UR_PLATFORM | R6 | High |
 | FR_CROSS_PLATFORM_WIN | The game shall be playable on Windows | UR_PLATFORM |  | High |
-| FR_CROSS_PLATFORM_MAC | The game shall be playable on Mac OS | UR_PLATFORM | R9, R10 | Low |
+| FR_CROSS_PLATFORM_MAC | The game shall be playable on Mac OS | UR_PLATFORM |  | Low |
 | FR_CROSS_PLATFORM_GNU_LINUX | The game shall be playable on GNU/Linux | UR_PLATFORM |  | Low |
 | FR_GAME_RESET | The game shall allow restarting play from an initial configuration | UR_GAME_INIT |  | High |
 | FR_SHIP_KB_INPUT | The game shall accept keyboard input for ship control | UR_SHIP_CONTROL |  | High |
 | FR_COLLEGE_ENTITY_TRACKING | The game shall keep track of ships and buildings for a minimum of 3 distinct factions | UR_COMPETING_COLLEGES |  | High |
 | FR_FRIENDLY_AI | The game shall control the actions of friendly ships | UR_FRIENDLY_SHIP_ENCOUNTER |  | Low |
-| FR_HOSTILE_AI | The game shall control the actions of enemy ships | UR_HOSTILE_SHIP_ENCOUNTER | R1 | Medium |
+| FR_HOSTILE_AI | The game shall control the actions of enemy ships | UR_HOSTILE_SHIP_ENCOUNTER | R1, R3 | Medium |
 | FR_PLAYER_FIRE | The game shall enable the user to fire ship weapons | UR_FIRE_WEAPONS |  | High |
+| FR_PLAYER_HEALTH | The game shall mantain the state of the users' health points | UR_SHIP_COMBAT | | Medium |
 | FR_PLAYER_AMMO | The game shall maintain the state of the user's ship armament and ammunition | UR_FIRE_WEAPONS |  | High |
 | FR_BULLET_TRAVEL | The game shall render the travel of a ship's fired munition | UR_BULLET_DODGE | R2 | High |
-| FR_PLUNDER_TRACKING | The game shall keep track of a player's plunder | UR_EARN_PLUNDER |  | High |
+| FR_PLUNDER_TRACKING | The game shall keep track of a player's plunder | UR_EARN_PLUNDER, UR_SPEND_PLUNDER |  | High |
 | FR_PLUNDER_UPDATE | The game shall reward plunder on success in quests and encounters | UR_EARN_PLUNDER |  | High |
 | FR_XP_UPDATE | The game shall give XP with time survived and obstacles navigated | UR_EARN_XP |  | Medium |
 | FR_XP_TRACKING | The game shall keep track of a player's XP | UR_EARN_XP |  | High |
@@ -95,9 +95,21 @@
 | FR_QUEST_TRACKING | The game shall maintain the state of the user's progress through multiple objectives | UR_QUEST_PROGRESS |  | High |
 | FR_QUEST_RANDOMISE | The game shall randomise user's objectives between different playthroughs | UR_QUEST_PROGRESS |  | Medium |
 | FR_QUEST_OBJECTIVE | The game shall associate quest objectives with game entities | UR_QUEST_PROGRESS |  | Medium |
-| FR_BOSS_UNLOCK_TRACKING | The game shall monitor quest progression status prior to unlocking final objective | UR_GAME_WIN |  | High |
 | FR_PLAYER_DEFEAT | The game shall display game stats upon player defeat | UR_GAME_LOSE |  | Low |
 | FR_SCENARIO_FAIL | The game shall display game stats upon game over scenario completion | UR_GAME_LOSE |  | Low |
+|FR_PLAYER_DAMAGE| The game shall track damage that the player takes and adjust the displayed health accordingly | UR_HOSTILE_BUILDING_COMBAT UR_SHIP_COMBAT | | Medium |
+| FR_ENEMY_SHIP_DAMAGE | The game shall track damage dealt to enemy ships | UR_SHIP_COMBAT | | Medium |
+| FR_OBSTACLE_SHOW | The game shall render obstacles for the player to encounter | UR_OBSTACLE_ENCOUNTER | | Medium |
+| FR_OBSTACLE_HIT | The game shall deal damage to the user when the user hits an obstacle | UR_OBSTACLE_ENCOUNTER | | Medium |
+| FR_WEATHER_SHOW | The game shall render weather events for the player to encounter | UR_WEATHER_ENCOUNTER | | Medium |
+| FR_WEATHER_HIT | The game shall deal damage to the user when the user enters a weather event | UR_WEATHER_ENCOUNTER | | Medium |
+| FR_PLUNDER_SPEND | The game shall allow users to spend plunder in exchange for benefits to the player | UR_SPEND_PLUNDER | | Low |    
+| FR_POWER_UP | The game shall boost certain elements of the gameplay such as speed, weapons and damage when the user collects a power-up| UR_POWER_UP | | Medium |
+| FR_DFCLTY_CHANGE | The game shall allow users to change the difficulty setting before the game starts| UR_DFCLTY_LVL | | Low |
+| FR_DFCLTY_DFRNCE | The game shall adjust elements of the gameplay (speed of enemies, health, damage dealing etc.) according to the difficulty level | UR_DFCLTY_LVL  Low |
+| FR_SAVE_GAME_STATE | The game shall save the state of the game at any point when the user clicks 'save' | UR_GAME_SAVE | R9 | Medium |
+| FR_LOAD_GAME | The game shall be able to load the game from the same point at which it was saved | UR_GAME_SAVE | R9 | Medium
+
 
 
 
