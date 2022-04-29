@@ -28,12 +28,12 @@ Conversion notes:
 
 ### **<span style="text-decoration:underline;">Github</span>**
 
-
-Firstly for each section of documentation (i.e. Risk Assessment, Requirements etc.) we created an independent branch. We did this to allow each change to the core documentation to be approved by one or more other member of the team. This was done for a number of reasons, firstly, it allows every change to be reviewed before being commited to the 'main' versions of the core documentation. Furthermore, this allowed us to create a template for pull requests which allowed the person making the changes to specify which issue number is resolved, a description of the changes made and the reasons for making those changes. The ability to specify the issue number relevant to made changes proved to be extremely useful as it meant not only were the specified issues automatically resolved but it also allowed us to easily keep track of ongoing issues. The unique numbers assigned to each change made also allowed for easy referencing to specific changes in our documentation.
+Upon starting the project, we read through the breif and added an issue to our project specifying each section of the documentation that needs to be looked at/changed. For each section of documentation (i.e. Risk Assessment, Requirements etc.) we created an independent branch. We did this to allow each change to the core documentation to be approved by one or more other member of the team before being pulled to main. This means that mistakes in grammar or content is more likely to be spotted if multiple team members read through changes.
+Furthermore, this allowed us to create a template for pull requests which allowed the person making the changes to specify which issue number is resolved, a description of the changes made and the reasons for making those changes. The ability to specify the issue number relevant to made changes proved to be extremely useful as it meant not only were the specified issues automatically resolved but it also allowed us to easily keep track of ongoing issues. The unique numbers assigned to each change made also allowed for easy referencing to specific changes in our documentation. 
+Where possible, a single team member did all changes for a single deliverable and then went on to complete the relevant section of the change report so that the information provided in the change report was as accurate as possible.
 
 ### **<span style="text-decoration:underline;">Implementation </span>**
 
-For implementation, we used different comments such as 'start change for assessment 2', 'end of change for assessment 2' and in anything new 'new for assessment 2'. Furthermore, we used JavaString to specify new sections of code that were relevant to the new reuquirements of the project. This allowed a further level of clarity between the documentation and implementation side of our requirements.
 # Requirements
 
 **<span style="text-decoration:underline;">8948b74: Removed Unnecessary requirements</span>**
