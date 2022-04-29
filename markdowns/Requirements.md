@@ -51,7 +51,6 @@
 | UR_HOSTILE_SHIP_ENCOUNTER | The user shall encounter hostile NPC ships | Low |
 | UR_FIRE_WEAPONS | The user shall be able to fire weapons from the ship | High |
 | UR_BULLET_DODGE | The user shall be able to maneuver their ship to dodge fired munitions | Medium |
-| UR_FRIENDLY_BUILDING_INTERACT | The user shall interact with friendly buildings | Low |
 | UR_HOSTILE_BUILDING_COMBAT | The user shall engage in combat with hostile buildings | Medium |
 | UR_HOSTILE_COLLEGE_CAPTURE | The user shall capture other colleges via combat | High |
 | UR_EARN_PLUNDER | The user shall earn plunder | High |
