@@ -34,6 +34,8 @@ Where possible, a single team member did all changes for a single deliverable an
 
 ### **<span style="text-decoration:underline;">Implementation </span>**
 
+For change management for our implementation, we added each change that needed to be made along with each new feature needed as issues in our repository linked to our project board. When making changes, we wrapped each block of change in comments like  `//start of change for assessment 2` and `//end of change for assessment 2` and single line changes just having the comment `//change for assessment 2'. We also added `//added for assessment 2` to the JavaDoc for each new method. This means that to view all changes in our codebase, one can simply search for `assessment 2`. Similar to documentation, our code repository is set up so that pull requests to main must be reviewed by another team member before being allowed to merge. Again this means that mistakes and issues sich as forgetting to comment code are more likely to be spotted. Further more the Continuous Integration running tests on Pull Requests helps with change management as it ensure that the changes made havent effected other parts of the game. 
+
 # Requirements
 
 **<span style="text-decoration:underline;">8948b74: Removed Unnecessary requirements</span>**
