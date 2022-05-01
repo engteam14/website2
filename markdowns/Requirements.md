@@ -1,5 +1,6 @@
 ## Requirements
 
+Requirements documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Req1.pdf
 
 ## A) Elicitation of requirements
 
@@ -57,14 +58,14 @@
 | UR_EARN_XP | The user shall earn XP | High |
 | UR_QUEST_PROGRESS | The user shall progress through a series of quests | Medium |
 | UR_GAME_WIN | The user shall win the game through achieving an ultimate objective unlocked by the fulfilment of preceding requirements/quests | Medium |
-| **UR_GAME_LOSE** | The user shall lose the game through being defeated in combat | High |
-| **UR_SHIP_COMBAT** | The user should be able to engage in combat with other ships | High |
-| **UR_OBSTACLE_ENCOUNTER** | The user may encounter obstacles while sailing in game | High |
-| **UR_WEATHER_ENCOUNTER** | The user may encounter bad weather while sailing | High |
-| **UR_SPEND_PLUNDER** | The user should be able spend the plunder earned | High |
-| **UR_POWER_UP** | The user should be able to obtain power ups through either the shop or at random locations on the map. | High |
-| **UR_DFCLTY_LVL** | The user should be able to choose from 3 difficulty levels (e.g. easy, normal, hard) | High |
-| **UR_GAME_SAVE** | The user should be able to save the state of the game at any time and be able to resume it at a later point. | High |
+| UR_GAME_LOSE | The user shall lose the game through being defeated in combat | High |
+| UR_SHIP_COMBAT | The user should be able to engage in combat with other ships | High |
+| UR_OBSTACLE_ENCOUNTER | The user may encounter obstacles while sailing in game | High |
+| UR_WEATHER_ENCOUNTER | The user may encounter bad weather while sailing | High |
+| UR_SPEND_PLUNDER | The user should be able spend the plunder earned | High |
+| UR_POWER_UP | The user should be able to obtain power ups through either the shop or at random locations on the map. | High |
+| UR_DFCLTY_LVL | The user should be able to choose from 3 difficulty levels (e.g. easy, normal, hard) | High |
+| UR_GAME_SAVE | The user should be able to save the state of the game at any time and be able to resume it at a later point. | High |
 
 
 
