@@ -1,5 +1,3 @@
-Method Selection and Planning documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Plan1.pdf
-
 ## Part A
 
 ### Software Engineering Methods
@@ -91,7 +89,7 @@ Our first step in planning this assessment was to create a "road-map" for the en
 
 We made this road-map by referring to both, the Product Brief and the Team Assessment documents, highlighting all the main tasks which had to be completed in order to successfully complete and submit this project on time. Although the submission deadline was the 4th of May, we decided to set an early deadline for ourselves so that we could maximize efficiency and will have a few "buffer" days if in case things go wrong (e.g., a member falling ill and unable to do their assigned tasks so someone else taking over). Once we had an initial road-map, we then decided to edit this road-map every week during our Review Sessions in order to keep track of our progress, which would then help us to make any neccessary changes to our plan, hence clearly showing the evolution of our plan throughout the project. Below you can find our final road-map as shown in Fig.2 and the intermediate road-map gantt charts can be found on our [website](https://engteam14.github.io/website2/roadmap.html). 
 
-![Fig.2](https://github.com/engteam14/documentation2/blob/Method-Selection-and-Planning/road-map2-Review11.png/?raw=true)
+![Fig.2](https://github.com/engteam14/documentation2/blob/Method-Selection-and-Planning/road-map2-review11.png/?raw=true)
 *Fig.2: Final Roadmap*
 
 

@@ -1,5 +1,6 @@
 ## Requirements
 
+Requirements documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Req1.pdf
 
 ## A) Elicitation of requirements
 
