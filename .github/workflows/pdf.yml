@@ -19,7 +19,7 @@ jobs:
           input_dir: markdowns
           output_dir: pdfs
           build_html: false
-          theme: markdowns/md-pdf-theme.css
+          theme: md-pdf-theme.css
           
       - uses: EndBug/add-and-commit@v9
         with:
