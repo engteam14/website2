@@ -13,6 +13,8 @@ html * {
 p {
   margin-top: 10px;
   margin-bottom: 0px;
+  /* pixels = points + 4, e.g. 12pt -> 16px */
+  font-size: 18px;
 }
 
 /* **Bold text** */
