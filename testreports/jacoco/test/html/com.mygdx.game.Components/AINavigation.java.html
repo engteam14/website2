@@ -64,19 +64,19 @@ public class AINavigation extends Component implements Steerable&lt;Vector2&gt; 
      */
     @Override
     public void update() {
-<span class="nc" id="L67">        super.update();</span>
-<span class="nc" id="L68">        getComps();</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (behavior != null) {</span>
-<span class="nc" id="L70">            behavior.calculateSteering(steeringOutput);</span>
-<span class="nc" id="L71">            applySteering();</span>
+<span class="fc" id="L67">        super.update();</span>
+<span class="fc" id="L68">        getComps();</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (behavior != null) {</span>
+<span class="fc" id="L70">            behavior.calculateSteering(steeringOutput);</span>
+<span class="fc" id="L71">            applySteering();</span>
         } else {
 <span class="nc" id="L73">            stop();</span>
         }
 
-<span class="nc" id="L76">        Vector2 vel = rb.getVelocity().cpy();</span>
-<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (vel.x == 0 &amp;&amp; vel.y == 0) {</span>
-<span class="nc" id="L78">            ((Ship) parent).setShipDirection(&quot;-up&quot;);</span>
-<span class="nc" id="L79">            return;</span>
+<span class="fc" id="L76">        Vector2 vel = rb.getVelocity().cpy();</span>
+<span class="pc bpc" id="L77" title="2 of 4 branches missed.">        if (vel.x == 0 &amp;&amp; vel.y == 0) {</span>
+<span class="fc" id="L78">            ((Ship) parent).setShipDirection(&quot;-up&quot;);</span>
+<span class="fc" id="L79">            return;</span>
         }
 <span class="nc" id="L81">        vel.nor();</span>
 <span class="nc" id="L82">        Utilities.round(vel);</span>
@@ -90,21 +90,21 @@ public class AINavigation extends Component implements Steerable&lt;Vector2&gt; 
      * Calculates the forces required by the steering behaviour (no rotation)
      */
     private void applySteering() {
-<span class="nc" id="L93">        boolean anyAcc = false;</span>
-<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (!steeringOutput.linear.isZero()) {</span>
-<span class="nc" id="L95">            Vector2 f = steeringOutput.linear;</span>
-<span class="nc" id="L96">            rb.applyForce(f);</span>
-<span class="nc" id="L97">            anyAcc = true;</span>
+<span class="fc" id="L93">        boolean anyAcc = false;</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">        if (!steeringOutput.linear.isZero()) {</span>
+<span class="fc" id="L95">            Vector2 f = steeringOutput.linear;</span>
+<span class="fc" id="L96">            rb.applyForce(f);</span>
+<span class="fc" id="L97">            anyAcc = true;</span>
         }
 
-<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (anyAcc) {</span>
-<span class="nc" id="L101">            Vector2 vel = rb.getVelocity();</span>
-<span class="nc" id="L102">            float speed = vel.len2();</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (speed &gt; attributes.maxSpd * attributes.maxSpd) {</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">        if (anyAcc) {</span>
+<span class="fc" id="L101">            Vector2 vel = rb.getVelocity();</span>
+<span class="fc" id="L102">            float speed = vel.len2();</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">            if (speed &gt; attributes.maxSpd * attributes.maxSpd) {</span>
 <span class="nc" id="L104">                rb.setVelocity(vel.scl(attributes.maxSpd / (float) Math.sqrt(speed)));</span>
             }
         }
-<span class="nc" id="L107">    }</span>
+<span class="fc" id="L107">    }</span>
 
     /**
      * Stops all motion
@@ -119,8 +119,8 @@ public class AINavigation extends Component implements Steerable&lt;Vector2&gt; 
      */
     @Override
     public Vector2 getLinearVelocity() {
-<span class="nc" id="L122">        getComps();</span>
-<span class="nc" id="L123">        return rb.getVelocity();</span>
+<span class="fc" id="L122">        getComps();</span>
+<span class="fc" id="L123">        return rb.getVelocity();</span>
     }
 
     /**
@@ -175,7 +175,7 @@ public class AINavigation extends Component implements Steerable&lt;Vector2&gt; 
      */
     @Override
     public float getMaxLinearSpeed() {
-<span class="nc" id="L178">        return attributes.maxSpd;</span>
+<span class="fc" id="L178">        return attributes.maxSpd;</span>
     }
 
     /**
@@ -191,7 +191,7 @@ public class AINavigation extends Component implements Steerable&lt;Vector2&gt; 
      */
     @Override
     public float getMaxLinearAcceleration() {
-<span class="nc" id="L194">        return attributes.maxAcc;</span>
+<span class="fc" id="L194">        return attributes.maxAcc;</span>
     }
 
     /**
@@ -239,8 +239,8 @@ public class AINavigation extends Component implements Steerable&lt;Vector2&gt; 
      */
     @Override
     public Vector2 getPosition() {
-<span class="nc" id="L242">        getComps();</span>
-<span class="nc" id="L243">        return t.getPosition();</span>
+<span class="fc" id="L242">        getComps();</span>
+<span class="fc" id="L243">        return t.getPosition();</span>
     }
 
     /**
