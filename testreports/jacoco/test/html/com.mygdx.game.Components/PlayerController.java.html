@@ -4,9 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.Entitys.Player;
 import com.mygdx.game.Entitys.Ship;
 import com.mygdx.game.Managers.RenderingManager;
+import com.mygdx.game.UI.GameScreen;
+
+import java.util.ArrayList;
 
 import static com.mygdx.utils.Constants.HALF_DIMENSIONS;
 
@@ -16,86 +20,103 @@ import static com.mygdx.utils.Constants.HALF_DIMENSIONS;
 public class PlayerController extends Component {
     private Player player;
     private float speed;
+    private ArrayList&lt;TextButton&gt; buttons; //Added for Assessment 2, stores list of Shop UI buttons
 
     /**
      * Creates the base PlayerController Component, setting up its initial values
      */
     public PlayerController() {
-<span class="fc" id="L24">        super();</span>
-<span class="fc" id="L25">        type = ComponentType.PlayerController;</span>
-<span class="fc" id="L26">        setRequirements(ComponentType.RigidBody);</span>
-<span class="fc" id="L27">    }</span>
+<span class="fc" id="L29">        super();</span>
+<span class="fc" id="L30">        type = ComponentType.PlayerController;</span>
+<span class="fc" id="L31">        setRequirements(ComponentType.RigidBody);</span>
+<span class="fc" id="L32">    }</span>
 
     /**
      * @param player the parent
      * @param speed  speed
      */
     public PlayerController(Player player, float speed) {
-<span class="fc" id="L34">        this();</span>
-<span class="fc" id="L35">        this.player = player;</span>
-<span class="fc" id="L36">        this.speed = speed;</span>
-<span class="fc" id="L37">    }</span>
+<span class="fc" id="L39">        this();</span>
+<span class="fc" id="L40">        this.player = player;</span>
+<span class="fc" id="L41">        this.speed = speed;</span>
+<span class="fc" id="L42">    }</span>
 
     /**
+     * Amended for Assessment 2, added check for Shop UI elements being pressed before shooting
      * Reads keyboard and mouse inputs, moving and shooting as required.
      */
     @Override
     public void update() {
-<span class="nc" id="L44">        super.update();</span>
-<span class="nc" id="L45">        final float s = speed;</span>
+<span class="nc" id="L50">        super.update();</span>
+<span class="nc" id="L51">        final float s = speed;</span>
 
-<span class="nc" id="L47">        Vector2 dir = getDirFromWASDInput();</span>
-<span class="nc" id="L48">        ((Ship) parent).setShipDirection(dir);</span>
-<span class="nc" id="L49">        dir.scl(s);</span>
+<span class="nc" id="L53">        Vector2 dir = getDirFromWASDInput();</span>
+<span class="nc" id="L54">        ((Ship) parent).setShipDirection(dir);</span>
+<span class="nc" id="L55">        dir.scl(s);</span>
 
-<span class="nc" id="L51">        RigidBody rb = parent.getComponent(RigidBody.class);</span>
-<span class="nc" id="L52">        rb.setVelocity(dir);</span>
+<span class="nc" id="L57">        RigidBody rb = parent.getComponent(RigidBody.class);</span>
+<span class="nc" id="L58">        rb.setVelocity(dir);</span>
 
-<span class="nc" id="L54">        RenderingManager.getCamera().position.set(new Vector3(player.getPosition(), 0.0f));</span>
-<span class="nc" id="L55">        RenderingManager.getCamera().update();</span>
+<span class="nc" id="L60">        RenderingManager.getCamera().position.set(new Vector3(player.getPosition(), 0.0f));</span>
+<span class="nc" id="L61">        RenderingManager.getCamera().update();</span>
 
-<span class="nc bnc" id="L57" title="All 2 branches missed.">        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {</span>
-<span class="nc" id="L58">            int x = Gdx.input.getX();</span>
-<span class="nc" id="L59">            int y = Gdx.input.getY();</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if(buttons != null){</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">                for(TextButton button : buttons){</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">                    if(button.isPressed()){</span>
+<span class="nc" id="L67">                        return;</span>
+                    }
+<span class="nc" id="L69">                }</span>
+            }
+
+<span class="nc" id="L72">            int x = Gdx.input.getX();</span>
+<span class="nc" id="L73">            int y = Gdx.input.getY();</span>
 
             // in range 0 to VIEWPORT 0, 0 bottom left
-<span class="nc" id="L62">            Vector2 delta = new Vector2(x, y);</span>
-<span class="nc" id="L63">            delta.sub(HALF_DIMENSIONS); // center 0, 0</span>
-<span class="nc" id="L64">            delta.nor();</span>
-<span class="nc" id="L65">            delta.y *= -1;</span>
+<span class="nc" id="L76">            Vector2 delta = new Vector2(x, y);</span>
+<span class="nc" id="L77">            delta.sub(HALF_DIMENSIONS); // center 0, 0</span>
+<span class="nc" id="L78">            delta.nor();</span>
+<span class="nc" id="L79">            delta.y *= -1;</span>
             // unit dir to fire
-<span class="nc" id="L67">            ((Ship) parent).shoot(delta);</span>
+<span class="nc" id="L81">            ((Ship) parent).shoot(delta);</span>
         }
 
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {</span>
             // unit dir to fire
-<span class="nc" id="L72">            ((Ship) parent).shoot();</span>
+<span class="nc" id="L86">            ((Ship) parent).shoot();</span>
         }
-<span class="nc" id="L74">    }</span>
+<span class="nc" id="L88">    }</span>
 
     /**
      * Converts WASD or arrows to direction of travel
      * @return -1 &lt;= (x, y) &lt;= 1
      */
     private Vector2 getDirFromWASDInput() {
-<span class="nc" id="L81">        Vector2 dir = new Vector2(0, 0);</span>
+<span class="nc" id="L95">        Vector2 dir = new Vector2(0, 0);</span>
 
-<span class="nc bnc" id="L83" title="All 4 branches missed.">        if (Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)) {</span>
-<span class="nc" id="L84">            dir.y += 1;</span>
+<span class="nc bnc" id="L97" title="All 4 branches missed.">        if (Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)) {</span>
+<span class="nc" id="L98">            dir.y += 1;</span>
         }
 
-<span class="nc bnc" id="L87" title="All 4 branches missed.">        if (Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN)) {</span>
-<span class="nc" id="L88">            dir.y -= 1;</span>
+<span class="nc bnc" id="L101" title="All 4 branches missed.">        if (Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN)) {</span>
+<span class="nc" id="L102">            dir.y -= 1;</span>
         }
 
-<span class="nc bnc" id="L91" title="All 4 branches missed.">        if (Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {</span>
-<span class="nc" id="L92">            dir.x -= 1;</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">        if (Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {</span>
+<span class="nc" id="L106">            dir.x -= 1;</span>
         }
 
-<span class="nc bnc" id="L95" title="All 4 branches missed.">        if (Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {</span>
-<span class="nc" id="L96">            dir.x += 1;</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">        if (Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {</span>
+<span class="nc" id="L110">            dir.x += 1;</span>
         }
-<span class="nc" id="L98">        return dir;</span>
+<span class="nc" id="L112">        return dir;</span>
     }
+
+    /**
+     * @param buttons the list of ShopUI buttons
+     */
+    public void setButtons(ArrayList&lt;TextButton&gt; buttons) {
+<span class="nc" id="L119">        this.buttons = buttons;</span>
+<span class="nc" id="L120">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
