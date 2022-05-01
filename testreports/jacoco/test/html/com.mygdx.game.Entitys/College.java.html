@@ -162,20 +162,20 @@ public class College extends Entity {
      * @return displacement in form [magnitude,direction] between parsed ship and this college
      */
     public ArrayList&lt;Vector2&gt; displacementFromShip(Ship ship) {
-<span class="nc" id="L165">        Vector2 shipLocale = ship.getPosition();</span>
-<span class="nc" id="L166">        Vector2 thisPosition = getPosition();</span>
+<span class="fc" id="L165">        Vector2 shipLocale = ship.getPosition();</span>
+<span class="fc" id="L166">        Vector2 thisPosition = getPosition();</span>
 
-<span class="nc" id="L168">        float xDiff = shipLocale.x-thisPosition.x;</span>
-<span class="nc" id="L169">        float yDiff = shipLocale.y-thisPosition.y;</span>
+<span class="fc" id="L168">        float xDiff = shipLocale.x-thisPosition.x;</span>
+<span class="fc" id="L169">        float yDiff = shipLocale.y-thisPosition.y;</span>
 
-<span class="nc" id="L171">        Vector2 magnitude = new Vector2(Math.abs(xDiff),Math.abs(yDiff));</span>
-<span class="nc" id="L172">        Vector2 direction = new Vector2(xDiff,yDiff);</span>
+<span class="fc" id="L171">        Vector2 magnitude = new Vector2(Math.abs(xDiff),Math.abs(yDiff));</span>
+<span class="fc" id="L172">        Vector2 direction = new Vector2(xDiff,yDiff);</span>
 
-<span class="nc" id="L174">        ArrayList&lt;Vector2&gt; displacement = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L175">        displacement.add(magnitude);</span>
-<span class="nc" id="L176">        displacement.add(direction);</span>
+<span class="fc" id="L174">        ArrayList&lt;Vector2&gt; displacement = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L175">        displacement.add(magnitude);</span>
+<span class="fc" id="L176">        displacement.add(direction);</span>
 
-<span class="nc" id="L178">        return displacement;</span>
+<span class="fc" id="L178">        return displacement;</span>
     }
 
     /**
