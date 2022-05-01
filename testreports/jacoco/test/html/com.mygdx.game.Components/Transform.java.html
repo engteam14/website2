@@ -32,8 +32,8 @@ public class Transform extends Component implements Location&lt;Vector2&gt; {
      * @param rb  true to pass on the position to the parent's RigidBody
      */
     public void setPosition(Vector2 pos, boolean rb) {
-<span class="nc" id="L35">        setPosition(pos.x, pos.y, rb);</span>
-<span class="nc" id="L36">    }</span>
+<span class="fc" id="L35">        setPosition(pos.x, pos.y, rb);</span>
+<span class="fc" id="L36">    }</span>
 
     /**
      * Set position associated with the Transform component.
@@ -43,14 +43,14 @@ public class Transform extends Component implements Location&lt;Vector2&gt; {
      * @param rb_ true to pass on the position to the parent's RigidBody
      */
     public void setPosition(float x, float y, boolean rb_) {
-<span class="nc" id="L46">        position.set(x, y);</span>
-<span class="nc bnc" id="L47" title="All 4 branches missed.">        if (parent != null &amp;&amp; rb_) {</span>
+<span class="fc" id="L46">        position.set(x, y);</span>
+<span class="pc bpc" id="L47" title="2 of 4 branches missed.">        if (parent != null &amp;&amp; rb_) {</span>
 <span class="nc" id="L48">            RigidBody rb = parent.getComponent(RigidBody.class);</span>
 <span class="nc bnc" id="L49" title="All 2 branches missed.">            if (rb != null) {</span>
 <span class="nc" id="L50">                rb.setPosition(position);</span>
             }
         }
-<span class="nc" id="L53">    }</span>
+<span class="fc" id="L53">    }</span>
 
     /**
      * Set position associated with the Transform component.

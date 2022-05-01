@@ -154,14 +154,14 @@ public class RigidBody extends Component {
      */
     @Override
     public void update() {
-<span class="nc" id="L157">        super.update();</span>
+<span class="fc" id="L157">        super.update();</span>
         // parent.getComponent(Transform.class).setPosition(PhysicsManager.getBody(bodyId).getPosition());
-<span class="nc" id="L159">        Transform t = parent.getComponent(Transform.class);</span>
-<span class="nc" id="L160">        Body b = getBody();</span>
-<span class="nc" id="L161">        Vector2 p = b.getPosition().cpy();</span>
+<span class="fc" id="L159">        Transform t = parent.getComponent(Transform.class);</span>
+<span class="fc" id="L160">        Body b = getBody();</span>
+<span class="fc" id="L161">        Vector2 p = b.getPosition().cpy();</span>
         //p.sub(halfDim); //Removed in Assessment 2
-<span class="nc" id="L163">        t.setPosition(p, false);</span>
-<span class="nc" id="L164">    }</span>
+<span class="fc" id="L163">        t.setPosition(p, false);</span>
+<span class="fc" id="L164">    }</span>
 
     /**
      * @return the Linear Velocity of this object
