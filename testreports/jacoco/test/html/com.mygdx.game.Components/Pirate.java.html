@@ -209,7 +209,7 @@ public class Pirate extends Component {
         // within attack range
 <span class="fc bfc" id="L210" title="All 2 branches covered.">        if (targets.peek() != null) {</span>
 <span class="pc bpc" id="L211" title="1 of 2 branches missed.">            final float dst = pos.dst(targets.peek() != null ? targets.peek().getPosition() : null); // Assessment 2 change: Fixed to not error on null</span>
-<span class="pc bpc" id="L212" title="1 of 2 branches missed.">            return dst &lt; Ship.getAttackRange();</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">            return dst &lt; Ship.getAttackRange();</span>
         }else{
 <span class="fc" id="L214">            return false;</span>
         }
@@ -223,11 +223,11 @@ public class Pirate extends Component {
 <span class="fc" id="L223">        final Ship p = (Ship) parent;</span>
 <span class="fc" id="L224">        final Vector2 pos = p.getPosition();</span>
         // out of attack range but in aggro range
-<span class="pc bpc" id="L226" title="1 of 2 branches missed.">        if (targets.peek() != null) {</span>
+<span class="fc bfc" id="L226" title="All 2 branches covered.">        if (targets.peek() != null) {</span>
 <span class="pc bpc" id="L227" title="1 of 2 branches missed.">            final float dst = pos.dst(targets.peek() != null ? targets.peek().getPosition() : null);</span>
-<span class="pc bpc" id="L228" title="1 of 2 branches missed.">            return dst &gt;= Ship.getAttackRange();</span>
+<span class="fc bfc" id="L228" title="All 2 branches covered.">            return dst &gt;= Ship.getAttackRange();</span>
         }else{
-<span class="nc" id="L230">            return false;</span>
+<span class="fc" id="L230">            return false;</span>
         }
     }
 
@@ -235,7 +235,7 @@ public class Pirate extends Component {
      * @return the current target value attached to this pirate
      */
     public Ship getTarget() {
-<span class="nc" id="L238">        return targets.peek();</span>
+<span class="fc" id="L238">        return targets.peek();</span>
     }
 
     /**
@@ -274,12 +274,12 @@ public class Pirate extends Component {
 <span class="fc" id="L274">        return targets;</span>
     }
 
+    public void removeTarget() {
+<span class="fc" id="L278">            targets.pop();</span>
+<span class="fc" id="L279">        }</span>
+
     //public int targetCount() {
     //        return targets.size();
-    //    }
-
-    //public void removeTarget() {
-    //        targets.pop();
     //    }
 
     //public void reload(int ammo) {

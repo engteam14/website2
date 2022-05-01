@@ -17,8 +17,8 @@ import com.mygdx.game.Entitys.Ship;
 <span class="fc" id="L17">    WANDER() {</span>
         @Override
         public void enter(NPCShip e) {
-<span class="nc" id="L20">            e.stopMovement();</span>
-<span class="nc" id="L21">        }</span>
+<span class="fc" id="L20">            e.stopMovement();</span>
+<span class="fc" id="L21">        }</span>
 
         @Override
         public void update(NPCShip e) {
@@ -32,14 +32,14 @@ import com.mygdx.game.Entitys.Ship;
 <span class="fc" id="L32">    PURSUE() {</span>
         @Override
         public void enter(NPCShip e) {
-<span class="nc" id="L35">            e.stopMovement();</span>
-<span class="nc" id="L36">            e.followTarget();</span>
-<span class="nc" id="L37">        }</span>
+<span class="fc" id="L35">            e.stopMovement();</span>
+<span class="fc" id="L36">            e.followTarget();</span>
+<span class="fc" id="L37">        }</span>
 
         @Override
         public void update(NPCShip e) {
-<span class="nc" id="L41">            super.update(e);</span>
-<span class="nc" id="L42">        }</span>
+<span class="fc" id="L41">            super.update(e);</span>
+<span class="fc" id="L42">        }</span>
     },
     /**
      * Attempts to kill the enemy
@@ -52,10 +52,10 @@ import com.mygdx.game.Entitys.Ship;
 
         @Override
         public void update(NPCShip e) {
-<span class="nc" id="L55">            super.update(e);</span>
-<span class="nc" id="L56">            Ship ship = e.getComponent(Pirate.class).getTarget();</span>
-<span class="nc" id="L57">            e.attackShip(ship);</span>
-<span class="nc" id="L58">        }</span>
+<span class="fc" id="L55">            super.update(e);</span>
+<span class="fc" id="L56">            Ship ship = e.getComponent(Pirate.class).getTarget();</span>
+<span class="fc" id="L57">            e.attackShip(ship);</span>
+<span class="fc" id="L58">        }</span>
     };
 
     /**
@@ -66,32 +66,32 @@ import com.mygdx.game.Entitys.Ship;
     public void update(NPCShip e) {
 <span class="fc" id="L67">        StateMachine&lt;NPCShip, EnemyState&gt; m = e.stateMachine;</span>
 <span class="fc" id="L68">        Pirate p = e.getComponent(Pirate.class);</span>
-<span class="pc bpc" id="L69" title="3 of 4 branches missed.">        switch (m.getCurrentState()) {</span>
+<span class="pc bpc" id="L69" title="1 of 4 branches missed.">        switch (m.getCurrentState()) {</span>
             case WANDER:
-<span class="pc bpc" id="L71" title="1 of 2 branches missed.">                if (p.isAggro()) {</span>
-<span class="nc" id="L72">                    m.changeState(PURSUE);</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">                if (p.isAggro()) {</span>
+<span class="fc" id="L72">                    m.changeState(PURSUE);</span>
 <span class="pc bpc" id="L73" title="1 of 2 branches missed.">                } else if (p.canAttack()) {</span>
 <span class="fc" id="L74">                    m.changeState(ATTACK);</span>
                 }
                 break;
             case PURSUE:
                 // if enter attack range attack
-<span class="nc bnc" id="L79" title="All 2 branches missed.">                if (p.canAttack()) {</span>
-<span class="nc" id="L80">                    m.changeState(ATTACK);</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">                if (p.canAttack()) {</span>
+<span class="fc" id="L80">                    m.changeState(ATTACK);</span>
                 }
                 // if leave detection range wander
-<span class="nc bnc" id="L83" title="All 4 branches missed.">                if (!p.canAttack() &amp;&amp; !p.isAggro()) {</span>
-<span class="nc" id="L84">                    m.changeState(WANDER);</span>
+<span class="pc bpc" id="L83" title="1 of 4 branches missed.">                if (!p.canAttack() &amp;&amp; !p.isAggro()) {</span>
+<span class="fc" id="L84">                    m.changeState(WANDER);</span>
                 }
                 break;
             case ATTACK:
                 // if leave attack range pursue
-<span class="nc bnc" id="L89" title="All 4 branches missed.">                if (p.isAggro() &amp;&amp; !p.canAttack()) {</span>
-<span class="nc" id="L90">                    m.changeState(PURSUE);</span>
+<span class="pc bpc" id="L89" title="1 of 4 branches missed.">                if (p.isAggro() &amp;&amp; !p.canAttack()) {</span>
+<span class="fc" id="L90">                    m.changeState(PURSUE);</span>
                 }
                 // if target dead
-<span class="nc bnc" id="L93" title="All 2 branches missed.">                else if (!p.getTarget().isAlive()) {</span>
-<span class="nc" id="L94">                    m.changeState(WANDER);</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">                else if (!p.getTarget().isAlive()) {</span>
+<span class="fc" id="L94">                    m.changeState(WANDER);</span>
                 }
                 break;
         }
