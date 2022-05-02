@@ -39,9 +39,11 @@ Below we have gone through each significant change we made to the documentation,
 # Requirements
 Requirements documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Req1.pdf
 
+We felt like the previous team's approach to the elicitation of requirements was strong and that their research was effective in influencing decision making for the requirements process. Therefore, it was decided that we would make no significant changes to the existing elicitation process. 
+
 **<span style="text-decoration:underline;">8948b74: Removed Unnecessary requirements</span>**
 
-[view commit](https://github.com/engteam14/documentation2/commit/8948b74242181dd13786665777cc2ac36821a422)
+[View commit](https://github.com/engteam14/documentation2/commit/8948b74242181dd13786665777cc2ac36821a422)
 
 We felt that some of the requirements the team had previously implemented did not appear in any brief, weren’t asked for by the customer or were just deemed to be redundant. For example the requirements ‘FR_BOSS_UNLOCK_TRACKING’ and ‘FR_BOSS_SPAWN’ involved the use of a boss that was not mentioned in the brief nor customer interviews and therefore had no justification to appear in requirements. This will change R9 as the estimation of the scope of the project would be significantly increased if these requirements were left in therefore making the time estimate of the project completion change significantly.
 
@@ -67,7 +69,7 @@ We noticed some inconsistencies in wording between the documentation and impleme
 
 [View Commit](https://github.com/engteam14/documentation2/commit/9917596fb638bba0fef114d818e3e53afa3145e5)
 
-A further inconsistency we noted was the lack of clarity between ‘points’ and ‘XP’. The team felt it was best to merge the two so we ended up merging the two and using ‘XP’ for both.
+A further inconsistency we noted was the lack of clarity between ‘points’ and ‘XP’. The team felt it was best to merge the two so we ended up merging the two and using ‘XP’ for both. We changed this to avoid confusion between documentation and implementation and ensure time wasn't wasted by implementing two systems for one requirement. 
 
 # Method Selection and Planning
 
@@ -126,7 +128,7 @@ Furthermore, instead of creating snapshots by condensing the roadmap to keep tra
 Risk Assessment Documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Risk1.pdf
 
 
-Note that in this report, unfortunately the risk ID's were mis numbered and this was only realised near the end of the project (see commit d722ff5 and d469cf and a10ea64). As a result of this, the risk register numbers in the commits do not line up with the final report. Therefore we have added the final versions register ID's in brackets. The register ID's not in brackets are the ones that refer to the commit in that section. As a result of this, the links to risks in the requirements register had to be changed [here](https://github.com/engteam14/documentation2/commit/f760fad789f6b2dab7a3ad0d55e4b13eeaa7f7ca)
+Note that in this report, unfortunately the risk ID's were mis numbered and this was only realised near the end of the project (see commit d722ff5 and d469cf and a10ea64). As a result of this, the risk register numbers in the commits do not line up with the final report. Therefore we have added the final versions register ID's in brackets. The risk ID's were updated in the requirements documentation to match the new IDs [here](https://github.com/engteam14/documentation2/issues/91#issue-1216457846). The register ID's not in brackets are the ones that refer to the commit in that section. As a result of this, the links to risks in the requirements register had to be changed [here](https://github.com/engteam14/documentation2/commit/f760fad789f6b2dab7a3ad0d55e4b13eeaa7f7ca)
 
 **<span style="text-decoration:underline;">dd7a86a: Added team specific risks and removed non-applicable risks and changed risk owners</span>**
 
@@ -136,7 +138,7 @@ Note that in this report, unfortunately the risk ID's were mis numbered and this
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | R12 | Product | AI not being as advanced as it could be | The AI is either too good or bad. Making the gameplay worse for the user. | not currently happening | M | L | Fake AI via scripted interaction | Alexander |
 
-was removed because we have removed the A* algorithm and simplified the AI for the game, furthermore an advanced and genuine AI system is not a requirement for the project.
+This was removed because we have removed the A* algorithm and simplified the AI for the game, furthermore an advanced and genuine AI system is not a requirement for the project.
 
 Updated the risk owners to be members of our team rather than the previous team to ensure all risks are watched by members of the current team.
 
@@ -162,7 +164,7 @@ added risk R19(R14)
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | R19 | People | Merging issues causing delays | If people make mistakes causing major bugs in the product, the project may be delayed | Consistent risk | M | M | Use continuous integration to test the product between pull requests so issues can be spotted quickly | Jacob |
 
-this is because our team are not that experienced with using github and merging pull requests so there is more of a risk of errors happening. Also the mitigation of continuous integration is specific to assessment 2.
+This is because our team are not that experienced with using github and merging pull requests so there is more of a risk of errors happening. Also the mitigation of continuous integration is specific to assessment 2.
 
 **<span style="text-decoration:underline;">5535a7: Update Introduction + github outage</span>**
 
@@ -178,7 +180,7 @@ Furthermore, in this commit we added some information on times that github has g
 
 [View Commit](https://github.com/engteam14/documentation2/commit/7e721bbf2c81610422487e7acae1fb0ad59e631f)
 
-In this commit we added risks R20, R21 and R18 (R15-17), this is due to the fact that we missed out the conflicting opinions and misunderstanding of requirements in our original risk assessment commit and realised that actually these are very much things that happen in software engineering projects. We also decided to add a risk into the register about change management as this is actually an important part of assessment 2.
+We added risks R20, R21 and R18 (R15-17), this is due to the fact that we missed out the conflicting opinions and misunderstanding of requirements in our original risk assessment commit and realised that actually these are very much things that happen in software engineering projects. We also decided to add a risk into the register about change management as this is actually an important part of assessment 2.
 
 
 # Architecture
