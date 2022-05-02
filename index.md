@@ -35,6 +35,7 @@
         </button>
         <div class="dropdown-content">
             <h2 class="dropdown-header">Assessment 2</h2>
+            <a href="architecture.html">Architecture</a>
             <a href="change-report.html">Change Report</a>
             <a href="continuous-integration.html">Continuous Integration</a>
             <a href="implementation.html">Implementation</a>
@@ -59,6 +60,7 @@
 
             <!-- Assessment 2 -->
             <h2 class="dropdown-header">Assessment 2</h2>
+            <a href="pdfs/Architecture2.pdf" target="_blank">Architecture</a>
             <a href="pdfs/Change Report.pdf" target="_blank">Change Report</a>
             <a href="pdfs/Continuous Integration.pdf" target="_blank">Continuous Integration</a>
             <a href="pdfs/Implementation.pdf" target="_blank">Implementation</a>
