@@ -47,31 +47,43 @@ All of our tests pass in the current iteration of the project, and our tests are
 
 
 So to conclude, the parts of the codebase that we ended up not implementing tests for were:
-UI
-The UI section, containing the Game/Menu/Pause/End Screens and the Page superclass all couldn’t be tested due to the fact that 
-TileMapGraph() / TileMap()
-This is due to the fact that in order to properly test it one would have to instantiate a TiledMap object which was believed to be an issue without rendering the game. 
-RenderingManager() / Renderable()
-The Rendering Manager couldn’t be tested since it relies on rendering.
-PirateGame()
-A lot of the functionality of PirateGame() is circumvented in setting up Headless testing
-College.update()
-This is due to the fact that the update class relies on the game runtime, which isn’t accessible without rendering the game.
-PlayerController.getDIRFromWASDInput()
-The getDIRFromWASDInput method relies on receiving user input, which we were unable to implement considering the restrictions of the testing method.
-PlayerController.update()
-The update function relies on output from the above function and also relies on facets of the project being rendered which we could not simulate within tests.
-Rigidbody.applyForce()
-The applyForce function could not be tested since the results of applying force rely on the object being rendered.
-GameManager.createWorldMap()
-This couldn’t be tested since the World Map requires rendering to test.
-EntityManager.raiseEvents()
-Requires rendering
-PhysicsManager.createMapCollision()
-Requires tileMap
 
-Other
-Other functions that weren’t tested were not included as the functions were not actually implemented, such as QueueFIFO.offer() or because they were getters/setters.
-## Manual Tests
+**UI**  
+- The UI section, containing the Game/Menu/Pause/End Screens and the Page superclass all couldn’t be tested due to the fact that 
+
+**TileMapGraph() / TileMap()**  
+- This is due to the fact that in order to properly test it one would have to instantiate a TiledMap object which was believed to be an issue without rendering the game.   
+
+**RenderingManager() / Renderable()**  
+- The Rendering Manager couldn’t be tested since it relies on rendering.  
+
+**PirateGame()**  
+- A lot of the functionality of PirateGame() is circumvented in setting up Headless testing
+
+**College.update()**  
+- This is due to the fact that the update class relies on the game runtime, which isn’t accessible without rendering the game.
+
+**PlayerController.getDIRFromWASDInput()**  
+- The getDIRFromWASDInput method relies on receiving user input, which we were unable to implement considering the restrictions of the testing method.
+
+**PlayerController.update()**  
+- The update function relies on output from the above function and also relies on facets of the project being rendered which we could not simulate within tests.  
+
+**Rigidbody.applyForce()**  
+- The applyForce function could not be tested since the results of applying force rely on the object being rendered.  
+
+**GameManager.createWorldMap()**  
+- This couldn’t be tested since the World Map requires rendering to test.  
+
+**EntityManager.raiseEvents()**  
+- Requires rendering  
+
+**PhysicsManager.createMapCollision()**  
+- Requires tileMap which requires rendering  
+
+**Other**  
+- Other functions that weren’t tested were not included as the functions were not actually implemented, such as QueueFIFO.offer() or because they were getters/setters.  
+
+## Manual Tests  
 After completing the unit tests, we went through the Requirements of the project and constructed a Traceability Matrix to document which requirements were left untested and which had been covered throughout. The requirements which were left untested and the functionality of the methods above which couldn’t be tested due to restrictions were recorded and tested manually. We decided to also manually test all User Requirements to have a two-point guarantee of their functionality. This means that every user, functional and nonfunctional requirement has been tested. 
 
