@@ -1,4 +1,6 @@
-# Continuous Integration a)
+# Continuous Integration
+
+# a)
 
 To carry out our continuous integration, we are using **GitHub Actions**. We decided to use this CI solution as it fits our project perfectly. It is built into GitHub, which we are already using for all of our repositories as well as project management. This allows CI to be integrated with all aspects of our project, such as displaying on our project dashboard. GitHub actions also features a wide variety of community built open-source tasks which can be ran within our workflows, this fits our project greatly as we have needs for features which aren't within the scope of default tasks. For example converting deliverables from markdown to PDF. Due to these reasons, GitHub actions greatly increases our productivity and was the best CI solution for us to use.
 
@@ -7,7 +9,7 @@ GitHub Actions is configured using .yml files stored under `/.github/workflows`,
 - On our documentation repository, whenever a new change is successfully merged into the main branch continuous integration is triggered. This will cause all of the relevant markdown files in the repository to be committed to the website repository. This ensures all of the project deliverables on the website are up to date at all times, as required.
 - On our website repository we have two separate workflows. Whenever any changes are made to the repository, the GitHub Pages workflow will always be triggered. This workflow runs `jekyll build` on the repository and deploys the results to the online website. This ensures the website is always online and up to date as required. If changes are made involving the `/markdowns` directory, a workflow will additionally trigger to convert markdown files to pdf files. This ensures that all deliverables are available in PDF format as required.
 
-# Continuous Integration b)
+# b)
 In each of our repositories we added a continuous integration workflow to ensure that the risk of things like merging issues causing delays [(R14 in risk assessment)](https://engteam14.github.io/website2/pdfs/Risk%20Assessment.pdf) and additional work from manually creating pdfs and uploading to the website meaning the team has to do more work than predicted [(R9 risk in risk assessment)](https://engteam14.github.io/website2/pdfs/Risk%20Assessment.pdf)
 
 ## yorkpirates2 (game) repository

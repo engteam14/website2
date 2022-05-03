@@ -1,4 +1,6 @@
-## a) Testing Methods and Approaches
+# Part A
+
+## Testing Methods and Approaches
 
 Automated Testing 
 
