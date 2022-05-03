@@ -34,10 +34,13 @@ Where possible, a single team member did all changes for a single deliverable an
 
 For change management for our implementation, we added each change that needed to be made along with each new feature needed as issues in our repository linked to our project board. When making changes, we wrapped each block of change in comments like  `//start of change for assessment 2` and `//end of change for assessment 2` and single line changes just having the comment `//change for assessment 2`. We also added `//added for assessment 2` to the JavaDoc for each new method. This means that to view all changes in our codebase, one can simply search for `assessment 2`. Similar to documentation, our code repository is set up so that pull requests to main must be reviewed by another team member before being allowed to merge. Again this means that mistakes and issues such as forgetting to comment code are more likely to be spotted. Further more the Continuous Integration running tests on Pull Requests helps with change management as it ensure that the changes made havent effected other parts of the game.
 
+# b) Changes made
+
 Below we have gone through each significant change we made to the documentation, listing the main commits showing this change so that the differences can be viewed.
 
 # Requirements
 Requirements documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Req1.pdf
+Requirements documentation from Assessment 2: https://engteam14.github.io/website2/pdfs/Requirements.pdf
 
 We felt like the previous team's approach to the elicitation of requirements was strong and that their research was effective in influencing decision making for the requirements process. Therefore, it was decided that we would make no significant changes to the existing elicitation process. 
 
@@ -72,6 +75,9 @@ We noticed some inconsistencies in wording between the documentation and impleme
 A further inconsistency we noted was the lack of clarity between ‘points’ and ‘XP’. The team felt it was best to merge the two so we ended up merging the two and using ‘XP’ for both. We changed this to avoid confusion between documentation and implementation and ensure time wasn't wasted by implementing two systems for one requirement. 
 
 # Method Selection and Planning
+Method Selection and Planning documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Plan1.pdf
+Method Selection and Planning documentation from Assessment 2: https://engteam14.github.io/website2/pdfs/Method%20Selection%20and%20Planning.pdf
+
 
 **<span style="text-decoration:underline;">05e5339: Changed Software Engineering method</span>**
 
@@ -89,11 +95,11 @@ Instead of just discussing about game design as the purpose of our weekly meetin
 
 [View Commit](https://github.com/engteam14/documentation2/commit/e9c1a4e2802c70a4c0dfa4cb0d585ef82a254a26)
 
-We decided to change the Team Meeting tool from Zoom to Discord and in-person meetings, as in-person meetings allowed us to separate into smaller teams and work together while allowing us to keep real-time progress of the project and Discord calls were more preferred as compared to zoom as it avoided the hassle of having a Meeting ID and Password to join a meeting and the screensharing capability provided on discord was much better than that provided by zoom, according to the groups point of view.
+We decided to change the Team Meeting tool from Zoom to Discord and in-person meetings, as in-person meetings allowed us to separate into smaller teams and work together while allowing us to keep real-time progress of the project and Discord calls were more preferred as compared to zoom as it avoided the hassle of having a Meeting ID and Password to join a meeting and the screensharing capability provided on discord was much better than that provided by Zoom, according to the groups point of view.
 
 In addition to having a discord server for general project discussions, we decided to create a “To-Do List” channel, where a team member would post notes regarding what was discussed in the meeting and what needed to be done by the next scheduled meeting so that someone can add them to the issues.
 
-After some discussions, we changed our task progression tool from Trello to GitHub Issues as this was something new that we thought of trying and also the fact that using GitHub issues, we could keep track of all the commits and why something was changed from the previous project, which would later 5on help us when writing our change report.
+After some discussions, we changed our task progression tool from Trello to GitHub Issues as this was something new that we thought of trying and also the fact that using GitHub issues, we could keep track of all the commits and why something was changed from the previous project, which would later on help us when writing our change report.
 
 **<span style="text-decoration:underline;">25d9e44: Added an explanation for our teams’ approach towards Quality Control</span>**
 
@@ -126,9 +132,10 @@ Furthermore, instead of creating snapshots by condensing the roadmap to keep tra
 
 # Risk Assessment
 Risk Assessment Documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Risk1.pdf
+Risk Assessment documentation from Assessment 2: https://engteam14.github.io/website2/pdfs/Risk%20Assessment.pdf
 
 
-Note that in this report, unfortunately the risk ID's were mis numbered and this was only realised near the end of the project (see commit d722ff5 and d469cf and a10ea64). As a result of this, the risk register numbers in the commits do not line up with the final report. Therefore we have added the final versions register ID's in brackets. The risk ID's were updated in the requirements documentation to match the new IDs [here](https://github.com/engteam14/documentation2/issues/91#issue-1216457846). The register ID's not in brackets are the ones that refer to the commit in that section. As a result of this, the links to risks in the requirements register had to be changed [here](https://github.com/engteam14/documentation2/commit/f760fad789f6b2dab7a3ad0d55e4b13eeaa7f7ca)
+Note that in this report, unfortunately the risk ID's were miss numbered and this was only realised near the end of the project (see commit d722ff5 and d469cf and a10ea64). As a result of this, the risk register numbers in the commits do not line up with the final report. Therefore we have added the final versions register ID's in brackets. The risk ID's were updated in the requirements documentation to match the new IDs [here](https://github.com/engteam14/documentation2/issues/91#issue-1216457846). The register ID's not in brackets are the ones that refer to the commit in that section. As a result of this, the links to risks in the requirements register had to be changed [here](https://github.com/engteam14/documentation2/commit/f760fad789f6b2dab7a3ad0d55e4b13eeaa7f7ca)
 
 **<span style="text-decoration:underline;">dd7a86a: Added team specific risks and removed non-applicable risks and changed risk owners</span>**
 
@@ -184,6 +191,9 @@ We added risks R20, R21 and R18 (R15-17), this is due to the fact that we missed
 
 
 # Architecture
+Architecture Documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Arch1.pdf
+Architecture documentation from Assessment 2: https://engteam14.github.io/website2/pdfs/Architecture2.pdf
+
 
 **<span style="text-decoration:underline;">db9690c: Change the Abstract Architecture </span>**
 
@@ -193,7 +203,7 @@ The previous teams abstract architecture looked like so:
 
 ![Abstract](https://github.com/engteam14/documentation2/blob/bdead4f13288eb98c86c680d12f073f4b0e2899f/Arch%20Images/Abstract.png/?raw=true)
 
-We decided to replace it with a more detailed diagram that shows some key classes and their dependencies while maintaining the clear concepts of the entity-component relationship as well as the relationships between the Managers and the entities and intangibles and between the UI and entities and AI and components. This is because it gives a clearer idea of the main concepts behind the concrete architecture. It also allowed us to plan out some of the new features required for assessment 2 such as PowerUps and Obstacles
+We decided to replace it with a more detailed diagram that shows some key classes and their dependencies while maintaining the clear concepts of the entity-component relationship as well as the relationships between the Managers and the entities and intangibles and between the UI and entities and AI and components. This is because it gives a clearer idea of the main concepts behind the concrete architecture. It also allowed us to plan out some of the new features required for assessment 2 such as PowerUps and Obstacles.
 
 
 
