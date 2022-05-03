@@ -3,75 +3,80 @@
     <title>Pirate Game, Group 3</title>
 </head>
 <body>
-<nav id="navbar" class="topnav">
-    <a class="active" href="index.html">Home</a>
-    <a href="game.html">Info</a>
-    <a href="roadmap.html">Roadmap</a>
-    <div class="dropdown">
-        <button class="dropbtn">Files
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="game/desktop-1.0.jar" target="_blank">Executable (.jar)</a>
-            <h3 class="dropdown-header">Source Code</h3>
-            <a href="https://github.com/engteam14/yorkpirates2" target="_blank">Game</a>
-            <a href="https://github.com/engteam14/documentation2" target="_blank">Documentation</a>
-            <a href="https://github.com/engteam14/website2" target="_blank">Website</a>
-        </div>
-    </div>
-    <a href="docs.html">Javadoc</a>
-    <div class="dropdown">
-        <button class="dropbtn">Testing
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="tests.html">Test Report</a>
-            <a href="coverage.html">Code Coverage</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <button class="dropbtn">Deliverables
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <h2 class="dropdown-header">Assessment 2</h2>
-            <a href="architecture.html">Architecture</a>
-            <a href="change-report.html">Change Report</a>
-            <a href="continuous-integration.html">Continuous Integration</a>
-            <a href="implementation.html">Implementation</a>
-            <a href="method-selection-planning.html">Method Selection and Planning</a>
-            <a href="requirements.html">Requirements</a>
-            <a href="risk-assessment.html">Risk Assessment</a>
-            <a href="testing.html">Testing</a>
-        </div>
-    </div>
-    <div class="dropdown">
-        <button class="dropbtn">Deliverable PDFs
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <!-- Assessment 1 -->
-            <h2 class="dropdown-header">Assessment 1</h2>
-            <a href="pdfs/Arch1.pdf" target="_blank">Architecture</a>
-            <a href="pdfs/Impl1.pdf" target="_blank">Implementation</a>
-            <a href="pdfs/Plan1.pdf" target="_blank">Method selection and planning</a>
-            <a href="pdfs/Risk1.pdf" target="_blank">Risk assessment and mitigation</a>
-            <a href="pdfs/Req1.pdf" target="_blank">Requirements</a>
+  <nav id="navbar" class="topnav">
+      <a class="active" href="index.html">Home</a>
+      <a href="game.html">Info</a>
+      <a href="roadmap.html">Roadmap</a>
+      <div class="dropdown">
+          <button class="dropbtn">Files
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+              <a href="game/desktop-1.0.jar" target="_blank">Executable (.jar)</a>
+              <h3 class="dropdown-header">Source Code</h3>
+              <a href="https://github.com/engteam14/yorkpirates2" target="_blank">Game</a>
+              <a href="https://github.com/engteam14/documentation2" target="_blank">Documentation</a>
+              <a href="https://github.com/engteam14/website2" target="_blank">Website</a>
+          </div>
+      </div>
+      <a href="docs.html">Javadoc</a>
+      <div class="dropdown">
+          <button class="dropbtn">Testing
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+              <a href="tests.html">Test Overview</a>
+              <a href="coverage.html">Code Coverage</a>
+              <a href="traceability_matrix.html">Traceability Matrix</a>
+              <hr style="margin-block-start: 0; margin-block-end: 0;">
+              <a href="automated_tests.html">Automated Tests</a>
+              <a href="manual_tests.html">Manual Tests</a>
+              <a href="manual_tests_proof.html">Manual Tests Proof</a>
+          </div>
+      </div>
+      <div class="dropdown">
+          <button class="dropbtn">Deliverables
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+              <h2 class="dropdown-header">Assessment 2</h2>
+              <a href="architecture.html">Architecture</a>
+              <a href="change-report.html">Change Report</a>
+              <a href="continuous-integration.html">Continuous Integration</a>
+              <a href="implementation.html">Implementation</a>
+              <a href="method-selection-planning.html">Method Selection and Planning</a>
+              <a href="requirements.html">Requirements</a>
+              <a href="risk-assessment.html">Risk Assessment</a>
+              <a href="testing.html">Testing</a>
+          </div>
+      </div>
+      <div class="dropdown">
+          <button class="dropbtn">Deliverable PDFs
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+              <!-- Assessment 1 -->
+              <h2 class="dropdown-header">Assessment 1</h2>
+              <a href="pdfs/Arch1.pdf" target="_blank">Architecture</a>
+              <a href="pdfs/Impl1.pdf" target="_blank">Implementation</a>
+              <a href="pdfs/Plan1.pdf" target="_blank">Method selection and planning</a>
+              <a href="pdfs/Risk1.pdf" target="_blank">Risk assessment and mitigation</a>
+              <a href="pdfs/Req1.pdf" target="_blank">Requirements</a>
 
-            <!-- Assessment 2 -->
-            <h2 class="dropdown-header">Assessment 2</h2>
-            <a href="pdfs/Architecture2.pdf" target="_blank">Architecture</a>
-            <a href="pdfs/Change Report.pdf" target="_blank">Change Report</a>
-            <a href="pdfs/Continuous Integration.pdf" target="_blank">Continuous Integration</a>
-            <a href="pdfs/Implementation.pdf" target="_blank">Implementation</a>
-            <a href="pdfs/Method Selection and Planning.pdf" target="_blank">Method Selection and Planning</a>
-            <a href="pdfs/Requirements.pdf" target="_blank">Requirements</a>
-            <a href="pdfs/Risk Assessment.pdf" target="_blank">Risk Assessment</a>
-            <a href="pdfs/Testing.pdf" target="_blank">Testing</a>
-        </div>
-    </div>
-    <!-- <a href="">About</a> -->
-</nav>
+              <!-- Assessment 2 -->
+              <h2 class="dropdown-header">Assessment 2</h2>
+              <a href="pdfs/Architecture2.pdf" target="_blank">Architecture</a>
+              <a href="pdfs/Change Report.pdf" target="_blank">Change Report</a>
+              <a href="pdfs/Continuous Integration.pdf" target="_blank">Continuous Integration</a>
+              <a href="pdfs/Implementation.pdf" target="_blank">Implementation</a>
+              <a href="pdfs/Method Selection and Planning.pdf" target="_blank">Method Selection and Planning</a>
+              <a href="pdfs/Requirements.pdf" target="_blank">Requirements</a>
+              <a href="pdfs/Risk Assessment.pdf" target="_blank">Risk Assessment</a>
+              <a href="pdfs/Testing.pdf" target="_blank">Testing</a>
+          </div>
+      </div>
+      <!-- <a href="">About</a> -->
+  </nav>
 <page>
     <div id="background">
         <div id="main-area">
@@ -102,6 +107,10 @@
                     </li>
                     <br>
                     <li>
+                        <a href="roadmap.html"><b><i>Roadmap</i></b></a> - The progression of our project plan can be found here.
+                    </li>
+                    <br>
+                    <li>
                         <b>Files</b>
                         <ul>
                             <li>
@@ -125,6 +134,15 @@
                             </li>
                             <li>
                                 <a href="coverage.html"><b><i>Code Coverage</i></b></a> - An automated report showing the code coverage of Junit tests may be found here.
+                            </li>
+                            <li>
+                                <a href="traceability-matrix.html"><b><i>Traceability Matrix</i></b></a> - The traceability matrix for our tests can be found here.
+                            </li>
+                            <li>
+                                <b><i>Tests</i></b> - Automated and manual tests summary tables may be found here.
+                            </li>
+                            <li>
+                                <a href="manual_tests_proof.html"><b><i>Manual Tests Proof</i></b></a> - Image and video proof of manual testing may be found here.
                             </li>
                         </ul>
                     </li>
