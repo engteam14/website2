@@ -1,0 +1,192 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Indicator</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.mygdx.game.Entitys</a>
+</div>
+
+<h1>Coverage Summary for Class: Indicator (com.mygdx.game.Entitys)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Indicator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (2/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    64.3%
+  </span>
+  <span class="absValue">
+    (18/28)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.mygdx.game.Entitys;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.badlogic.gdx.math.Vector2;
+<i class="no-highlight">4</i>&nbsp;import com.mygdx.game.Components.*;
+<i class="no-highlight">5</i>&nbsp;import com.mygdx.game.Managers.GameManager;
+<i class="no-highlight">6</i>&nbsp;import com.mygdx.game.Managers.QuestManager;
+<i class="no-highlight">7</i>&nbsp;import com.mygdx.game.Managers.RenderLayer;
+<i class="no-highlight">8</i>&nbsp;import com.mygdx.game.Quests.KillQuest;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;import static java.lang.Math.abs;
+<i class="no-highlight">11</i>&nbsp;import static java.lang.Math.max;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;/**
+<i class="no-highlight">14</i>&nbsp; * Added for Assessment 2 in order to increase visual clarity on Kill Quests
+<i class="no-highlight">15</i>&nbsp; */
+<i class="no-highlight">16</i>&nbsp;public class Indicator extends Entity {
+<i class="no-highlight">17</i>&nbsp;	private final Entity target;
+<i class="no-highlight">18</i>&nbsp;	private final KillQuest quest;
+<i class="no-highlight">19</i>&nbsp;	private Vector2 gradient;
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;	/**
+<i class="no-highlight">22</i>&nbsp;	 * Creates an indicator attached to a kill quest and targeting a college
+<i class="no-highlight">23</i>&nbsp;	 * @param kq the Kill Quest this indicator is attached to
+<i class="no-highlight">24</i>&nbsp;	 */
+<i class="no-highlight">25</i>&nbsp;	public Indicator(KillQuest kq) {
+<b class="fc"><i class="no-highlight">26</i>&nbsp;		super(2);</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;		quest = kq;</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;		target = quest.getTarget().getParent();</b>
+<i class="no-highlight">29</i>&nbsp;
+<b class="fc"><i class="no-highlight">30</i>&nbsp;		Transform t = new Transform();</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;		t.setPosition(800, 800);</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;		Renderable r = new Renderable(10, RenderLayer.Transparent);</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;		r.hide();</b>
+<i class="no-highlight">34</i>&nbsp;
+<b class="fc"><i class="no-highlight">35</i>&nbsp;		addComponents(t, r);</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;		gradient = updateGradient();</b>
+<i class="no-highlight">37</i>&nbsp;	}
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;	/**
+<i class="no-highlight">40</i>&nbsp;	 * Called once per frame
+<i class="no-highlight">41</i>&nbsp;	 */
+<i class="no-highlight">42</i>&nbsp;	@Override
+<i class="no-highlight">43</i>&nbsp;	public void update(){
+<b class="nc"><i class="no-highlight">44</i>&nbsp;		if(QuestManager.currentQuest() == quest){</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;			getComponent(Renderable.class).show();</b>
+<i class="no-highlight">46</i>&nbsp;		}else{
+<b class="nc"><i class="no-highlight">47</i>&nbsp;			getComponent(Renderable.class).hide();</b>
+<i class="no-highlight">48</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">49</i>&nbsp;		followPlayer();</b>
+<i class="no-highlight">50</i>&nbsp;	}
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;	/**
+<i class="no-highlight">53</i>&nbsp;	 * Called when updating the gradient of the Indicator.
+<i class="no-highlight">54</i>&nbsp;	 */
+<i class="no-highlight">55</i>&nbsp;	public Vector2 updateGradient(){
+<b class="fc"><i class="no-highlight">56</i>&nbsp;		Player p = GameManager.getPlayer();</b>
+<b class="fc"><i class="no-highlight">57</i>&nbsp;		Transform self = p.getComponent(Transform.class);</b>
+<b class="fc"><i class="no-highlight">58</i>&nbsp;		Transform goal = target.getComponent(Transform.class);</b>
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;		// Calculate the gradient to draw the indicator at.
+<b class="fc"><i class="no-highlight">61</i>&nbsp;		float changeInX = goal.getPosition().x - self.getPosition().x;</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;		float changeInY = goal.getPosition().y - self.getPosition().y;</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;		float scaleFactor = max(abs(changeInX),abs(changeInY));</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;		float dx = changeInX / scaleFactor;</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;		float dy = changeInY / scaleFactor;</b>
+<i class="no-highlight">66</i>&nbsp;
+<b class="fc"><i class="no-highlight">67</i>&nbsp;		return (new Vector2(dx, dy));</b>
+<i class="no-highlight">68</i>&nbsp;	}
+<i class="no-highlight">69</i>&nbsp;
+<i class="no-highlight">70</i>&nbsp;	/**
+<i class="no-highlight">71</i>&nbsp;	 * Called when updating the position of the Indicator.
+<i class="no-highlight">72</i>&nbsp;	 */
+<i class="no-highlight">73</i>&nbsp;	public void followPlayer() {
+<b class="nc"><i class="no-highlight">74</i>&nbsp;		gradient = updateGradient();</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;		rotateSprite();</b>
+<b class="nc"><i class="no-highlight">76</i>&nbsp;		Player p = GameManager.getPlayer();</b>
+<b class="nc"><i class="no-highlight">77</i>&nbsp;		Vector2 position = new Vector2( p.getPosition().x + (50 * gradient.x), p.getPosition().y + (50 * gradient.y) );</b>
+<b class="nc"><i class="no-highlight">78</i>&nbsp;		getComponent(Transform.class).setPosition(position);</b>
+<i class="no-highlight">79</i>&nbsp;	}
+<i class="no-highlight">80</i>&nbsp;
+<i class="no-highlight">81</i>&nbsp;	/**
+<i class="no-highlight">82</i>&nbsp;	 * Called when rotating the sprite of the Indicator.
+<i class="no-highlight">83</i>&nbsp;	 */
+<i class="no-highlight">84</i>&nbsp;	public void rotateSprite() {
+<b class="nc"><i class="no-highlight">85</i>&nbsp;		getComponent(Transform.class).setRotation((float) Math.atan2(gradient.y,gradient.x));</b>
+<i class="no-highlight">86</i>&nbsp;	}
+<i class="no-highlight">87</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-04 00:45</div>
+</div>
+</body>
+</html>
