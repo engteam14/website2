@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="style.css?v=1.1">
+    <title>Manual Tests Proof</title>
+</head>
+<body>
+  <nav id="navbar" class="topnav">
+      <a class="active" href="index.html">Home</a>
+      <a href="game.html">Info</a>
+      <a href="roadmap.html">Roadmap</a>
+      <div class="dropdown">
+          <button class="dropbtn">Files
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+              <a href="game/desktop-1.0.jar" target="_blank">Executable (.jar)</a>
+              <h3 class="dropdown-header">Source Code</h3>
+              <a href="https://github.com/engteam14/yorkpirates2" target="_blank">Game</a>
+              <a href="https://github.com/engteam14/documentation2" target="_blank">Documentation</a>
+              <a href="https://github.com/engteam14/website2" target="_blank">Website</a>
+          </div>
+      </div>
+      <a href="docs.html">Javadoc</a>
+      <div class="dropdown">
+          <button class="dropbtn">Testing
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+              <a href="tests.html">Test Overview</a>
+              <a href="coverage.html">Code Coverage</a>
+              <a href="traceability_matrix.html">Traceability Matrix</a>
+              <hr style="margin-block-start: 0; margin-block-end: 0;">
+              <a href="automated_tests.html">Automated Tests</a>
+              <a href="manual_tests.html">Manual Tests</a>
+              <a href="manual_tests_proof.html">Manual Tests Proof</a>
+          </div>
+      </div>
+      <div class="dropdown">
+          <button class="dropbtn">Deliverables
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+              <h2 class="dropdown-header">Assessment 2</h2>
+              <a href="architecture.html">Architecture</a>
+              <a href="change-report.html">Change Report</a>
+              <a href="continuous-integration.html">Continuous Integration</a>
+              <a href="implementation.html">Implementation</a>
+              <a href="method-selection-planning.html">Method Selection and Planning</a>
+              <a href="requirements.html">Requirements</a>
+              <a href="risk-assessment.html">Risk Assessment</a>
+              <a href="testing.html">Testing</a>
+          </div>
+      </div>
+      <div class="dropdown">
+          <button class="dropbtn">Deliverable PDFs
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+              <!-- Assessment 1 -->
+              <h2 class="dropdown-header">Assessment 1</h2>
+              <a href="pdfs/Arch1.pdf" target="_blank">Architecture</a>
+              <a href="pdfs/Impl1.pdf" target="_blank">Implementation</a>
+              <a href="pdfs/Plan1.pdf" target="_blank">Method selection and planning</a>
+              <a href="pdfs/Risk1.pdf" target="_blank">Risk assessment and mitigation</a>
+              <a href="pdfs/Req1.pdf" target="_blank">Requirements</a>
+
+              <!-- Assessment 2 -->
+              <h2 class="dropdown-header">Assessment 2</h2>
+              <a href="pdfs/Architecture2.pdf" target="_blank">Architecture</a>
+              <a href="pdfs/Change Report.pdf" target="_blank">Change Report</a>
+              <a href="pdfs/Continuous Integration.pdf" target="_blank">Continuous Integration</a>
+              <a href="pdfs/Implementation.pdf" target="_blank">Implementation</a>
+              <a href="pdfs/Method Selection and Planning.pdf" target="_blank">Method Selection and Planning</a>
+              <a href="pdfs/Requirements.pdf" target="_blank">Requirements</a>
+              <a href="pdfs/Risk Assessment.pdf" target="_blank">Risk Assessment</a>
+              <a href="pdfs/Testing.pdf" target="_blank">Testing</a>
+          </div>
+      </div>
+      <!-- <a href="">About</a> -->
+  </nav>
+    <page>
+      <div id="background">
+        <div id="main-area">
+          <div id="text-area">
+            <h1>
+              Manual Testing Proof
+            </h1>
+            <p>
+              Proof of manual testing may be found on this page.
+              The images here show that the game was tested to work for those with colour vision deficiency. (MNF_COLOURBLINDNESS)
+              The videos further below demonstrate the tests being performed.
+            </p>
+            <h2>
+              Image Proof
+            </h2>
+            <img src="Videos/proof1.png" style="width:35%" />
+            <img src="Videos/proof2.png" style="width:35%" />
+            <br>
+            <div style="margin-left: 5rem;">
+              <small>
+                Images tested using <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/">coblis-color-blindness-simulator</a>
+              </small>
+            </div>
+            <h2>
+              Video Proof
+            </h2>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/Full Game Completion_H.264.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MTU_COMPETING_COLLEGES</li>
+                  <li>MTU_GAME_DURATION</li>
+                  <li>MNF_GAME_DURATION</li>
+                  <li>MTU_EARN_EXP</li>
+                  <li>MTF_SHIP_KB_INPUT</li>
+                  <li>MNF_USER_INPUT_LAG</li>
+                  <li>MNF_RENDER_SMOOTHNESS</li>
+                  <li>MTF_OBSTACLE_SHOW</li>
+                  <li>MTF_WEATHER_SHOW</li>
+                  <li>MTU_QUEST_PROGRESS</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/MTU_SHIP_CONTROL_H.264.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MTU_SHIP_CONTROL</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/MTU_FRIENDLY_SHIP_ENCOUNTER_H.264.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MTU_FRIENDLY_SHIP_ENCOUNTER</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/NFR_BULLET_COLLISIONS_H.264.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MNF_BULLET_COLLISIONS</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <!-- <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/Video Test 1_H.264.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+              </p>
+            </div>
+            <hr> -->
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/Difficulty Select.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MTU_DFCLTY_LVL</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/Storm Death.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MTU_GAME_WIN</li>
+                  <li>MTU_GAME_LOSE</li>
+                  <li>MTF_PLAYER_DEFEAT</li>
+                  <li>MTU_WEATHER_ENCOUNTER</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/Chest and college destroy.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MTU_HOSTILE_BUILDING_COMBAT</li>
+                  <li>MTU_HOSTILE_COLLEGE_CAPTURE</li>
+                  <li>MTU_EARN_PLUNDER</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/Ship Combat.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MTU_FIRE_WEAPONS</li>
+                  <li>MTU_BULLET_DODGE</li>
+                  <li>MTU_SHIP_COMBAT</li>
+                  <li>MTU_SPEND_PLUNDER</li>
+                  <li>MTU_POWER_UP</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/3 Colleges Encountered.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MTF_COLLGE_ENTITY_TRACKING</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/Friendly ship collision.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MTU_FRIENDLY_SHIP_ENCOUNTER</li>
+                  <li>MNF_SHIP_COLLISIONS</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/Enemy ship collision.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MTU_HOSTILE_SHIP_ENCOUNTER</li>
+                  <li>MNF_SHIP_COLLISIONS</li>
+                  <li>MNF_AI_LAG</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/Terrain Collisions.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+                <ul>
+                  <li>MNF_WORLD_COLLISIONS</li>
+                </ul>
+              </p>
+            </div>
+            <!-- <hr>
+            <div>
+              <video width="640" height="360" controls>
+                <source src="Videos/Pirate Game 2022-05-03 15-11-28.mp4" type="video/mp4">
+                Your browser does not support videos.
+              </video>
+              <p>
+              </p>
+            </div> -->
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+    </page>
+</body>
