@@ -44,9 +44,9 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
 <span class="fc" id="L44">            enemy = GameManager.getCollege(id);</span>
 <span class="fc" id="L45">            i++;</span>
         }
-<span class="fc bfc" id="L47" title="All 4 branches covered.">        while (Utilities.contains(exclude, id) &amp;&amp; i &lt; 5);</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (i == 5) {</span>
-<span class="fc" id="L49">            return 0;</span>
+<span class="pc bpc" id="L47" title="3 of 4 branches missed.">        while (Utilities.contains(exclude, id) &amp;&amp; i &lt; 5);</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if (i == 5) {</span>
+<span class="nc" id="L49">            return 0;</span>
         }
 <span class="fc" id="L51">        addQuest(new KillQuest(enemy));</span>
 <span class="fc" id="L52">        return id;</span>
@@ -122,12 +122,12 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
 <span class="fc" id="L122">                continue;</span>
             }
 <span class="fc" id="L124">            boolean completed = q.checkCompleted(p);</span>
-<span class="fc bfc" id="L125" title="All 2 branches covered.">            if (completed) {</span>
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">            if (completed) {</span>
 <span class="fc" id="L126">                p.plunder(q.getPlunderReward());</span>
 <span class="fc" id="L127">                p.points(q.getPointReward());</span>
-<span class="pc bpc" id="L128" title="1 of 2 branches missed.">            } else if (q instanceof LocateQuest) {</span>
-<span class="fc" id="L129">                chest.setPosition(((LocateQuest) q).getLocation());</span>
-<span class="fc" id="L130">                break;</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            } else if (q instanceof LocateQuest) {</span>
+<span class="nc" id="L129">                chest.setPosition(((LocateQuest) q).getLocation());</span>
+<span class="nc" id="L130">                break;</span>
             } else {
 <span class="nc" id="L132">                chest.setPosition(new Vector2(-1000, -1000));</span>
 <span class="nc" id="L133">                break;</span>

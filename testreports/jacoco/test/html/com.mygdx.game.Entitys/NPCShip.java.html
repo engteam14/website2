@@ -50,8 +50,8 @@ public class NPCShip extends Ship implements CollisionCallBack {
 
 <span class="fc" id="L51">        JsonValue starting = GameManager.getSettings().get(&quot;starting&quot;);</span>
 
-        // agro trigger
-<span class="fc" id="L54">        rb.addTrigger(Utilities.tilesToDistance(starting.getFloat(&quot;argoRange_tiles&quot;)), &quot;agro&quot;);</span>
+        // aggro trigger
+<span class="fc" id="L54">        rb.addTrigger(Utilities.tilesToDistance(starting.getFloat(&quot;argoRange_tiles&quot;)), &quot;aggro&quot;);</span>
 <span class="fc" id="L55">        getComponent(Pirate.class).setInfiniteAmmo(true);</span>
 
 <span class="fc" id="L57">        lastShootTime = TimeUtils.millis() / 1000;</span>
@@ -190,7 +190,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
     }
 
     /**
-     * if the agro fixture hit a ship set it as the target
+     * if the aggro fixture hit a ship set it as the target
      * @param info the collision info
      */
     @Override
