@@ -90,11 +90,11 @@ After completing the unit tests, we went through the Requirements of the project
 
 ## C) 
 
-Test Summary: https://engteam14.github.io/website2/tests.html
-Test Coverage: https://engteam14.github.io/website2/coverage.html
-Automated test descriptions: https://engteam14.github.io/website2/automated_tests.html
-Automated test code: https://github.com/engteam14/yorkpirates2/tree/main/core/src/test/java/com/mygdx
-Manual tests: https://engteam14.github.io/website2/manual_tests.html
-Manual tests proof: https://engteam14.github.io/website2/manual_tests_proof.html
+Test Summary: https://engteam14.github.io/website2/tests.html  
+Test Coverage: https://engteam14.github.io/website2/coverage.html  
+Automated test descriptions: https://engteam14.github.io/website2/automated_tests.html  
+Automated test code: https://github.com/engteam14/yorkpirates2/tree/main/core/src/test/java/com/mygdx   
+Manual tests: https://engteam14.github.io/website2/manual_tests.html  
+Manual tests proof: https://engteam14.github.io/website2/manual_tests_proof.html  
 
 
