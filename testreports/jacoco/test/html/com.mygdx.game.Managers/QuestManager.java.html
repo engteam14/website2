@@ -122,12 +122,12 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
 <span class="fc" id="L122">                continue;</span>
             }
 <span class="fc" id="L124">            boolean completed = q.checkCompleted(p);</span>
-<span class="pc bpc" id="L125" title="1 of 2 branches missed.">            if (completed) {</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">            if (completed) {</span>
 <span class="fc" id="L126">                p.plunder(q.getPlunderReward());</span>
 <span class="fc" id="L127">                p.points(q.getPointReward());</span>
-<span class="nc bnc" id="L128" title="All 2 branches missed.">            } else if (q instanceof LocateQuest) {</span>
-<span class="nc" id="L129">                chest.setPosition(((LocateQuest) q).getLocation());</span>
-<span class="nc" id="L130">                break;</span>
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">            } else if (q instanceof LocateQuest) {</span>
+<span class="fc" id="L129">                chest.setPosition(((LocateQuest) q).getLocation());</span>
+<span class="fc" id="L130">                break;</span>
             } else {
 <span class="nc" id="L132">                chest.setPosition(new Vector2(-1000, -1000));</span>
 <span class="nc" id="L133">                break;</span>
