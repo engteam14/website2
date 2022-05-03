@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SaveManager</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.mygdx.game.Managers</a>
+</div>
+
+<h1>Coverage Summary for Class: SaveManager (com.mygdx.game.Managers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SaveManager</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.7%
+  </span>
+  <span class="absValue">
+    (42/43)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.mygdx.game.Managers;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.badlogic.gdx.Gdx;
+<i class="no-highlight">4</i>&nbsp;import com.badlogic.gdx.Preferences;
+<i class="no-highlight">5</i>&nbsp;import com.mygdx.game.Components.Pirate;
+<i class="no-highlight">6</i>&nbsp;import com.mygdx.game.Components.Transform;
+<i class="no-highlight">7</i>&nbsp;import com.mygdx.game.Entitys.College;
+<i class="no-highlight">8</i>&nbsp;import com.mygdx.game.Entitys.Ship;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;/**
+<i class="no-highlight">13</i>&nbsp; * Added for assessment 2
+<i class="no-highlight">14</i>&nbsp; * Manges the saving of the game
+<i class="no-highlight">15</i>&nbsp; */
+<b class="nc"><i class="no-highlight">16</i>&nbsp;public final class SaveManager {</b>
+<i class="no-highlight">17</i>&nbsp;    static Preferences prefs;
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    /**
+<i class="no-highlight">20</i>&nbsp;     * Added for assessment 2
+<i class="no-highlight">21</i>&nbsp;     * Saves the state of the game. Added for assessment 2
+<i class="no-highlight">22</i>&nbsp;     */
+<i class="no-highlight">23</i>&nbsp;    public static void SaveGame(){
+<b class="fc"><i class="no-highlight">24</i>&nbsp;        prefs = Gdx.app.getPreferences(&quot;pirate/GameSave_game_1&quot;);</b>
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        prefs.putString(&quot;Difficulty&quot;, GameManager.getSettings().name);</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        ArrayList&lt;Ship&gt; ships = GameManager.getShips();</b>
+<i class="no-highlight">27</i>&nbsp;        // save the stats of each ship where the first one is the player
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        for (int i = 0; i &lt; ships.size(); i++) {</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;            Ship ship = ships.get(i);</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;            prefs.putFloat(&quot;ship&quot;+i+&quot;X&quot;, ship.getPosition().x);</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;            prefs.putFloat(&quot;ship&quot;+i+&quot;Y&quot;, ship.getPosition().y);</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;            prefs.putFloat(&quot;ship&quot; + i + &quot;H&quot;, ship.getHealth());</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;            prefs.putInteger(&quot;ship&quot; + i + &quot;Pl&quot;, ship.getPlunder());</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;            prefs.putInteger(&quot;ship&quot; + i + &quot;Po&quot;, ship.getPoints());</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;            prefs.putInteger(&quot;ship&quot; + i + &quot;A&quot;, ship.getComponent(Pirate.class).getAmmo());</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;            prefs.putInteger(&quot;ship&quot; + &quot;F&quot;, ship.getComponent(Pirate.class).getFaction().id);</b>
+<i class="no-highlight">37</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        ArrayList&lt;College&gt; colleges = GameManager.getColleges();</b>
+<i class="no-highlight">39</i>&nbsp;        //saves whether each college is alive or not
+<b class="fc"><i class="no-highlight">40</i>&nbsp;        for (College college : colleges) {</b>
+<b class="fc"><i class="no-highlight">41</i>&nbsp;            prefs.putBoolean(college.f.id + &quot;Alive&quot;, college.isAlive());</b>
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        }</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        prefs.flush();</b>
+<i class="no-highlight">44</i>&nbsp;
+<i class="no-highlight">45</i>&nbsp;    }
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;    /**
+<i class="no-highlight">48</i>&nbsp;     * Added for assessment 2
+<i class="no-highlight">49</i>&nbsp;     * loads the preferences file and sets the difficulty of the saved game
+<i class="no-highlight">50</i>&nbsp;     */
+<i class="no-highlight">51</i>&nbsp;    public static void LoadGame(){
+<b class="fc"><i class="no-highlight">52</i>&nbsp;        prefs = Gdx.app.getPreferences(&quot;pirate/GameSave_game_1&quot;);</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;        String diff = prefs.getString(&quot;Difficulty&quot;, &quot;Regular&quot;);</b>
+<b class="fc"><i class="no-highlight">54</i>&nbsp;        GameManager.changeDifficulty(diff);</b>
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;    }
+<i class="no-highlight">57</i>&nbsp;    /**
+<i class="no-highlight">58</i>&nbsp;     * Added for assessment 2
+<i class="no-highlight">59</i>&nbsp;     * loads the state of the ships and colleges and sets the current quest
+<i class="no-highlight">60</i>&nbsp;     */
+<i class="no-highlight">61</i>&nbsp;    public static void SpawnGame(){
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        ArrayList&lt;Ship&gt; shipsAll = GameManager.getShips();</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        for (int i = 0; i&lt; shipsAll.size(); i++){</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;            Ship ship = shipsAll.get(i);</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;            float shipX = prefs.getFloat(&quot;ship&quot; + i + &quot;X&quot;, ship.getPosition().x);</b>
+<b class="fc"><i class="no-highlight">66</i>&nbsp;            float shipY = prefs.getFloat(&quot;ship&quot; + i + &quot;Y&quot;, ship.getPosition().y);</b>
+<b class="fc"><i class="no-highlight">67</i>&nbsp;            float shipH = prefs.getFloat(&quot;ship&quot; + i + &quot;H&quot;, ship.getHealth());</b>
+<b class="fc"><i class="no-highlight">68</i>&nbsp;            int shipP = prefs.getInteger(&quot;ship&quot; + i + &quot;Pl&quot;, ship.getPlunder());</b>
+<b class="fc"><i class="no-highlight">69</i>&nbsp;            int shipPo = prefs.getInteger(&quot;ship&quot; + i + &quot;Po&quot;, ship.getPoints());</b>
+<b class="fc"><i class="no-highlight">70</i>&nbsp;            int shipA = prefs.getInteger(&quot;ship&quot; + i + &quot;A&quot;, ship.getComponent(Pirate.class).getAmmo());</b>
+<b class="fc"><i class="no-highlight">71</i>&nbsp;            int shipF = prefs.getInteger(&quot;ship&quot; + i + &quot;F&quot;, ship.getComponent(Pirate.class).getFaction().id);</b>
+<i class="no-highlight">72</i>&nbsp;
+<i class="no-highlight">73</i>&nbsp;
+<b class="fc"><i class="no-highlight">74</i>&nbsp;            ship.getComponent(Pirate.class).addPlunder(shipP- ship.getPlunder() );</b>
+<b class="fc"><i class="no-highlight">75</i>&nbsp;            ship.getComponent(Pirate.class).setAmmo(shipA);</b>
+<b class="fc"><i class="no-highlight">76</i>&nbsp;            ship.getComponent(Transform.class).setPosition(shipX, shipY);</b>
+<b class="fc"><i class="no-highlight">77</i>&nbsp;            ship.getComponent(Pirate.class).takeDamage(ship.getHealth() - shipH);</b>
+<b class="fc"><i class="no-highlight">78</i>&nbsp;            ship.getComponent(Pirate.class).setFactionId(shipF);</b>
+<b class="fc"><i class="no-highlight">79</i>&nbsp;            ship.getComponent(Pirate.class).addPoints(shipPo - ship.getPoints());</b>
+<i class="no-highlight">80</i>&nbsp;
+<i class="no-highlight">81</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">82</i>&nbsp;        ArrayList&lt;College&gt; Colleges = GameManager.getColleges();</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;        for (College college : Colleges) {</b>
+<b class="fc"><i class="no-highlight">84</i>&nbsp;            boolean isAlive = prefs.getBoolean(college.f.id+&quot;Alive&quot;, true);</b>
+<b class="fc"><i class="no-highlight">85</i>&nbsp;            if (!isAlive) {</b>
+<b class="fc"><i class="no-highlight">86</i>&nbsp;                college.killThisCollege(null);</b>
+<i class="no-highlight">87</i>&nbsp;            }
+<b class="fc"><i class="no-highlight">88</i>&nbsp;        }</b>
+<i class="no-highlight">89</i>&nbsp;    }
+<i class="no-highlight">90</i>&nbsp;}
+<i class="no-highlight">91</i>&nbsp;
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-04 00:45</div>
+</div>
+</body>
+</html>

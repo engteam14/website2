@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Weather</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.mygdx.game.Entitys</a>
+</div>
+
+<h1>Coverage Summary for Class: Weather (com.mygdx.game.Entitys)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Weather</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.mygdx.game.Entitys;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.badlogic.gdx.math.Vector2;
+<i class="no-highlight">4</i>&nbsp;import com.badlogic.gdx.utils.TimeUtils;
+<i class="no-highlight">5</i>&nbsp;import com.mygdx.game.Components.RigidBody;
+<i class="no-highlight">6</i>&nbsp;import com.mygdx.game.Managers.GameManager;
+<i class="no-highlight">7</i>&nbsp;import com.mygdx.utils.Utilities;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;/**
+<i class="no-highlight">10</i>&nbsp; * Added for Assessment 2 in order to meet weather condition requirements
+<i class="no-highlight">11</i>&nbsp; */
+<i class="no-highlight">12</i>&nbsp;public class Weather extends Obstacle {
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;    private final float speed;
+<i class="no-highlight">15</i>&nbsp;    private final long freq;
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;    private long lastDir;
+<i class="no-highlight">18</i>&nbsp;    private Vector2 dir;
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    /**
+<i class="no-highlight">21</i>&nbsp;     * Creates a Weather Object
+<i class="no-highlight">22</i>&nbsp;     * @param damage The damage dealt to an object which collides with this weather effect
+<i class="no-highlight">23</i>&nbsp;     * @param hitRate The rate at which damage is dealt
+<i class="no-highlight">24</i>&nbsp;     */
+<i class="no-highlight">25</i>&nbsp;    public Weather(float damage, float hitRate) {
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        super(&quot;storm&quot;, true, damage, hitRate, -1);</b>
+<i class="no-highlight">27</i>&nbsp;
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        speed = GameManager.getSettings().get(&quot;Weather&quot;).getFloat(&quot;maxSpeed&quot;);</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        freq = GameManager.getSettings().get(&quot;Weather&quot;).getInt(&quot;moveFreq&quot;);</b>
+<i class="no-highlight">30</i>&nbsp;
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        lastDir = 0;</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        newDir();</b>
+<i class="no-highlight">33</i>&nbsp;    }
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;    /**
+<i class="no-highlight">36</i>&nbsp;     * Called once every frame
+<i class="no-highlight">37</i>&nbsp;     */
+<i class="no-highlight">38</i>&nbsp;    @Override
+<i class="no-highlight">39</i>&nbsp;    public void update() {
+<b class="fc"><i class="no-highlight">40</i>&nbsp;        super.update();</b>
+<i class="no-highlight">41</i>&nbsp;
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        if (TimeUtils.timeSinceMillis(lastDir) &gt; freq) newDir();</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        getComponent(RigidBody.class).setVelocity(dir);</b>
+<i class="no-highlight">44</i>&nbsp;    }
+<i class="no-highlight">45</i>&nbsp;
+<i class="no-highlight">46</i>&nbsp;    /**
+<i class="no-highlight">47</i>&nbsp;     * Determines a new direction for the weather effect to move in
+<i class="no-highlight">48</i>&nbsp;     */
+<i class="no-highlight">49</i>&nbsp;    private void newDir() {
+<b class="fc"><i class="no-highlight">50</i>&nbsp;        dir = Utilities.randomPos(-1, 1);</b>
+<b class="fc"><i class="no-highlight">51</i>&nbsp;        dir = new Vector2(dir.x * speed, dir.y * speed);</b>
+<b class="fc"><i class="no-highlight">52</i>&nbsp;        lastDir = TimeUtils.millis();</b>
+<i class="no-highlight">53</i>&nbsp;    }
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-04 00:45</div>
+</div>
+</body>
+</html>

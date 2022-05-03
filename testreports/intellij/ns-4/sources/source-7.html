@@ -1,0 +1,335 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > NPCShip</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.mygdx.game.Entitys</a>
+</div>
+
+<h1>Coverage Summary for Class: NPCShip (com.mygdx.game.Entitys)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NPCShip</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.9%
+  </span>
+  <span class="absValue">
+    (71/79)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.mygdx.game.Entitys;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.badlogic.gdx.ai.fsm.DefaultStateMachine;
+<i class="no-highlight">4</i>&nbsp;import com.badlogic.gdx.ai.fsm.StateMachine;
+<i class="no-highlight">5</i>&nbsp;import com.badlogic.gdx.ai.steer.behaviors.Arrive;
+<i class="no-highlight">6</i>&nbsp;import com.badlogic.gdx.math.Vector2;
+<i class="no-highlight">7</i>&nbsp;import com.badlogic.gdx.utils.JsonValue;
+<i class="no-highlight">8</i>&nbsp;import com.badlogic.gdx.utils.TimeUtils;
+<i class="no-highlight">9</i>&nbsp;import com.mygdx.game.AI.EnemyState;
+<i class="no-highlight">10</i>&nbsp;import com.mygdx.game.Components.*;
+<i class="no-highlight">11</i>&nbsp;import com.mygdx.game.Managers.GameManager;
+<i class="no-highlight">12</i>&nbsp;import com.mygdx.game.Physics.CollisionCallBack;
+<i class="no-highlight">13</i>&nbsp;import com.mygdx.game.Physics.CollisionInfo;
+<i class="no-highlight">14</i>&nbsp;import com.mygdx.utils.QueueFIFO;
+<i class="no-highlight">15</i>&nbsp;import com.mygdx.utils.Utilities;
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;import java.util.Objects;
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;/**
+<i class="no-highlight">20</i>&nbsp; * NPC ship entity class.
+<i class="no-highlight">21</i>&nbsp; */
+<i class="no-highlight">22</i>&nbsp;public class NPCShip extends Ship implements CollisionCallBack {
+<i class="no-highlight">23</i>&nbsp;    public StateMachine&lt;NPCShip, EnemyState&gt; stateMachine;
+<i class="no-highlight">24</i>&nbsp;    private static JsonValue AISettings;
+<i class="no-highlight">25</i>&nbsp;    private long lastShootTime; //Added for Assessment 2, stores the time when the ship last attacked
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;    /**
+<i class="no-highlight">28</i>&nbsp;     * Creates an initial state machine
+<i class="no-highlight">29</i>&nbsp;     * Changed for Assessment 2:
+<i class="no-highlight">30</i>&nbsp;     *  - Added lastShootTime to store the time when the ship last attacked
+<i class="no-highlight">31</i>&nbsp;     */
+<i class="no-highlight">32</i>&nbsp;    public NPCShip() {
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        super();</b>
+<i class="no-highlight">34</i>&nbsp;        //QueueFIFO&lt;Vector2&gt; path = new QueueFIFO&lt;&gt;();
+<i class="no-highlight">35</i>&nbsp;
+<b class="fc"><i class="no-highlight">36</i>&nbsp;        if (AISettings == null) {</b>
+<b class="fc"><i class="no-highlight">37</i>&nbsp;            AISettings = GameManager.getSettings().get(&quot;AI&quot;);</b>
+<i class="no-highlight">38</i>&nbsp;        }
+<i class="no-highlight">39</i>&nbsp;
+<b class="fc"><i class="no-highlight">40</i>&nbsp;        stateMachine = new DefaultStateMachine&lt;&gt;(this, EnemyState.WANDER);</b>
+<i class="no-highlight">41</i>&nbsp;
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        setName(&quot;NPC&quot;);</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        AINavigation nav = new AINavigation();</b>
+<i class="no-highlight">44</i>&nbsp;
+<b class="fc"><i class="no-highlight">45</i>&nbsp;        addComponent(nav);</b>
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;
+<b class="fc"><i class="no-highlight">48</i>&nbsp;        RigidBody rb = getComponent(RigidBody.class);</b>
+<i class="no-highlight">49</i>&nbsp;        // rb.setCallback(this);
+<i class="no-highlight">50</i>&nbsp;
+<b class="fc"><i class="no-highlight">51</i>&nbsp;        JsonValue starting = GameManager.getSettings().get(&quot;starting&quot;);</b>
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;        // aggro trigger
+<b class="fc"><i class="no-highlight">54</i>&nbsp;        rb.addTrigger(Utilities.tilesToDistance(starting.getFloat(&quot;argoRange_tiles&quot;)), &quot;aggro&quot;);</b>
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        getComponent(Pirate.class).setInfiniteAmmo(true);</b>
+<i class="no-highlight">56</i>&nbsp;
+<b class="fc"><i class="no-highlight">57</i>&nbsp;        lastShootTime = TimeUtils.millis() / 1000;</b>
+<i class="no-highlight">58</i>&nbsp;    }
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;    /**
+<i class="no-highlight">61</i>&nbsp;     * gets the top of targets from pirate component
+<i class="no-highlight">62</i>&nbsp;     *
+<i class="no-highlight">63</i>&nbsp;     * @return the top target
+<i class="no-highlight">64</i>&nbsp;     */
+<i class="no-highlight">65</i>&nbsp;    private Ship getTarget() {
+<b class="fc"><i class="no-highlight">66</i>&nbsp;        return getComponent(Pirate.class).getTarget();</b>
+<i class="no-highlight">67</i>&nbsp;    }
+<i class="no-highlight">68</i>&nbsp;
+<i class="no-highlight">69</i>&nbsp;    /**
+<i class="no-highlight">70</i>&nbsp;     * Amended for Assessment 2: Added check for life and kills stateMachine and ship in case of death
+<i class="no-highlight">71</i>&nbsp;     * updates the state machine
+<i class="no-highlight">72</i>&nbsp;     */
+<i class="no-highlight">73</i>&nbsp;    @Override
+<i class="no-highlight">74</i>&nbsp;    public void update() {
+<b class="fc"><i class="no-highlight">75</i>&nbsp;        if(!isAlive()) {</b>
+<b class="fc"><i class="no-highlight">76</i>&nbsp;           kill();</b>
+<b class="fc"><i class="no-highlight">77</i>&nbsp;           stateMachine = null;</b>
+<i class="no-highlight">78</i>&nbsp;        }else{
+<b class="fc"><i class="no-highlight">79</i>&nbsp;            super.update();</b>
+<b class="fc"><i class="no-highlight">80</i>&nbsp;            stateMachine.update();</b>
+<i class="no-highlight">81</i>&nbsp;        }
+<i class="no-highlight">82</i>&nbsp;    }
+<i class="no-highlight">83</i>&nbsp;
+<i class="no-highlight">84</i>&nbsp;    /**
+<i class="no-highlight">85</i>&nbsp;     * Added for Assessment 2
+<i class="no-highlight">86</i>&nbsp;     * Removes the ship from play
+<i class="no-highlight">87</i>&nbsp;     */
+<i class="no-highlight">88</i>&nbsp;    private void kill() {
+<b class="fc"><i class="no-highlight">89</i>&nbsp;        getComponent(Renderable.class).hide();</b>
+<b class="fc"><i class="no-highlight">90</i>&nbsp;        Transform t = getComponent(Transform.class);</b>
+<b class="fc"><i class="no-highlight">91</i>&nbsp;        t.setPosition(20000, 20000);</b>
+<i class="no-highlight">92</i>&nbsp;
+<b class="fc"><i class="no-highlight">93</i>&nbsp;        RigidBody rb = getComponent(RigidBody.class);</b>
+<b class="fc"><i class="no-highlight">94</i>&nbsp;        rb.setPosition(t.getPosition());</b>
+<b class="fc"><i class="no-highlight">95</i>&nbsp;        rb.setVelocity(0, 0);</b>
+<i class="no-highlight">96</i>&nbsp;
+<b class="fc"><i class="no-highlight">97</i>&nbsp;        dispose();</b>
+<i class="no-highlight">98</i>&nbsp;    }
+<i class="no-highlight">99</i>&nbsp;
+<i class="no-highlight">100</i>&nbsp;    /**
+<i class="no-highlight">101</i>&nbsp;     * creates a new steering behaviour that will make the NPC beeline for the target (doesn&#39;t factor in obstacles)
+<i class="no-highlight">102</i>&nbsp;     */
+<i class="no-highlight">103</i>&nbsp;    public void followTarget() {
+<b class="fc"><i class="no-highlight">104</i>&nbsp;        if (getTarget() == null) {</b>
+<b class="nc"><i class="no-highlight">105</i>&nbsp;            stopMovement();</b>
+<i class="no-highlight">106</i>&nbsp;            return;
+<i class="no-highlight">107</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">108</i>&nbsp;        AINavigation nav = getComponent(AINavigation.class);</b>
+<i class="no-highlight">109</i>&nbsp;
+<b class="fc"><i class="no-highlight">110</i>&nbsp;        Arrive&lt;Vector2&gt; arrives = new Arrive&lt;&gt;(nav,</b>
+<b class="fc"><i class="no-highlight">111</i>&nbsp;                getTarget().getComponent(Transform.class))</b>
+<b class="fc"><i class="no-highlight">112</i>&nbsp;                .setTimeToTarget(AISettings.getFloat(&quot;accelerationTime&quot;))</b>
+<b class="fc"><i class="no-highlight">113</i>&nbsp;                .setArrivalTolerance(AISettings.getFloat(&quot;arrivalTolerance&quot;))</b>
+<b class="fc"><i class="no-highlight">114</i>&nbsp;                .setDecelerationRadius(AISettings.getFloat(&quot;slowRadius&quot;));</b>
+<i class="no-highlight">115</i>&nbsp;
+<b class="fc"><i class="no-highlight">116</i>&nbsp;        nav.setBehavior(arrives);</b>
+<i class="no-highlight">117</i>&nbsp;    }
+<i class="no-highlight">118</i>&nbsp;
+<i class="no-highlight">119</i>&nbsp;    /**
+<i class="no-highlight">120</i>&nbsp;     * Added for Assessment 2
+<i class="no-highlight">121</i>&nbsp;     * Creates a new steering behaviour that will make the NPC circle the college it is attached to (doesn&#39;t factor in obstacles)
+<i class="no-highlight">122</i>&nbsp;     */
+<i class="no-highlight">123</i>&nbsp;    public void circleOrigin() {
+<b class="fc"><i class="no-highlight">124</i>&nbsp;        College origin = GameManager.getCollege(getFaction().id);</b>
+<b class="fc"><i class="no-highlight">125</i>&nbsp;        Vector2 dirToOrigin = new Vector2( (origin.getPosition().x - getPosition().x),(origin.getPosition().y - getPosition().y) );</b>
+<b class="fc"><i class="no-highlight">126</i>&nbsp;        double currentAngle = Utilities.vectorToAngle(dirToOrigin);</b>
+<i class="no-highlight">127</i>&nbsp;
+<i class="no-highlight">128</i>&nbsp;        double theta;
+<b class="fc"><i class="no-highlight">129</i>&nbsp;        if (dirToOrigin.x &gt; 0){</b>
+<b class="fc"><i class="no-highlight">130</i>&nbsp;            theta = currentAngle - (Math.PI)/12;</b>
+<i class="no-highlight">131</i>&nbsp;        }else{
+<b class="nc"><i class="no-highlight">132</i>&nbsp;            theta = currentAngle + (Math.PI)/12;</b>
+<i class="no-highlight">133</i>&nbsp;        }
+<i class="no-highlight">134</i>&nbsp;
+<b class="fc"><i class="no-highlight">135</i>&nbsp;        Transform target = new Transform();</b>
+<b class="fc"><i class="no-highlight">136</i>&nbsp;        float radius = Utilities.tilesToDistance(30);</b>
+<b class="fc"><i class="no-highlight">137</i>&nbsp;        float xPos = (float) (origin.getPosition().x + (radius * Math.cos(theta)));</b>
+<b class="fc"><i class="no-highlight">138</i>&nbsp;        float yPos = (float) (origin.getPosition().y + (radius * Math.sin(theta)));</b>
+<b class="fc"><i class="no-highlight">139</i>&nbsp;        target.setPosition(xPos,yPos);</b>
+<i class="no-highlight">140</i>&nbsp;
+<b class="fc"><i class="no-highlight">141</i>&nbsp;        AINavigation nav = getComponent(AINavigation.class);</b>
+<i class="no-highlight">142</i>&nbsp;
+<b class="fc"><i class="no-highlight">143</i>&nbsp;        Arrive&lt;Vector2&gt; arrives = new Arrive&lt;&gt;(nav,target)</b>
+<b class="fc"><i class="no-highlight">144</i>&nbsp;                .setTimeToTarget(AISettings.getFloat(&quot;accelerationTime&quot;))</b>
+<b class="fc"><i class="no-highlight">145</i>&nbsp;                .setArrivalTolerance(AISettings.getFloat(&quot;arrivalTolerance&quot;))</b>
+<b class="fc"><i class="no-highlight">146</i>&nbsp;                .setDecelerationRadius(AISettings.getFloat(&quot;slowRadius&quot;));</b>
+<i class="no-highlight">147</i>&nbsp;
+<b class="fc"><i class="no-highlight">148</i>&nbsp;        nav.setBehavior(arrives);</b>
+<i class="no-highlight">149</i>&nbsp;    }
+<i class="no-highlight">150</i>&nbsp;
+<i class="no-highlight">151</i>&nbsp;    /**
+<i class="no-highlight">152</i>&nbsp;     * stops all movement and sets the behaviour to null
+<i class="no-highlight">153</i>&nbsp;     */
+<i class="no-highlight">154</i>&nbsp;    public void stopMovement() {
+<b class="fc"><i class="no-highlight">155</i>&nbsp;        AINavigation nav = getComponent(AINavigation.class);</b>
+<b class="fc"><i class="no-highlight">156</i>&nbsp;        nav.setBehavior(null);</b>
+<b class="fc"><i class="no-highlight">157</i>&nbsp;        nav.stop();</b>
+<i class="no-highlight">158</i>&nbsp;    }
+<i class="no-highlight">159</i>&nbsp;
+<i class="no-highlight">160</i>&nbsp;    /**
+<i class="no-highlight">161</i>&nbsp;     * Added for Assessment 2, calculates the direction an Enemy Ship is in
+<i class="no-highlight">162</i>&nbsp;     */
+<i class="no-highlight">163</i>&nbsp;    public Vector2 directionToShip(Ship ship) {
+<b class="fc"><i class="no-highlight">164</i>&nbsp;        Vector2 shipLocale = ship.getPosition();</b>
+<b class="fc"><i class="no-highlight">165</i>&nbsp;        Vector2 thisPosition = getPosition();</b>
+<i class="no-highlight">166</i>&nbsp;
+<b class="fc"><i class="no-highlight">167</i>&nbsp;        float xDiff = shipLocale.x-thisPosition.x;</b>
+<b class="fc"><i class="no-highlight">168</i>&nbsp;        float yDiff = shipLocale.y-thisPosition.y;</b>
+<i class="no-highlight">169</i>&nbsp;
+<b class="fc"><i class="no-highlight">170</i>&nbsp;        return new Vector2(xDiff,yDiff);</b>
+<i class="no-highlight">171</i>&nbsp;    }
+<i class="no-highlight">172</i>&nbsp;
+<i class="no-highlight">173</i>&nbsp;    /**
+<i class="no-highlight">174</i>&nbsp;     * Added for Assessment 2, shoots a cannonball towards the player ship
+<i class="no-highlight">175</i>&nbsp;     */
+<i class="no-highlight">176</i>&nbsp;    public void attackShip(Ship ship) {
+<b class="fc"><i class="no-highlight">177</i>&nbsp;        long current = TimeUtils.millis() / 1000;</b>
+<b class="fc"><i class="no-highlight">178</i>&nbsp;        if (current &gt; lastShootTime) {</b>
+<b class="fc"><i class="no-highlight">179</i>&nbsp;            Vector2 direction = directionToShip(ship);</b>
+<b class="fc"><i class="no-highlight">180</i>&nbsp;            shoot(direction);</b>
+<i class="no-highlight">181</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">182</i>&nbsp;        lastShootTime = current;</b>
+<i class="no-highlight">183</i>&nbsp;    }
+<i class="no-highlight">184</i>&nbsp;
+<i class="no-highlight">185</i>&nbsp;    /**
+<i class="no-highlight">186</i>&nbsp;     * @return the current state the NPCShip is in
+<i class="no-highlight">187</i>&nbsp;     */
+<i class="no-highlight">188</i>&nbsp;    public EnemyState getCurrentState() {
+<b class="fc"><i class="no-highlight">189</i>&nbsp;        return stateMachine.getCurrentState();</b>
+<i class="no-highlight">190</i>&nbsp;    }
+<i class="no-highlight">191</i>&nbsp;
+<i class="no-highlight">192</i>&nbsp;    /**
+<i class="no-highlight">193</i>&nbsp;     * if the aggro fixture hit a ship set it as the target
+<i class="no-highlight">194</i>&nbsp;     * @param info the collision info
+<i class="no-highlight">195</i>&nbsp;     */
+<i class="no-highlight">196</i>&nbsp;    @Override
+<i class="no-highlight">197</i>&nbsp;    public void EnterTrigger(CollisionInfo info) {
+<b class="fc"><i class="no-highlight">198</i>&nbsp;        super.EnterTrigger(info);</b>
+<b class="fc"><i class="no-highlight">199</i>&nbsp;        if (info.a instanceof Ship) {</b>
+<b class="fc"><i class="no-highlight">200</i>&nbsp;            Ship other = (Ship) info.a;</b>
+<b class="fc"><i class="no-highlight">201</i>&nbsp;            if (Objects.equals(other.getComponent(Pirate.class).getFaction(), getComponent(Pirate.class).getFaction())) {</b>
+<i class="no-highlight">202</i>&nbsp;                // is the same faction
+<i class="no-highlight">203</i>&nbsp;                return;
+<i class="no-highlight">204</i>&nbsp;            }
+<i class="no-highlight">205</i>&nbsp;            // add the new collision as a new target
+<b class="nc"><i class="no-highlight">206</i>&nbsp;            Pirate pirate = getComponent(Pirate.class);</b>
+<b class="nc"><i class="no-highlight">207</i>&nbsp;            pirate.addTarget(other);</b>
+<i class="no-highlight">208</i>&nbsp;        }
+<i class="no-highlight">209</i>&nbsp;    }
+<i class="no-highlight">210</i>&nbsp;
+<i class="no-highlight">211</i>&nbsp;    /**
+<i class="no-highlight">212</i>&nbsp;     * if a target has left remove it from the potential targets Queue
+<i class="no-highlight">213</i>&nbsp;     * @param info collision info
+<i class="no-highlight">214</i>&nbsp;     */
+<i class="no-highlight">215</i>&nbsp;    @Override
+<i class="no-highlight">216</i>&nbsp;    public void ExitTrigger(CollisionInfo info) {
+<b class="fc"><i class="no-highlight">217</i>&nbsp;        if (!(info.a instanceof Ship)) {</b>
+<i class="no-highlight">218</i>&nbsp;            return;
+<i class="no-highlight">219</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">220</i>&nbsp;        Pirate pirate = getComponent(Pirate.class);</b>
+<b class="fc"><i class="no-highlight">221</i>&nbsp;        Ship o = (Ship) info.a;</b>
+<i class="no-highlight">222</i>&nbsp;        // remove the object from the targets list
+<b class="fc"><i class="no-highlight">223</i>&nbsp;        for (Ship targ : pirate.getTargets()) {</b>
+<b class="nc"><i class="no-highlight">224</i>&nbsp;            if (targ == o) {</b>
+<b class="nc"><i class="no-highlight">225</i>&nbsp;                pirate.getTargets().remove(targ);</b>
+<b class="nc"><i class="no-highlight">226</i>&nbsp;                break;</b>
+<i class="no-highlight">227</i>&nbsp;            }
+<b class="nc"><i class="no-highlight">228</i>&nbsp;        }</b>
+<i class="no-highlight">229</i>&nbsp;    }
+<i class="no-highlight">230</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-04 00:45</div>
+</div>
+</body>
+</html>
