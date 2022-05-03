@@ -1,24 +1,3 @@
-<!-----
-
-Yay, no errors, warnings, or alerts!
-
-Conversion time: 0.225 seconds.
-
-
-Using this Markdown file:
-
-1. Paste this output into your source file.
-2. See the notes and action items below regarding this conversion run.
-3. Check the rendered output (headings, lists, code blocks, tables) for proper
-   formatting and use a linkchecker before you publish this page.
-
-Conversion notes:
-
-* Docs to Markdown version 1.0β33
-* Thu Apr 14 2022 03:55:53 GMT-0700 (PDT)
-* Source doc: Untitled document
------>
-
 
 # Change report:
 
@@ -39,7 +18,7 @@ For change management for our implementation, we added each change that needed t
 Below we have gone through each significant change we made to the documentation, listing the main commits showing this change so that the differences can be viewed.
 
 # Requirements
-Requirements documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Req1.pdf
+Requirements documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Req1.pdf  
 Requirements documentation from Assessment 2: https://engteam14.github.io/website2/pdfs/Requirements.pdf
 
 We felt like the previous team's approach to the elicitation of requirements was strong and that their research was effective in influencing decision making for the requirements process. Therefore, it was decided that we would make no significant changes to the existing elicitation process. 
@@ -72,10 +51,62 @@ We noticed some inconsistencies in wording between the documentation and impleme
 
 [View Commit](https://github.com/engteam14/documentation2/commit/9917596fb638bba0fef114d818e3e53afa3145e5)
 
-A further inconsistency we noted was the lack of clarity between ‘points’ and ‘XP’. The team felt it was best to merge the two so we ended up merging the two and using ‘XP’ for both. We changed this to avoid confusion between documentation and implementation and ensure time wasn't wasted by implementing two systems for one requirement. 
+A further inconsistency we noted was the lack of clarity between ‘points’ and ‘XP’. The team felt it was best to merge the two so we ended up merging the two and using ‘XP’ for both. We changed this to avoid confusion between documentation and implementation and ensure time wasn't wasted by implementing two systems for one requirement.   
+
+# Architecture
+Architecture Documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Arch1.pdf  
+Architecture documentation from Assessment 2: https://engteam14.github.io/website2/pdfs/Architecture2.pdf
+
+
+**<span style="text-decoration:underline;">db9690c: Change the Abstract Architecture </span>**
+
+[View Commit](https://github.com/engteam14/documentation2/commit/db9690cc011bf845a60436a93928f6acd81e2d7e)
+
+The previous teams abstract architecture looked like so:
+
+![Abstract](https://github.com/engteam14/documentation2/blob/bdead4f13288eb98c86c680d12f073f4b0e2899f/Arch%20Images/Abstract.png/?raw=true)
+
+We decided to replace it with a more detailed diagram that shows some key classes and their dependencies while maintaining the clear concepts of the entity-component relationship as well as the relationships between the Managers and the entities and intangibles and between the UI and entities and AI and components. This is because it gives a clearer idea of the main concepts behind the concrete architecture. It also allowed us to plan out some of the new features required for assessment 2 such as PowerUps and Obstacles.
+
+
+
+**<span style="text-decoration:underline;">1507ee5: Update the Concrete Architecture </span>**
+
+
+[View Commit](https://github.com/engteam14/documentation2/commit/1507ee59eced41817a2dfbbb4873731e21a9a31a?short_path=5ca78fc#diff-5ca78fcca76d458ee28fe135d257b597d87ec069ce8fbbe6e30c06679e890c40)
+
+The original architecture can be viewed [here](https://engteam14.github.io/website2/pdfs/Arch1.pdf)
+
+
+Due to the fact that we had to add new classes for the new requirements in the second assessment, the concrete architecture had to be added to. The first change we made was to the the amount of methods and attributes in each class, which has been cut down dramatically. This is due to the space constraints and an attempt at making the diagrams more easily understandable. We kept only the functions and attributes that are the most paramount to the functionality of the class do that it is still clear what the class does but there aren't any getters and setters or functions that simply call on another function. We also removed the `Test` class as it currently isn't used in the codebase so we felt that going forward we can just use the built in functionality of the graphics classes of LibGdx to handle rendering text and fonts.
+`Attributes` was also removed as it is actually a private class within the `AINavigation` component so isn't relevant to the wider architecture of the game. Lastly, `NodeHeuristic` class was removed as it isnt currently in use in the code base as AI wasnt a requirement for the assessment. The class was eventually removed from the codebase.
+
+Furthermore we added:
+  - `SaveManager` into the managers image. This class is for handling the saving and resuming of the game which is a new requirement for Assessment 2 (UR_GAME_SAVE, FR_SAVE_GAME_STATE, FR_LOAD_GAME) and was added to keep this functionality separate for organisation purposes
+  - `PowerUpAssigned` component which the player has, shown by the new line between them, was added for this assessment too. This is to hold the `powerUp` that the player has, to fulfil FR_POWER_UP. `PowerUp` was also added into the Miscellanious diagram for this assessment as each instance of this would be a new power up.
+  - The other component that was added is `ObstacleControl` which is used to add damage causing capabilities to the new `Obstacle` entity. We also had the links between `Renderable`, `RigidBody` and `Transform` and the new `Obstacle` class as it makes sense for the obstacles to have these components to allow them to be rendered, register collisions and be placed on the map/move.
+  - As well as `Obstacle` being added, another class called `Weather` was added to the diagram which inherits `Obstacle` as the weather would have similar functionalities to the obstacles except that the weather moves around the map.
+  - `PowerUpPickUp` was also added as it is the class for the entity that the player can pick up to give themselves a boost in the game. This is new for assessment 2 - FR_POWER_UP and UR_POWER_UP
+  - Furthermore, we added the `Building` class into the diagram. This class was already in the code base when we took over the project, but was not detailed in the Concrete architecture. We felt that the colleges having a set of buildings and the `Building` entities being the one to have the `Renderable`  and `RigidBody` components meant that it was logical they should be shown on the concrete architecture because otherwise colleges may be mistaken as not having an image to represent them on the screen.
+  - We also added that the `College` class has the `Pirate` to allow the colleges to be able to shoot as this wasn't previously implemented despite being in the requirements for assessment 2.
+  - `com.badlogic.gdx.ScreenAdapter` was added because this was an important detail that we misunderstood when taking over the game. The `ScreenAdapter` concept is specific to LibGdx so would only be something you would already know if you had past experience with LibGdx. Along with adding this, we added the `PauseScreen` to help us add the UI functionality to allow the game to pause, restart and be saved.
+  - Lastly we added the main game class `PirateGame`. This is because it is actually the main class of the game and so is one of the most important.
+
+
+**<span style="text-decoration:underline;">d267759 & 6d08e8: Replace the justification for architecture </span>**
+
+
+[View Commit](https://github.com/engteam14/documentation2/commit/d267759f9502bf93430548026ff2afd3731f2fb1)
+
+[View Commit](https://github.com/engteam14/documentation2/commit/6d0e8e843e99c32041f1e7966775173d17186fa9)
+
+
+The previous team had a write up consisting of a page of justification for the abstract and concrete architecture as a whole, and then a page of going through some of the requirements and stating where they were covered by the architecture. unfortunately it is not clear why they chose to only mention the requirements that they did as they didn't cover all of them. Due to this, we felt that the write up didn't cover the "Systematic justification" requirement in the brief.  
+Instead we replaced this section with a brief explanation on the detail levels of both the abstract and concrete architecture followed by a systematic explanation of each key feature in the game, stating how it is shown in the concrete architecture, some explanation as to the function of the classes, and how it was represented in the abstract architecture. We ensured we mentioned every class that was included in the concrete architecture and their related requirements.
+ 
 
 # Method Selection and Planning
-Method Selection and Planning documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Plan1.pdf
+Method Selection and Planning documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Plan1.pdf  
 Method Selection and Planning documentation from Assessment 2: https://engteam14.github.io/website2/pdfs/Method%20Selection%20and%20Planning.pdf
 
 
@@ -131,7 +162,7 @@ Furthermore, instead of creating snapshots by condensing the roadmap to keep tra
 
 
 # Risk Assessment
-Risk Assessment Documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Risk1.pdf
+Risk Assessment Documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Risk1.pdf  
 Risk Assessment documentation from Assessment 2: https://engteam14.github.io/website2/pdfs/Risk%20Assessment.pdf
 
 
@@ -190,53 +221,3 @@ Furthermore, in this commit we added some information on times that github has g
 We added risks R20, R21 and R18 (R15-17), this is due to the fact that we missed out the conflicting opinions and misunderstanding of requirements in our original risk assessment commit and realised that actually these are very much things that happen in software engineering projects. We also decided to add a risk into the register about change management as this is actually an important part of assessment 2.
 
 
-# Architecture
-Architecture Documentation from Assessment 1: https://engteam14.github.io/website2/pdfs/Arch1.pdf
-Architecture documentation from Assessment 2: https://engteam14.github.io/website2/pdfs/Architecture2.pdf
-
-
-**<span style="text-decoration:underline;">db9690c: Change the Abstract Architecture </span>**
-
-[View Commit](https://github.com/engteam14/documentation2/commit/db9690cc011bf845a60436a93928f6acd81e2d7e)
-
-The previous teams abstract architecture looked like so:
-
-![Abstract](https://github.com/engteam14/documentation2/blob/bdead4f13288eb98c86c680d12f073f4b0e2899f/Arch%20Images/Abstract.png/?raw=true)
-
-We decided to replace it with a more detailed diagram that shows some key classes and their dependencies while maintaining the clear concepts of the entity-component relationship as well as the relationships between the Managers and the entities and intangibles and between the UI and entities and AI and components. This is because it gives a clearer idea of the main concepts behind the concrete architecture. It also allowed us to plan out some of the new features required for assessment 2 such as PowerUps and Obstacles.
-
-
-
-**<span style="text-decoration:underline;">1507ee5: Update the Concrete Architecture </span>**
-
-
-[View Commit](https://github.com/engteam14/documentation2/commit/1507ee59eced41817a2dfbbb4873731e21a9a31a?short_path=5ca78fc#diff-5ca78fcca76d458ee28fe135d257b597d87ec069ce8fbbe6e30c06679e890c40)
-
-The original architecture can be viewed [here](https://engteam14.github.io/website2/pdfs/Arch1.pdf)
-
-
-Due to the fact that we had to add new classes for the new requirements in the second assessment, the concrete architecture had to be added to. The first change we made was to the the amount of methods and attributes in each class, which has been cut down dramatically. This is due to the space constraints and an attempt at making the diagrams more easily understandable. We kept only the functions and attributes that are the most paramount to the functionality of the class do that it is still clear what the class does but there aren't any getters and setters or functions that simply call on another function. We also removed the `Test` class as it currently isn't used in the codebase so we felt that going forward we can just use the built in functionality of the graphics classes of LibGdx to handle rendering text and fonts.
-`Attributes` was also removed as it is actually a private class within the `AINavigation` component so isn't relevant to the wider architecture of the game. Lastly, `NodeHeuristic` class was removed as it isnt currently in use in the code base as AI wasnt a requirement for the assessment. The class was eventually removed from the codebase.
-
-Furthermore we added:
-  - `SaveManager` into the managers image. This class is for handling the saving and resuming of the game which is a new requirement for Assessment 2 (UR_GAME_SAVE, FR_SAVE_GAME_STATE, FR_LOAD_GAME) and was added to keep this functionality separate for organisation purposes
-  - `PowerUpAssigned` component which the player has, shown by the new line between them, was added for this assessment too. This is to hold the `powerUp` that the player has, to fulfil FR_POWER_UP. `PowerUp` was also added into the Miscellanious diagram for this assessment as each instance of this would be a new power up.
-  - The other component that was added is `ObstacleControl` which is used to add damage causing capabilities to the new `Obstacle` entity. We also had the links between `Renderable`, `RigidBody` and `Transform` and the new `Obstacle` class as it makes sense for the obstacles to have these components to allow them to be rendered, register collisions and be placed on the map/move.
-  - As well as `Obstacle` being added, another class called `Weather` was added to the diagram which inherits `Obstacle` as the weather would have similar functionalities to the obstacles except that the weather moves around the map.
-  - `PowerUpPickUp` was also added as it is the class for the entity that the player can pick up to give themselves a boost in the game. This is new for assessment 2 - FR_POWER_UP and UR_POWER_UP
-  - Furthermore, we added the `Building` class into the diagram. This class was already in the code base when we took over the project, but was not detailed in the Concrete architecture. We felt that the colleges having a set of buildings and the `Building` entities being the one to have the `Renderable`  and `RigidBody` components meant that it was logical they should be shown on the concrete architecture because otherwise colleges may be mistaken as not having an image to represent them on the screen.
-  - We also added that the `College` class has the `Pirate` to allow the colleges to be able to shoot as this wasn't previously implemented despite being in the requirements for assessment 2.
-  - `com.badlogic.gdx.ScreenAdapter` was added because this was an important detail that we misunderstood when taking over the game. The `ScreenAdapter` concept is specific to LibGdx so would only be something you would already know if you had past experience with LibGdx. Along with adding this, we added the `PauseScreen` to help us add the UI functionality to allow the game to pause, restart and be saved.
-  - Lastly we added the main game class `PirateGame`. This is because it is actually the main class of the game and so is one of the most important.
-
-
-**<span style="text-decoration:underline;">d267759 & 6d08e8: Replace the justification for architecture </span>**
-
-
-[View Commit](https://github.com/engteam14/documentation2/commit/d267759f9502bf93430548026ff2afd3731f2fb1)
-
-[View Commit](https://github.com/engteam14/documentation2/commit/6d0e8e843e99c32041f1e7966775173d17186fa9)
-
-
-The previous team had a write up consisting of a page of justification for the abstract and concrete architecture as a whole, and then a page of going through some of the requirements and stating where they were covered by the architecture. unfortunately it is not clear why they chose to only mention the requirements that they did as they didn't cover all of them. Due to this, we felt that the write up didn't cover the "Systematic justification" requirement in the brief.  
-Instead we replaced this section with a brief explanation on the detail levels of both the abstract and concrete architecture followed by a systematic explanation of each key feature in the game, stating how it is shown in the concrete architecture, some explanation as to the function of the classes, and how it was represented in the abstract architecture. We ensured we mentioned every class that was included in the concrete architecture and their related requirements.
