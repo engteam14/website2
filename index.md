@@ -136,7 +136,7 @@
                                 <a href="coverage.html"><b><i>Code Coverage</i></b></a> - An automated report showing the code coverage of Junit tests may be found here.
                             </li>
                             <li>
-                                <a href="traceability-matrix.html"><b><i>Traceability Matrix</i></b></a> - The traceability matrix for our tests can be found here.
+                                <a href="traceability_matrix.html"><b><i>Traceability Matrix</i></b></a> - The traceability matrix for our tests can be found here.
                             </li>
                             <li>
                                 <b><i>Tests</i></b> - Automated and manual tests summary tables may be found here.
