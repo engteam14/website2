@@ -1,4 +1,9 @@
-# Implementing our Architecture and Requirements
+
+# Implementation
+#### a)
+Link to repository: [https://github.com/engteam14/yorkpirates2.git](https://github.com/engteam14/yorkpirates2.git)
+
+#### b) 
 In the following sections we explain how each requirement is implemented in the code base along with what classes are used from the concrete architecture.
 
 **UR_PLATFORM** - We coded our project in Java using the LibGdx library. As a result of this our game deploys as a jar file, meaning that it can be run cross platform on any platform with Java. This satisfies FR_CROSS_PLATFORM_WIN, FR_CROSS_PLATFORM_MAC and FR_CROSS_PLATFORM_GNU_LINUX, as all of these platforms support Java. Furthermore, as LibGdx is based on OpenGL this allows us to run our game with stable graphics past 30fps (FR_MIN_FPS), and scale the game to different resolutions (FR_VIEWPORT_SCALING). LibGdx also provides an `InputManager`, allowing us to detect input easily in our game in order to satisfy FR_MENU_KB_INPUT. Beyond the basic framework of LibGdx, we also coded our project using an Entity-Component system. In this system, all entities inherit from `Entity`, and call components inherit from `Component`, this allows shared features such as event calls to be given to all entities and components. An `Entity` may have any number of `Components`, all of which provide different functionalities, for example a `Transform` gives an object a position, rotation and scale within the game world, while a `Renderable` allows that object to be displayed in the world with a sprite.
@@ -52,7 +57,7 @@ The `SaveGame()` method systematically saves the state of each `College` and `Sh
 
 To implement loading the game, (FR_GAME_LOAD), the `menu` screen calls the `PirateGame.LoadGame()` method on pressing ‘resume ‘ which calls `SaveManager.LoadGame()` which gets the difficulty for the game first from the preferences file and tells the game manager to change it. It then calls SaveManager.SpawnGame()’ which loads the list of ships and iterates through it, changing the values assigned to each ship in accordance with those loaded from the .prefs file. If the value is not saved in the file then it keeps the standard value. It then goes through the list of colleges, calling `.killThisCollege()` on each college that is dead in the saved game. 
 
-### Significant Changes to previous code
+## Significant Changes to previous code
 To implement some of the requirements we had to make the following changes to the code from the previous team:
 
 **PR [#29](https://github.com/engteam14/yorkpirates2/pull/29), Initial Tests** - In order to create tests for our implementation, we required the game to be run headlessly. In order to achieve this, we had to refactor code relating to rendering. We removed the `tryInit()` method from `RenderingManager`, so as to cause it to only `Initialize()` when we choose, as well as modifying `addItem()` to prevent this change from causing it to error. The game only renders if we call `RenderingManager.Initialize()`, so this change allowed us to call it in `PirateGame` when running the game usually, but not call it in tests to run it headlessly ([`2164768`](https://github.com/engteam14/yorkpirates2/commit/2164768)). We additionally had to modify `GameManager.SpawnGame()`, to allow it to be ran without triggering `CreateWorldMap()`, as creating a `WorldMap` will crash if `RenderingManager.Initialize()` has not been run ([`63790f0`](https://github.com/engteam14/yorkpirates2/commit/63790f0)).
