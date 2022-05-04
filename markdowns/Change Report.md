@@ -1,7 +1,7 @@
 
 # Change report:
 
-# a) Formal Approach to Change Management
+## a) Formal Approach to Change Management
 
 ## **<span style="text-decoration:underline;">Documentation</span>**
 
