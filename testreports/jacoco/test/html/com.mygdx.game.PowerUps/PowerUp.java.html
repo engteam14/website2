@@ -103,7 +103,7 @@ public class PowerUp {
 <span class="pc bpc" id="L103" title="1 of 2 branches missed.">        if (duration &gt; 0) {</span>
 <span class="fc" id="L104">            long timeSoFar = TimeUtils.timeSinceMillis(startTime) / 1000;</span>
 <span class="fc bfc" id="L105" title="All 2 branches covered.">            if (timeSoFar &gt;= duration) {</span>
-<span class="fc bfc" id="L106" title="All 2 branches covered.">                if (pirate != null) DisablePowerUp(pirate);</span>
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">                if (pirate != null) DisablePowerUp(pirate);</span>
 <span class="fc" id="L107">                return true;</span>
             }
 <span class="fc" id="L109">        } return false;</span>
@@ -133,6 +133,13 @@ public class PowerUp {
      */
     public String getName() {
 <span class="nc" id="L135">        return name;</span>
+    }
+
+    /**
+     * @return the name of the power-up
+     */
+    public int getCost() {
+<span class="nc" id="L142">        return cost;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
