@@ -1,0 +1,395 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ResourceManager</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.mygdx.game.Managers</a>
+</div>
+
+<h1>Coverage Summary for Class: ResourceManager (com.mygdx.game.Managers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ResourceManager</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (15/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    79.4%
+  </span>
+  <span class="absValue">
+    (50/63)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.mygdx.game.Managers;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.badlogic.gdx.assets.AssetManager;
+<i class="no-highlight">4</i>&nbsp;import com.badlogic.gdx.graphics.Texture;
+<i class="no-highlight">5</i>&nbsp;import com.badlogic.gdx.graphics.g2d.Sprite;
+<i class="no-highlight">6</i>&nbsp;import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+<i class="no-highlight">7</i>&nbsp;import com.badlogic.gdx.maps.tiled.TiledMap;
+<i class="no-highlight">8</i>&nbsp;import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;/**
+<i class="no-highlight">13</i>&nbsp; * Manages all assets and disposes of them when appropriate
+<i class="no-highlight">14</i>&nbsp; */
+<b class="nc"><i class="no-highlight">15</i>&nbsp;public final class ResourceManager {</b>
+<b class="fc"><i class="no-highlight">16</i>&nbsp;    private static boolean initialized = false;</b>
+<i class="no-highlight">17</i>&nbsp;    private static boolean loaded;
+<i class="no-highlight">18</i>&nbsp;    private static AssetManager manager;
+<i class="no-highlight">19</i>&nbsp;    private static ArrayList&lt;String&gt; ids;
+<i class="no-highlight">20</i>&nbsp;    private static ArrayList&lt;TiledMap&gt; tileMaps;
+<i class="no-highlight">21</i>&nbsp;    //private static HashMap&lt;String, FreeTypeFontGenerator&gt; fontGenerators;
+<i class="no-highlight">22</i>&nbsp;    //private static HashMap&lt;String, BitmapFont&gt; fonts;
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;    /**
+<i class="no-highlight">25</i>&nbsp;     * The equivalent to a constructor
+<i class="no-highlight">26</i>&nbsp;     */
+<i class="no-highlight">27</i>&nbsp;    public static void Initialize() {
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        if (initialized) {</b>
+<i class="no-highlight">29</i>&nbsp;            return;
+<i class="no-highlight">30</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        initialized = true;</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        manager = new AssetManager();</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        loaded = false;</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        ids = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        tileMaps = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">36</i>&nbsp;        //fontGenerators = new HashMap&lt;&gt;();
+<i class="no-highlight">37</i>&nbsp;        //fonts = new HashMap&lt;&gt;();
+<i class="no-highlight">38</i>&nbsp;    }
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;    /**
+<i class="no-highlight">41</i>&nbsp;     * Schedules an asset for loading
+<i class="no-highlight">42</i>&nbsp;     * Amended for assessment 2: Made the method return void
+<i class="no-highlight">43</i>&nbsp;     * @param fPath the file path of the asset
+<i class="no-highlight">44</i>&nbsp;     */
+<i class="no-highlight">45</i>&nbsp;    public static void addTexture(String fPath) {
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        tryInit();</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;        checkAdd();</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;        manager.load(fPath, Texture.class);</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;        ids.add(fPath);</b>
+<i class="no-highlight">50</i>&nbsp;    }
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;    /**
+<i class="no-highlight">53</i>&nbsp;     * Schedules an asset for loading
+<i class="no-highlight">54</i>&nbsp;     * Amended for assessment 2: Made the method return void
+<i class="no-highlight">55</i>&nbsp;     * @param fPath the file path of the asset
+<i class="no-highlight">56</i>&nbsp;     */
+<i class="no-highlight">57</i>&nbsp;    public static void addTextureAtlas(String fPath) {
+<b class="fc"><i class="no-highlight">58</i>&nbsp;        tryInit();</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;        checkAdd();</b>
+<b class="fc"><i class="no-highlight">60</i>&nbsp;        manager.load(fPath, TextureAtlas.class);</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;        ids.add(fPath);</b>
+<i class="no-highlight">62</i>&nbsp;    }
+<i class="no-highlight">63</i>&nbsp;
+<i class="no-highlight">64</i>&nbsp;    /**
+<i class="no-highlight">65</i>&nbsp;     * Prefaces name with |TM| followed by the internal index of the tilemap however this isn&#39;t required to access this asset
+<i class="no-highlight">66</i>&nbsp;     * @param fPath the file location of the asset
+<i class="no-highlight">67</i>&nbsp;     * @return id of the asset
+<i class="no-highlight">68</i>&nbsp;     */
+<i class="no-highlight">69</i>&nbsp;    public static int addTileMap(String fPath) {
+<b class="fc"><i class="no-highlight">70</i>&nbsp;        tryInit();</b>
+<b class="fc"><i class="no-highlight">71</i>&nbsp;        checkAdd();</b>
+<b class="fc"><i class="no-highlight">72</i>&nbsp;        TiledMap map = new TmxMapLoader().load(fPath);</b>
+<b class="fc"><i class="no-highlight">73</i>&nbsp;        tileMaps.add(map);</b>
+<b class="fc"><i class="no-highlight">74</i>&nbsp;        ids.add(&quot;|TM|&quot; + tileMaps.size() + fPath);</b>
+<b class="fc"><i class="no-highlight">75</i>&nbsp;        return ids.size();</b>
+<i class="no-highlight">76</i>&nbsp;    }
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;    /**
+<i class="no-highlight">79</i>&nbsp;     * Actually loads the assets
+<i class="no-highlight">80</i>&nbsp;     */
+<i class="no-highlight">81</i>&nbsp;    public static void loadAssets() {
+<b class="fc"><i class="no-highlight">82</i>&nbsp;        tryInit();</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;        loaded = true;</b>
+<b class="fc"><i class="no-highlight">84</i>&nbsp;        manager.finishLoading();</b>
+<i class="no-highlight">85</i>&nbsp;    }
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;    public static Texture getTexture(String fPath) {
+<b class="nc"><i class="no-highlight">88</i>&nbsp;        tryInit();</b>
+<b class="nc"><i class="no-highlight">89</i>&nbsp;        return manager.get(fPath);</b>
+<i class="no-highlight">90</i>&nbsp;    }
+<i class="no-highlight">91</i>&nbsp;
+<i class="no-highlight">92</i>&nbsp;    public static TextureAtlas getTextureAtlas(String fPath) {
+<b class="fc"><i class="no-highlight">93</i>&nbsp;        tryInit();</b>
+<b class="fc"><i class="no-highlight">94</i>&nbsp;        TextureAtlas t = manager.get(fPath);</b>
+<b class="fc"><i class="no-highlight">95</i>&nbsp;        for (Texture t0 : t.getTextures()) {</b>
+<b class="fc"><i class="no-highlight">96</i>&nbsp;            t0.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);</b>
+<b class="fc"><i class="no-highlight">97</i>&nbsp;        }</b>
+<b class="fc"><i class="no-highlight">98</i>&nbsp;        return manager.get(fPath);</b>
+<i class="no-highlight">99</i>&nbsp;    }
+<i class="no-highlight">100</i>&nbsp;
+<i class="no-highlight">101</i>&nbsp;    public static Texture getTexture(int id) {
+<b class="fc"><i class="no-highlight">102</i>&nbsp;        tryInit();</b>
+<b class="fc"><i class="no-highlight">103</i>&nbsp;        String fPath = ids.get(id - 1);</b>
+<b class="fc"><i class="no-highlight">104</i>&nbsp;        return manager.get(fPath);</b>
+<i class="no-highlight">105</i>&nbsp;    }
+<i class="no-highlight">106</i>&nbsp;
+<i class="no-highlight">107</i>&nbsp;    public static TextureAtlas getTextureAtlas(int id) {
+<b class="fc"><i class="no-highlight">108</i>&nbsp;        tryInit();</b>
+<b class="fc"><i class="no-highlight">109</i>&nbsp;        String fPath = ids.get(id - 1);</b>
+<b class="fc"><i class="no-highlight">110</i>&nbsp;        return getTextureAtlas(fPath);</b>
+<i class="no-highlight">111</i>&nbsp;    }
+<i class="no-highlight">112</i>&nbsp;
+<i class="no-highlight">113</i>&nbsp;    /**
+<i class="no-highlight">114</i>&nbsp;     * @param atlas_id the id of the source texture atlas
+<i class="no-highlight">115</i>&nbsp;     * @param name     the name of the texture
+<i class="no-highlight">116</i>&nbsp;     * @return the found Sprite in the given atlas
+<i class="no-highlight">117</i>&nbsp;     */
+<i class="no-highlight">118</i>&nbsp;    public static Sprite getSprite(int atlas_id, String name) {
+<i class="no-highlight">119</i>&nbsp;        // Sprite s =  getTextureAtlas(atlas_id).createSprite(name);
+<i class="no-highlight">120</i>&nbsp;        // s.setU(0);
+<i class="no-highlight">121</i>&nbsp;        // s.setV(0);
+<i class="no-highlight">122</i>&nbsp;        // s.setU2(0.125f);
+<i class="no-highlight">123</i>&nbsp;        // s.setV2(0.25f);
+<i class="no-highlight">124</i>&nbsp;        //TextureAtlas t = getTextureAtlas(atlas_id);
+<b class="fc"><i class="no-highlight">125</i>&nbsp;        return getTextureAtlas(atlas_id).createSprite(name);</b>
+<i class="no-highlight">126</i>&nbsp;    }
+<i class="no-highlight">127</i>&nbsp;
+<i class="no-highlight">128</i>&nbsp;    /**
+<i class="no-highlight">129</i>&nbsp;     * Gets the tile map returns null if not a tile map
+<i class="no-highlight">130</i>&nbsp;     *
+<i class="no-highlight">131</i>&nbsp;     * @param id the id of the tile map
+<i class="no-highlight">132</i>&nbsp;     * @return the tile map
+<i class="no-highlight">133</i>&nbsp;     */
+<i class="no-highlight">134</i>&nbsp;    public static TiledMap getTileMap(int id) {
+<b class="nc"><i class="no-highlight">135</i>&nbsp;        tryInit();</b>
+<i class="no-highlight">136</i>&nbsp;
+<b class="nc"><i class="no-highlight">137</i>&nbsp;        String fPath = ids.get(id - 1);</b>
+<b class="nc"><i class="no-highlight">138</i>&nbsp;        if (fPath.length() &lt; 4) {</b>
+<b class="nc"><i class="no-highlight">139</i>&nbsp;            return null;</b>
+<i class="no-highlight">140</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">141</i>&nbsp;        String slice = fPath.substring(0, 4);</b>
+<b class="nc"><i class="no-highlight">142</i>&nbsp;        if (!slice.equals(&quot;|TM|&quot;)) {</b>
+<b class="nc"><i class="no-highlight">143</i>&nbsp;            return null;</b>
+<i class="no-highlight">144</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">145</i>&nbsp;        int id_ = Character.getNumericValue(fPath.charAt(4));</b>
+<b class="nc"><i class="no-highlight">146</i>&nbsp;        return tileMaps.get(id_ - 1);</b>
+<i class="no-highlight">147</i>&nbsp;    }
+<i class="no-highlight">148</i>&nbsp;
+<i class="no-highlight">149</i>&nbsp;    /**
+<i class="no-highlight">150</i>&nbsp;     * only looks for simple assets not specialty ones so largely only textures
+<i class="no-highlight">151</i>&nbsp;     *
+<i class="no-highlight">152</i>&nbsp;     * @param name the desired asset name
+<i class="no-highlight">153</i>&nbsp;     * @return the id of the asset found if found
+<i class="no-highlight">154</i>&nbsp;     */
+<i class="no-highlight">155</i>&nbsp;    public static int getId(String name) {
+<i class="no-highlight">156</i>&nbsp;        //tryInit();
+<b class="fc"><i class="no-highlight">157</i>&nbsp;        return ids.indexOf(name) + 1;</b>
+<i class="no-highlight">158</i>&nbsp;    }
+<i class="no-highlight">159</i>&nbsp;
+<i class="no-highlight">160</i>&nbsp;    /**
+<i class="no-highlight">161</i>&nbsp;     * It is imperative that this is called unless you want memory leeks
+<i class="no-highlight">162</i>&nbsp;     */
+<i class="no-highlight">163</i>&nbsp;    public static void cleanUp() {
+<b class="fc"><i class="no-highlight">164</i>&nbsp;        tryInit();</b>
+<b class="fc"><i class="no-highlight">165</i>&nbsp;        manager.dispose();</b>
+<b class="fc"><i class="no-highlight">166</i>&nbsp;        for (TiledMap map : tileMaps) {</b>
+<b class="fc"><i class="no-highlight">167</i>&nbsp;            map.dispose();</b>
+<b class="fc"><i class="no-highlight">168</i>&nbsp;        }</b>
+<i class="no-highlight">169</i>&nbsp;        //for (BitmapFont font : fonts.values()) {
+<i class="no-highlight">170</i>&nbsp;        //    font.dispose();
+<i class="no-highlight">171</i>&nbsp;        //}
+<i class="no-highlight">172</i>&nbsp;        //for (FreeTypeFontGenerator generator : fontGenerators.values()) {
+<i class="no-highlight">173</i>&nbsp;        //    generator.dispose();
+<i class="no-highlight">174</i>&nbsp;        //}
+<i class="no-highlight">175</i>&nbsp;    }
+<i class="no-highlight">176</i>&nbsp;
+<i class="no-highlight">177</i>&nbsp;    /**
+<i class="no-highlight">178</i>&nbsp;     * Will check if new assets can be added if not throw an error
+<i class="no-highlight">179</i>&nbsp;     */
+<i class="no-highlight">180</i>&nbsp;    private static void checkAdd() {
+<b class="fc"><i class="no-highlight">181</i>&nbsp;        if (loaded) {</b>
+<b class="nc"><i class="no-highlight">182</i>&nbsp;            throw new RuntimeException(&quot;Can&#39;t load assets at this stage&quot;);</b>
+<i class="no-highlight">183</i>&nbsp;        }
+<i class="no-highlight">184</i>&nbsp;    }
+<i class="no-highlight">185</i>&nbsp;
+<i class="no-highlight">186</i>&nbsp;    /**
+<i class="no-highlight">187</i>&nbsp;     * Calls Initialize if not already done so
+<i class="no-highlight">188</i>&nbsp;     */
+<i class="no-highlight">189</i>&nbsp;    private static void tryInit() {
+<b class="fc"><i class="no-highlight">190</i>&nbsp;        if (!initialized) {</b>
+<b class="fc"><i class="no-highlight">191</i>&nbsp;            Initialize();</b>
+<i class="no-highlight">192</i>&nbsp;        }
+<i class="no-highlight">193</i>&nbsp;    }
+<i class="no-highlight">194</i>&nbsp;
+<i class="no-highlight">195</i>&nbsp;    /**
+<i class="no-highlight">196</i>&nbsp;     * Added for Assessment 2
+<i class="no-highlight">197</i>&nbsp;     * Calls cleanup function and disposes of remaining assets
+<i class="no-highlight">198</i>&nbsp;     */
+<i class="no-highlight">199</i>&nbsp;    public static void dispose() {
+<b class="fc"><i class="no-highlight">200</i>&nbsp;        cleanUp();</b>
+<b class="fc"><i class="no-highlight">201</i>&nbsp;        initialized = false;</b>
+<b class="fc"><i class="no-highlight">202</i>&nbsp;        loaded = false;</b>
+<b class="fc"><i class="no-highlight">203</i>&nbsp;        ids = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">204</i>&nbsp;        //fonts = new HashMap&lt;&gt;();
+<i class="no-highlight">205</i>&nbsp;    }
+<i class="no-highlight">206</i>&nbsp;
+<i class="no-highlight">207</i>&nbsp;    //    public static int addFontGenerator(String fontPath) {
+<i class="no-highlight">208</i>&nbsp;    //        tryInit();
+<i class="no-highlight">209</i>&nbsp;    //        checkAdd();
+<i class="no-highlight">210</i>&nbsp;    //        if (fontGenerators.containsKey(fontPath)) {
+<i class="no-highlight">211</i>&nbsp;    //            return -1;
+<i class="no-highlight">212</i>&nbsp;    //        }
+<i class="no-highlight">213</i>&nbsp;    //        fontGenerators.put(fontPath, new FreeTypeFontGenerator(Gdx.files.internal(fontPath)));
+<i class="no-highlight">214</i>&nbsp;    //        ids.add(&quot;|FG|&quot; + fontPath);
+<i class="no-highlight">215</i>&nbsp;    //
+<i class="no-highlight">216</i>&nbsp;    //        return ids.size();
+<i class="no-highlight">217</i>&nbsp;    //    }
+<i class="no-highlight">218</i>&nbsp;    //
+<i class="no-highlight">219</i>&nbsp;    //    public static int createFont(int font_generator_id, int fontSize) {
+<i class="no-highlight">220</i>&nbsp;    //        tryInit();
+<i class="no-highlight">221</i>&nbsp;    //        String fontName = ids.get(font_generator_id - 1);
+<i class="no-highlight">222</i>&nbsp;    //        fontName = fontName.substring(4);
+<i class="no-highlight">223</i>&nbsp;    //        FreeTypeFontGenerator generator = fontGenerators.get(fontName);
+<i class="no-highlight">224</i>&nbsp;    //
+<i class="no-highlight">225</i>&nbsp;    //        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
+<i class="no-highlight">226</i>&nbsp;    //        params.size = fontSize;
+<i class="no-highlight">227</i>&nbsp;    //        params.color.r = 0;
+<i class="no-highlight">228</i>&nbsp;    //        params.color.g = 0;
+<i class="no-highlight">229</i>&nbsp;    //        params.color.b = 0;
+<i class="no-highlight">230</i>&nbsp;    //
+<i class="no-highlight">231</i>&nbsp;    //        BitmapFont font = generator.generateFont(params);
+<i class="no-highlight">232</i>&nbsp;    //
+<i class="no-highlight">233</i>&nbsp;    //        ids.add(&quot;|FT|&quot; + fontSize + fontName);
+<i class="no-highlight">234</i>&nbsp;    //        fonts.put(fontSize + fontName, font);
+<i class="no-highlight">235</i>&nbsp;    //
+<i class="no-highlight">236</i>&nbsp;    //        return ids.size();
+<i class="no-highlight">237</i>&nbsp;    //    }
+<i class="no-highlight">238</i>&nbsp;    //
+<i class="no-highlight">239</i>&nbsp;    //    public static int createFont(String fontName, int fontSize) {
+<i class="no-highlight">240</i>&nbsp;    //        tryInit();
+<i class="no-highlight">241</i>&nbsp;    //
+<i class="no-highlight">242</i>&nbsp;    //        if (!fontGenerators.containsKey(fontName)) {
+<i class="no-highlight">243</i>&nbsp;    //            return -1;
+<i class="no-highlight">244</i>&nbsp;    //        }
+<i class="no-highlight">245</i>&nbsp;    //        FreeTypeFontGenerator generator = fontGenerators.get(fontName);
+<i class="no-highlight">246</i>&nbsp;    //
+<i class="no-highlight">247</i>&nbsp;    //        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
+<i class="no-highlight">248</i>&nbsp;    //        params.size = fontSize;
+<i class="no-highlight">249</i>&nbsp;    //        params.color.r = 1;
+<i class="no-highlight">250</i>&nbsp;    //        params.color.g = 1;
+<i class="no-highlight">251</i>&nbsp;    //        params.color.b = 1;
+<i class="no-highlight">252</i>&nbsp;    //
+<i class="no-highlight">253</i>&nbsp;    //        BitmapFont font = generator.generateFont(params);
+<i class="no-highlight">254</i>&nbsp;    //
+<i class="no-highlight">255</i>&nbsp;    //        ids.add(&quot;|FT|&quot; + fontSize + fontName);
+<i class="no-highlight">256</i>&nbsp;    //        fonts.put(fontSize + fontName, font);
+<i class="no-highlight">257</i>&nbsp;    //
+<i class="no-highlight">258</i>&nbsp;    //        return ids.size();
+<i class="no-highlight">259</i>&nbsp;    //    }
+<i class="no-highlight">260</i>&nbsp;    //
+<i class="no-highlight">261</i>&nbsp;    //    public static TiledMap getTileMap(String fPath) {
+<i class="no-highlight">262</i>&nbsp;    //        tryInit();
+<i class="no-highlight">263</i>&nbsp;    //        int id = -1;
+<i class="no-highlight">264</i>&nbsp;    //        for (String fName : ids) {
+<i class="no-highlight">265</i>&nbsp;    //            if (fName.length() &lt; 4) {
+<i class="no-highlight">266</i>&nbsp;    //                continue;
+<i class="no-highlight">267</i>&nbsp;    //            }
+<i class="no-highlight">268</i>&nbsp;    //            String slice = fName.substring(0, 4);
+<i class="no-highlight">269</i>&nbsp;    //            if (slice.equals(&quot;|TM|&quot;) &amp;&amp; fName.contains(fPath)) {
+<i class="no-highlight">270</i>&nbsp;    //                id = Character.getNumericValue(fName.charAt(4));
+<i class="no-highlight">271</i>&nbsp;    //                break;
+<i class="no-highlight">272</i>&nbsp;    //            }
+<i class="no-highlight">273</i>&nbsp;    //        }
+<i class="no-highlight">274</i>&nbsp;    //        if (id &lt; 0) {
+<i class="no-highlight">275</i>&nbsp;    //            return null;
+<i class="no-highlight">276</i>&nbsp;    //        }
+<i class="no-highlight">277</i>&nbsp;    //        return tileMaps.get(id - 1);
+<i class="no-highlight">278</i>&nbsp;    //    }
+<i class="no-highlight">279</i>&nbsp;    //
+<i class="no-highlight">280</i>&nbsp;    //    public static BitmapFont getFont(int font_id) {
+<i class="no-highlight">281</i>&nbsp;    //        String fontName = ids.get(font_id - 1);
+<i class="no-highlight">282</i>&nbsp;    //        fontName = fontName.substring(4);
+<i class="no-highlight">283</i>&nbsp;    //
+<i class="no-highlight">284</i>&nbsp;    //        return fonts.get(fontName);
+<i class="no-highlight">285</i>&nbsp;    //    }
+<i class="no-highlight">286</i>&nbsp;    //
+<i class="no-highlight">287</i>&nbsp;    //    public static BitmapFont getFont(String fontName) {
+<i class="no-highlight">288</i>&nbsp;    //        return fonts.get(fontName);
+<i class="no-highlight">289</i>&nbsp;    //    }
+<i class="no-highlight">290</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-04 00:45</div>
+</div>
+</body>
+</html>
